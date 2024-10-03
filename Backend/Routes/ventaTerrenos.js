@@ -1,6 +1,6 @@
 const express = require("express")
 const {allVentaTerreno,singleVentaTerreno,createVentaTerreno,editVentaTerreno,deleteVentaTerreno} = require("../Controllers/ventaTerrenos")//importo los metodos del controlador
-
+const {verifyToken} = require("../middleware/middleware") // importo la funcion veryfyToken del archivo authJwt.js
 const router = express.Router()// metodo propio de express que tiene el enrutamiento
 
 

@@ -1,6 +1,6 @@
 const express = require("express")
 const {allTerrenos, singleTerreno, createTerreno,editTerreno,deleteTerreno} = require("../Controllers/terrenos")
-
+const {verifyToken} = require("../middleware/middleware") // importo la funcion veryfyToken del archivo authJwt.js
 const router = express.Router()
 
 router.get("/terrenos", allTerrenos)

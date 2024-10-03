@@ -1,5 +1,6 @@
 const express = require("express");
 const {allContactos,singleContactos,createContactos,editContactos,deleteContactos} = require("../Controllers/contactos");
+const {verifyToken} = require("../middleware/middleware") // importo la funcion veryfyToken del archivo authJwt.js
 const router = express.Router();
 
 router.get("/contactos",allContactos);

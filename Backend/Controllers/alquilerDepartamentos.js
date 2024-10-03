@@ -1,7 +1,14 @@
 const { conection } = require("../DB/config");
 
 const allAlquileres = (req,res)=>{
-
+    const query = "select * from AlquilerDepartamentos"
+    
+    conection.query(query, (err,results)=>{
+    
+        if (err) throw err;
+        
+            res.json(results)
+    })
 }
 const singleAlquiler = (req,res) =>{
 

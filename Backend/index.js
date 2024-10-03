@@ -20,13 +20,23 @@ const ventaTerrenos = require("./Routes/ventaTerrenos")
 const viajes = require("./Routes/viajes")
 const login = require("./Routes/login")
 const contactos = require("./Routes/contactos")
+const bodyParser = require('body-parser'); // elemento para que me lleguen los correos
 const cors = require('cors');
 
 const app = express()
 const port = 8000;
+app.use(bodyParser.json()); // elemento para que me lleguen los correos
 app.use(cors())
 app.use(express.json())
-app.use("/", alquilerDepartamentos,cashFlow,certificados,clientes,compraMateriales,departamentos,detalleViajes,libroDiario,obras,operaciones,pagosAlquileres,remuneraciones,stockMateriales,terrenos,usuarios,vehiculos,ventaTerrenos,viajes,login,contactos)
+app.use("/", alquilerDepartamentos,cashFlow,certificados,clientes,compraMateriales,departamentos,detalleViajes,libroDiario,obras,operaciones,pagosAlquileres,remuneraciones,stockMateriales,terrenos,usuarios,vehiculos,ventaTerrenos,viajes,login,contactos);
+// conectar con MySQL
+conection.connect((error) => {
+    if (error) {
+        console.error("Error conectando a MySQL:", error);
+        return;
+    }
+    console.log("Conectado a MySQL");
+});
 
 
 

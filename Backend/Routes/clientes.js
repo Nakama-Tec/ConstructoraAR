@@ -1,6 +1,6 @@
 const express = require("express")
  const {allClientes, singleCliente, createCliente,editCliente,deleteCliente} = require("../controllers/clientes")
-
+ const {verifyToken} = require("../middleware/middleware") // importo la funcion veryfyToken del archivo authJwt.js
 const router = express.Router()
 
 router.get("/clientes", allClientes)
