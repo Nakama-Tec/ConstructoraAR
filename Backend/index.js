@@ -20,14 +20,18 @@ const ventaTerrenos = require("./Routes/ventaTerrenos")
 const viajes = require("./Routes/viajes")
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const authRoutes = require('./Routes/auth.routes');
 const app = express()
 const port = 8000;
-app.use(cors())
+app.use(cors({
+    origin: 'http://localhost:5173',
+    credentials: true
+}))
 app.use(bodyParser.json())
 // app.use("/",viajes,certificados,ventaTerrenos,vehiculos)
 app.use(express.json())
+app.use(authRoutes)
 app.use("/", alquilerDepartamentos,cashFlow,certificados,clientes,compraMateriales,departamentos,detallesViajes,libroDiario,obras,operaciones,pagosAlquileres,remuneraciones,stockMateriales,terrenos,usuarios,vehiculos,ventaTerrenos,viajes)
-
 
 
 conection.connect(() => {
