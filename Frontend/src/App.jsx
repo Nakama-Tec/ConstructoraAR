@@ -1,15 +1,14 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import { ProtectedRoute } from './Components/ProtectedRoute'
-import { useAuthStore } from './Context/auth'
+import RouteControllers from './Context/RouteControllers'
 
 // Paginas
 import Login from './Pages/Login/Login'
-import Admin from './Pages/Admin/Admin'
+// import Admin from './Pages/Admin/Admin'
 import Home from './Pages/Home/Home'
 
-function App() {
+function App(props) {
 
-  const isAuth = useAuthStore(state => state.isAuth)
+  // const isAuth = useAuthStore(state => state.isAuth)
 
   return (
     <BrowserRouter>
@@ -17,9 +16,7 @@ function App() {
         <Route path="/" element={<Home/>} />
         <Route path="/login" element={<Login />} />
 
-        <Route element={<ProtectedRoute isAllowed={isAuth} /> }>
-          <Route path="/admin" element={<Admin />} />
-        </Route>
+          <Route path="/admin" component={<RouteControllers/>} {...props}/>
 
       </Routes>
     </BrowserRouter>

@@ -1,25 +1,25 @@
-const {Request, Response} = require('express');
+const {conection} = require("../DB/Config");
 const jwt = require('jsonwebtoken');
 
-const loginHandler = (req, res) => {
-    const token = jwt.sign({
-        username: "testName",
-    }, 'secret', {
-        expiresIn: 60 * 60 * 24 // 24 hs
+const login = (req, res) => {
+    const {username, password} = req.body;
+    const values = [username, password];
+    const query = (`SELECT * FROM Usuarios WHERE nombreUsuario = ? AND passwordUsuario = ?`);
+        conection.query(query, values, (err, result) => {
+            if(err){
+                res.status(500).send(err);
+            } else {
+                if(result.length > 0){
+                    res.status(200).send({
+                        "id": result[0].id,
+                        "user": result[0].nombreUsuario,
+                        
+                    })
+            } else {
+                res.status(400).send({message: 'Usuario no existe'})
+            }
+        }
     })
+  }
 
-    return res.json({
-        token // Devuelve el token
-    })
-}
-
-const adminHandler = (req, res) => {
-    
-    return res.json({
-        admin: req.user,
-        message: 'Bienvenido Admin'
-    })
-    
-}
-
-module.exports = {loginHandler, adminHandler}
+module.exports = {login}

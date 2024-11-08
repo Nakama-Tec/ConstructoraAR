@@ -1,39 +1,56 @@
-import {loginRequest, adminRequest} from './API/auth.js'
-import { useAuthStore } from '../../Context/auth.js'
-import { useNavigate } from 'react-router-dom'
-
+import { useState } from 'react'
+import axios from 'axios'
+import {useNavigate} from 'react-router-dom'
 
 const LoginPage = () => {
 
-    const setToken = useAuthStore(state => state.setToken)
-    const setAdmin = useAuthStore(state => state.setAdmin)
-    const navigate = useNavigate()
-
-    const handleSubmit = async (e) => {
-        e.preventDefault()
-
-        const email = (e.currentTarget.elements[0].value)
-        const password = (e.currentTarget.elements[1].value)
+  const [body, setBody] = useState({username: '', password: ''});
+  const navigate = useNavigate();
 
 
-        const resLogin = await loginRequest(email, password)
-        setToken(resLogin.data.token)
+  const handleChange = ({target}) => {
+    const {name, value} = target;
+    setBody({...body, [name]: value});
+  }
 
-        const resAdmin = await adminRequest()
-        setAdmin(resAdmin.data.admin)
- 
-        navigate('/admin')
-    }
-    
-  return (
-    <form onSubmit={handleSubmit}>
-        <input type='email' placeholder='nombre@email.com'/>
-        <input type="password" placeholder='*****'/>
-        <button>
-            Entrar
-        </button>
-    </form>
-  )
+  const onSubmit = (e) => {
+    e.preventDefault();
+    axios.post('http://localhost:8000/login', body)
+    .then(({data}) => {
+        localStorage.setItem('auth', '"yes"');
+        navigate('/admin');
+    })
+    .catch(({response}) => {
+        console.log(response)
+    })
+  }
+
+  return(
+      <>
+              <form>
+                  <label className="custom-label">Username:</label>
+                  <input
+                         placeholder="username"
+                         className="custom-input"
+                         type="text" 
+                         value={body.username}
+                         onChange={handleChange}
+                         name='username'
+                         />
+                  <label className="custom-label">Password:</label>
+                  <input
+                         placeholder="password"
+                         className="custom-input"
+                         type="password" 
+                         value={body.password}
+                         onChange={handleChange}
+                         name='password'
+                         />
+                  <button className="custom-button" onClick={onSubmit}>Ingresar</button>
+              </form>
+          </>
+  );
 }
+
 
 export default LoginPage
