@@ -1,8 +1,8 @@
-
+import Aside from '../../../Layout/Aside'
 const MainClientes = () => {
     return (
       <>
-      <h2>Main Clientes</h2>
+      <Aside />
       </>
   );
 }
