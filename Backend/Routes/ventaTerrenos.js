@@ -5,10 +5,10 @@ const router = express.Router()// metodo propio de express que tiene el enrutami
 
 
 //peticiones http
-router.get("/ventaTerreno/",allVentaTerreno)//muestra todo
-router.get("/ventaTerreno/:id", singleVentaTerreno)//para ver uno
-router.post("/ventaTerreno/create",createVentaTerreno)
-router.put("/ventaTerreno/edit/:id",editVentaTerreno)
-router.put("/ventaTerreno/delete/:id",deleteVentaTerreno)
+router.get("/ventaTerreno/",verifyToken,allVentaTerreno)//muestra todo
+router.get("/ventaTerreno/:id", verifyToken,singleVentaTerreno)//para ver uno
+router.post("/ventaTerreno/create",verifyToken,createVentaTerreno)
+router.put("/ventaTerreno/edit/:id",verifyToken,editVentaTerreno)
+router.put("/ventaTerreno/delete/:id",verifyToken,deleteVentaTerreno)
 
 module.exports = router

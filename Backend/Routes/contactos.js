@@ -3,10 +3,10 @@ const {allContactos,singleContactos,createContactos,editContactos,deleteContacto
 const {verifyToken} = require("../middleware/middleware") // importo la funcion veryfyToken del archivo authJwt.js
 const router = express.Router();
 
-router.get("/contactos",allContactos);
-router.get("/contactos/:id",singleContactos);
-router.post("/contactos/create",createContactos);
-router.put("/contactos/edit/:id",editContactos);
-router.delete("/contactos/delete/:id",deleteContactos);
+router.get("/contactos",verifyToken,allContactos);
+router.get("/contactos/:id",verifyToken,singleContactos);
+router.post("/contactos/create",verifyToken,createContactos);
+router.put("/contactos/edit/:id",verifyToken,editContactos);
+router.delete("/contactos/delete/:id",verifyToken,deleteContactos);
 
 module.exports = router;

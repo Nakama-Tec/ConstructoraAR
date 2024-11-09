@@ -1,9 +1,11 @@
 const express = require("express");
 const {alldaily_books,singlediary_book} = require("../Controllers/libroDiario");
+const {verifyToken} = require("../middleware/middleware") // importo la funcion veryfyToken del archivo authJwt.js
+
 const router = express.Router();
 
 
-router.get("/libroDiario",alldaily_books)
-router.get("/libroDiario/:id",singlediary_book)
+router.get("/libroDiario",verifyToken,alldaily_books)
+router.get("/libroDiario/:id",verifyToken,singlediary_book)
 
 module.exports = router

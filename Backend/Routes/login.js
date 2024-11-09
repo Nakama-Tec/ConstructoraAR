@@ -4,7 +4,7 @@ const {verifyToken} = require("../middleware/middleware") // importo la funcion 
 const {login,recuperarPass} = require("../Controllers/login")
 
 
-router.post("/login",login);
-router.post("/recuperarPass",recuperarPass);
+router.post("/login",verifyToken,login);
+router.post("/recuperarPass",verifyToken,recuperarPass);
 
 module.exports = router

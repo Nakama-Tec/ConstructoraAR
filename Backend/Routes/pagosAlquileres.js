@@ -3,11 +3,11 @@ const {allPagosAlquileres, unPagoAlquiler, createPagosAlquileres,editPagosAlquil
 const {verifyToken} = require("../middleware/middleware") // importo la funcion veryfyToken del archivo authJwt.js
 const router = express.Router()
 
-router.get("/pagosAlquileres", allPagosAlquileres)
-router.get("/pagosAlquileres/:id", unPagoAlquiler)
-router.post("/pagosAlquileres/create/", createPagosAlquileres)
-router.put("/pagosAlquileres/edit/:id", editPagosAlquileres)
-router.put("/pagosAlquileres/delete/:id", deletePagosAlquileres)
+router.get("/pagosAlquileres", verifyToken,allPagosAlquileres)
+router.get("/pagosAlquileres/:id", verifyToken,unPagoAlquiler)
+router.post("/pagosAlquileres/create/", verifyToken,createPagosAlquileres)
+router.put("/pagosAlquileres/edit/:id", verifyToken,editPagosAlquileres)
+router.put("/pagosAlquileres/delete/:id", verifyToken,deletePagosAlquileres)
 
 
 module.exports = router

@@ -4,10 +4,10 @@ const {verifyToken} = require("../middleware/middleware") // importo la funcion 
 const {allDetalleViajes,singleDetalleViajes,createDetalleViajes,editDetalleViajes,deleteDetalleViajes} = require("../Controllers/detallesViajes")
 
 //peticiones http
-router.get("/detalleViajes/",allDetalleViajes)//muestra todo
-router.get("/detalleViajes/:id", singleDetalleViajes)//para ver uno
-router.post("/detalleViajes/create",createDetalleViajes)
-router.put("/detalleViajes/edit/:id",editDetalleViajes)
-router.put("/detalleViajes/delete/:id",deleteDetalleViajes)
+router.get("/detalleViajes/",verifyToken,allDetalleViajes)//muestra todo
+router.get("/detalleViajes/:id",verifyToken, singleDetalleViajes)//para ver uno
+router.post("/detalleViajes/create",verifyToken,createDetalleViajes)
+router.put("/detalleViajes/edit/:id",verifyToken,editDetalleViajes)
+router.put("/detalleViajes/delete/:id",verifyToken,deleteDetalleViajes)
 
 module.exports = router

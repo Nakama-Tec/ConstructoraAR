@@ -5,10 +5,10 @@ const {verifyToken} = require("../middleware/middleware") // importo la funcion 
 const {allCertificados,singleCertificados,createCertificados,editCertificados,deleteCertificados} = require("../Controllers/certificados")
 
 //peticiones http
-router.get("/certificados/",allCertificados)//muestra todo
-router.get("/certificados/:id", singleCertificados)//para ver uno
-router.post("/certificados/create",createCertificados)
-router.put("/certificados/edit/:id",editCertificados)
-router.put("/certificados/delete/:id",deleteCertificados)
+router.get("/certificados/",verifyToken,allCertificados)//muestra todo
+router.get("/certificados/:id", verifyToken,singleCertificados)//para ver uno
+router.post("/certificados/create",verifyToken, createCertificados)
+router.put("/certificados/edit/:id",verifyToken, editCertificados)
+router.put("/certificados/delete/:id",verifyToken,deleteCertificados)
 
 module.exports = router
