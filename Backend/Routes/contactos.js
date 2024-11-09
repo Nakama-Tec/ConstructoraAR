@@ -5,8 +5,8 @@ const router = express.Router();
 
 router.get("/contactos",verifyToken,allContactos);
 router.get("/contactos/:id",verifyToken,singleContactos);
-router.post("/contactos/create",verifyToken,createContactos);
+router.post("/contactos/create",createContactos);//no lleva verificacion de token aqui se hace desde el front de landingpage
 router.put("/contactos/edit/:id",verifyToken,editContactos);
-router.delete("/contactos/delete/:id",verifyToken,deleteContactos);
+router.delete("/contactos/delete/:id",verifyToken, deleteContactos);
 
 module.exports = router;
