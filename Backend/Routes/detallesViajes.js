@@ -1,7 +1,8 @@
 const express = require("express")
 const router = express.Router()// metodo propio de express que tiene el enrutamiento
+
 const {verifyToken} = require("../middleware/middleware") // importo la funcion veryfyToken del archivo authJwt.js
-const {allDetalleViajes,singleDetalleViajes,createDetalleViajes,editDetalleViajes,deleteDetalleViajes} = require("../Controllers/detallesViajes")
+const {allDetallesViajes,singleDetallesViajes,createDetallesViajes,editDetallesViajes,deleteDetallesViajes} = require("../Controllers/detallesViajes")
 
 //peticiones http
 router.get("/detalleViajes/",verifyToken,allDetalleViajes)//muestra todo

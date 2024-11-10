@@ -1,9 +1,9 @@
-const { conection } = require('../DB/config');
+const { conection } = require('../DB/Config');
 
 // Funcion para mostrar todas las compras de materiales
 
 const allCompraMateriales = (req, res) => {
-    const query = `select * from StockMateriales;`
+    const query = `select * from CompraMateriales where activoCompra=1;`
     conection.query(query, (err, results) => {
         if (err) throw err;
         res.json(results);
