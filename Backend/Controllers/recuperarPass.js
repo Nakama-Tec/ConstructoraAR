@@ -1,5 +1,5 @@
 const jwt = require("jsonwebtoken");
-const { conection } = require("../DB/config");
+const { conection } = require("../DB/Config")
 const { transporter } = require("../DB/Envio-Mail");
 
 // Función para la recuperación de contraseña

@@ -31,7 +31,6 @@ const LoginPage = () => {
                   <label className="custom-label">Username:</label>
                   <input
                          placeholder="username"
-                         className="custom-input"
                          type="text" 
                          value={body.username}
                          onChange={handleChange}
@@ -40,7 +39,6 @@ const LoginPage = () => {
                   <label className="custom-label">Password:</label>
                   <input
                          placeholder="password"
-                         className="custom-input"
                          type="password" 
                          value={body.password}
                          onChange={handleChange}

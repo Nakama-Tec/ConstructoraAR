@@ -30,7 +30,7 @@ app.use(cors({
 }))
 app.use(bodyParser.json()); // elemento para que me lleguen los correos
 app.use(express.json())
-app.use("/", alquilerDepartamentos,cashFlow,certificados,clientes,compraMateriales,departamentos,detalleViajes,libroDiario,obras,operaciones,pagosAlquileres,remuneraciones,stockMateriales,terrenos,usuarios,vehiculos,ventaTerrenos,viajes,login,contactos);
+app.use("/", alquilerDepartamentos,cashFlow,certificados,clientes,compraMateriales,departamentos,detallesViajes,libroDiario,obras,operaciones,pagosAlquileres,remuneraciones,stockMateriales,terrenos,usuarios,vehiculos,ventaTerrenos,viajes,login,contactos);
 // conectar con MySQL
 conection.connect((error) => {
     if (error) {
