@@ -1,0 +1,55 @@
+.mainClientes {
+    display: flex;
+    margin: 0 auto;
+    padding: 7rem;
+}
+
+.Aside {
+    padding: 20px;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    border: 1px solid #ddd;
+}
+
+thead {
+    background: #333;
+    color: white;
+}
+
+th, td {
+    text-align: left;
+    padding: 16px;
+}
+
+tr:nth-child(even) {
+    background: #a0a0a0;
+}
+
+button {
+    margin: 10px;
+}
+
+.btn-pages button {
+    position: relative;
+    left: 395px;
+    bottom: 90px;;
+}
+
+.input-search {
+    position: relative;
+    left: 410px;
+    top: 90px;
+}
+
+.input-search input {
+    width: 200px;
+    height: 20px;
+    border-radius: 5px;
+    border: 1px solid #333;
+    padding: 5px;
+}
+
