@@ -18,23 +18,27 @@ const usuarios = require("./Routes/usuarios")
 const vehiculos = require("./Routes/vehiculos")
 const ventaTerrenos = require("./Routes/ventaTerrenos")
 const viajes = require("./Routes/viajes")
+const login = require("./Routes/login")
+const contactos = require("./Routes/contactos")
+const bodyParser = require('body-parser'); // elemento para que me lleguen los correos
 const auth = require('./Routes/auth.routes')
-const bodyParser = require('body-parser');
 const cors = require('cors');
 const app = express()
 const port = 8000;
 app.use(cors({
     origin: 'http://localhost:5173',
 }))
-app.use(bodyParser.json())
-// app.use("/",viajes,certificados,ventaTerrenos,vehiculos)
+app.use(bodyParser.json()); // elemento para que me lleguen los correos
 app.use(express.json())
-app.use("/", alquilerDepartamentos,cashFlow,certificados,clientes,compraMateriales,departamentos,detallesViajes,libroDiario,obras,operaciones,pagosAlquileres,remuneraciones,stockMateriales,terrenos,usuarios,vehiculos,ventaTerrenos,viajes,auth)
-
-
-conection.connect(() => {
-    console.log("Base de datos conectada ✓")
-})
+app.use("/", alquilerDepartamentos,cashFlow,certificados,clientes,compraMateriales,departamentos,detalleViajes,libroDiario,obras,operaciones,pagosAlquileres,remuneraciones,stockMateriales,terrenos,usuarios,vehiculos,ventaTerrenos,viajes,login,contactos);
+// conectar con MySQL
+conection.connect((error) => {
+    if (error) {
+        console.error("Error conectando a MySQL:", error);
+        return;
+    }
+    console.log("Conectado a MySQL");
+});
 
 app.get("/", (req, res) => {
     console.log("API FUNCIONANDO")

@@ -1,6 +1,4 @@
-const { conection } = require('../DB/Config');
-
-
+const { conection } = require("../DB/config");
 
 // cambiar endpoints
 const allAlquilerDepartamentos = (req, res) => {
