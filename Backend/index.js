@@ -19,6 +19,7 @@ const vehiculos = require("./Routes/vehiculos")
 const ventaTerrenos = require("./Routes/ventaTerrenos")
 const viajes = require("./Routes/viajes")
 const login = require("./Routes/login")
+const recuperarPass = require("Routes/recuperarPass")
 const contactos = require("./Routes/contactos")
 const bodyParser = require('body-parser'); // elemento para que me lleguen los correos
 const auth = require('./Routes/auth.routes')
@@ -30,7 +31,7 @@ app.use(cors({
 }))
 app.use(bodyParser.json()); // elemento para que me lleguen los correos
 app.use(express.json())
-app.use("/", alquilerDepartamentos,cashFlow,certificados,clientes,compraMateriales,departamentos,detallesViajes,libroDiario,obras,operaciones,pagosAlquileres,remuneraciones,stockMateriales,terrenos,usuarios,vehiculos,ventaTerrenos,viajes,login,contactos);
+app.use("/", alquilerDepartamentos,cashFlow,certificados,clientes,compraMateriales,departamentos,detallesViajes,libroDiario,obras,operaciones,pagosAlquileres,remuneraciones,stockMateriales,terrenos,usuarios,vehiculos,ventaTerrenos,viajes,login,contactos,recuperarPass);
 // conectar con MySQL
 conection.connect((error) => {
     if (error) {
