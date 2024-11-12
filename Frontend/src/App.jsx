@@ -11,10 +11,15 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Home/>} />
-        <Route path="/login" element={<Login />} />
+        {/* Rutas públicas en estas rutas pueden ingresar usuario comun sin problema es lo que pueden ver y hacer*/}
 
-          <Route path="/admin" element={<Admin/>} />
+        
+
+
+        {/* Rutas protegidas */}
+
+        <Route path="/" element={<Home/>} />
+        <Route path="/admin" element={<Admin/>} />
 
       </Routes>
     </BrowserRouter>
