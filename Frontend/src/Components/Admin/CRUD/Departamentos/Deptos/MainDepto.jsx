@@ -1,0 +1,1 @@
+// Muestra y elimina todos los datos de los departamentos ingresados
