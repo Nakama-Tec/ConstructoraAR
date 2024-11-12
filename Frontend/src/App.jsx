@@ -16,6 +16,8 @@ import Operaciones from "./Pages/Operaciones/Operaciones"
 import Usuario from "./Pages/Usuarios/Usuarios"
 import ProtectedRoute from './Components/ProteccionRutas/ProtectedRoute'
 
+import Error from './Components/Layout/Error'
+
 function App() {
 const roleRequired = "admin"
   return (
@@ -40,6 +42,10 @@ const roleRequired = "admin"
 
         {/* Ruta no autorizada */}
         <Route path="/unauthorized" element={<div><h3>No autorizado</h3></div>} />
+        
+        { /* Ruta no encontradas */}
+
+        <Route path='*' element={<Error />} />
         
         </Routes>
     </BrowserRouter>
