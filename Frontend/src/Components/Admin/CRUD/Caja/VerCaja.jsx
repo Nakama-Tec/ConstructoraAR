@@ -1,0 +1,1 @@
+// Para ver un mes en particular se debe seleccionar el mes en el calendario y luego seleccionar el boton de ver mes

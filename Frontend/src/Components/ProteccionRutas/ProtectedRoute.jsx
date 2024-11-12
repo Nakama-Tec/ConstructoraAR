@@ -1,6 +1,6 @@
 import { Link, Outlet } from 'react-router-dom'; 
-import useAuthStore from './useAuthStore';
-import { LOGIN } from '../../../Routes/routes';
+import useAuthStore from '../../Context/useAuthStore';
+import { LOGIN } from '../../Routes/routes';
 
 
 // roleRequired: Propiedad que indica el rol requerido para acceder a la ruta.
