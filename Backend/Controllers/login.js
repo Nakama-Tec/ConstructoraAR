@@ -6,6 +6,8 @@ const login = (req,res) =>{
 // destructuring de los datos que me llegan por el body osea por front
     const {nombreUsuario,passwordUsuario} = req.body
     // consulta parametrizada o consulta preparada para evitar inyecciones de sql
+    // Usuario: Juan
+    // Pass: 123
     const query = `SELECT * FROM usuarios WHERE email = ? AND pass = ?`
     conection.query(query,[nombreUsuario],(err,results)=>{// le paso primero un array con el nombre de usuario
         if(err){ // verificaccion de existe un error
