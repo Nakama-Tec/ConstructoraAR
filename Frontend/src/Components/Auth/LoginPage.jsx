@@ -28,17 +28,17 @@ const LoginPage = () => {
   return(
       <>
               <form>
-                  <label className="custom-label">Username:</label>
+                  <label className="custom-label">Usuario:</label>
                   <input
-                         placeholder="username"
+                         placeholder="Usuario"
                          type="text" 
                          value={body.username}
                          onChange={handleChange}
                          name='username'
                          />
-                  <label className="custom-label">Password:</label>
+                  <label className="custom-label">Contraseña:</label>
                   <input
-                         placeholder="password"
+                         placeholder="Contraseña"
                          type="password" 
                          value={body.password}
                          onChange={handleChange}
