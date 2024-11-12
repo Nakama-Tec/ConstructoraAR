@@ -1,6 +1,6 @@
 // Importaciones de librerias
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-
+import {HOME,LOGIN, FLUJO_CAJA, LIBRO_DIARIO,TERRENOS ,STOCK, CLIENTES, DEPARTAMENTOS, OBRAS, OPERACIONES, USUARIO, UNAUTHORIZED} from "./Routes/routes"
 
 // Paginas
 import Login from './Pages/Login/Login'
@@ -16,30 +16,36 @@ import Operaciones from "./Pages/Operaciones/Operaciones"
 import Usuario from "./Pages/Usuarios/Usuarios"
 import ProtectedRoute from './Components/ProteccionRutas/ProtectedRoute'
 
+import Error from './Components/Layout/Error'
+
 function App() {
 const roleRequired = "admin"
   return (
     <BrowserRouter>
       <Routes>
         {/* Rutas públicas en estas rutas pueden ingresar usuario comun sin problema es lo que pueden ver y hacer*/}
-        <Route path="/" element={<Home/>} />
-        <Route path="/Login" element={<Login/>} />
+        <Route path={HOME} element={<Home/>} />
+        <Route path={LOGIN} element={<Login/>} />
 
 
         {/* Rutas protegidas */}
         
-        <Route path="/FlujoCaja" element={<ProtectedRoute roleRequired={roleRequired}> <FlujoCaja/></ProtectedRoute>} />
-        <Route path="/LibroDiario" element={<ProtectedRoute roleRequired={roleRequired}> <LibroDiario/></ProtectedRoute>} />
-        <Route path="/Terrenos" element={<ProtectedRoute roleRequired={roleRequired}> <Terrenos/></ProtectedRoute>} />
-        <Route path="/Stock" element={<ProtectedRoute roleRequired={roleRequired}> <Stock/></ProtectedRoute>} />
-        <Route path="/Clientes" element={<ProtectedRoute roleRequired={roleRequired}> <Clientes/></ProtectedRoute>} />
-        <Route path="/Departamentos" element={<ProtectedRoute roleRequired={roleRequired}> <Departamentos/></ProtectedRoute>} />
-        <Route path="/Obras" element={<ProtectedRoute roleRequired={roleRequired}> <Obras/></ProtectedRoute>} />
-        <Route path="/Operaciones" element={<ProtectedRoute roleRequired={roleRequired}> <Operaciones/></ProtectedRoute>} />
-        <Route path="/Usuario" element={<ProtectedRoute roleRequired={roleRequired}> <Usuario/></ProtectedRoute>} />
+        <Route path={FLUJO_CAJA} element={<ProtectedRoute roleRequired={roleRequired}> <FlujoCaja/></ProtectedRoute>} />
+        <Route path={LIBRO_DIARIO} element={<ProtectedRoute roleRequired={roleRequired}> <LibroDiario/></ProtectedRoute>} />
+        <Route path={TERRENOS} element={<ProtectedRoute roleRequired={roleRequired}> <Terrenos/></ProtectedRoute>} />
+        <Route path={STOCK} element={<ProtectedRoute roleRequired={roleRequired}> <Stock/></ProtectedRoute>} />
+        <Route path={CLIENTES} element={<ProtectedRoute roleRequired={roleRequired}> <Clientes/></ProtectedRoute>} />
+        <Route path={DEPARTAMENTOS} element={<ProtectedRoute roleRequired={roleRequired}> <Departamentos/></ProtectedRoute>} />
+        <Route path={OBRAS} element={<ProtectedRoute roleRequired={roleRequired}> <Obras/></ProtectedRoute>} />
+        <Route path={OPERACIONES} element={<ProtectedRoute roleRequired={roleRequired}> <Operaciones/></ProtectedRoute>} />
+        <Route path={USUARIO} element={<ProtectedRoute roleRequired={roleRequired}> <Usuario/></ProtectedRoute>} />
 
         {/* Ruta no autorizada */}
-        <Route path="/unauthorized" element={<div><h3>No autorizado</h3></div>} />
+        <Route path={UNAUTHORIZED} element={<div><h3>No autorizado</h3></div>} />
+        
+        { /* Ruta no encontradas */}
+
+        <Route path='*' element={<Error />} />
         
         </Routes>
     </BrowserRouter>
