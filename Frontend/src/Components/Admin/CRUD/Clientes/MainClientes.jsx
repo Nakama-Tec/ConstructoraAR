@@ -5,7 +5,7 @@ import '../../../../Styles/table.css'
 import { useState } from 'react'
 const MainClientes = () => {
 
-  const [filtering, setFiltering] = useState("")
+  const [filtrado, setFiltrado] = useState("")
 
   const columns = [
     {
@@ -39,15 +39,15 @@ const MainClientes = () => {
   ]
 
   const table = useReactTable({data, columns, getCoreRowModel: getCoreRowModel(), getPaginationRowModel: getPaginationRowModel(), getFilteredRowModel: getFilteredRowModel(), state: {
-    globalFilter: filtering
+    globalFilter: filtrado
   },
-  onGlobalFilterChange: setFiltering
+  onGlobalFilterChange: setFiltrado
 })
   
     return (
       <>
       <div className='input-search'>
-        <input type='text' placeholder='Buscador' value={filtering} onChange={(e) => setFiltering(e.target.value)}/>
+        <input type='search' placeholder='Buscador' value={filtrado} onChange={(e) => setFiltrado(e.target.value)}/>
       </div>
 
       <div className='mainClientes'>

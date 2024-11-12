@@ -11,7 +11,7 @@ const secretKey = process.env.SECRETKEY;
 const verifyToken = (req, res, next) => {
     // Comprobar si se ha definido la clave secreta
     if (!secretKey) {
-        return res.status(500).json({ message: "Secret key not configured in environment variables" });
+        return res.status(500).json({ message: "Clave secreta no configurada en las variables de entorno" });
     }
 
     // Obtener el token del encabezado de autorización
@@ -19,13 +19,13 @@ const verifyToken = (req, res, next) => {
     
     // Si no se proporciona el encabezado de autorización
     if (!authHeader) {
-        return res.status(403).json({ message: "Authorization header missing" });
+        return res.status(403).json({ message: "Encabezado de autorización faltante" });
     }
 
     // Validar el formato del token
     const tokenParts = authHeader.split(' ');
     if (tokenParts[0] !== 'Bearer' || !tokenParts[1]) {
-        return res.status(403).json({ message: "Invalid token format. Expected 'Bearer <token>'" });
+        return res.status(403).json({ message: "Formato de token inválido. Se esperaba 'Bearer <token>'" });
     }
 
     // Extraer el token del formato 'Bearer <token>'
@@ -36,14 +36,14 @@ const verifyToken = (req, res, next) => {
         if (err) {
             // Error específico si el token ha expirado
             if (err.name === "TokenExpiredError") {
-                return res.status(401).json({ message: "Token expired" });
+                return res.status(401).json({ message: "Token expirado" });
             }
             // Error específico si el token es inválido
             if (err.name === "JsonWebTokenError") {
-                return res.status(403).json({ message: "Invalid token" });
+                return res.status(403).json({ message: "Token inválido" });
             }
             // Error general en otros casos
-            return res.status(500).json({ message: "Failed to authenticate token" });
+            return res.status(500).json({ message: "Fallo al autenticar el token" });
         }
 
         // Guardar el id y rol del usuario en la solicitud
