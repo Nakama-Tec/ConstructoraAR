@@ -1,10 +1,11 @@
-import Header from '../../Components/Layout/Header'
+import './home.css'
+
 
 const Home = () => {
   return (
-    <div>
-      <Header />
-    </div>
+    <>
+      Home
+    </>
   )
 }
 
