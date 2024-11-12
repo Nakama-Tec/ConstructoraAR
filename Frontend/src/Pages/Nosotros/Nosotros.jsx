@@ -1,4 +1,3 @@
-
 const Nosotros = () => {
   return (
     <div>
