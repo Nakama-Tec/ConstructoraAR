@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import axios from 'axios'
 import {useNavigate} from 'react-router-dom'
+import Aside from '../Layout/Aside';
 
 const LoginPage = () => {
 
@@ -46,6 +47,8 @@ const LoginPage = () => {
                          />
                   <button className="custom-button" onClick={onSubmit}>Ingresar</button>
               </form>
+
+              <Aside />
           </>
   );
 }

@@ -1,6 +1,9 @@
+import Aside from '../../Components/Layout/Aside'
 const Home = () => {
   return (
-    <div>Home</div>
+    <div>
+      <Aside />
+    </div>
   )
 }
 

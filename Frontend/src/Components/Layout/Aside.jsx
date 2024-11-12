@@ -1,5 +1,6 @@
 import { Sidebar, Menu, MenuItem } from 'react-pro-sidebar';
 import { Link } from 'react-router-dom';
+import { LIBRO_DIARIO, FLUJO_CAJA, STOCK, DEPARTAMENTOS, OBRAS, OPERACIONES } from '../../Routes/routes';
 
 const Aside = () => {
   return (
@@ -14,6 +15,7 @@ const Aside = () => {
     <MenuItem element={<Link to={DEPARTAMENTOS} />}> DEPARTAMENTOS</MenuItem>
     <MenuItem element={<Link to={OBRAS} />}> OBRAS</MenuItem>
     <MenuItem element={<Link to={OPERACIONES} />}> OPERACIONES</MenuItem>
+    <MenuItem element={<Link to="/asdasd"/>}> LOGIN</MenuItem>
     
   </Menu>
 </Sidebar>
