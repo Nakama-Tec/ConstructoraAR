@@ -46,6 +46,7 @@ const MainClientes = () => {
   
     return (
       <>
+    
       <div className='input-search'>
         <input type='search' placeholder='Buscador' value={filtrado} onChange={(e) => setFiltrado(e.target.value)}/>
       </div>
