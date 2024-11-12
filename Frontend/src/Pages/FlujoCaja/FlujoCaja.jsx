@@ -1,10 +1,10 @@
-// import React from 'react'
+import MainCaja from '../../Components/Admin/CRUD/Caja/MainCaja'
 
 const FlujoCaja = () => {
   return (
-    <div>
-      
-    </div>
+    <>
+      <MainCaja />
+    </>
   )
 }
 
