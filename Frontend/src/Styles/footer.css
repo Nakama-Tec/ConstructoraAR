@@ -1,3 +1,20 @@
 footer {
     background-color: red;
 }
+
+.social-icon {
+    display: inline-block;
+    width: 40px; /* Ajusta el tamaño según sea necesario */
+    height: 40px;
+    line-height: 40px;
+    border-radius: 50%;
+    border: 2px dotted white;
+    text-align: center;
+    color: white;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  .social-icon:hover {
+    background-color: white;
+    color: #1f2937; /* Cambia esto según el color que desees al pasar el mouse */
+  }
