@@ -44,7 +44,7 @@ const EditarClientes = () => {
 
   return (
     <div>
-      <h3>TABLA CLIENTE</h3>
+      <h3>TABLA PAGOS</h3>
       <br />
       <div className='input-search'>
       <input

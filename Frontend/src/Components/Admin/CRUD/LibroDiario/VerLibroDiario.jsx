@@ -12,7 +12,8 @@ import Button from 'react-bootstrap/Button';
 const VerLibroDiario = () => {
 
   const [filtrado, setFiltrado] = useState('');
-  const [showAlert, setShowAlert] = useState(false);
+  const [showAlertOperacion, setShowAlertOperacion] = useState(false);
+  const [showAlertPagos, setShowAlertPagos] = useState(false);
   const [selectedClienteId, setSelectedClienteId] = useState(null);
 
   const columns = [
@@ -31,25 +32,30 @@ const VerLibroDiario = () => {
           onClick={() => handleEditClick(row.original.id)}
           className="bg-white"
         >
-          Editar Cliente
+          Editar Operacion
         </Button>
       )
     }
   ];
 
-  const handleEditClick = (id) => {
-    setSelectedClienteId(id); // Establece el ID seleccionado
-    setShowAlert(true); // Muestra el modal
+  const handleEditClick = () => {
+    setShowAlertOperacion(true); // Muestra el modal
+  };
+
+  const hideAlertOperacion = () => {
+    setShowAlertOperacion(false); // Oculta el modal
+  };
+
+
+  // PAGOS MODAL
+
+  const handlePagosClick = () => {
+    setShowAlertPagos(true); // Muestra el modal
     <EditarCliente/>
   };
 
-  const handleEditarCliente = () => {
-    // Realiza la acción de guardado aquí si es necesario
-    setShowAlert(false); // Cierra el modal
-  };
-
-  const hideAlert = () => {
-    setShowAlert(false); // Oculta el modal
+  const hideAlertPagos = () => {
+    setShowAlertPagos(false); // Oculta el modal
   };
 
   const table = useReactTable({
@@ -83,7 +89,8 @@ const VerLibroDiario = () => {
         <Button>AGREGAR PAGO</Button>
         </div>
         <div>
-        <Button>VER PAGOS</Button>
+        <Button onClick={() => handlePagosClick()}
+          className="bg-white">VER PAGOS</Button>
         </div>
       </div>
       <div className='input-search'>
@@ -129,9 +136,9 @@ const VerLibroDiario = () => {
       <button className='m-2 p-2 bg-slate-800 text-white h-12 rounded-[8px] font-semibold text-[16px]' onClick={() => table.nextPage()}>Página Siguiente</button>
     </div>
     <SweetAlert
-        show={showAlert}
-        title="Editar Cliente"
-        onCancel={hideAlert}
+        show={showAlertOperacion}
+        title="Editar Operacion"
+        onCancel={hideAlertOperacion}
         showCancel
         confirmBtnText="Guardar"
         cancelBtnText="Cancelar"
@@ -140,7 +147,21 @@ const VerLibroDiario = () => {
         closeOnClickOutside={false}
         className="modal"
       >
-         <EditarCliente id={selectedClienteId} onSave={handleEditarCliente} />
+      </SweetAlert>
+
+      <SweetAlert
+        show={showAlertPagos}
+        title="VER PAGOS"
+        onCancel={hideAlertPagos}
+        showCancel
+        confirmBtnText="Guardar"
+        cancelBtnText="Cancelar"
+        confirmBtnBsStyle="success"
+        cancelBtnBsStyle="danger"
+        closeOnClickOutside={false}
+        className="modal"
+      >
+        <EditarCliente />
       </SweetAlert>
     </>
   )
