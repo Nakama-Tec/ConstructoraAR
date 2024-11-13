@@ -7,6 +7,9 @@ import EditarCliente from './EditarClientes';
 import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 
+// import Swal from 'sweetalert2'
+// import withReactContent from 'sweetalert2-react-content'
+
 const MainClientes = () => {
   const [filtrado, setFiltrado] = useState('');
   const [showAlert, setShowAlert] = useState(false);

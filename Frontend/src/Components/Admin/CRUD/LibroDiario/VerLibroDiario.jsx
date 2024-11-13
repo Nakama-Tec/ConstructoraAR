@@ -2,6 +2,8 @@ import Aside from '../../../Layout/Aside';
 import { useReactTable, getCoreRowModel, flexRender, getPaginationRowModel, getFilteredRowModel } from '@tanstack/react-table';
 import data from '../../../../../MOCK_DATA.json';
 import '../../../../Styles/table.css';
+import SweetAlert from 'react-bootstrap-sweetalert';
+import EditarCliente from '../Clientes/EditarClientes';
 import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 
@@ -10,15 +12,8 @@ import Button from 'react-bootstrap/Button';
 const VerLibroDiario = () => {
 
   const [filtrado, setFiltrado] = useState('');
-
-  // "id": 100,
-  // "operacion": "operacion",
-  // "tipo": "diners-club-us-ca",
-  // "descripcion": "Poisoning by predominantly alpha-adrenocpt agonists, assault",
-  // "ingreso": "$656.88",
-  // "egreso": "$193.38",
-  // "saldo": "$539.75",
-  // "total": "$351.87"
+  const [showAlert, setShowAlert] = useState(false);
+  const [selectedClienteId, setSelectedClienteId] = useState(null);
 
   const columns = [
     { header: 'Nº', accessorKey: 'id' },
@@ -33,14 +28,29 @@ const VerLibroDiario = () => {
       header: 'ACCIONES',
       cell: ({ row }) => (
         <Button
-          // onClick={() => handleEditClick(row.original.id)}
-          // className="bg-white"
+          onClick={() => handleEditClick(row.original.id)}
+          className="bg-white"
         >
           Editar Cliente
         </Button>
       )
     }
   ];
+
+  const handleEditClick = (id) => {
+    setSelectedClienteId(id); // Establece el ID seleccionado
+    setShowAlert(true); // Muestra el modal
+    <EditarCliente/>
+  };
+
+  const handleEditarCliente = () => {
+    // Realiza la acción de guardado aquí si es necesario
+    setShowAlert(false); // Cierra el modal
+  };
+
+  const hideAlert = () => {
+    setShowAlert(false); // Oculta el modal
+  };
 
   const table = useReactTable({
     data,
@@ -115,9 +125,23 @@ const VerLibroDiario = () => {
     </div>
 
     <div className='btn-pages'>
-      <button onClick={() => table.previousPage()}>Página Anterior</button>
-      <button onClick={() => table.nextPage()}>Página Siguiente</button>
+      <button className='m-2 p-2 bg-slate-800 text-white h-12 rounded-[8px] font-semibold text-[16px]' onClick={() => table.previousPage()}>Página Anterior</button>
+      <button className='m-2 p-2 bg-slate-800 text-white h-12 rounded-[8px] font-semibold text-[16px]' onClick={() => table.nextPage()}>Página Siguiente</button>
     </div>
+    <SweetAlert
+        show={showAlert}
+        title="Editar Cliente"
+        onCancel={hideAlert}
+        showCancel
+        confirmBtnText="Guardar"
+        cancelBtnText="Cancelar"
+        confirmBtnBsStyle="success"
+        cancelBtnBsStyle="danger"
+        closeOnClickOutside={false}
+        className="modal"
+      >
+         <EditarCliente id={selectedClienteId} onSave={handleEditarCliente} />
+      </SweetAlert>
     </>
   )
 }
