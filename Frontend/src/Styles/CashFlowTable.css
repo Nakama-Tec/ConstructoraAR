@@ -1,0 +1,27 @@
+.cash-flow-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .cash-flow-table th,
+  .cash-flow-table td {
+    border: 1px solid #202020;
+    padding: 8px;
+    text-align: center;
+  }
+  
+  .cash-flow-table th {
+    background-color: #6e6e6e;
+    font-weight: bold;
+  }
+  
+  /* Fijar la primera columna */
+  .cash-flow-table th:first-child,
+  .cash-flow-table td:first-child {
+    position: sticky;
+    left: 0;
+    background-color: #ffffff;
+    z-index: 1;
+    color: #202020;
+  }
+  

@@ -1,7 +1,7 @@
 const Home = () => {
   return (
     <div>
-      Home Landing
+      Home Landing {/* NO TOCAR PARA PONER COSAS DE BACK-END*/}
     </div>
   )
 }
