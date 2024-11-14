@@ -1,4 +1,6 @@
 import React from "react";
+import logo from "../../assets/sinfondo.svg";
+
 import {
   Disclosure,
   DisclosureButton,
@@ -20,16 +22,23 @@ const navigation = [
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
+
 const Header = () => {
   return (
     <div>
-      <Disclosure as="nav" className="bg-gray-800">  {/*Aqui manejo el color*/}
+      <Disclosure as="nav" className="bg-gray-800">
         <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
           <div className="relative flex h-16 items-center justify-between">
-            <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
-              {/* Mobile menu button*/}
+            <div className="flex items-center">
+              <img
+                className="items-center h-40 w-auto"
+                src={logo}
+                alt="Logo"
+              />
+            </div>
+            <div className="absolute inset-y-0 right-0 flex items-center sm:hidden">
+              {/* Mobile menu button */}
               <DisclosureButton className="group relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
-                <span className="absolute -inset-0.5" />
                 <span className="sr-only">Open main menu</span>
                 <Bars3Icon
                   aria-hidden="true"
@@ -41,19 +50,7 @@ const Header = () => {
                 />
               </DisclosureButton>
             </div>
-            <div className="flex justify-between items-center justify-center sm:items-stretch sm:justify-start">
-              
-              {/* Logo iquierdo */ }
-
-              <div className="flex shrink-0 items-center">
-                <img
-                  alt="Your Company"
-                  src="https://tailwindui.com/plus/img/logos/mark.svg?color=indigo&shade=500"
-                  className="h-10 w-auto"
-                />
-
-                
-              </div>
+            <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-center">
               <div className="hidden sm:ml-6 sm:block">
                 <div className="flex space-x-4">
                   {navigation.map((item) => (
