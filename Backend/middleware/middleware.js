@@ -17,7 +17,7 @@ const verifyToken = (req, res, next) => {
     // Obtener el token del encabezado de autorización
     const authHeader = req.headers["authorization"];
     
-    console.log("hola"+authHeader);
+   
     // Si no se proporciona el encabezado de autorización
     if (!authHeader) {
         return res.status(403).json({ message: "Falta Encabezado de autorización" });
@@ -34,6 +34,7 @@ const verifyToken = (req, res, next) => {
 
     // Verificar el token JWT usando la clave secreta
     jwt.verify(token, secretKey, (err, decoded) => {
+        console.log("hola puto"+authHeader);
         if (err) {
             // Error específico si el token ha expirado
             if (err.name === "TokenExpiredError") {

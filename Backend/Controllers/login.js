@@ -10,8 +10,8 @@ const login = (req,res) =>{
     // Usuario: Juan
     // Pass: 123
     
-    const query = `SELECT * FROM Usuarios WHERE nombreUsuario = ?`
-    conection.query(query,[nombreUsuario],(err,results)=>{// le paso primero un array con el nombre de usuario
+    const query = `SELECT * FROM Usuarios WHERE nombreUsuario = ? and passwordUsuario = ?`; 
+    conection.query(query,[nombreUsuario, passwordUsuario],(err,results)=>{// le paso primero un array con el nombre de usuario
         if(err){ // verificaccion de existe un error
             console.error('Error al consultar la base de datos:', err);
            

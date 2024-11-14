@@ -1,5 +1,5 @@
 import { create } from "zustand"; // Importar la función create de la librería zustand.
-import { persist } from "zustand/middleware";
+import { persist } from "zustand/middleware";// Importar la función persist de la librería zustand/middleware.  
 
 // Crear un store para el manejo de la autenticación
 const useAuthStore = create(

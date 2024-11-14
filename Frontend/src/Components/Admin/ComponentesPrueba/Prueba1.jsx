@@ -1,6 +1,6 @@
 import { Button, Row, Form } from "react-bootstrap";
 import axios from 'axios';
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import useAuthStore from '../../../Context/useAuthStore';
 import SweetAlert from 'react-bootstrap-sweetalert'; // SweetAlert es un componente que se usa para mostrar alertas
 
@@ -31,6 +31,7 @@ const Prueba1 = () => {
 
   const handleSave = async (e) => { // async es una funcion que se usa para hacer una funcion asincrona
     e.preventDefault(); // e.preventDefault() es una funcion que se usa para prevenir el comportamiento por defecto de un evento
+    setShowAlert(true); 
     try {
       let response = await axios.post(URL_CLIENTES_CREAR, {
         nombreCliente: datos.nombreCliente,

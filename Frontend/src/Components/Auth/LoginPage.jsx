@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import { Form} from 'react-bootstrap';
-// import { useNavigate,Link } from 'react-router-dom';
+import { useNavigate,Link } from 'react-router-dom';
 import axios from 'axios';
 import useAuthStore from '../../Context/useAuthStore';
-import { URL_LOGIN } from '../../Constants/Endpoind-API';
+import { URL_LOGIN } from '../../Constants/endpoints-API';
+import { PAGOS } from '../../Routes/routes';
 
 
 // import { useState } from 'react'
@@ -18,7 +19,7 @@ const LoginPage = () => {
   const setToken = useAuthStore((state) => state.setToken);
   const setUserRole = useAuthStore((state) => state.setUserRole);
   
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -30,7 +31,7 @@ const LoginPage = () => {
    
       const decodedToken = JSON.parse(atob(response.data.token.split('.')[1]));
       setUserRole(decodedToken.role);
-      // navigate(HOME);
+      navigate(PAGOS);
     } catch (error) {
       console.error('Login incorrecto:', error);
       alert('Usuario o contraseña incorrectos');
@@ -77,7 +78,7 @@ const LoginPage = () => {
                    <label className="label-color">Password</label>
                    <input type="password" placeholder="Password" onChange={(e) => setPasswordUsuario(e.target.value)} required />
                    <br /><br />
-                   <input type="submit" className="Login" value="Login" />
+                   <button type="submit" className="Login" value="Login" >login</button>
                    <br />
                    {/* <p className="link-text">Forget password? <Link to={RECUPERAR}>Click Here</Link></p>               */}
             </div> 

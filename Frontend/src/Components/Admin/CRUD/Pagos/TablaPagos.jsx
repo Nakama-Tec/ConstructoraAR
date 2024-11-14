@@ -1,21 +1,56 @@
-import {useState} from 'react';
+import {useState,useEffect} from 'react';
 import { useReactTable, getCoreRowModel, flexRender, getPaginationRowModel, getFilteredRowModel } from '@tanstack/react-table';
 import data from '../../../../../MOCK_DATA.json';
 import Button from 'react-bootstrap/Button';
 import '../../../../Styles/table.css';
+import axios from 'axios';
+import { URL_CLIENTES } from '../../../../Constants/endpoints-API';
+import useAuthStore from '../../../../Context/useAuthStore';
+
 
 const TablaPagos = () => {
-    const [filtrado, setFiltrado] = useState('');
+
+  const token = useAuthStore((state) => state.token); // esto es necesario para generar el token y ver usuarios admin tengan previlegios
+  const userRole = useAuthStore((state) => state.userRole); // useRole es una funcion que se usa para ver si el usuario es admin
+  const clearAuth = useAuthStore((state) => state.clearAuth); // clearAuth es una funcion que se usa para cerrar sesion
+  const [filtrado, setFiltrado] = useState('');
+
+// const initialState = {
+//     id_cliente: '',
+//     nombreCliente: "",
+//     condicionCliente: "",
+//     cuilCliente: "",
+//     telefonoCliente: "",
+//     mailCliente: "",
+//     direccionCliente: "",
+//     datosGarantes: "",
+//     activoCliente: ""
+// }
+
+const [datos, setDatos] = useState([])
+
+const getClientes =async() =>{
+
+try {
+
+  const response = await axios.get(URL_CLIENTES, {  headers: { Authorization: `Bearer ${token}` } }); 
+  console.log(response.data);
+  setDatos(response.data);
+} catch (error) {
+  console.log(error);
+}
+}
 
     const columns = [
-      { header: 'Nº', accessorKey: 'id' },
-      { header: 'OPERACION', accessorKey: 'operacion' },
-      { header: 'TIPO', accessorKey: 'tipo' },
-      { header: 'DESCRIPCION', accessorKey: 'descripcion' },
-      { header: 'INGRESO', accessorKey: 'ingreso' },
-      { header: 'EGRESO', accessorKey: 'egreso' },
-      { header: 'SALDO', accessorKey: 'saldo' },
-      { header: 'TOTAL', accessorKey: 'total' },
+      { header: 'Nº', accessorKey: 'id_cliente' },
+      { header: 'Nombre', accessorKey: 'nombreCliente' },
+      { header: 'Condicion', accessorKey: 'condicionCliente' },
+      { header: 'CUIL', accessorKey: 'cuilCliente' },
+      { header: 'Telefono', accessorKey: 'telefonoCliente' },
+      { header: 'Mail', accessorKey: 'mailCliente' },
+      { header: 'Direccion', accessorKey: 'direccionCliente' },
+      { header: 'Garantes', accessorKey: 'datosGarantes' }, 
+     
       {
         header: 'ACCIONES',
         cell: ({ row }) => (
@@ -30,7 +65,7 @@ const TablaPagos = () => {
     ];
   
     const table = useReactTable({
-      data,
+      datos,
       columns,
       getCoreRowModel: getCoreRowModel(),
       getPaginationRowModel: getPaginationRowModel(),
@@ -41,6 +76,8 @@ const TablaPagos = () => {
       onGlobalFilterChange: setFiltrado
     });
   
+useEffect(() => {getClientes()},[])
+
     return (
       <div>
         <h3 className='text-white text-opacity-50'>Visualizando los Pagos</h3>
