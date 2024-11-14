@@ -1,11 +1,13 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Aside from '../../../Layout/Aside';
 import { useReactTable, getCoreRowModel, flexRender, getPaginationRowModel, getFilteredRowModel } from '@tanstack/react-table';
 import data from '../../../../../MOCK_DATA.json';
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content';
-import TablaPagos from '../Pagos/TablaPagos';
+import axios from 'axios';
 import Button from 'react-bootstrap/Button';
+import { URL_LIBRO_DIARIO } from '../../../../Constants/endpoints-API';
 import '../../../../Styles/table.css';
 
 
@@ -13,8 +15,19 @@ const VerLibroDiario = () => {
 
 
   const MySwal = withReactContent(Swal);
+  const navigate = useNavigate()
 
+  const initialState = {
+    operacion: "",
+    tipo: "",
+    descripcion: "",
+    ingreso: 0,
+    egreso:0,
+    saldo: 0,
+    total: 0
+}
   const [filtrado, setFiltrado] = useState('');
+  const [registro, setRegistro] = useState(initialState)
 
   const columns = [
     { header: 'Nº', accessorKey: 'id' },
@@ -40,18 +53,48 @@ const VerLibroDiario = () => {
   ];
 
 
-  // PAGOS MODAL
+  // LIBRO DIARIO MODAL
 
-  const handleVerPagos = () => {
+  const handleChange = (e) => {
+    setRegistro({ ...registro, [e.target.name]: e.target.value })
+}
+
+  const handleAgregarRegistro = () => {
+
     MySwal.fire({
-      title: 'TABLA PAGOS', // Muestra el titulo del MODAL
-      html: <TablaPagos />, // Muestra el componente TablaPagos
-      showCloseButton: true, // Muestra el boton de cerrar
-      showConfirmButton: false, // Muestra el boton de confirmar (False para que no aparezca)
-      width: 1800, // Ancho del MODAL
-      background: '#1c1c1c', // Color de fondo del MODAL
-      color: 'white', // Color del texto del MODAL
-    });
+        title: 'COMPLETA LOS CAMPOS',
+        html: `
+    <input type="text" name="operacion" class="swal2-input" onChange={handleChange} placeholder="Operacion">
+    <input type="text" name="tipo" class="swal2-input" onChange={handleChange} placeholder="Tipo">
+    <input type="text" name="descripcion" class="swal2-input" onChange={handleChange} placeholder="Descripcion">
+    <input type="text" name="ingreso" class="swal2-input" onChange={handleChange} placeholder="Ingreso">
+    <input type="text" name="egreso" class="swal2-input" onChange={handleChange} placeholder="Egreso">
+    <input type="text" name="saldo" class="swal2-input" onChange={handleChange} placeholder="Saldo">
+    <input type="text" name="total" class="swal2-input" onChange={handleChange} placeholder="Total">
+
+  `,
+  showCloseButton: true,
+        preConfirm: () => {
+          try {
+
+            let response = axios.post(URL_LIBRO_DIARIO, {
+                operacion: registro.operacion,
+                tipo: registro.tipo,
+                descripcion: registro.descripcion,
+                ingreso: registro.ingreso,
+                egreso: registro.egreso,
+                saldo: registro.saldo,
+                total: registro.total
+            })
+
+            if (response.status === 200) {
+                navigate('/LibroDiario')
+            }
+        } catch (error) {
+            console.log(error)
+        }
+        },
+      })
   };
 
   const table = useReactTable({
@@ -82,11 +125,7 @@ const VerLibroDiario = () => {
       <hr />
       <div className='buttons'>
         <div>
-        <Button>AGREGAR PAGO</Button>
-        </div>
-        <div>
-        <Button onClick={() => handleVerPagos()}
-          className="bg-white">VER PAGOS</Button>
+        <Button onClick={() => handleAgregarRegistro()} >AGREGAR REGISTRO</Button>
         </div>
       </div>
       <div className='input-search'>
