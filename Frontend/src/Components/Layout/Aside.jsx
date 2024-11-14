@@ -7,7 +7,7 @@ const Aside = () => {
     <Sidebar>
       <Menu menuItemStyles={{ button: { color: '#13395e', fontWeight: 'bold', backgroundColor: '#a0a0a0' } }}>
         <MenuItem component={<Link to={LIBRO_DIARIO} />}> LIBRO DIARIO</MenuItem>
-        <MenuItem component={<Link to="/clientes" />}> CLIENTES</MenuItem>
+        <MenuItem component={<Link to="/Clientes" />}> CLIENTES</MenuItem>
         <MenuItem component={<Link to="/empleados" />}> EMPLEADOS</MenuItem>
         <MenuItem component={<Link to="/terrenos" />}> TERRENOS</MenuItem>
         <MenuItem component={<Link to={FLUJO_CAJA} />}> FLUJO CAJA</MenuItem>
