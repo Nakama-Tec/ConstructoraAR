@@ -17,9 +17,10 @@ const verifyToken = (req, res, next) => {
     // Obtener el token del encabezado de autorización
     const authHeader = req.headers["authorization"];
     
+    console.log("hola"+authHeader);
     // Si no se proporciona el encabezado de autorización
     if (!authHeader) {
-        return res.status(403).json({ message: "Encabezado de autorización faltante" });
+        return res.status(403).json({ message: "Falta Encabezado de autorización" });
     }
 
     // Validar el formato del token

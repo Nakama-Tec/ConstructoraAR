@@ -1,55 +1,223 @@
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+hr {
+    border: 1px solid #d7d7d7;
+    clear: both;
+    display: block;
+    width: 100%;
+    background-color: #333;
+    height: 1px;
+}
+
+
+.inicio {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+}
+
+.inicio button {
+    padding: 10px 20px;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.inicio button:hover {
+    background-color: #555;
+    transform: scale(1.05);
+}
+
+
+.opciones {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin: 2rem 0;
+}
+
+.opciones label {
+    font-size: 1.2rem;
+    margin-right: 1rem;
+}
+
+.opciones input[type='date'] {
+    padding: 5px;
+    border: 1px solid #333;
+    border-radius: 5px;
+}
+
+.opciones button {
+    padding: 10px 20px;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.opciones button:hover {
+    background-color: #555;
+    transform: scale(1.05);
+}
+
+
+.title-diario {
+    font-size: 3rem;
+    text-align: center;
+    margin: 2rem 0;
+    color: black;
+}
+
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin: 2rem 0;
+}
+
+.buttons button {
+    margin: 10px;
+    width: 200px;
+    height: 50px;
+    border: 1px solid #333;
+    border-radius: 5px;
+    padding: 5px;
+    background-color: #333;
+    color: white;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.buttons button:hover {
+    background-color: #555;
+    transform: scale(1.05);
+}
+
+
+.input-search {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+}
+
+.input-search input[type='search'] {
+    width: 300px;
+    padding: 10px;
+    border: 1px solid #333;
+    border-radius: 5px;
+}
+
+
 .mainClientes {
     display: flex;
     margin: 0 auto;
-    padding: 7rem;
+    padding: 1rem;
 }
 
-.Aside {
-    padding: 20px;
-}
 
 table {
     border-collapse: collapse;
     border-spacing: 0;
     width: 100%;
     border: 1px solid #ddd;
+    margin: 2rem 0;
 }
 
 thead {
-    background: #333;
-    color: white;
+    background: #cecece;
+    color: black;
 }
 
 th, td {
     text-align: left;
     padding: 16px;
+    color: black;
+    border: 1px solid #ddd;
 }
 
-tr:nth-child(even) {
-    background: #a0a0a0;
+tbody tr {
+    background: #fafafa;
+    color: black;
 }
 
-button {
-    margin: 10px;
+
+.Aside {
+    position: relative;
+    top: 32px;
+    
 }
 
 .btn-pages button {
-    position: relative;
     left: 395px;
-    bottom: 90px;;
+    bottom: 90px;
 }
 
-.input-search {
-    position: relative;
-    left: 410px;
-    top: 90px;
-}
-
-.input-search input {
-    width: 200px;
-    height: 20px;
-    border-radius: 5px;
-    border: 1px solid #333;
+/* LibroDiario.css
+.libro-diario-container {
+    display: flex;
+  }
+  
+  .libro-diario-content {
+    width: 100%;
+    padding: 20px;
+  }
+  
+  .libro-diario-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .header-actions {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .header-buttons {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .date-input {
     padding: 5px;
-}
-
+  }
+  
+  .action-button {
+    background-color: #6c757d;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+  
+  .libro-diario-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  .libro-diario-table th,
+  .libro-diario-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  .total-row {
+    margin-top: 10px;
+    text-align: right;
+    font-weight: bold;
+  }
+   */

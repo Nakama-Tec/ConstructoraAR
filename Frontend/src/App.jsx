@@ -21,17 +21,20 @@ import Error from './Components/Layout/Error'
 function App() {
 const roleRequired = "admin"
   return (
-    <BrowserRouter>
+// v7_startTransition: true, v7_relativeSplatPath: true permite que la aplicacion use el nuevo manejo de estado y rutas relativas que se implementarán en React Router v7.
+    <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}> 
       <Routes>
         {/* Rutas públicas en estas rutas pueden ingresar usuario comun sin problema es lo que pueden ver y hacer*/}
         <Route path={HOME} element={<Home/>} />
         <Route path={LOGIN} element={<Login/>} />
+        <Route path={LIBRO_DIARIO} element={<LibroDiario/>} /> {/* Ruta temporal, eliminar al tenerlo listo y descomentar su version privada */}
 
 
         {/* Rutas protegidas */}
         
+        
         <Route path={FLUJO_CAJA} element={<ProtectedRoute roleRequired={roleRequired}> <FlujoCaja/></ProtectedRoute>} />
-        <Route path={LIBRO_DIARIO} element={<ProtectedRoute roleRequired={roleRequired}> <LibroDiario/></ProtectedRoute>} />
+        {/* <Route path={LIBRO_DIARIO} element={<ProtectedRoute roleRequired={roleRequired}> <LibroDiario/></ProtectedRoute>} /> */}
         <Route path={TERRENOS} element={<ProtectedRoute roleRequired={roleRequired}> <Terrenos/></ProtectedRoute>} />
         <Route path={STOCK} element={<ProtectedRoute roleRequired={roleRequired}> <Stock/></ProtectedRoute>} />
         <Route path={CLIENTES} element={<ProtectedRoute roleRequired={roleRequired}> <Clientes/></ProtectedRoute>} />

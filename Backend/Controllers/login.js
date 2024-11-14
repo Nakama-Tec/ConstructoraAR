@@ -1,6 +1,7 @@
-const { conection } = require("../DB/Config")
+const { conection } = require("../DB/Config");
+const dotenv = require("dotenv");
 const jwt = require("jsonwebtoken"); // importo la libreria jwt
-
+dotenv.config()
 
 const login = (req,res) =>{
 // destructuring de los datos que me llegan por el body osea por front
@@ -8,10 +9,12 @@ const login = (req,res) =>{
     // consulta parametrizada o consulta preparada para evitar inyecciones de sql
     // Usuario: Juan
     // Pass: 123
-    const query = `SELECT * FROM usuarios WHERE email = ? AND pass = ?`
+    
+    const query = `SELECT * FROM Usuarios WHERE nombreUsuario = ?`
     conection.query(query,[nombreUsuario],(err,results)=>{// le paso primero un array con el nombre de usuario
         if(err){ // verificaccion de existe un error
             console.error('Error al consultar la base de datos:', err);
+           
             // si hay un error retorno un json con un mensaje de error del servidor
             return res.status(500).json({ message: 'Error del servidor' });
                 }
