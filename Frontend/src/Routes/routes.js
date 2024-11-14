@@ -12,5 +12,6 @@ export const OBRAS = "/Obras"
 export const OPERACIONES = "/Operaciones"
 export const USUARIO = "/Usuario"
 export const UNAUTHORIZED = "/unauthorized"
+export const PAGOS = "/LibroDiario"
 // export const NOT_FOUND = "/notfound"
 

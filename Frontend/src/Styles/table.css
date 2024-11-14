@@ -136,25 +136,88 @@ table {
 }
 
 thead {
-    background: #333;
-    color: white;
+    background: #cecece;
+    color: black;
 }
 
 th, td {
     text-align: left;
     padding: 16px;
+    color: black;
+    border: 1px solid #ddd;
 }
 
-tr:nth-child(even) {
-    background: #a0a0a0;
+tbody tr {
+    background: #fafafa;
+    color: black;
 }
 
 
 .Aside {
-    padding: 20px;
+    position: relative;
+    top: 32px;
+    
 }
 
 .btn-pages button {
     left: 395px;
     bottom: 90px;
 }
+
+/* LibroDiario.css
+.libro-diario-container {
+    display: flex;
+  }
+  
+  .libro-diario-content {
+    width: 100%;
+    padding: 20px;
+  }
+  
+  .libro-diario-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .header-actions {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .header-buttons {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .date-input {
+    padding: 5px;
+  }
+  
+  .action-button {
+    background-color: #6c757d;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+  
+  .libro-diario-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  .libro-diario-table th,
+  .libro-diario-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  .total-row {
+    margin-top: 10px;
+    text-align: right;
+    font-weight: bold;
+  }
+   */

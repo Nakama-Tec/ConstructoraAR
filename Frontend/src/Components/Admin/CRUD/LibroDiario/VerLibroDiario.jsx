@@ -1,20 +1,20 @@
+import { useState } from 'react';
 import Aside from '../../../Layout/Aside';
 import { useReactTable, getCoreRowModel, flexRender, getPaginationRowModel, getFilteredRowModel } from '@tanstack/react-table';
 import data from '../../../../../MOCK_DATA.json';
-import '../../../../Styles/table.css';
-import SweetAlert from 'react-bootstrap-sweetalert';
-import EditarCliente from '../Clientes/EditarClientes';
-import { useState } from 'react';
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content';
+import TablaPagos from '../Pagos/TablaPagos';
 import Button from 'react-bootstrap/Button';
-
+import '../../../../Styles/table.css';
 
 
 const VerLibroDiario = () => {
 
+
+  const MySwal = withReactContent(Swal);
+
   const [filtrado, setFiltrado] = useState('');
-  const [showAlertOperacion, setShowAlertOperacion] = useState(false);
-  const [showAlertPagos, setShowAlertPagos] = useState(false);
-  const [selectedClienteId, setSelectedClienteId] = useState(null);
 
   const columns = [
     { header: 'Nº', accessorKey: 'id' },
@@ -28,34 +28,30 @@ const VerLibroDiario = () => {
     {
       header: 'ACCIONES',
       cell: ({ row }) => (
-        <Button
-          onClick={() => handleEditClick(row.original.id)}
-          className="bg-white"
+        <button
+        className='bg-neutral-900 text-white text-bold border-none p-2 rounded-[8px]'
+          // onClick={() => handleEditClick(row.original.id)}
+          // className="bg-white"
         >
           Editar Operacion
-        </Button>
-      )
+        </button>
+      ),
     }
   ];
-
-  const handleEditClick = () => {
-    setShowAlertOperacion(true); // Muestra el modal
-  };
-
-  const hideAlertOperacion = () => {
-    setShowAlertOperacion(false); // Oculta el modal
-  };
 
 
   // PAGOS MODAL
 
-  const handlePagosClick = () => {
-    setShowAlertPagos(true); // Muestra el modal
-    <EditarCliente/>
-  };
-
-  const hideAlertPagos = () => {
-    setShowAlertPagos(false); // Oculta el modal
+  const handleVerPagos = () => {
+    MySwal.fire({
+      title: 'TABLA PAGOS', // Muestra el titulo del MODAL
+      html: <TablaPagos />, // Muestra el componente TablaPagos
+      showCloseButton: true, // Muestra el boton de cerrar
+      showConfirmButton: false, // Muestra el boton de confirmar (False para que no aparezca)
+      width: 1800, // Ancho del MODAL
+      background: '#1c1c1c', // Color de fondo del MODAL
+      color: 'white', // Color del texto del MODAL
+    });
   };
 
   const table = useReactTable({
@@ -71,25 +67,25 @@ const VerLibroDiario = () => {
   });
 
   return (
-    <>
-    <div className='inicio'>
+    <div className='bg-neutral-400 m-0 p-0'>
+    <div className='inicio m-0 p-5'>
       <button>VOLVER AL INICIO</button>
     </div>
       <div className='opciones'>
-      <label>SELECCIONA FECHA </label>
+      <label className='text-bold text-black'>SELECCIONA FECHA </label>
       <input type='date'/>
       <button>FLUJO DE CAJA</button>
       <button>PENDIENTES</button>
       </div>
       <hr />
-      <h2 className='title-diario'>LIBRO DIARIO</h2>
+      <h2 className='text-black text-[55px] text-bold flex justify-center'>LIBRO DIARIO</h2>
       <hr />
       <div className='buttons'>
         <div>
         <Button>AGREGAR PAGO</Button>
         </div>
         <div>
-        <Button onClick={() => handlePagosClick()}
+        <Button onClick={() => handleVerPagos()}
           className="bg-white">VER PAGOS</Button>
         </div>
       </div>
@@ -105,7 +101,7 @@ const VerLibroDiario = () => {
       <div className='Aside'>
         <Aside />
       </div>
-      <table>
+      <table className='text-white text-bold'>
         <thead>
           {table.getHeaderGroups().map(headerGroup => (
             <tr key={headerGroup.id}>
@@ -132,38 +128,10 @@ const VerLibroDiario = () => {
     </div>
 
     <div className='btn-pages'>
-      <button className='m-2 p-2 bg-slate-800 text-white h-12 rounded-[8px] font-semibold text-[16px]' onClick={() => table.previousPage()}>Página Anterior</button>
-      <button className='m-2 p-2 bg-slate-800 text-white h-12 rounded-[8px] font-semibold text-[16px]' onClick={() => table.nextPage()}>Página Siguiente</button>
+      <button className='m-2 p-2 bg-zinc-900 text-white h-12 rounded-[8px] font-semibold text-[16px]' onClick={() => table.previousPage()}>Página Anterior</button>
+      <button className='m-2 p-2 bg-zinc-900 text-white h-12 rounded-[8px] font-semibold text-[16px]' onClick={() => table.nextPage()}>Página Siguiente</button>
     </div>
-    <SweetAlert
-        show={showAlertOperacion}
-        title="Editar Operacion"
-        onCancel={hideAlertOperacion}
-        showCancel
-        confirmBtnText="Guardar"
-        cancelBtnText="Cancelar"
-        confirmBtnBsStyle="success"
-        cancelBtnBsStyle="danger"
-        closeOnClickOutside={false}
-        className="modal"
-      >
-      </SweetAlert>
-
-      <SweetAlert
-        show={showAlertPagos}
-        title="VER PAGOS"
-        onCancel={hideAlertPagos}
-        showCancel
-        confirmBtnText="Guardar"
-        cancelBtnText="Cancelar"
-        confirmBtnBsStyle="success"
-        cancelBtnBsStyle="danger"
-        closeOnClickOutside={false}
-        className="modal"
-      >
-        <EditarCliente />
-      </SweetAlert>
-    </>
+    </div>
   )
 }
 
