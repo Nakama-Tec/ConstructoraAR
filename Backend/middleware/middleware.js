@@ -34,7 +34,7 @@ const verifyToken = (req, res, next) => {
 
     // Verificar el token JWT usando la clave secreta
     jwt.verify(token, secretKey, (err, decoded) => {
-        console.log("hola puto"+authHeader);
+      
         if (err) {
             // Error específico si el token ha expirado
             if (err.name === "TokenExpiredError") {
