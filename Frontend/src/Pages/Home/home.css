@@ -1,7 +1,18 @@
-h1{
-    color: #303030 ;
+h1 {
+  color: #303030;
 }
 
-.AR{
-    color: #ff3030;
+.AR {
+  color: #31b4ff;
 }
+
+.accordion-content {    
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out, padding 0.3s ease-out;
+  }
+  
+  .accordion-content.open {
+    max-height: 100px; /* Ajusta esto según el contenido */
+    padding: 1rem; /* Ajusta esto según tus necesidades */
+  }
