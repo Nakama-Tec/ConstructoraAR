@@ -41,19 +41,23 @@ const Header = () => {
                 />
               </DisclosureButton>
             </div>
+
+
+
+
+
+            <div className="flex shrink-0 items-center">
+                <img
+                  alt="Your Company"
+                  src="../../assets/CONSTRUCTORA ar.png"
+                  className="h-10 w-auto"
+                />
+              </div>
             <div className="flex justify-between items-center justify-center sm:items-stretch sm:justify-start">
               
               {/* Logo iquierdo */ }
 
-              <div className="flex shrink-0 items-center">
-                <img
-                  alt="Your Company"
-                  src="https://tailwindui.com/plus/img/logos/mark.svg?color=indigo&shade=500"
-                  className="h-10 w-auto"
-                />
-
-                
-              </div>
+             
               <div className="hidden sm:ml-6 sm:block">
                 <div className="flex space-x-4">
                   {navigation.map((item) => (
