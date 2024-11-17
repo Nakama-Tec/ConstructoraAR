@@ -24,9 +24,9 @@ import React from 'react';
             {images.map((image, index) => (
                 <div
                 key={index}
-                className={`absolute inset-0 imagenBannerPrincipal transition-opacity duration-1000 ${index === currentIndex ? 'opacity-100' : 'opacity-0'}`}
+                className={`absolute inset-0  transition-opacity duration-1000 ${index === currentIndex ? 'opacity-100' : 'opacity-0'}`}
                 >
-                <img src={image} alt={`Banner ${index + 1}`} className="w-full h-full object-cover" />
+                <img src={image} alt={`Banner ${index + 1}`} className="w-full h-full object-cover imagenBannerPrincipal" />
                 <div className=" textoBannerPrincipal">
                     <p>Construí tus  <span className='textoDestacado'>sueños.</span ></p>
                     <p>Invertí en el  <span className='textoDestacado'>futuro.</span></p>

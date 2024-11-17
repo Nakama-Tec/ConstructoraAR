@@ -29,13 +29,24 @@ h1 {
 
   }
 
-  .imagenBannerPrincipal{      
+  .imagenBannerPrincipal {
     height: 100%;
     width: 100%;
     inset: 0;
     object-fit: cover;
     background: rgba(0, 0, 0, 0.5);
-  }
+    animation: zoom 20s ease infinite;
+    animation-fill-mode: forwards;
+}
+
+@keyframes zoom {
+    0% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(1.1);
+    }
+}
 
   .textoBannerPrincipal{
     text-align: left;
@@ -47,6 +58,20 @@ h1 {
     left: 10%;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   }
+@keyframes slideInLeft {
+    0% {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.textoBannerPrincipal {
+    animation: slideInLeft 1.5s ease-out;
+}
 
   .textoDestacado{  
     font-weight: 600;  
