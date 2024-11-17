@@ -16,3 +16,38 @@ h1 {
     max-height: 100px; /* Ajusta esto según el contenido */
     padding: 1rem; /* Ajusta esto según tus necesidades */
   }
+
+  .BannerPrincipal {
+    position: relative;
+    height: 80vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-align: center;  
+
+  }
+
+  .imagenBannerPrincipal{      
+    height: 100%;
+    width: 100%;
+    inset: 0;
+    object-fit: cover;
+    background: rgba(0, 0, 0, 0.5);
+  }
+
+  .textoBannerPrincipal{
+    text-align: left;
+    font-weight: 100;
+    font-size: 3.5rem;
+    position: absolute;
+    z-index: 1;
+    top: 40%;    
+    left: 10%;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  }
+
+  .textoDestacado{  
+    font-weight: 600;  
+  }
