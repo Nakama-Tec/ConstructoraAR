@@ -48,6 +48,7 @@ FROM PagosAlquileres pal
 JOIN AlquilerDepartamentos ald ON ald.id_alquilerDepto = pal.id_alquilerDepto
 JOIN Departamentos dp ON dp.id_departamento = ald.id_departamento
 WHERE pal.fechaPagoAlquiler = '${fechaPorDia}'`
+
 conection.query( query,(err,results)=>{
  if(err) {
     return res.status(500).json({ error: 'Error en la base de datos', details: err.message });

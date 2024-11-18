@@ -11,6 +11,9 @@ import Button from 'react-bootstrap/Button';
 // import withReactContent from 'sweetalert2-react-content'
 
 const MainClientes = () => {
+  const token = useAuthStore((state) => state.token);
+  const userRole = useAuthStore((state) => state.userRole);
+  const clearAuth = useAuthStore((state) => state.clearAuth);
   const [filtrado, setFiltrado] = useState('');
   const [showAlert, setShowAlert] = useState(false);
   const [selectedClienteId, setSelectedClienteId] = useState(null);

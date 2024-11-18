@@ -1,5 +1,5 @@
-const nodemailer = require('nodemailer');
-const dotenv = require("dotenv");
+const nodemailer = require('nodemailer');//es una libreria que permite enviar correos electronicos
+const dotenv = require("dotenv"); // es una libreria que permite acceder a las variables de entorno
 
 dotenv.config();
 

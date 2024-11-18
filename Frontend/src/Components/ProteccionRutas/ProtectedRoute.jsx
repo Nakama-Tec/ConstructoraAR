@@ -1,4 +1,4 @@
-import { Link, Outlet } from 'react-router-dom'; 
+import { Navigate, Outlet } from 'react-router-dom'; 
 import useAuthStore from '../../Context/useAuthStore';
 import { LOGIN } from '../../Routes/routes';
 
@@ -7,16 +7,18 @@ import { LOGIN } from '../../Routes/routes';
 // children: Componentes hijos que se renderizarán si se cumplen las condiciones de autenticación y autorización.
 const ProtectedRoute = ({ roleRequired, children }) => {
 
-  const token = useAuthStore((state) => state.token);
-  const userRole = useAuthStore((state) => state.userRole);
+  const token = useAuthStore((state) => state.token);//obtiene el token de autenticación desde el hook useAuthStore.
+  const userRole = useAuthStore((state) => state.userRole);//obtiene el rol del usuario autenticado desde el hook useAuthStore.
 
   // Si no hay token, redirige al usuario a la página de login.
   if (!token) {
-    return <><Link to={LOGIN} /></>;
+    return <><Navigate to={LOGIN} /></>;
   }
+  alert("hola token "+token);
+  console.log("hola rol "+userRole);
   // Si el rol del usuario no coincide con el rol requerido, redirige a una página de "no autorizado".
-  if (roleRequired && userRole !== roleRequired) {
-    return <><Link to="/unauthorized" /></>;
+  if (roleRequired && userRole !== roleRequired) {//userRol viene del token decodificado
+    return <><Navigate to="/unauthorized" /></>;
   }
   // Si se cumplen todas las condiciones, renderiza los componentes hijos.
   return children ? children : <Outlet />; // Outlet es un componente de React Router que se utiliza para renderizar los componentes hijos de una ruta anidada.
