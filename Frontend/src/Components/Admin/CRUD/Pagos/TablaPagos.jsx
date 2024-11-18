@@ -16,7 +16,7 @@ const TablaPagos = () => {
 
   const getClientes = async () => {
     try {
-      alert("hola token "+token);
+     
       const response = await axios.get(URL_CLIENTES, { headers: { Authorization: `Bearer ${token}` } });
       setDatos(response.data);
     } catch (error) {

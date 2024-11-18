@@ -14,8 +14,8 @@ const ProtectedRoute = ({ roleRequired, children }) => {
   if (!token) {
     return <><Navigate to={LOGIN} /></>;
   }
-  alert("hola token "+token);
-  console.log("hola rol "+userRole);
+ 
+  
   // Si el rol del usuario no coincide con el rol requerido, redirige a una página de "no autorizado".
   if (roleRequired && userRole !== roleRequired) {//userRol viene del token decodificado
     return <><Navigate to="/unauthorized" /></>;

@@ -20,7 +20,7 @@ const LoginPage = () => {
     try {
       const response = await axios.post(URL_LOGIN, { nombreUsuario,passwordUsuario });
       setToken(response.data.token);
-       alert("hola token "+response.data.token);
+       
       axios.defaults.headers.common['Authorization'] = `Bearer ${response.data.token}`;//esto es para que el token se envie en cada request
    
       const decodedToken = JSON.parse(atob(response.data.token.split('.')[1]));//esto es para decodificar el token y obtener el rol del usuario
@@ -45,7 +45,7 @@ const LoginPage = () => {
 
             <div className="input-box">
                    <label className="label-color">User name</label>
-                   <input type="text" placeholder="username" onChange={(e) => setNombreUsuario(e.target.value)} required />
+                   <input type="text" placeholder="username" required autoComplete="username" onChange={(e) => setNombreUsuario(e.target.value)} />
                    <br />
                    <label className="label-color">Password</label>
                    <input type="password" placeholder="Password" autocomplete="current-password" onChange={(e) => setPasswordUsuario(e.target.value)} required />

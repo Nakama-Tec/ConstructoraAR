@@ -1,6 +1,5 @@
 import VerLibroDiario from '../../Components/Admin/CRUD/LibroDiario/VerLibroDiario'
-import TablaPagos from '../../Components/Admin/CRUD/Pagos/TablaPagos'
-// import Aside from '../../Components/Layout/Aside'
+import Aside from '../../Components/Layout/Aside'
 
 const LibroDiario = () => {
 
@@ -8,8 +7,9 @@ const LibroDiario = () => {
     <div>
      
       <h2>hola libro</h2>
-      {/* <VerLibroDiario/> */}
-      <TablaPagos/>
+      {/* <Aside/> */}
+      <VerLibroDiario/>
+     
     </div>
   )
 }
