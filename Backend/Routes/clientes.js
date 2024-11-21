@@ -3,7 +3,7 @@ const express = require("express")
  const {verifyToken} = require("../middleware/middleware") // importo la funcion veryfyToken del archivo authJwt.js
 const router = express.Router()
 
-router.get("/clientes", verifyToken,allClientes)
+router.get("/clientes",verifyToken,allClientes)
 router.get("/clientes/:id", verifyToken,singleCliente)
 router.post("/clientes/create/", verifyToken,createCliente)
 router.put("/clientes/edit/:id", verifyToken,editCliente)

@@ -1,137 +1,109 @@
-import { useState } from 'react';
-import Aside from '../../../Layout/Aside';
+import { useState, useEffect } from 'react';
 import { useReactTable, getCoreRowModel, flexRender, getPaginationRowModel, getFilteredRowModel } from '@tanstack/react-table';
-import data from '../../../../../MOCK_DATA.json';
-import Swal from 'sweetalert2'
-import withReactContent from 'sweetalert2-react-content';
-import TablaPagos from './TablaPagos';
+import axios from 'axios';
 import Button from 'react-bootstrap/Button';
 import '../../../../Styles/table.css';
+import { URL_CLIENTES } from '../../../../Constants/endpoints-API';
+import useAuthStore from '../../../../Context/useAuthStore';
 
 const MainPagos = () => {
+  const token = useAuthStore((state) => state.token); 
+  const userRole = useAuthStore((state) => state.userRole);
+  const clearAuth = useAuthStore((state) => state.clearAuth);
+  
+  const [filtrado, setFiltrado] = useState('');
+  const [datos, setDatos] = useState([]);
 
+  const getClientes = async () => {
+    try {
+      const response = await axios.get(URL_CLIENTES, { headers: { Authorization: `Bearer ${token}` } });
+      setDatos(response.data);
+    } catch (error) {
+      console.error("Error al obtener clientes:", error);
+    }
+  };
 
-    const MySwal = withReactContent(Swal);
+  const columns = [
+    { header: 'Nº', accessorKey: 'id_cliente' },
+    { header: 'Nombre', accessorKey: 'nombreCliente' },
+    { header: 'Condición', accessorKey: 'condicionCliente' },
+    { header: 'CUIL', accessorKey: 'cuilCliente' },
+    { header: 'Teléfono', accessorKey: 'telefonoCliente' },
+    { header: 'Mail', accessorKey: 'mailCliente' },
+    { header: 'Dirección', accessorKey: 'direccionCliente' },
+    { header: 'Garantes', accessorKey: 'datosGarantes' },
+    {
+      header: 'Acciones',
+      cell: ({ row }) => (
+        <Button onClick={() => console.log("Editar:", row.original.id_cliente)} className='bg-orange-600 text-white px-4 py-2 rounded-full transition duration-200 ease-in-out hover:bg-orange-800 active:bg-orange-900 focus:outline-none"'>
+          Editar Pago
+        </Button>
+      )
+    }
+  ];
 
-    const [filtrado, setFiltrado] = useState('');
-  
-    const columns = [
-      { header: 'Nº', accessorKey: 'id' },
-      { header: 'OPERACION', accessorKey: 'operacion' },
-      { header: 'TIPO', accessorKey: 'tipo' },
-      { header: 'DESCRIPCION', accessorKey: 'descripcion' },
-      { header: 'INGRESO', accessorKey: 'ingreso' },
-      { header: 'EGRESO', accessorKey: 'egreso' },
-      { header: 'SALDO', accessorKey: 'saldo' },
-      { header: 'TOTAL', accessorKey: 'total' },
-      {
-        header: 'ACCIONES',
-        cell: ({ row }) => (
-          <button
-          className='bg-neutral-900 text-white text-bold border-none p-2 rounded-[8px]'
-            // onClick={() => handleEditClick(row.original.id)}
-            // className="bg-white"
-          >
-            Editar Operacion
-          </button>
-        ),
-      }
-    ];
-  
-  
-    // PAGOS MODAL
-  
-    const handleVerPagos = () => {
-      MySwal.fire({
-        title: 'TABLA PAGOS', // Muestra el titulo del MODAL
-        html: <TablaPagos />, // Muestra el componente TablaPagos
-        showCloseButton: true, // Muestra el boton de cerrar
-        showConfirmButton: false, // Muestra el boton de confirmar (False para que no aparezca)
-        width: 1800, // Ancho del MODAL
-        background: '#1c1c1c', // Color de fondo del MODAL
-        color: 'white', // Color del texto del MODAL
-      });
-    };
-  
-    const table = useReactTable({
-      data,
-      columns,
-      getCoreRowModel: getCoreRowModel(),
-      getPaginationRowModel: getPaginationRowModel(),
-      getFilteredRowModel: getFilteredRowModel(),
-      state: {
-        globalFilter: filtrado
-      },
-      onGlobalFilterChange: setFiltrado
-    });
-  
-    return (
-      <div className='bg-neutral-400 m-0 p-0'>
-      <div className='inicio m-0 p-5'>
-        <button>VOLVER AL INICIO</button>
-      </div>
-        <div className='opciones'>
-        <label className='text-bold text-black'>SELECCIONA FECHA </label>
-        <input type='date'/>
-        <button>FLUJO DE CAJA</button>
-        <button>PENDIENTES</button>
-        </div>
-        <hr />
-        <h2 className='text-black text-[55px] text-bold flex justify-center'>LIBRO DIARIO</h2>
-        <hr />
-        <div className='buttons'>
-          <div>
-          <Button>AGREGAR PAGO</Button>
-          </div>
-          <div>
-          <Button onClick={() => handleVerPagos()}
-            className="bg-white">VER PAGOS</Button>
-          </div>
-        </div>
-        <div className='input-search'>
+  const table = useReactTable({
+    data: datos,
+    columns,
+    getCoreRowModel: getCoreRowModel(),
+    getPaginationRowModel: getPaginationRowModel(),
+    getFilteredRowModel: getFilteredRowModel(),
+    state: {
+      globalFilter: filtrado
+    },
+    onGlobalFilterChange: setFiltrado
+  });
+
+  useEffect(() => {
+    getClientes();
+  }, []);
+
+  return (
+    <div>
+      <h3 className="text-white text-opacity-50">Visualizando los Pagos</h3>
+      <div className="input-search">
         <input
-          type='search'
-          placeholder='Buscador'
+          className="text-black"
+          type="search"
+          placeholder="Buscador"
           value={filtrado}
           onChange={(e) => setFiltrado(e.target.value)}
         />
       </div>
-      <div className='mainClientes'>
-        <div className='Aside'>
-          <Aside />
-        </div>
-        <table className='text-white text-bold'>
-          <thead>
-            {table.getHeaderGroups().map(headerGroup => (
-              <tr key={headerGroup.id}>
-                {headerGroup.headers.map(header => (
-                  <th key={header.id}>
-                    {flexRender(header.column.columnDef.header, header.getContext())}
-                  </th>
-                ))}
-              </tr>
-            ))}
-          </thead>
-          <tbody>
-            {table.getRowModel().rows.map(row => (
-              <tr key={row.id}>
-                {row.getVisibleCells().map(cell => (
-                  <td key={cell.id}>
-                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                  </td>
-                ))}
-              </tr>
-            ))}
-          </tbody>
-        </table>
+      <table className="table">
+        <thead>
+          {table.getHeaderGroups().map(headerGroup => (
+            <tr key={headerGroup.id}>
+              {headerGroup.headers.map(header => (
+                <th key={header.id}>
+                  {flexRender(header.column.columnDef.header, header.getContext())}
+                </th>
+              ))}
+            </tr>
+          ))}
+        </thead>
+        <tbody>
+          {table.getRowModel().rows.map(row => (
+            <tr key={row.id}>
+              {row.getVisibleCells().map(cell => (
+                <td key={cell.id}>
+                  {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      <div className="btn-pages">
+        <button className='m-2 p-2 bg-zinc-900 text-white h-12 rounded-[8px] font-semibold text-[16px]' onClick={() => table.previousPage()} disabled={!table.getCanPreviousPage()}>
+          Página Anterior
+        </button>
+        <button className='m-2 p-2 bg-zinc-900 text-white h-12 rounded-[8px] font-semibold text-[16px]' onClick={() => table.nextPage()} disabled={!table.getCanNextPage()}>
+          Página Siguiente
+        </button>
       </div>
-  
-      <div className='btn-pages'>
-        <button className='m-2 p-2 bg-zinc-900 text-white h-12 rounded-[8px] font-semibold text-[16px]' onClick={() => table.previousPage()}>Página Anterior</button>
-        <button className='m-2 p-2 bg-zinc-900 text-white h-12 rounded-[8px] font-semibold text-[16px]' onClick={() => table.nextPage()}>Página Siguiente</button>
-      </div>
-      </div>
-    )
-  }
+    </div>
+  );
+}
 
 export default MainPagos

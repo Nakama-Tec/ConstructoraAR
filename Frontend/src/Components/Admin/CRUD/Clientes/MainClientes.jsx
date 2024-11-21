@@ -1,33 +1,43 @@
-import Aside from '../../../Layout/Aside';
+import { useState, useEffect } from 'react';
 import { useReactTable, getCoreRowModel, flexRender, getPaginationRowModel, getFilteredRowModel } from '@tanstack/react-table';
-import data from '../../../../../MOCK_DATA.json';
-import '../../../../Styles/table.css';
-import SweetAlert from 'react-bootstrap-sweetalert';
-import EditarCliente from './EditarClientes';
-import { useState } from 'react';
+import axios from 'axios';
 import Button from 'react-bootstrap/Button';
-
-// import Swal from 'sweetalert2'
-// import withReactContent from 'sweetalert2-react-content'
+import '../../../../Styles/table.css';
+import { URL_CLIENTES } from '../../../../Constants/endpoints-API';
+import useAuthStore from '../../../../Context/useAuthStore';
 
 const MainClientes = () => {
+
+  const token = useAuthStore((state) => state.token); 
+  const userRole = useAuthStore((state) => state.userRole);
+  const clearAuth = useAuthStore((state) => state.clearAuth);
+  
   const [filtrado, setFiltrado] = useState('');
-  const [showAlert, setShowAlert] = useState(false);
-  const [selectedClienteId, setSelectedClienteId] = useState(null);
+  const [datos, setDatos] = useState([]);
+
+
+  const getClientes = async () => {
+    try {
+      const response = await axios.get(URL_CLIENTES, { headers: { Authorization: `Bearer ${token}` } });
+      setDatos(response.data);
+    } catch (error) {
+      console.error("Error al obtener clientes:", error);
+    }
+  };
 
   const columns = [
-    { header: 'ID', accessorKey: 'id' },
-    { header: 'Nombres y Apellidos', accessorFn: row => `${row.nombre} ${row.apellido}` },
-    { header: 'Correo Electronico', accessorKey: 'correo' },
-    { header: 'Telefono', accessorKey: 'telefono' },
-    { header: 'Fecha de Nacimiento', accessorKey: 'fechaNacimiento' },
+    { header: 'Nº', accessorKey: 'id_cliente' },
+    { header: 'Nombre', accessorFn: row => `${row.nombreCliente} ${row.apellidoCliente}` },
+    { header: 'Condición', accessorKey: 'condicionCliente' },
+    { header: 'CUIL', accessorKey: 'cuilCliente' },
+    { header: 'Teléfono', accessorKey: 'telefonoCliente' },
+    { header: 'Mail', accessorKey: 'mailCliente' },
+    { header: 'Dirección', accessorKey: 'direccionCliente' },
+    { header: 'Garantes', accessorKey: 'datosGarantes' },
     {
       header: 'Acciones',
       cell: ({ row }) => (
-        <Button
-          onClick={() => handleEditClick(row.original.id)}
-          className="bg-white"
-        >
+        <Button onClick={() => console.log("Editar:", row.original.id_cliente)} className='bg-orange-600 text-white px-4 py-2 rounded-full transition duration-200 ease-in-out hover:bg-orange-800 active:bg-orange-900 focus:outline-none"'>
           Editar Cliente
         </Button>
       )
@@ -35,7 +45,7 @@ const MainClientes = () => {
   ];
 
   const table = useReactTable({
-    data,
+    data: datos,
     columns,
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
@@ -46,83 +56,56 @@ const MainClientes = () => {
     onGlobalFilterChange: setFiltrado
   });
 
-  const handleEditClick = (id) => {
-    setSelectedClienteId(id); // Establece el ID seleccionado
-    setShowAlert(true); // Muestra el modal
-  };
-
-  const handleEditarCliente = () => {
-    // Realiza la acción de guardado aquí si es necesario
-    setShowAlert(false); // Cierra el modal
-  };
-
-  const hideAlert = () => {
-    setShowAlert(false); // Oculta el modal
-  };
+  useEffect(() => {
+    getClientes();
+  }, []);
 
   return (
-    <>
-      <div className='input-search'>
+    <div>
+      <h3 className="text-white text-opacity-50">Visualizando los Pagos</h3>
+      <div className="input-search">
         <input
-          type='search'
-          placeholder='Buscador'
+          className="text-black"
+          type="search"
+          placeholder="Buscador"
           value={filtrado}
           onChange={(e) => setFiltrado(e.target.value)}
         />
       </div>
-
-      <div className='mainClientes'>
-        <div className='Aside'>
-          <Aside />
-        </div>
-
-        <table>
-          <thead>
-            {table.getHeaderGroups().map(headerGroup => (
-              <tr key={headerGroup.id}>
-                {headerGroup.headers.map(header => (
-                  <th key={header.id}>
-                    {flexRender(header.column.columnDef.header, header.getContext())}
-                  </th>
-                ))}
-              </tr>
-            ))}
-          </thead>
-          <tbody>
-            {table.getRowModel().rows.map(row => (
-              <tr key={row.id}>
-                {row.getVisibleCells().map(cell => (
-                  <td key={cell.id}>
-                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                  </td>
-                ))}
-              </tr>
-            ))}
-          </tbody>
-        </table>
+      <table className="table">
+        <thead>
+          {table.getHeaderGroups().map(headerGroup => (
+            <tr key={headerGroup.id}>
+              {headerGroup.headers.map(header => (
+                <th key={header.id}>
+                  {flexRender(header.column.columnDef.header, header.getContext())}
+                </th>
+              ))}
+            </tr>
+          ))}
+        </thead>
+        <tbody>
+          {table.getRowModel().rows.map(row => (
+            <tr key={row.id}>
+              {row.getVisibleCells().map(cell => (
+                <td key={cell.id}>
+                  {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      <div className="btn-pages">
+        <button className='m-2 p-2 bg-zinc-900 text-white h-12 rounded-[8px] font-semibold text-[16px]' onClick={() => table.previousPage()} disabled={!table.getCanPreviousPage()}>
+          Página Anterior
+        </button>
+        <button className='m-2 p-2 bg-zinc-900 text-white h-12 rounded-[8px] font-semibold text-[16px]' onClick={() => table.nextPage()} disabled={!table.getCanNextPage()}>
+          Página Siguiente
+        </button>
       </div>
-
-      <div className='btn-pages'>
-        <button onClick={() => table.previousPage()}>Página Anterior</button>
-        <button onClick={() => table.nextPage()}>Página Siguiente</button>
-      </div>
-
-      <SweetAlert
-        show={showAlert}
-        title="Editar Cliente"
-        onCancel={hideAlert}
-        showCancel
-        confirmBtnText="Guardar"
-        cancelBtnText="Cancelar"
-        confirmBtnBsStyle="success"
-        cancelBtnBsStyle="danger"
-        closeOnClickOutside={false}
-        className="modal"
-      >
-        <EditarCliente id={selectedClienteId} onSave={handleEditarCliente} />
-      </SweetAlert>
-    </>
+    </div>
   );
-};
+}
 
 export default MainClientes;

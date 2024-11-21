@@ -11,3 +11,21 @@ export const URL_CLIENTES_EDITAR = "http://localhost:8000/clientes/edit/";
 export const URL_CLIENTES_ELIMINAR = "http://localhost:8000/clientes/delete/";
 export const URL_LIBRO_DIARIO = "http://localhost:8000/libroDiario/";
 
+// Usuarios
+
+export const URL_USUARIOS = "http://localhost:8000/usuarios/";
+
+
+// Vehiculos
+
+export const URL_VEHICULOS = "http://localhost:8000/vehiculos/";
+export const URL_VEHICULOS_EDITAR = "http://localhost:8000/vehiculos/edit/"
+
+// Terrenos
+
+export const URL_TERRENOS = "http://localhost:8000/terrenos/";
+
+
+// Departamentos
+
+export const URL_DEPARTAMENTOS = "http://localhost:8000/departamentos/";
