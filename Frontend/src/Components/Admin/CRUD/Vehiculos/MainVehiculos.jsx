@@ -68,6 +68,7 @@ const MainVehiculos = () => {
     });
   };
 
+
   const columns = [
     { header: 'Nº Vehiculo', accessorKey: 'id_vehiculo' },
     { header: 'Patente', accessorKey: 'patenteVehiculo' },

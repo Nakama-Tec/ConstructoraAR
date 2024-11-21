@@ -1,6 +1,9 @@
 const { conection } = require("../DB/Config")
 
 const allClientes = (req, res) => {
+
+console.log("hola cliente")
+
     const query = `select * from Clientes`
     conection.query(query, (err, results) => {
         if (err) throw err;

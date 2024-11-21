@@ -5,7 +5,7 @@ const {verifyToken} = require("../middleware/middleware") // importo la funcion 
 const router = express.Router();
 
 
-router.get("/libroDiario",verifyToken,alldaily_books)
+router.post("/libroDiario",verifyToken,alldaily_books)
 router.get("/libroDiario/:id",verifyToken,singlediary_book)
 
 module.exports = router

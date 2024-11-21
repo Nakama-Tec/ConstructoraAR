@@ -8,10 +8,10 @@ import useAuthStore from '../../../../Context/useAuthStore';
 
 const MainClientes = () => {
 
-  const token = useAuthStore((state) => state.token); 
+  const token = useAuthStore((state) => state.token);
   const userRole = useAuthStore((state) => state.userRole);
   const clearAuth = useAuthStore((state) => state.clearAuth);
-  
+
   const [filtrado, setFiltrado] = useState('');
   const [datos, setDatos] = useState([]);
 

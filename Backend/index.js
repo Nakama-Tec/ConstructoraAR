@@ -1,4 +1,4 @@
-const express = require('express');
+const express = require('express'); // es una libreria que permite crear un servidor
 const {conection} = require('./DB/Config')
 const alquilerDepartamentos = require("./Routes/alquilerDepartamentos")
 const cashFlow = require("./Routes/cashFlow")

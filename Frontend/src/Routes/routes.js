@@ -1,5 +1,6 @@
 // Rutas de Page
 export const HOME = "/"
+export const HOME_SISTEMA_GESTION = "/HomeSistemaGestion"
 
 export const LOGIN = "/area-empleados/Login"
 export const FLUJO_CAJA = "/FlujoCaja"

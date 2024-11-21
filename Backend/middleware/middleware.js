@@ -9,32 +9,37 @@ const secretKey = process.env.SECRETKEY;
 
 // Middleware para verificar el token
 const verifyToken = (req, res, next) => {
-    // Comprobar si se ha definido la clave secreta
-    if (!secretKey) {
-        return res.status(500).json({ message: "Clave secreta no configurada en las variables de entorno" });
-    }
 
     // Obtener el token del encabezado de autorización
-    const authHeader = req.headers["authorization"];
-    
-   
+    const authHeader = req.headers["authorization"]; //este dato proviene del front end
+
+    console.log("hola token 1 "+authHeader);
+
+    // Comprobar si se ha definido la clave secreta
+    if (!secretKey) {
+        console.log("hola secretkey "+authHeader);
+        return res.status(500).json({ message: "Clave secreta no configurada en las variables de entorno" });
+    }
+    console.log("hola token 2 "+authHeader);
     // Si no se proporciona el encabezado de autorización
-    if (!authHeader) {
+    if (!authHeader) {//si no se envia el token
+        console.log("hola token 3 "+authHeader);
         return res.status(403).json({ message: "Falta Encabezado de autorización" });
     }
 
     // Validar el formato del token
     const tokenParts = authHeader.split(' ');
     if (tokenParts[0] !== 'Bearer' || !tokenParts[1]) {
+        console.log("hola token 4 "+authHeader);
         return res.status(403).json({ message: "Formato de token inválido. Se esperaba 'Bearer <token>'" });
     }
 
     // Extraer el token del formato 'Bearer <token>'
     const token = tokenParts[1];
-
+    
     // Verificar el token JWT usando la clave secreta
     jwt.verify(token, secretKey, (err, decoded) => {
-      
+        
         if (err) {
             // Error específico si el token ha expirado
             if (err.name === "TokenExpiredError") {

@@ -1,104 +1,64 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import Aside from '../../../Layout/Aside';
+import { useState, useEffect } from 'react';
 import { useReactTable, getCoreRowModel, flexRender, getPaginationRowModel, getFilteredRowModel } from '@tanstack/react-table';
-import data from '../../../../../MOCK_DATA.json';
-import Swal from 'sweetalert2'
-import withReactContent from 'sweetalert2-react-content';
 import axios from 'axios';
 import Button from 'react-bootstrap/Button';
 import { URL_LIBRO_DIARIO } from '../../../../Constants/endpoints-API';
-import '../../../../Styles/table.css';
-
+import useAuthStore from '../../../../Context/useAuthStore';
+import Aside from '../../../Layout/Aside';
 
 const VerLibroDiario = () => {
-
-
-  const MySwal = withReactContent(Swal);
-  const navigate = useNavigate()
-
-  const initialState = {
-    operacion: "",
-    tipo: "",
-    descripcion: "",
-    ingreso: 0,
-    egreso:0,
-    saldo: 0,
-    total: 0
-}
+  const token = useAuthStore((state) => state.token); 
+  const userRole = useAuthStore((state) => state.userRole); // Para obtener el rol del usuario logueado
+  const clearAuth = useAuthStore((state) => state.clearAuth);
+  const [fechaRegistro, setFechaRegistro] = useState("");
   const [filtrado, setFiltrado] = useState('');
-  const [registro, setRegistro] = useState(initialState)
+  const [datos, setDatos] = useState([]);
+
+  // Obtener la fecha actual en formato YYYY-MM-DD
+  useEffect(() => {
+    let date = new Date();
+    let año = date.getFullYear();
+    let mes = date.getMonth() + 1;
+    let dia = date.getDate();
+    if (dia < 10) dia = "0" + dia;
+    if (mes < 10) mes = "0" + mes;
+
+    setFechaRegistro(`${año}-${mes}-${dia}`); // Formato adecuado para la base de datos
+  }, []);
+
+  // Función para obtener los datos del libro diario
+  const getLibroDiario = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post(URL_LIBRO_DIARIO, { fechaRegistro }, {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      setDatos(response.data); // Asumiendo que la respuesta contiene los datos del libro diario
+    } catch (error) {
+      console.error("Error al obtener el libro diario:", error);
+    }
+  };
 
   const columns = [
-    { header: 'Nº', accessorKey: 'id' },
-    { header: 'OPERACION', accessorKey: 'operacion' },
-    { header: 'TIPO', accessorKey: 'tipo' },
-    { header: 'DESCRIPCION', accessorKey: 'descripcion' },
-    { header: 'INGRESO', accessorKey: 'ingreso' },
-    { header: 'EGRESO', accessorKey: 'egreso' },
-    { header: 'SALDO', accessorKey: 'saldo' },
-    { header: 'TOTAL', accessorKey: 'total' },
+    { header: 'Nº', accessorKey: 'id_cliente' },
+    { header: 'Fecha', accessorKey: 'nombreCliente' },
+    { header: 'Descripcion', accessorKey: 'condicionCliente' },
+    { header: 'Tipo', accessorKey: 'direccionCliente' },
+    { header: 'Ingreso', accessorKey: 'cuilCliente' },
+    { header: 'Egreso', accessorKey: 'telefonoCliente' },
+    { header: 'Saldo', accessorKey: 'mailCliente' },
     {
-      header: 'ACCIONES',
+      header: 'Acciones',
       cell: ({ row }) => (
-        <button
-        className='bg-neutral-900 text-white text-bold border-none p-2 rounded-[8px]'
-          // onClick={() => handleEditClick(row.original.id)}
-          // className="bg-white"
-        >
-          Editar Operacion
-        </button>
-      ),
+        <Button onClick={() => console.log("Editar:", row.original.id_cliente)}>
+          Editar Pago
+        </Button>
+      )
     }
   ];
 
-
-  // LIBRO DIARIO MODAL
-
-  const handleChange = (e) => {
-    setRegistro({ ...registro, [e.target.name]: e.target.value })
-}
-
-  const handleAgregarRegistro = () => {
-
-    MySwal.fire({
-        title: 'COMPLETA LOS CAMPOS',
-        html: `
-    <input type="text" name="operacion" class="swal2-input" onChange={handleChange} placeholder="Operacion">
-    <input type="text" name="tipo" class="swal2-input" onChange={handleChange} placeholder="Tipo">
-    <input type="text" name="descripcion" class="swal2-input" onChange={handleChange} placeholder="Descripcion">
-    <input type="text" name="ingreso" class="swal2-input" onChange={handleChange} placeholder="Ingreso">
-    <input type="text" name="egreso" class="swal2-input" onChange={handleChange} placeholder="Egreso">
-    <input type="text" name="saldo" class="swal2-input" onChange={handleChange} placeholder="Saldo">
-    <input type="text" name="total" class="swal2-input" onChange={handleChange} placeholder="Total">
-
-  `,
-  showCloseButton: true,
-        preConfirm: () => {
-          try {
-
-            let response = axios.post(URL_LIBRO_DIARIO, {
-                operacion: registro.operacion,
-                tipo: registro.tipo,
-                descripcion: registro.descripcion,
-                ingreso: registro.ingreso,
-                egreso: registro.egreso,
-                saldo: registro.saldo,
-                total: registro.total
-            })
-
-            if (response.status === 200) {
-                navigate('/LibroDiario')
-            }
-        } catch (error) {
-            console.log(error)
-        }
-        },
-      })
-  };
-
   const table = useReactTable({
-    data,
+    data: datos,
     columns,
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
@@ -109,38 +69,27 @@ const VerLibroDiario = () => {
     onGlobalFilterChange: setFiltrado
   });
 
+  useEffect(() => {
+    getLibroDiario(); // Llamar a la función al montar el componente
+  }, []); 
+
   return (
-    <div className='bg-neutral-400 m-0 p-0'>
-    <div className='inicio m-0 p-5'>
-      <button>VOLVER AL INICIO</button>
-    </div>
-      <div className='opciones'>
-      <label className='text-bold text-black'>SELECCIONA FECHA </label>
-      <input type='date'/>
-      <button>FLUJO DE CAJA</button>
-      <button>PENDIENTES</button>
+    <div>
+      
+      <h3 className="text-white text-opacity-50">Visualizando los Pagos</h3>
+      <div className="input-search">
+        <input
+          className="text-black"
+          type="search"
+          placeholder="Buscador"
+          value={filtrado}
+          onChange={(e) => setFiltrado(e.target.value)}
+        />
+        <br /><br />
+        <label htmlFor="">{fechaRegistro}</label>
+        <br /><br />
       </div>
-      <hr />
-      <h2 className='text-black text-[55px] text-bold flex justify-center'>LIBRO DIARIO</h2>
-      <hr />
-      <div className='buttons'>
-        <div>
-        <Button onClick={() => handleAgregarRegistro()} >AGREGAR REGISTRO</Button>
-        </div>
-      </div>
-      <div className='input-search'>
-      <input
-        type='search'
-        placeholder='Buscador'
-        value={filtrado}
-        onChange={(e) => setFiltrado(e.target.value)}
-      />
-    </div>
-    <div className='mainClientes'>
-      <div className='Aside'>
-        <Aside />
-      </div>
-      <table className='text-white text-bold'>
+      <table className="table">
         <thead>
           {table.getHeaderGroups().map(headerGroup => (
             <tr key={headerGroup.id}>
@@ -164,14 +113,18 @@ const VerLibroDiario = () => {
           ))}
         </tbody>
       </table>
+      <Aside/>
+      <div className="btn-pages">
+        <button onClick={() => table.previousPage()} disabled={!table.getCanPreviousPage()}>
+          Página Anterior
+        </button>
+        <span>{`Página ${table.getState().pagination.pageIndex + 1} de ${table.getPageCount()}`}</span>
+        <button onClick={() => table.nextPage()} disabled={!table.getCanNextPage()}>
+          Página Siguiente
+        </button>
+      </div>
     </div>
+  );
+};
 
-    <div className='btn-pages'>
-      <button className='m-2 p-2 bg-zinc-900 text-white h-12 rounded-[8px] font-semibold text-[16px]' onClick={() => table.previousPage()}>Página Anterior</button>
-      <button className='m-2 p-2 bg-zinc-900 text-white h-12 rounded-[8px] font-semibold text-[16px]' onClick={() => table.nextPage()}>Página Siguiente</button>
-    </div>
-    </div>
-  )
-}
-
-export default VerLibroDiario
+export default VerLibroDiario;

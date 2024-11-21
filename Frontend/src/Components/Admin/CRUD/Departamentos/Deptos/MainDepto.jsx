@@ -56,6 +56,7 @@ const MainDepto = () => {
       },
       onGlobalFilterChange: setFiltrado
     });
+<<<<<<< HEAD
   
     useEffect(() => {
       getDeptos();

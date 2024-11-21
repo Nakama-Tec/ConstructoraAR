@@ -1,10 +1,10 @@
-import MainDepto from '../../Components/Admin/CRUD/Departamentos/Deptos/MainDepto'
+import MainDepto from '../../Components/Admin/CRUD/Departamentos/Deptos/MainDepto'  
 
 const Departamentos = () => {
   return (
-    <>
-    <MainDepto/>
-    </>
+    <div>
+      <MainDepto />
+    </div>
   )
 }
 
