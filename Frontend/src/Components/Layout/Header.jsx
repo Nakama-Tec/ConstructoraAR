@@ -26,6 +26,7 @@ const Header = () => {
   const [current, setCurrent] = useState("Inicio");
 
   return (
+    <header>
     <Disclosure as="nav" className="bg-gray-800">
       {({ open }) => (
         <>
@@ -111,6 +112,7 @@ const Header = () => {
         </>
       )}
     </Disclosure>
+    </header>
   );
 };
 
