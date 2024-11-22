@@ -2,8 +2,8 @@ const { conection } = require("../DB/Config");
 
 const alldaily_books = (req, res) => {
   // Obtenemos la fecha enviada desde el front
-  const { fechaPorDia } = req.body;
-
+  const { fechaRegistro } = req.body;
+console.log("fechaPorDia primero = ", fechaRegistro);
   // Query para obtener los registros del libro diario según la fecha
   const query = `
     SELECT 'CERTIFICADO' as TIPO, o.nombreObra as Descripcion, c.montoCert as Monto, c.fechaPagoCert as Fecha
@@ -49,7 +49,8 @@ const alldaily_books = (req, res) => {
     WHERE pal.fechaPagoAlquiler = ?`;
 
   // Ejecutamos la consulta en la base de datos
-  conection.query(query, [fechaPorDia, fechaPorDia, fechaPorDia, fechaPorDia, fechaPorDia, fechaPorDia], (err, results) => {
+  conection.query(query, [fechaRegistro, fechaRegistro, fechaRegistro, fechaRegistro, fechaRegistro, fechaRegistro], (err, results) => {
+    console.log("fechaPorDia segundo nuevo= ", [fechaRegistro, fechaRegistro, fechaRegistro, fechaRegistro, fechaRegistro, fechaRegistro]);
     if (err) {
       // Si hay un error en la consulta, retornamos el error
       return res.status(500).json({ error: 'Error en la base de datos', details: err.message });
@@ -59,7 +60,7 @@ const alldaily_books = (req, res) => {
     if (results.length > 0) {
       return res.json({
         message: 'Fecha encontrada',
-        fecha: fechaPorDia,
+        fecha: fechaRegistro,
         data: results  // Incluye los resultados obtenidos
       });
     } else {

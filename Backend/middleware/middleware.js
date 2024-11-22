@@ -7,11 +7,13 @@ dotenv.config();
 // Obtener la clave secreta de las variables de entorno
 const secretKey = process.env.SECRETKEY;
 
+
 // Middleware para verificar el token
 const verifyToken = (req, res, next) => {
 
     // Obtener el token del encabezado de autorización
     const authHeader = req.headers["authorization"]; //este dato proviene del front end
+    
 
     console.log("hola token 1 "+authHeader);
 
@@ -20,13 +22,13 @@ const verifyToken = (req, res, next) => {
         console.log("hola secretkey "+authHeader);
         return res.status(500).json({ message: "Clave secreta no configurada en las variables de entorno" });
     }
-    console.log("hola token 2 "+authHeader);
+  
     // Si no se proporciona el encabezado de autorización
     if (!authHeader) {//si no se envia el token
         console.log("hola token 3 "+authHeader);
         return res.status(403).json({ message: "Falta Encabezado de autorización" });
     }
-
+    console.log("hola token 2 "+authHeader);
     // Validar el formato del token
     const tokenParts = authHeader.split(' ');
     if (tokenParts[0] !== 'Bearer' || !tokenParts[1]) {

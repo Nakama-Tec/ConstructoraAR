@@ -1,5 +1,11 @@
 import { useState, useEffect } from 'react';
-import { useReactTable, getCoreRowModel, flexRender, getPaginationRowModel, getFilteredRowModel } from '@tanstack/react-table';
+import {
+  useReactTable,
+  getCoreRowModel,
+  flexRender,
+  getPaginationRowModel,
+  getFilteredRowModel,
+} from '@tanstack/react-table';
 import axios from 'axios';
 import Button from 'react-bootstrap/Button';
 import { URL_LIBRO_DIARIO } from '../../../../Constants/endpoints-API';
@@ -7,56 +13,78 @@ import useAuthStore from '../../../../Context/useAuthStore';
 import Aside from '../../../Layout/Aside';
 
 const VerLibroDiario = () => {
-  const token = useAuthStore((state) => state.token); 
-  const userRole = useAuthStore((state) => state.userRole); // Para obtener el rol del usuario logueado
+  const token = useAuthStore((state) => state.token);
+  const userRole = useAuthStore((state) => state.userRole);
   const clearAuth = useAuthStore((state) => state.clearAuth);
-  const [fechaRegistro, setFechaRegistro] = useState("");
-  const [filtrado, setFiltrado] = useState('');
-  const [datos, setDatos] = useState([]);
+  const [fechaRegistro, setFechaRegistro] = useState(''); // Fecha actual en formato YYYY-MM-DD
+  const [filtrado, setFiltrado] = useState(''); // Para filtrar los datos de la tabla
+  const [datos, setDatos] = useState([]); // Datos de la tabla
+  const [idfront, setIdfront] = useState(0); // id del usuario logueado
 
   // Obtener la fecha actual en formato YYYY-MM-DD
   useEffect(() => {
-    let date = new Date();
-    let año = date.getFullYear();
-    let mes = date.getMonth() + 1;
-    let dia = date.getDate();
-    if (dia < 10) dia = "0" + dia;
-    if (mes < 10) mes = "0" + mes;
-
-    setFechaRegistro(`${año}-${mes}-${dia}`); // Formato adecuado para la base de datos
+    const date = new Date();
+    const año = date.getFullYear();
+    const mes = String(date.getMonth() + 1).padStart(2, '0');
+    const dia = String(date.getDate()).padStart(2, '0');
+    setFechaRegistro(`${año}-${mes}-${dia}`);
   }, []);
 
   // Función para obtener los datos del libro diario
-  const getLibroDiario = async (e) => {
-    e.preventDefault();
+  const getLibroDiario = async () => {
+    if (!token) {
+      console.warn('Token no disponible. La petición no se ejecutará.');
+      return;
+    }
+
     try {
-      const response = await axios.post(URL_LIBRO_DIARIO, { fechaRegistro }, {
-        headers: { Authorization: `Bearer ${token}` }
-      });
-      setDatos(response.data); // Asumiendo que la respuesta contiene los datos del libro diario
+      const response = await axios.post(
+        URL_LIBRO_DIARIO,
+        { fechaRegistro },
+        { headers: { authorization: `Bearer ${token}` } }
+      );
+
+      // Agregar idfront autoincremental
+      const dataConIdFront = response.data.map((item, index) => ({
+        ...item,
+        idfront: index + 1, // Asignar índice autoincremental
+      }));
+
+      setDatos(dataConIdFront);
     } catch (error) {
-      console.error("Error al obtener el libro diario:", error);
+      console.error('Error al obtener el libro diario:', error);
     }
   };
 
+  const handleLogout = () => {
+    clearAuth();
+  };
+
+  // Llamada inicial al montar el componente y cada vez que cambie fechaRegistro o token
+  useEffect(() => {
+    if (fechaRegistro && token) {
+      getLibroDiario();
+    }
+  }, [fechaRegistro, token]);
+
+  // Configuración de las columnas para la tabla
   const columns = [
-    { header: 'Nº', accessorKey: 'id_cliente' },
-    { header: 'Fecha', accessorKey: 'nombreCliente' },
-    { header: 'Descripcion', accessorKey: 'condicionCliente' },
-    { header: 'Tipo', accessorKey: 'direccionCliente' },
-    { header: 'Ingreso', accessorKey: 'cuilCliente' },
-    { header: 'Egreso', accessorKey: 'telefonoCliente' },
-    { header: 'Saldo', accessorKey: 'mailCliente' },
+    { header: 'Nº', accessorKey: 'idfront' },
+    { header: 'Fecha', accessorKey: 'fechaRegistro' },
+    { header: 'Descripción', accessorKey: 'descripcion' },
+    { header: 'Tipo', accessorKey: 'tipo' },
+    { header: 'Monto', accessorKey: 'monto' },
     {
       header: 'Acciones',
       cell: ({ row }) => (
-        <Button onClick={() => console.log("Editar:", row.original.id_cliente)}>
-          Editar Pago
+        <Button onClick={() => console.log('Editar:', row.original.id)}>
+          Editar
         </Button>
-      )
-    }
+      ),
+    },
   ];
 
+  // Configuración de la tabla con React Table
   const table = useReactTable({
     data: datos,
     columns,
@@ -64,19 +92,14 @@ const VerLibroDiario = () => {
     getPaginationRowModel: getPaginationRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
     state: {
-      globalFilter: filtrado
+      globalFilter: filtrado,
     },
-    onGlobalFilterChange: setFiltrado
+    onGlobalFilterChange: setFiltrado,
   });
-
-  useEffect(() => {
-    getLibroDiario(); // Llamar a la función al montar el componente
-  }, []); 
 
   return (
     <div>
-      
-      <h3 className="text-white text-opacity-50">Visualizando los Pagos</h3>
+      <h3 className="text-white text-opacity-50">Visualizando el Libro Diario</h3>
       <div className="input-search">
         <input
           className="text-black"
@@ -85,15 +108,24 @@ const VerLibroDiario = () => {
           value={filtrado}
           onChange={(e) => setFiltrado(e.target.value)}
         />
-        <br /><br />
-        <label htmlFor="">{fechaRegistro}</label>
-        <br /><br />
+        <br />
+        <br />
+        <label htmlFor="fecha">Seleccionar Fecha:</label>
+        <input
+          type="date"
+          id="fecha"
+          className="text-black"
+          value={fechaRegistro}
+          onChange={(e) => setFechaRegistro(e.target.value)}
+        />
+        <br />
+        <br />
       </div>
       <table className="table">
         <thead>
-          {table.getHeaderGroups().map(headerGroup => (
+          {table.getHeaderGroups().map((headerGroup) => (
             <tr key={headerGroup.id}>
-              {headerGroup.headers.map(header => (
+              {headerGroup.headers.map((header) => (
                 <th key={header.id}>
                   {flexRender(header.column.columnDef.header, header.getContext())}
                 </th>
@@ -102,9 +134,9 @@ const VerLibroDiario = () => {
           ))}
         </thead>
         <tbody>
-          {table.getRowModel().rows.map(row => (
+          {table.getRowModel().rows.map((row) => (
             <tr key={row.id}>
-              {row.getVisibleCells().map(cell => (
+              {row.getVisibleCells().map((cell) => (
                 <td key={cell.id}>
                   {flexRender(cell.column.columnDef.cell, cell.getContext())}
                 </td>
@@ -113,7 +145,10 @@ const VerLibroDiario = () => {
           ))}
         </tbody>
       </table>
-      <Aside/>
+      <Aside />
+      <Button onClick={handleLogout} className="btn btn-secondary">
+        Cerrar Sesión
+      </Button>
       <div className="btn-pages">
         <button onClick={() => table.previousPage()} disabled={!table.getCanPreviousPage()}>
           Página Anterior
