@@ -31,3 +31,10 @@ export const URL_TERRENOS = "http://localhost:8000/terrenos/";
 // Departamentos
 
 export const URL_DEPARTAMENTOS = "http://localhost:8000/departamentos/";
+
+// Stock Materiales
+
+export const URL_STOCK = "http://localhost:8000/stockMateriales/";
+export const URL_STOCK_CREAR = "http://localhost:8000/stockMateriales/create/";
+export const URL_STOCK_EDITAR = "http://localhost:8000/stockMateriales/edit/";
+export const URL_STOCK_ELIMINAR = "http://localhost:8000/stockMateriales/delete/";
