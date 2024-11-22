@@ -2,7 +2,7 @@ const { conection } = require("../DB/Config")
 
 
 const allVehiculos = (req, res) => {
-    const query = `select * from Vehiculos;`
+    const query = `select * from Vehiculos where activoVehiculo=1;`
     conection.query(query, (err, results) => {
         if (err) throw err;
         res.json(results)
@@ -33,7 +33,7 @@ const editVehiculo = (req, res) => {
     const id = req.params.id
     console.log(req.body);
     const {marcaVehiculo,patenteVehiculo, tipoVehiculo, seguroVehiculo} = req.body
-    const query = `update Vehiculos set marcaVehiculo="${marcaVehiculo}",patenteVehiculo="${patenteVehiculo}", tipoVehiculo="${tipoVehiculo}",seguroVehiculo="${seguroVehiculo}" where id_vehiculo=${id}`
+    const query = `update Vehiculos set marcaVehiculo="${marcaVehiculo}",patenteVehiculo="${patenteVehiculo}", tipoVehiculo="${tipoVehiculo}",seguroVehiculo="${seguroVehiculo}",activoVehiculo=1 where id_vehiculo=${id}`
     conection.query(query, (err,results) => {
         if(err) throw err
         res.send(results)

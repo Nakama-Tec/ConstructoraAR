@@ -1,10 +1,10 @@
-import React from 'react'
+import MainVehiculos from '../../Components/Admin/CRUD/Vehiculos/MainVehiculos'
 
 const Vehiculos = () => {
   return (
-    <div>
-      
-    </div>
+    <>
+    <MainVehiculos />
+    </>
   )
 }
 

@@ -1,6 +1,7 @@
 // Importaciones de librerias
 import { BrowserRouter, Routes, Route } from 'react-router-dom' // estas librerias permiten el manejo de rutas en la aplicacion
-import {HOME, HOME_SISTEMA_GESTION, LOGIN, PAGOS, FLUJO_CAJA, LIBRO_DIARIO,TERRENOS ,STOCK, CLIENTES, DEPARTAMENTOS, OBRAS, OPERACIONES, USUARIO, UNAUTHORIZED} from "./Routes/routes"
+import {HOME, HOME_SISTEMA_GESTION, LOGIN, VEHICULOS, PAGOS, FLUJO_CAJA, LIBRO_DIARIO,TERRENOS ,STOCK, CLIENTES, DEPARTAMENTOS, OBRAS, OPERACIONES, USUARIO, UNAUTHORIZED} from "./Routes/routes"
+
 
 // Paginas
 import Login from './Pages/Login/Login'
@@ -18,7 +19,9 @@ import Pagos from "./Pages/Pagos/Pagos"
 import ProtectedRoute from './Components/ProteccionRutas/ProtectedRoute'
 
 import Error from './Components/Layout/Error'
+import Vehiculos from './Pages/Vehiculos/Vehiculos'
 import HomeSistemaGestion from './Pages/Home/SistemaGestion/HomeSistemaGestion'
+
 
 function App() {
 const roleRequired = "admin"//rol requerido para acceder a las rutas protegidas
@@ -43,6 +46,7 @@ const roleRequired = "admin"//rol requerido para acceder a las rutas protegidas
         <Route path={DEPARTAMENTOS} element={<ProtectedRoute roleRequired={roleRequired}> <Departamentos/></ProtectedRoute>} />
         <Route path={OBRAS} element={<ProtectedRoute roleRequired={roleRequired}> <Obras/></ProtectedRoute>} />
         <Route path={OPERACIONES} element={<ProtectedRoute roleRequired={roleRequired}> <Operaciones/></ProtectedRoute>} />
+        <Route path={VEHICULOS} element={<ProtectedRoute roleRequired={roleRequired}> <Vehiculos/></ProtectedRoute>} />
         <Route path={USUARIO} element={<ProtectedRoute roleRequired={roleRequired}> <Usuario/></ProtectedRoute>} />
 
         {/* Ruta no autorizada */}

@@ -1,10 +1,10 @@
-import React from 'react'
+import MainUsuarios from '../../Components/Admin/CRUD/Usuarios/MainUsuarios'
 
 const Usuarios = () => {
   return (
-    <div>
-      
-    </div>
+    <>
+    <MainUsuarios/>
+    </>
   )
 }
 
