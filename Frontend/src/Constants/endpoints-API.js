@@ -27,7 +27,19 @@ export const URL_VEHICULOS_ELIMINAR = "http://localhost:8000/vehiculos/delete/"
 
 export const URL_TERRENOS = "http://localhost:8000/terrenos/";
 
+// Venta de Terrenos
+
+export const URL_VTA_TERRENOS = "http://localhost:8000/ventaTerreno/";
+
 
 // Departamentos
 
 export const URL_DEPARTAMENTOS = "http://localhost:8000/departamentos/";
+
+// PAGOS ALQUILERES
+
+export const URL_PAGOS_ALQUILERES = "http://localhost:8000/pagosAlquileres/";
+
+// PENDIENTES
+
+export const URL_PENDIENTES = "http://localhost:8000/pendientes/";

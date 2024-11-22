@@ -2,11 +2,11 @@ import { useState, useEffect } from 'react';
 import { useReactTable, getCoreRowModel, flexRender, getPaginationRowModel, getFilteredRowModel } from '@tanstack/react-table';
 import axios from 'axios';
 import Button from 'react-bootstrap/Button';
-import '../../../../Styles/table.css';
-import { URL_TERRENOS } from '../../../../Constants/endpoints-API';
-import useAuthStore from '../../../../Context/useAuthStore';
+import '../../../../../Styles/table.css';
+import { URL_VTA_TERRENOS } from '../../../../../Constants/endpoints-API';
+import useAuthStore from '../../../../../Context/useAuthStore';
 
-const MainTerrenos = () => {
+const MainVtaTerrenos = () => {
 
     const token = useAuthStore((state) => state.token); 
     
@@ -16,7 +16,7 @@ const MainTerrenos = () => {
   
     const getTerrenos = async () => {
       try {
-        const response = await axios.get(URL_TERRENOS, { headers: { Authorization: `Bearer ${token}` } });
+        const response = await axios.get(URL_VTA_TERRENOS, { headers: { Authorization: `Bearer ${token}` } });
         console.log(response.data)
         setDatos(response.data);
       } catch (error) {
@@ -25,15 +25,18 @@ const MainTerrenos = () => {
     };
   
     const columns = [
-      { header: 'Nº', accessorKey: 'id_terreno' },
-      { header: 'Metros Cuadrados', accessorKey: 'metrosTerrenos' },
-      { header: 'Dirección', accessorKey: 'direccionTerreno' },
-      { header: 'Precio', accessorKey: 'precioTerreno' },
+      { header: 'Nº', accessorKey: 'id_ventaTerreno' },
+      { header: 'Direccion', accessorKey: 'DireccionTerreno' },
+      { header: 'Precio', accessorKey: 'PrecioTerreno' },
+      { header: 'Cliente', accessorFn: row => `${row.NombreCliente} ${row.ApellidoCliente}` },
+      { header: 'Telefono', accessorKey: 'TelefonoCliente' },
+      { header: 'Condicion', accessorKey: 'CondicionCliente' },
+      { header: 'Fecha de Venta', accessorKey: 'FechaVentaTerreno' },
       {
         header: 'Acciones',
         cell: ({ row }) => (
           <Button onClick={() => console.log("Editar:", row.original.id_terreno)} className='bg-orange-600 text-white px-4 py-2 rounded-full transition duration-200 ease-in-out hover:bg-orange-800 active:bg-orange-900 focus:outline-none"'>
-            Editar Terreno
+            Editar
           </Button>
         )
       }
@@ -103,4 +106,4 @@ const MainTerrenos = () => {
     );
   }
 
-export default MainTerrenos
+export default MainVtaTerrenos

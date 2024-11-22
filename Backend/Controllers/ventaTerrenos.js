@@ -1,8 +1,8 @@
 const { conection } = require("../DB/Config")
 
 const allVentaTerreno = (req,res) =>{
-const query = `SELECT * FROM select V.FechaVentaTerreno, T.DireccionTerreno, T.PrecioTerreno, C.NombreCliente, C.TelefonoCliente, C.CondicionCliente 
-from VentaTerrenos V 
+const query = `SELECT V.id_ventaTerreno, V.FechaVentaTerreno, T.DireccionTerreno, T.PrecioTerreno, C.NombreCliente, C.ApellidoCliente, C.TelefonoCliente, C.CondicionCliente
+from VentaTerrenos V
 join Terrenos T
 on T.id_terreno = V.id_terreno
 join Clientes C

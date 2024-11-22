@@ -1,7 +1,7 @@
 const { conection } = require("../DB/Config")
 
 const allPagosAlquileres = (req, res) => {
-    const query = `select P.FechaPagoAlquiler, P.MontoPagoAlquiler, C.NombreCliente, D.NombreDepartamento 
+    const query = `select P.id_pagoAlquiler, P.FechaPagoAlquiler, P.MontoPagoAlquiler, C.NombreCliente, C.ApellidoCliente, D.NombreDepartamento 
     from PagosAlquileres P
     join AlquilerDepartamentos A
     on A.id_alquilerDepto = P.id_alquilerDepto
