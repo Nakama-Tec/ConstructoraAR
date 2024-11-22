@@ -19,7 +19,9 @@ export const URL_USUARIOS = "http://localhost:8000/usuarios/";
 // Vehiculos
 
 export const URL_VEHICULOS = "http://localhost:8000/vehiculos/";
+export const URL_VEHICULOS_CREAR = "http://localhost:8000/vehiculos/create/";
 export const URL_VEHICULOS_EDITAR = "http://localhost:8000/vehiculos/edit/"
+export const URL_VEHICULOS_ELIMINAR = "http://localhost:8000/vehiculos/delete/"
 
 // Terrenos
 

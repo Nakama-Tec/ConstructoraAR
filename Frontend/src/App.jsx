@@ -1,11 +1,7 @@
 // Importaciones de librerias
-<<<<<<< HEAD
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import {HOME, LOGIN, PAGOS, FLUJO_CAJA, LIBRO_DIARIO,TERRENOS ,STOCK, CLIENTES, DEPARTAMENTOS, OBRAS, OPERACIONES, USUARIO, UNAUTHORIZED, VEHICULOS} from "./Routes/routes"
-=======
 import { BrowserRouter, Routes, Route } from 'react-router-dom' // estas librerias permiten el manejo de rutas en la aplicacion
-import {HOME, HOME_SISTEMA_GESTION, LOGIN, PAGOS, FLUJO_CAJA, LIBRO_DIARIO,TERRENOS ,STOCK, CLIENTES, DEPARTAMENTOS, OBRAS, OPERACIONES, USUARIO, UNAUTHORIZED} from "./Routes/routes"
->>>>>>> ef9c4d633902302a5a5939b7d1f7c5bdee913fb1
+import {HOME, HOME_SISTEMA_GESTION, LOGIN, VEHICULOS, PAGOS, FLUJO_CAJA, LIBRO_DIARIO,TERRENOS ,STOCK, CLIENTES, DEPARTAMENTOS, OBRAS, OPERACIONES, USUARIO, UNAUTHORIZED} from "./Routes/routes"
+
 
 // Paginas
 import Login from './Pages/Login/Login'
@@ -23,11 +19,9 @@ import Pagos from "./Pages/Pagos/Pagos"
 import ProtectedRoute from './Components/ProteccionRutas/ProtectedRoute'
 
 import Error from './Components/Layout/Error'
-<<<<<<< HEAD
 import Vehiculos from './Pages/Vehiculos/Vehiculos'
-=======
 import HomeSistemaGestion from './Pages/Home/SistemaGestion/HomeSistemaGestion'
->>>>>>> ef9c4d633902302a5a5939b7d1f7c5bdee913fb1
+
 
 function App() {
 const roleRequired = "admin"//rol requerido para acceder a las rutas protegidas
