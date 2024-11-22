@@ -43,3 +43,11 @@ export const URL_PAGOS_ALQUILERES = "http://localhost:8000/pagosAlquileres/";
 // PENDIENTES
 
 export const URL_PENDIENTES = "http://localhost:8000/pendientes/";
+
+// Stock Materiales
+
+export const URL_STOCK = "http://localhost:8000/stockMateriales/";
+export const URL_STOCK_CREAR = "http://localhost:8000/stockMateriales/create/";
+export const URL_STOCK_EDITAR = "http://localhost:8000/stockMateriales/edit/";
+export const URL_STOCK_ELIMINAR = "http://localhost:8000/stockMateriales/delete/";
+
