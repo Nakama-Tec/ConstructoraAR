@@ -37,6 +37,9 @@ const Footer = () => {
         <div className="container mx-auto text-center mt-4">
             <p>&copy; ARConstrucciones 2024</p>
         </div>
+
+    
+
     </footer>
     );
 };

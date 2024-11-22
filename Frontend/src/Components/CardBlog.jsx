@@ -1,7 +1,11 @@
 import React from "react";
 
+
+
 const CardBlog = ({blog}) => {
     return (
+
+        
 
         <div className="h-full w-[300px] m-2 flex-shrink-0 cursor-pointer">
             <div className="rounded-3xl overflow-hidden mb-4 relative h-[200px]">
@@ -11,9 +15,8 @@ const CardBlog = ({blog}) => {
                 </span>
             </div>
             <div className="px-4 flex gap-4">
-                <img src={ 'https://files.fm/f/yj2uw9wf6f'
-                } 
-                alt="Author" className="object-cover w-12 h-12 rounder-full" />
+                <img src='../src/assets/logoconfondo.jpg' 
+                alt="Author" className="object-cover w-12 h-12 rounded-full" />
                 <div className="flex flex-col gap-2 w-full">
                     <h3 className="text-lg font-bold text-slate-700 leading-7 whitespace-normal">
                         {blog.title}
@@ -21,7 +24,6 @@ const CardBlog = ({blog}) => {
                    
                 </div>
             </div>
-            
 
         </div>
     )
