@@ -1,5 +1,5 @@
 import './home.css'
-import CarruselProyectos from '../Home/CarruselProyectos'
+import CarruselServicios from '../Home/CarruselServicios'
 import PreguntasFrecuentes from './PreguntasFrecuentes'
 import BannerPrincipal from './BannerPrincipal'
 
@@ -7,7 +7,7 @@ const Home = () => {
   return (
     <>
       <BannerPrincipal />
-      <CarruselProyectos />
+      <CarruselServicios />
       <PreguntasFrecuentes/>
     </>
   )
