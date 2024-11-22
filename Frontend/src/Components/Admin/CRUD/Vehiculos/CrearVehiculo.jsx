@@ -2,12 +2,12 @@ import {useEffect} from 'react';
 import Swal from 'sweetalert2';
 import axios from 'axios';
 import useAuthStore from '../../../../Context/useAuthStore';
-import useVehiculoStore from '../../../../Context/useVehiculoStore';
+import useRegistroStore from '../../../../Context/useRegistroStore';
 import { URL_VEHICULOS_CREAR } from '../../../../Constants/endpoints-API';
 
 const CrearVehiculo = ({ onVehiculoRegistrado }) => {
 
-    const { isRegistroModalOpen, closeRegistroModal } = useVehiculoStore();
+    const { isRegistroModalOpen, closeRegistroModal } = useRegistroStore();
     const token = useAuthStore((state) => state.token);
   
     const handleRegistrarVehiculo = () => {

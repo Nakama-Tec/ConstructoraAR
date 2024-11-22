@@ -2,32 +2,32 @@ import {useEffect} from 'react';
 import Swal from 'sweetalert2';
 import axios from 'axios';
 import useAuthStore from '../../../../../Context/useAuthStore';
-import useDeptoStore from '../../../../../Context/useDeptoStore';
+import useRegistroStore from '../../../../../Context/useRegistroStore';
 import { URL_DEPARTAMENTOS_EDITAR } from '../../../../../Constants/endpoints-API';
 
 const EditarDepto = ({ onDeptoEditado }) => {
-    const { deptoSeleccionado, clearDeptoSeleccionado } = useDeptoStore();
+    const { registroSeleccionado, clearRegistroSeleccionado } = useRegistroStore();
     const token = useAuthStore((state) => state.token);
   
     const handleEditarDepto = () => {
       Swal.fire({
         title: 'Editar Departamento',
         html: `
-          <input id="nombreDepartamento" class="swal2-input" value="${deptoSeleccionado.nombreDepartamento}" />
+          <input id="nombreDepartamento" class="swal2-input" value="${registroSeleccionado.nombreDepartamento}" />
           
-          <input id="direccionDepartamento" class="swal2-input" value="${deptoSeleccionado.direccionDepartamento}" />
+          <input id="direccionDepartamento" class="swal2-input" value="${registroSeleccionado.direccionDepartamento}" />
           
-          <input id="descripcionDepartamento" class="swal2-input" value="${deptoSeleccionado.descripcionDepartamento}" />
+          <input id="descripcionDepartamento" class="swal2-input" value="${registroSeleccionado.descripcionDepartamento}" />
           
-          <input id="precioDepartamento" class="swal2-input" value="${deptoSeleccionado.precioDepartamento}" />
+          <input id="precioDepartamento" class="swal2-input" value="${registroSeleccionado.precioDepartamento}" />
 
-          <input id="precioExpensa" class="swal2-input" value="${deptoSeleccionado.precioExpensa}" />
+          <input id="precioExpensa" class="swal2-input" value="${registroSeleccionado.precioExpensa}" />
 
-          <input id="serviciosIncluidos" class="swal2-input" value="${deptoSeleccionado.serviciosIncluidos}" />
+          <input id="serviciosIncluidos" class="swal2-input" value="${registroSeleccionado.serviciosIncluidos}" />
 
-          <input id="contratoDescripcion" class="swal2-input" value="${deptoSeleccionado.contratoDescripcion}" />
+          <input id="contratoDescripcion" class="swal2-input" value="${registroSeleccionado.contratoDescripcion}" />
 
-          <input id="disponibilidadDepartamento" class="swal2-input" value="${deptoSeleccionado.disponibilidadDepartamento}" />
+          <input id="disponibilidadDepartamento" class="swal2-input" value="${registroSeleccionado.disponibilidadDepartamento}" />
         `,
         confirmButtonText: 'Enviar',
         showCancelButton: true,
@@ -59,27 +59,27 @@ const EditarDepto = ({ onDeptoEditado }) => {
       }).then(async (result) => {
         if (result.isConfirmed) {
           try {
-            await axios.put(`${URL_DEPARTAMENTOS_EDITAR}${deptoSeleccionado.id_departamento}`, result.value, {
+            await axios.put(`${URL_DEPARTAMENTOS_EDITAR}${registroSeleccionado.id_departamento}`, result.value, {
               headers: { Authorization: `Bearer ${token}` }
             });
             Swal.fire('¡Éxito!', 'El departamento fue actualizado correctamente.', 'success');
             onDeptoEditado(); 
-            clearDeptoSeleccionado(); 
+            clearRegistroSeleccionado(); 
           } catch (error) {
             console.error('Error al actualizar departamento:', error);
             Swal.fire('Error', 'Hubo un problema al actualizar el departamento.', 'error');
           }
         } else {
-            clearDeptoSeleccionado(); 
+          clearRegistroSeleccionado(); 
         }
       });
     };
   
     useEffect(() => {
-      if (deptoSeleccionado) {
+      if (registroSeleccionado) {
         handleEditarDepto();
       }
-    }, [deptoSeleccionado]);
+    }, [registroSeleccionado]);
   
     return null; // Este componente no renderiza nada en pantalla
   };

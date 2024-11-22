@@ -5,7 +5,7 @@ import EditarDepartamento from './EditarDepto';
 import '../../../../../Styles/table.css';
 import { URL_DEPARTAMENTOS, URL_DEPARTAMENTOS_ELIMINAR } from '../../../../../Constants/endpoints-API';
 import useAuthStore from '../../../../../Context/useAuthStore';
-import useDeptoStore from '../../../../../Context/useDeptoStore';
+import useRegistroStore from '../../../../../Context/useRegistroStore';
 import Aside from '../../../../Layout/Aside';
 import axios from 'axios';
 import Swal from 'sweetalert2';
@@ -13,7 +13,7 @@ import Swal from 'sweetalert2';
 const MainDepto = () => {
 
   const token = useAuthStore((state) => state.token);
-  const { setDeptoSeleccionado, openRegistroModal } = useDeptoStore();
+  const { setRegistroSeleccionado, openRegistroModal } = useRegistroStore();
 
   const [filtrado, setFiltrado] = useState('');
   const [datos, setDatos] = useState([]);
@@ -70,7 +70,7 @@ const MainDepto = () => {
       cell: ({ row }) => (
         <div className="flex gap-2">
           <button
-            onClick={() => setDeptoSeleccionado(row.original)}
+            onClick={() => setRegistroSeleccionado(row.original)}
             className="bg-orange-600 text-white px-4 py-2 rounded-full transition duration-200 ease-in-out hover:bg-orange-800 active:bg-orange-900 focus:outline-none"
           >
             Editar
