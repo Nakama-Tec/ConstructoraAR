@@ -26,7 +26,8 @@ const MainVehiculos = () => {
       console.error('Error al obtener vehículos:', error);
     }
   };
-
+  
+// borrado logico
   const handleEliminarVehiculo = async (vehiculo) => {
     const confirmacion = await Swal.fire({
       title: '¿Estás seguro?',
