@@ -3,6 +3,7 @@ import { URL_LIBRO_DIARIO } from '../../../../Constants/endpoints-API';
 import useAuthStore from '../../../../Context/useAuthStore';
 import axios from 'axios';
 import Button from 'react-bootstrap/Button';
+import Aside from '../../../Layout/Aside';
 
 const VerLibroDiario = () => {
   const token = useAuthStore((state) => state.token);
@@ -78,8 +79,11 @@ const VerLibroDiario = () => {
         Buscar por Fecha
       </Button>
       <br />
-      {prueba.length > 0 ? (
-        <table className="table table-striped">
+      <div className='display flex'>
+      <div className='position relative top-8'>
+      <Aside/>
+        </div>
+      <table className="table table-striped">
           <thead>
             <tr>
               <th>#</th>
@@ -89,6 +93,8 @@ const VerLibroDiario = () => {
               <th>Fecha</th>
             </tr>
           </thead>
+      {prueba.length > 0 ? (
+        
           <tbody>
             {prueba.map((item, index) => (
               <tr key={index}>
@@ -100,10 +106,12 @@ const VerLibroDiario = () => {
               </tr>
             ))}
           </tbody>
-        </table>
+        // </table>
       ) : (
         <p>No hay registros para la fecha seleccionada.</p>
       )}
+      </table>
+      </div>
     </div>
   );
 };

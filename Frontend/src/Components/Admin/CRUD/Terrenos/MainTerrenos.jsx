@@ -5,6 +5,7 @@ import Button from 'react-bootstrap/Button';
 import '../../../../Styles/table.css';
 import { URL_TERRENOS } from '../../../../Constants/endpoints-API';
 import useAuthStore from '../../../../Context/useAuthStore';
+import Aside from '../../../Layout/Aside';
 
 const MainTerrenos = () => {
 
@@ -67,6 +68,10 @@ const MainTerrenos = () => {
             onChange={(e) => setFiltrado(e.target.value)}
           />
         </div>
+        <div className='display flex'>
+      <div className='position relative top-8'>
+      <Aside/>
+        </div>
         <table className="table">
           <thead>
             {table.getHeaderGroups().map(headerGroup => (
@@ -91,6 +96,7 @@ const MainTerrenos = () => {
             ))}
           </tbody>
         </table>
+        </div>
         <div className="btn-pages">
           <button className='m-2 p-2 bg-zinc-900 text-white h-12 rounded-[8px] font-semibold text-[16px]' onClick={() => table.previousPage()} disabled={!table.getCanPreviousPage()}>
             Página Anterior
