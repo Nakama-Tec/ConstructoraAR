@@ -35,6 +35,9 @@ export const URL_VTA_TERRENOS = "http://localhost:8000/ventaTerreno/";
 // Departamentos
 
 export const URL_DEPARTAMENTOS = "http://localhost:8000/departamentos/";
+export const URL_DEPARTAMENTOS_CREAR = "http://localhost:8000/departamentos/create/";
+export const URL_DEPARTAMENTOS_EDITAR = "http://localhost:8000/departamentos/edit/";
+export const URL_DEPARTAMENTOS_ELIMINAR = "http://localhost:8000/departamentos/delete/";
 
 // PAGOS ALQUILERES
 

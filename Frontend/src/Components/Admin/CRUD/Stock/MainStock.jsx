@@ -1,7 +1,5 @@
 import { useState, useEffect } from 'react';
 import { useReactTable, getCoreRowModel, flexRender, getPaginationRowModel, getFilteredRowModel } from '@tanstack/react-table';
-import EditarStock from './EditarStock';
-import CrearStock from './CrearStock';
 import '../../../../Styles/table.css';
 import { URL_STOCK, URL_STOCK_ELIMINAR } from '../../../../Constants/endpoints-API';
 import useAuthStore from '../../../../Context/useAuthStore';
@@ -153,8 +151,6 @@ const MainStock = () => {
           Página Siguiente
         </button>
       </div>
-      <EditarStock onStockEditado={getStock} />
-      <CrearStock onStockRegistrado={getStock} />
       </div>
   )
 }

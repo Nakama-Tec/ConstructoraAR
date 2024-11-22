@@ -1,7 +1,7 @@
 import { Sidebar, Menu, MenuItem } from 'react-pro-sidebar';
 import { Link } from 'react-router-dom';
-import { FLUJO_CAJA, STOCK, DEPARTAMENTOS, OBRAS, OPERACIONES, LOGIN } from "../../Routes/routes";
-import { FaUser, FaUsers, FaMapMarkedAlt, FaMoneyBillWave, FaBoxes, FaBuilding, FaHardHat, FaTasks, FaSignInAlt } from 'react-icons/fa';
+import { FLUJO_CAJA, STOCK, DEPARTAMENTOS, OBRAS, OPERACIONES, LOGIN, VEHICULOS } from "../../Routes/routes";
+import { FaUser, FaUsers, FaMapMarkedAlt, FaMoneyBillWave, FaCar, FaBoxes, FaBuilding, FaHardHat, FaTasks, FaSignInAlt } from 'react-icons/fa';
 
 const Aside = () => {
   return (
@@ -14,6 +14,7 @@ const Aside = () => {
 <MenuItem icon={<FaBoxes />} component={<Link to={STOCK} />}> STOCK</MenuItem>
 <MenuItem icon={<FaBuilding />} component={<Link to={DEPARTAMENTOS} />}> DEPARTAMENTOS</MenuItem>
 <MenuItem icon={<FaHardHat />} component={<Link to={OBRAS} />}> OBRAS</MenuItem>
+<MenuItem icon={<FaCar/>} component={<Link to={VEHICULOS} />}> VEHICULOS</MenuItem>
 <MenuItem icon={<FaTasks />} component={<Link to={OPERACIONES} />}> OPERACIONES</MenuItem>
 <MenuItem icon={<FaSignInAlt />} component={<Link to={LOGIN} />}> LOGIN</MenuItem>
       </Menu>

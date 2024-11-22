@@ -74,7 +74,7 @@ const VerLibroDiario = () => {
         value={fechaSeleccionada}
         onChange={(e) => setFechaSeleccionada(e.target.value)}
       />
-      <Button className="btn btn-primary" onClick={handleBuscarFecha}>
+      <Button className="btn btn-primary" onDoubleClick={handleBuscarFecha}>
         Buscar por Fecha
       </Button>
       <br />
