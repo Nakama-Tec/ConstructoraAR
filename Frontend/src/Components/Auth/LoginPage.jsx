@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import useAuthStore from "../../Context/useAuthStore";
 import { URL_LOGIN } from "../../Constants/endpoints-API";
-import { LIBRO_DIARIO } from "../../Routes/routes";
+import { HOME_ADMIN, LIBRO_DIARIO } from "../../Routes/routes";
 
 const LoginPage = () => {
   const [nombreUsuario, setNombreUsuario] = useState("");
@@ -29,7 +29,7 @@ const LoginPage = () => {
 
       const decodedToken = JSON.parse(atob(response.data.token.split(".")[1])); //esto es para decodificar el token y obtener el rol del usuario
       setUserRole(decodedToken.role);
-      navigate(LIBRO_DIARIO); //esto es para redirigir a la pagina de inicio
+      navigate(HOME_ADMIN); //esto es para redirigir a la pagina de inicio
     } catch (error) {
       console.error("Login incorrecto:", error);
       alert("Usuario o contraseña incorrectos");

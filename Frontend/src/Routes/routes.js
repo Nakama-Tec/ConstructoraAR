@@ -3,6 +3,7 @@ export const HOME = "/"
 export const HOME_SISTEMA_GESTION = "/HomeSistemaGestion"
 
 export const LOGIN = "/area-empleados/Login"
+export const HOME_ADMIN = "/Admin"
 export const FLUJO_CAJA = "/FlujoCaja"
 export const LIBRO_DIARIO = "/LibroDiario"
 export const TERRENOS = "/Terrenos"

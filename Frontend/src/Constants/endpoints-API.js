@@ -26,10 +26,16 @@ export const URL_VEHICULOS_ELIMINAR = "http://localhost:8000/vehiculos/delete/"
 // Terrenos
 
 export const URL_TERRENOS = "http://localhost:8000/terrenos/";
+export const URL_TERRENOS_CREAR = "http://localhost:8000/terrenos/create/";
+export const URL_TERRENOS_EDITAR = "http://localhost:8000/terrenos/edit/";
+export const URL_TERRENOS_ELIMINAR = "http://localhost:8000/terrenos/delete/";
 
 // Venta de Terrenos
 
 export const URL_VTA_TERRENOS = "http://localhost:8000/ventaTerreno/";
+export const URL_VTA_TERRENOS_CREAR = "http://localhost:8000/ventaTerreno/create/";
+export const URL_VTA_TERRENOS_EDITAR = "http://localhost:8000/ventaTerreno/edit/";
+export const URL_VTA_TERRENOS_ELIMINAR = "http://localhost:8000/ventaTerreno/delete/";
 
 
 // Departamentos
