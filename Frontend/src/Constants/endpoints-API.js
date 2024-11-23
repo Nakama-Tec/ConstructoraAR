@@ -30,7 +30,7 @@ export const URL_EMPLEADOS_ELIMINAR = "http://localhost:8000/empleados/delete/";
 
 // Operaciones
 
-export const URL_OPERACIONES = "http://localhost:8000/operaciones/";
+export const URL_OPERACIONES = "http://localhost:8000/operaciones";
 export const URL_OPERACIONES_CREAR = "http://localhost:8000/operaciones/create/";
 export const URL_OPERACIONES_EDITAR = "http://localhost:8000/operaciones/edit/";
 export const URL_OPERACIONES_ELIMINAR = "http://localhost:8000/operaciones/delete/";
