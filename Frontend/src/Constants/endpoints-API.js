@@ -31,3 +31,6 @@ export const URL_TERRENOS = "http://localhost:8000/terrenos/";
 // Departamentos
 
 export const URL_DEPARTAMENTOS = "http://localhost:8000/departamentos/";
+
+// Viajes
+export const URL_VIAJES = "http://localhost:8000/viajes/";

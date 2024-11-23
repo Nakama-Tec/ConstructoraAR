@@ -15,5 +15,6 @@ export const USUARIO = "/Usuarios"
 export const UNAUTHORIZED = "/unauthorized"
 export const PAGOS = "/Pagos"
 export const VEHICULOS = "/Vehiculos"
+export const VIAJES = "/Viajes"
 // export const NOT_FOUND = "/notfound"
 
