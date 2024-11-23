@@ -1,7 +1,8 @@
 import { Sidebar, Menu, MenuItem } from 'react-pro-sidebar';
 import { Link } from 'react-router-dom';
-import { FLUJO_CAJA, STOCK, DEPARTAMENTOS, OBRAS, OPERACIONES, LOGIN, VEHICULOS, TERRENOS, VTA_TERRENOS } from "../../Routes/routes";
+import { FLUJO_CAJA, STOCK, DEPARTAMENTOS, OBRAS, OPERACIONES, LOGIN, VEHICULOS, TERRENOS, VTA_TERRENOS, COMPRA_MATERIALES } from "../../Routes/routes";
 import { FaUser, FaUsers, FaMapMarkedAlt, FaMoneyCheckAlt, FaMoneyBillWave,FaCashRegister, FaCar, FaBoxes, FaBuilding, FaHardHat, FaTasks, FaSignInAlt } from 'react-icons/fa';
+
 
 const Aside = () => {
   return (
@@ -12,6 +13,7 @@ const Aside = () => {
 <MenuItem icon={<FaMapMarkedAlt />} component={<Link to={TERRENOS} />}> TERRENOS</MenuItem>
 <MenuItem icon={<FaMoneyCheckAlt />} component={<Link to={VTA_TERRENOS} />}> VENTAS TERRENOS</MenuItem>
 <MenuItem icon={<FaCashRegister />} component={<Link to={FLUJO_CAJA} />}> FLUJO CAJA</MenuItem>
+<MenuItem icon={<FaMoneyBillWave />} component={<Link to={COMPRA_MATERIALES} />}> COMPRA DE MATERIALES</MenuItem>
 <MenuItem icon={<FaBoxes />} component={<Link to={STOCK} />}> STOCK</MenuItem>
 <MenuItem icon={<FaBuilding />} component={<Link to={DEPARTAMENTOS} />}> DEPARTAMENTOS</MenuItem>
 <MenuItem icon={<FaMoneyBillWave />} component={<Link to={DEPARTAMENTOS} />}> PAGOS ALQUILERES</MenuItem>

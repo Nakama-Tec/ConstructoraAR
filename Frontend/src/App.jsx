@@ -1,6 +1,10 @@
 // Importaciones de librerias
 import { BrowserRouter, Routes, Route } from 'react-router-dom' // estas librerias permiten el manejo de rutas en la aplicacion
+<<<<<<< HEAD
 import {HOME, HOME_SISTEMA_GESTION, LOGIN, VEHICULOS, PAGOS, FLUJO_CAJA, LIBRO_DIARIO,TERRENOS ,STOCK, CLIENTES, DEPARTAMENTOS, OBRAS, OPERACIONES, USUARIO, UNAUTHORIZED, VTA_TERRENOS, PAGOS_DPTO, PENDIENTES, HOME_ADMIN} from "./Routes/routes"
+=======
+import {HOME, HOME_SISTEMA_GESTION, LOGIN,EMPLEADOS, VEHICULOS, PAGOS, FLUJO_CAJA, LIBRO_DIARIO,TERRENOS ,STOCK, CLIENTES, DEPARTAMENTOS, OBRAS, OPERACIONES, USUARIO, UNAUTHORIZED, VTA_TERRENOS, PAGOS_DPTO, PENDIENTES, COMPRA_MATERIALES} from "./Routes/routes"
+>>>>>>> 642c4741d2775e508a060967a042fce2f850e66f
 
 
 // Paginas
@@ -9,15 +13,16 @@ import Home from './Pages/Home/LandingPage/Home'
 import FlujoCaja from "./Pages/FlujoCaja/FlujoCaja"
 import LibroDiario from "./Pages/LibroDiario/LibroDiario"
 import Terrenos from "./Pages/Terrenos/Terrenos"
+import CompraMateriales from "./Pages/CompraMateriales/CompraMateriales"
 import Stock from "./Pages/Stock/Stock"
 import Clientes from "./Pages/Clientes/Clientes"
 import Departamentos from "./Pages/Departamentos/Departamentos"
 import Obras from "./Pages/Obras/Obras"
 import Operaciones from "./Pages/Operaciones/Operaciones"
+import Empleados from "./Pages/Empleados/Empleados"
 import Usuario from "./Pages/Usuarios/Usuarios"
 import Pagos from "./Pages/Pagos/Pagos"
 import ProtectedRoute from './Components/ProteccionRutas/ProtectedRoute'
-
 import Error from './Components/Layout/Error'
 import Vehiculos from './Pages/Vehiculos/Vehiculos'
 import HomeSistemaGestion from './Pages/Home/SistemaGestion/HomeSistemaGestion'
@@ -40,13 +45,15 @@ const roleRequired = "admin"//rol requerido para acceder a las rutas protegidas
         <Route path={PAGOS} element={<Pagos/>} /> {/* Ruta temporal*/}
 
         {/* Rutas protegidas */}
-        <Route path={HOME} element={<ProtectedRoute roleRequired={roleRequired}><Home/></ProtectedRoute>} />
+       
         <Route path={HOME_SISTEMA_GESTION} element={<ProtectedRoute roleRequired={roleRequired}> <HomeSistemaGestion/></ProtectedRoute>} />
         <Route path={HOME_ADMIN} element={<ProtectedRoute roleRequired={roleRequired}> <HomeAdmin/></ProtectedRoute>} /> 
         <Route path={FLUJO_CAJA} element={<ProtectedRoute roleRequired={roleRequired}> <FlujoCaja/></ProtectedRoute>} />
         <Route path={LIBRO_DIARIO} element={<ProtectedRoute roleRequired={roleRequired}> <LibroDiario/></ProtectedRoute>} />
         <Route path={TERRENOS} element={<ProtectedRoute roleRequired={roleRequired}> <Terrenos/></ProtectedRoute>} />
         <Route path={VTA_TERRENOS} element={<ProtectedRoute roleRequired={roleRequired}> <VtaTerrenos/></ProtectedRoute>} />
+        <Route path={EMPLEADOS} element={<ProtectedRoute roleRequired={roleRequired}> <Empleados/></ProtectedRoute>} />
+        <Route path={COMPRA_MATERIALES} element={<ProtectedRoute roleRequired={roleRequired}> <CompraMateriales/></ProtectedRoute>} />
         <Route path={STOCK} element={<ProtectedRoute roleRequired={roleRequired}> <Stock/></ProtectedRoute>} />
         <Route path={CLIENTES} element={<ProtectedRoute roleRequired={roleRequired}> <Clientes/></ProtectedRoute>} />
         <Route path={DEPARTAMENTOS} element={<ProtectedRoute roleRequired={roleRequired}> <Departamentos/></ProtectedRoute>} />

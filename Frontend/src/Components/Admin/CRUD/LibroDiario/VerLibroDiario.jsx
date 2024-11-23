@@ -59,25 +59,24 @@ const VerLibroDiario = () => {
   };
 
   // Llamar al POST al presionar el botón
-  const handleBuscarFecha = () => {
-    setFechaRegistro(fechaSeleccionada); // Actualizar la fecha usada
-    enviarFechaPorPost(); // Enviar la fecha por POST
+  const handleBuscarFecha = async() => {
+    await enviarFechaPorPost(); // Enviar la fecha por POST
+    await obtenerDatosPorGet()
+    await setFechaRegistro(fechaSeleccionada); // Actualizar la fecha usada
+    
   };
 
   return (
     <div>
+      <br /><br />
       <h2 className='text-center text-black text-4xl'>LIBRO DIARIO</h2>
       <label htmlFor="fecha">Seleccionar Fecha:</label>
-      <input
-        type="date"
-        id="fecha"
-        className="text-black"
-        value={fechaSeleccionada}
-        onChange={(e) => setFechaSeleccionada(e.target.value)}
-      />
-      <Button className="btn btn-primary" onDoubleClick={handleBuscarFecha}>
+      <input type="date" id="fecha" className="text-black" value={fechaSeleccionada}
+        onChange={(e) => setFechaSeleccionada(e.target.value)} />
+      <Button className="btn btn-primary" onClick={handleBuscarFecha}>
         Buscar por Fecha
       </Button>
+      <hr />
       <br />
       <div className='display flex'>
       <div className='position relative top-8'>
@@ -108,7 +107,7 @@ const VerLibroDiario = () => {
           </tbody>
         // </table>
       ) : (
-        <p>No hay registros para la fecha seleccionada.</p>
+        <p></p>
       )}
       </table>
       </div>
