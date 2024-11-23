@@ -14,7 +14,7 @@ const MainObras = () => {
     const [filtrado, setFiltrado] = useState('');
     const [datos, setDatos] = useState([]);
   
-    const getStock = async () => {
+    const getObra = async () => {
       try {
         const response = await axios.get(URL_OBRAS, { headers: { Authorization: `Bearer ${token}` } });
         console.log(response.data)
@@ -25,7 +25,7 @@ const MainObras = () => {
     };
     
   // borrado logico
-    const handleEliminarStock = async (obra) => {
+    const handleEliminarObra = async (obra) => {
       const confirmacion = await Swal.fire({
         title: '¿Estás seguro?',
         text: `¿Deseas eliminar la obra ${obra.nombreObra}?`,
@@ -38,12 +38,12 @@ const MainObras = () => {
       if (confirmacion.isConfirmed) {
         try {
           await axios.put(
-            `${URL_OBRAS_ELIMINAR}${stock.id_compraMaterial}`,
-            { ...compra }, // Se envía el stock con el campo "eliminado" en true
+            `${URL_OBRAS_ELIMINAR}${obra.id_obra}`,
+            { ...obra }, // Se envía el stock con el campo "eliminado" en true
             { headers: { Authorization: `Bearer ${token}` } }
           );
           Swal.fire('Eliminado!', 'La obra ha sido eliminado correctamente.', 'success');
-          getStock(); 
+          getObra(); 
         } catch (error) {
           console.error('Error al eliminar la obra:', error);
           Swal.fire('Error', 'Hubo un problema al eliminar la obra.', 'error');
@@ -72,7 +72,7 @@ const MainObras = () => {
               Editar
             </button>
             <button
-              onClick={() => handleEliminarStock(row.original)}
+              onClick={() => handleEliminarObra(row.original)}
               className="bg-red-600 text-white px-4 py-2 rounded-full transition duration-200 ease-in-out hover:bg-red-800 active:bg-red-900 focus:outline-none"
             >
               Eliminar
@@ -95,7 +95,7 @@ const MainObras = () => {
     });
   
     useEffect(() => {
-      getStock();
+      getObra();
     }, []);
   
     return (

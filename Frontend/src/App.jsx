@@ -1,6 +1,6 @@
 // Importaciones de librerias
 import { BrowserRouter, Routes, Route } from 'react-router-dom' // estas librerias permiten el manejo de rutas en la aplicacion
-import {HOME, HOME_SISTEMA_GESTION, LOGIN, VEHICULOS, PAGOS, FLUJO_CAJA, LIBRO_DIARIO,TERRENOS ,STOCK, CLIENTES, DEPARTAMENTOS, OBRAS, OPERACIONES, USUARIO, UNAUTHORIZED, VTA_TERRENOS, PAGOS_DPTO, PENDIENTES, COMPRA_MATERIALES} from "./Routes/routes"
+import {HOME, HOME_SISTEMA_GESTION, LOGIN,EMPLEADOS, VEHICULOS, PAGOS, FLUJO_CAJA, LIBRO_DIARIO,TERRENOS ,STOCK, CLIENTES, DEPARTAMENTOS, OBRAS, OPERACIONES, USUARIO, UNAUTHORIZED, VTA_TERRENOS, PAGOS_DPTO, PENDIENTES, COMPRA_MATERIALES} from "./Routes/routes"
 
 
 // Paginas
@@ -15,6 +15,7 @@ import Clientes from "./Pages/Clientes/Clientes"
 import Departamentos from "./Pages/Departamentos/Departamentos"
 import Obras from "./Pages/Obras/Obras"
 import Operaciones from "./Pages/Operaciones/Operaciones"
+import Empleados from "./Pages/Empleados/Empleados"
 import Usuario from "./Pages/Usuarios/Usuarios"
 import Pagos from "./Pages/Pagos/Pagos"
 import ProtectedRoute from './Components/ProteccionRutas/ProtectedRoute'
@@ -45,6 +46,7 @@ const roleRequired = "admin"//rol requerido para acceder a las rutas protegidas
         <Route path={LIBRO_DIARIO} element={<ProtectedRoute roleRequired={roleRequired}> <LibroDiario/></ProtectedRoute>} />
         <Route path={TERRENOS} element={<ProtectedRoute roleRequired={roleRequired}> <Terrenos/></ProtectedRoute>} />
         <Route path={VTA_TERRENOS} element={<ProtectedRoute roleRequired={roleRequired}> <VtaTerrenos/></ProtectedRoute>} />
+        <Route path={EMPLEADOS} element={<ProtectedRoute roleRequired={roleRequired}> <Empleados/></ProtectedRoute>} />
         <Route path={COMPRA_MATERIALES} element={<ProtectedRoute roleRequired={roleRequired}> <CompraMateriales/></ProtectedRoute>} />
         <Route path={STOCK} element={<ProtectedRoute roleRequired={roleRequired}> <Stock/></ProtectedRoute>} />
         <Route path={CLIENTES} element={<ProtectedRoute roleRequired={roleRequired}> <Clientes/></ProtectedRoute>} />

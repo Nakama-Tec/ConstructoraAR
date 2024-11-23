@@ -14,7 +14,7 @@ const MainCompraMateriales = () => {
     const [filtrado, setFiltrado] = useState('');
     const [datos, setDatos] = useState([]);
   
-    const getStock = async () => {
+    const getCompraMaterial = async () => {
       try {
         const response = await axios.get(URL_COMPRA_MATERIALES, { headers: { Authorization: `Bearer ${token}` } });
         console.log(response.data)
@@ -25,7 +25,7 @@ const MainCompraMateriales = () => {
     };
     
   // borrado logico
-    const handleEliminarStock = async (compra) => {
+    const handleEliminarCompra = async (compra) => {
       const confirmacion = await Swal.fire({
         title: '¿Estás seguro?',
         text: `¿Deseas eliminar la compra del material ?`,
@@ -43,7 +43,7 @@ const MainCompraMateriales = () => {
             { headers: { Authorization: `Bearer ${token}` } }
           );
           Swal.fire('Eliminado!', 'La compra del material ha sido eliminado correctamente.', 'success');
-          getStock(); 
+          getCompraMaterial(); 
         } catch (error) {
           console.error('Error al eliminar la compra del material:', error);
           Swal.fire('Error', 'Hubo un problema al eliminar la compra del material.', 'error');
@@ -70,7 +70,7 @@ const MainCompraMateriales = () => {
               Editar
             </button>
             <button
-              onClick={() => handleEliminarStock(row.original)}
+              onClick={() => handleEliminarCompra(row.original)}
               className="bg-red-600 text-white px-4 py-2 rounded-full transition duration-200 ease-in-out hover:bg-red-800 active:bg-red-900 focus:outline-none"
             >
               Eliminar
@@ -93,7 +93,7 @@ const MainCompraMateriales = () => {
     });
   
     useEffect(() => {
-      getStock();
+      getCompraMaterial();
     }, []);
   
     return (
