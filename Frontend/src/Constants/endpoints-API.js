@@ -74,6 +74,10 @@ export const URL_DEPARTAMENTOS_CREAR = "http://localhost:8000/departamentos/crea
 export const URL_DEPARTAMENTOS_EDITAR = "http://localhost:8000/departamentos/edit/";
 export const URL_DEPARTAMENTOS_ELIMINAR = "http://localhost:8000/departamentos/delete/";
 
+// ALQUILERES
+
+export const URL_ALQUILERES = "http://localhost:8000/alquiler/";
+
 // PAGOS ALQUILERES
 
 export const URL_PAGOS_ALQUILERES = "http://localhost:8000/pagosAlquileres/";

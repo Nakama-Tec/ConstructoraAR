@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useReactTable, getCoreRowModel, flexRender, getPaginationRowModel, getFilteredRowModel } from '@tanstack/react-table';
 import EditarDepartamento from './EditarDepto';
-// import CrearVehiculo from './CrearVehiculo';
+import CrearDepartamento from './CrearDepto';
 import '../../../../../Styles/table.css';
 import { URL_DEPARTAMENTOS, URL_DEPARTAMENTOS_ELIMINAR } from '../../../../../Constants/endpoints-API';
 import useAuthStore from '../../../../../Context/useAuthStore';
@@ -49,7 +49,7 @@ const MainDepto = () => {
         Swal.fire('Eliminado!', 'El departamento ha sido eliminado correctamente.', 'success');
         getDepartamentos(); 
       } catch (error) {
-        console.error('Error al eliminar vehículo:', error);
+        console.error('Error al eliminar departamento:', error);
         Swal.fire('Error', 'Hubo un problema al eliminar el departamento.', 'error');
       }
     }
@@ -119,7 +119,7 @@ const MainDepto = () => {
           onClick={openRegistroModal}
           className="bg-green-600 text-white px-4 py-2 m-2 rounded-full transition duration-200 ease-in-out hover:bg-green-800 active:bg-green-900 focus:outline-none position relative left-64"
         >
-          Registrar Vehículo
+          Registrar Departamento
         </button>
       </div>
       <div className='display flex'>
@@ -160,7 +160,7 @@ const MainDepto = () => {
         </button>
       </div>
       <EditarDepartamento onDeptoEditado={getDepartamentos} />
-      {/* <CrearVehiculo onVehiculoRegistrado={getDepartamentos} /> */}
+      <CrearDepartamento onDeptoRegistrado={getDepartamentos} />
       </div>
   );
 };
