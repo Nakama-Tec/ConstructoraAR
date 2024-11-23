@@ -1,0 +1,82 @@
+import { useEffect, useState } from 'react';
+import Swal from 'sweetalert2';
+import axios from 'axios';
+import useAuthStore from '../../../../../Context/useAuthStore';
+import useRegistroStore from '../../../../../Context/useRegistroStore';
+import { URL_ALQUILERES, URL_PAGOS_ALQUILERES_CREAR } from '../../../../../Constants/endpoints-API';
+
+const CrearPagoDepto = ({ onPagoAlquilerRegistrado }) => {
+  const { isRegistroModalOpen, closeRegistroModal } = useRegistroStore();
+  const token = useAuthStore((state) => state.token);
+
+  const [alquileres, setAlquileres] = useState([]);
+
+  const getClientes = async () => {
+    try {
+      const response = await axios.get(URL_ALQUILERES, { headers: { Authorization: `Bearer ${token}` } });
+      console.log(response.data)
+      setAlquileres(response.data);
+    } catch (error) {
+      console.error('Error al obtener clientes:', error);
+    }
+  };
+
+  const handleRegistrarDepto = () => {
+
+    Swal.fire({
+      title: 'Registrar Pago Alquiler',
+      html: `
+        <input id="FechaPagoAlquiler" placeholder="Fecha de Pago" class="swal2-input" />
+        <input id="MontoPagoAlquiler" placeholder="Monto Pagado" class="swal2-input" />
+        <select id="id_alquilerDepto" class="swal2-select">
+          <option>Selecciona un alquiler</option>
+          ${alquileres.map(alquiler => `<option id="id_alquilerDepto">${alquiler.id_alquilerDepto}</option>`).join('')}
+        </select>
+      `,
+      confirmButtonText: 'Registrar',
+      showCancelButton: true,
+      preConfirm: () => {
+        const fechaPagoAlquiler = document.getElementById('FechaPagoAlquiler').value;
+        const montoPagoAlquiler = document.getElementById('MontoPagoAlquiler').value;
+        const id_alquilerDepto = document.getElementById('id_alquilerDepto').value;
+
+        if (!montoPagoAlquiler || !fechaPagoAlquiler || !id_alquilerDepto) {
+          Swal.showValidationMessage('Todos los campos son obligatorios');
+        }
+
+        return {
+          fechaPagoAlquiler,
+          montoPagoAlquiler,
+          id_alquilerDepto
+        };
+      }
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        try {
+          await axios.post(URL_PAGOS_ALQUILERES_CREAR, result.value, {
+            headers: { Authorization: `Bearer ${token}` }
+          });
+          Swal.fire('¡Éxito!', 'El pago de alquiler fue registrado correctamente.', 'success');
+          onPagoAlquilerRegistrado();
+          closeRegistroModal();
+        } catch (error) {
+          console.error('Error al registrar el pago de alquiler:', error);
+          Swal.fire('Error', 'Hubo un problema al registrar el pago de alquiler.', 'error');
+        }
+      } else {
+        closeRegistroModal();
+      }
+    });
+  };
+
+  useEffect(() => {
+    if (isRegistroModalOpen) {
+      handleRegistrarDepto();
+      getClientes(); 
+    }
+  }, [isRegistroModalOpen]);
+
+  return null; // No renderiza nada directamente
+};
+
+export default CrearPagoDepto;

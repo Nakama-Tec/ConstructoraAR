@@ -25,8 +25,9 @@ const singlePagoAlquiler = (req, res) => {
 };
 
 const editPagosAlquileres = (req, res) => {
-    const { id_pagoAlquiler, fechaPagoAlquiler, montoPagoAlquiler } = req.body;
-    const query = `update PagosAlquileres set fechaPagoAlquiler= '${fechaPagoAlquiler}', montoPagoAlquiler= '${montoPagoAlquiler}', activoPagoAlquiler= ${activoPagoAlquiler} where id_pagoAlquiler = ${id_pagoAlquiler};`;
+    const id = req.params.id
+    const {fechaPagoAlquiler, montoPagoAlquiler } = req.body;
+    const query = `update PagosAlquileres set fechaPagoAlquiler='${fechaPagoAlquiler}', montoPagoAlquiler='${montoPagoAlquiler}', activoPagoAlquiler=1 where id_pagoAlquiler=${id};`;
     conection.query(query, (err, results) => {
         if (err) throw err;
         res.send(results);
@@ -35,7 +36,7 @@ const editPagosAlquileres = (req, res) => {
 
 const createPagosAlquileres = (req, res) => {
     const { fechaPagoAlquiler, montoPagoAlquiler, id_alquilerDepto } = req.body;
-    const query = `insert into PagosAlquileres (fechaPagoAlquiler, montoPagoAlquiler, id_alquilerDepto, activoPagoAlquiler) values ('${fechaPagoAlquiler}', '${montoPagoAlquiler}', '${id_alquilerDepto}', '${activoPagoAlquiler}');`;
+    const query = `insert into PagosAlquileres (fechaPagoAlquiler, montoPagoAlquiler, id_alquilerDepto) values ('${fechaPagoAlquiler}', '${montoPagoAlquiler}', '${id_alquilerDepto}');`;
     conection.query(query, (err, results) => {
         if (err) throw err;
         res.send(results);
