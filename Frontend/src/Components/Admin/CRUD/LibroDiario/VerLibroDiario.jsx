@@ -3,6 +3,7 @@ import { URL_LIBRO_DIARIO } from '../../../../Constants/endpoints-API';
 import useAuthStore from '../../../../Context/useAuthStore';
 import axios from 'axios';
 import Button from 'react-bootstrap/Button';
+import Aside from '../../../Layout/Aside';
 
 const VerLibroDiario = () => {
   const token = useAuthStore((state) => state.token);
@@ -58,28 +59,30 @@ const VerLibroDiario = () => {
   };
 
   // Llamar al POST al presionar el botón
-  const handleBuscarFecha = () => {
-    setFechaRegistro(fechaSeleccionada); // Actualizar la fecha usada
-    enviarFechaPorPost(); // Enviar la fecha por POST
+  const handleBuscarFecha = async() => {
+    await enviarFechaPorPost(); // Enviar la fecha por POST
+    await obtenerDatosPorGet()
+    await setFechaRegistro(fechaSeleccionada); // Actualizar la fecha usada
+    
   };
 
   return (
     <div>
+      <br /><br />
       <h2 className='text-center text-black text-4xl'>LIBRO DIARIO</h2>
       <label htmlFor="fecha">Seleccionar Fecha:</label>
-      <input
-        type="date"
-        id="fecha"
-        className="text-black"
-        value={fechaSeleccionada}
-        onChange={(e) => setFechaSeleccionada(e.target.value)}
-      />
+      <input type="date" id="fecha" className="text-black" value={fechaSeleccionada}
+        onChange={(e) => setFechaSeleccionada(e.target.value)} />
       <Button className="btn btn-primary" onClick={handleBuscarFecha}>
         Buscar por Fecha
       </Button>
+      <hr />
       <br />
-      {prueba.length > 0 ? (
-        <table className="table table-striped">
+      <div className='display flex'>
+      <div className='position relative top-8'>
+      <Aside/>
+        </div>
+      <table className="table table-striped">
           <thead>
             <tr>
               <th>#</th>
@@ -89,6 +92,8 @@ const VerLibroDiario = () => {
               <th>Fecha</th>
             </tr>
           </thead>
+      {prueba.length > 0 ? (
+        
           <tbody>
             {prueba.map((item, index) => (
               <tr key={index}>
@@ -100,10 +105,12 @@ const VerLibroDiario = () => {
               </tr>
             ))}
           </tbody>
-        </table>
+        // </table>
       ) : (
-        <p>No hay registros para la fecha seleccionada.</p>
+        <p></p>
       )}
+      </table>
+      </div>
     </div>
   );
 };

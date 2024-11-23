@@ -2,7 +2,7 @@ const { conection } = require("../DB/Config")
 
 
 const allDepartamentos = (req, res) => {
-    const query = `select * from Departamentos;`
+    const query = `select * from Departamentos where activoDepto=1;`
     conection.query(query, (err, results) => {
         if (err) throw err;
         res.json(results)
@@ -32,8 +32,8 @@ const createDepartamentos = (req, res) => {
 const editDepartamentos = (req, res) => {
     const id = req.params.id
     console.log(req.body);
-    const {nombreDepartamento, direccionDepartamento, disponibilidadDepartamento, descripcionDepartamento, precioDepartamento, precioExpensa, serviciosIncluidos, contratoDescripcion} = req.body
-    const query = `update Departamentos set nombreDepartamento="${nombreDepartamento}",direccionDepartamento="${direccionDepartamento}", disponibilidadDepartamento="${disponibilidadDepartamento}",descripcionDepartamento="${descripcionDepartamento}", precioDepartamento="${precioDepartamento}", precioExpensa="${precioExpensa}", serviciosIncluidos="${serviciosIncluidos}", contratoDescripcion="${contratoDescripcion}", activoDepto=1 where id_departamento=${id}`
+    const {nombreDepartamento, direccionDepartamento, descripcionDepartamento, precioDepartamento, precioExpensa, serviciosIncluidos, contratoDescripcion, disponibilidadDepartamento} = req.body
+    const query = `update Departamentos set nombreDepartamento="${nombreDepartamento}",direccionDepartamento="${direccionDepartamento}", descripcionDepartamento="${descripcionDepartamento}", precioDepartamento="${precioDepartamento}", precioExpensa="${precioExpensa}", serviciosIncluidos="${serviciosIncluidos}", contratoDescripcion="${contratoDescripcion}", disponibilidadDepartamento="${disponibilidadDepartamento}", activoDepto=1 where id_departamento=${id}`
     conection.query(query, (err,results) => {
         if(err) throw err
         res.send(results)

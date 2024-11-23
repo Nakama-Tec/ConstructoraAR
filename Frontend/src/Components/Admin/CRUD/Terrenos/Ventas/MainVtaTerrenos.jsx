@@ -1,39 +1,39 @@
 import { useState, useEffect } from 'react';
 import { useReactTable, getCoreRowModel, flexRender, getPaginationRowModel, getFilteredRowModel } from '@tanstack/react-table';
-import { URL_TERRENOS, URL_TERRENOS_ELIMINAR } from '../../../../Constants/endpoints-API';
 import axios from 'axios';
 import Swal from 'sweetalert2';
-import EditarTerrenos from './EditarTerrenos';
-import CrearTerrenos from './CrearTerrenos';
-import useRegistroStore from '../../../../Context/useRegistroStore';
-import useAuthStore from '../../../../Context/useAuthStore';
-import Aside from '../../../Layout/Aside';
-import '../../../../Styles/table.css';
+import { URL_VTA_TERRENOS, URL_VTA_TERRENOS_ELIMINAR } from '../../../../../Constants/endpoints-API';
+import EditarVtaTerrenos from './EditarVtaTerrenos';
+import CrearVtaTerrenos from './CrearVtaTerrenos';
+import useAuthStore from '../../../../../Context/useAuthStore';
+import useRegistroStore from '../../../../../Context/useRegistroStore';
+import Aside from '../../../../Layout/Aside';
+import '../../../../../Styles/table.css';
 
-const MainTerrenos = () => {
+const MainVtaTerrenos = () => {
 
-  const { setRegistroSeleccionado, openRegistroModal } = useRegistroStore();
+    const { setRegistroSeleccionado, openRegistroModal } = useRegistroStore();
     const token = useAuthStore((state) => state.token); 
     
     const [filtrado, setFiltrado] = useState('');
     const [datos, setDatos] = useState([]);
   
   
-    const getTerrenos = async () => {
+    const getVtaTerrenos = async () => {
       try {
-        const response = await axios.get(URL_TERRENOS, { headers: { Authorization: `Bearer ${token}` } });
+        const response = await axios.get(URL_VTA_TERRENOS, { headers: { Authorization: `Bearer ${token}` } });
         console.log(response.data)
         setDatos(response.data);
       } catch (error) {
-        console.error("Error al obtener terrenos:", error);
+        console.error("Error al obtener las ventas de terrenos:", error);
       }
     };
-  
+
     // borrado logico
-  const handleEliminarTerreno = async (terreno) => {
+  const handleEliminarVtaTerreno = async (vtaTerreno) => {
     const confirmacion = await Swal.fire({
       title: '¿Estás seguro?',
-      text: `¿Deseas eliminar el terreno?`,
+      text: `¿Deseas eliminar la venta?`,
       icon: 'warning',
       showCancelButton: true,
       confirmButtonText: 'Sí, eliminar',
@@ -43,24 +43,27 @@ const MainTerrenos = () => {
     if (confirmacion.isConfirmed) {
       try {
         await axios.put(
-          `${URL_TERRENOS_ELIMINAR}${terreno.id_terreno}`,
-          { ...terreno },
+          `${URL_VTA_TERRENOS_ELIMINAR}${vtaTerreno.id_ventaTerreno}`,
+          { ...vtaTerreno },
           { headers: { Authorization: `Bearer ${token}` } }
         );
-        Swal.fire('Eliminado!', 'El terreno ha sido eliminado correctamente.', 'success');
-        getTerrenos(); 
+        Swal.fire('Eliminado!', 'La venta del terreno ha sido eliminado correctamente.', 'success');
+        getVtaTerrenos(); 
       } catch (error) {
-        console.error('Error al eliminar el terreno:', error);
-        Swal.fire('Error', 'Hubo un problema al eliminar el terreno.', 'error');
+        console.error('Error al eliminar la venta del terreno:', error);
+        Swal.fire('Error', 'Hubo un problema al eliminar la venta del terreno.', 'error');
       }
     }
   };
-
+  
     const columns = [
-      { header: 'Nº', accessorKey: 'id_terreno' },
-      { header: 'Metros Cuadrados', accessorKey: 'metrosTerrenos' },
-      { header: 'Dirección', accessorKey: 'direccionTerreno' },
-      { header: 'Precio', accessorKey: 'precioTerreno' },
+      { header: 'Nº', accessorKey: 'id_ventaTerreno' },
+      { header: 'Direccion', accessorKey: 'DireccionTerreno' },
+      { header: 'Precio', accessorKey: 'PrecioTerreno' },
+      { header: 'Cliente', accessorFn: row => `${row.NombreCliente} ${row.ApellidoCliente}` },
+      { header: 'Telefono', accessorKey: 'TelefonoCliente' },
+      { header: 'Condicion', accessorKey: 'CondicionCliente' },
+      { header: 'Fecha de Venta', accessorKey: 'FechaVentaTerreno' },
       {
         header: 'Acciones',
         cell: ({ row }) => (
@@ -72,7 +75,7 @@ const MainTerrenos = () => {
             Editar
           </button>
           <button
-            onClick={() => handleEliminarTerreno(row.original)}
+            onClick={() => handleEliminarVtaTerreno(row.original)}
             className="bg-red-600 text-white px-4 py-2 rounded-full transition duration-200 ease-in-out hover:bg-red-800 active:bg-red-900 focus:outline-none"
           >
             Eliminar
@@ -95,12 +98,12 @@ const MainTerrenos = () => {
     });
   
     useEffect(() => {
-      getTerrenos();
+      getVtaTerrenos();
     }, []);
   
     return (
       <div>
-      <p className="text-black font-semibold text-4xl display flex justify-center m-5">Registros de Terrenos</p>
+      <p className="text-black font-semibold text-4xl display flex justify-center m-5">Registros de Ventas de Terrenos</p>
       <div className="input-search">
         <input
           className="text-black"
@@ -115,7 +118,7 @@ const MainTerrenos = () => {
           onClick={openRegistroModal}
           className="bg-green-600 text-white px-4 py-2 m-2 rounded-full transition duration-200 ease-in-out hover:bg-green-800 active:bg-green-900 focus:outline-none position relative left-64"
         >
-          Registrar Terreno
+          Registrar Venta de Terreno
         </button>
       </div>
       <div className='display flex'>
@@ -155,10 +158,10 @@ const MainTerrenos = () => {
           Página Siguiente
         </button>
       </div>
-      <EditarTerrenos onTerrenoEditado={getTerrenos} />
-      <CrearTerrenos onTerrenoRegistrado={getTerrenos} />
+      <EditarVtaTerrenos onVtaTerrenoEditado={getVtaTerrenos} />
+      <CrearVtaTerrenos onVtaTerrenoRegistrado={getVtaTerrenos} />
       </div>
     );
   }
 
-export default MainTerrenos
+export default MainVtaTerrenos

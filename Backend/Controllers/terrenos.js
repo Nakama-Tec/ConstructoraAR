@@ -1,7 +1,7 @@
 const { conection } = require("../DB/Config")
 
 const allTerrenos = (req, res) => {
-    const query = `select * from Terrenos;`
+    const query = `select * from Terrenos where activoTerreno=1;`
     conection.query(query, (err, results) => {
         if (err) throw err;
         res.json(results);
@@ -19,8 +19,9 @@ const singleTerreno = (req, res) => {
 }
 
 const editTerreno = (req, res) => {
-    const { id_terreno, direccionTerreno, metrosTerrenos, disponibilidadTerreno, precioTerreno} = req.body;
-    const query = `update Terrenos set direccionTerreno = '${direccionTerreno}', metrosTerrenos = '${metrosTerrenos}', disponibilidadTerreno = '${disponibilidadTerreno}', precioTerreno = '${precioTerreno}', activoTerreno = '${activoTerreno}' where id_terreno = ${id_terreno};`
+    const { direccionTerreno, metrosTerrenos, disponibilidadTerreno, precioTerreno} = req.body;
+    const id = req.params.id;
+    const query = `update Terrenos set direccionTerreno = '${direccionTerreno}', metrosTerrenos = '${metrosTerrenos}', disponibilidadTerreno = '${disponibilidadTerreno}', precioTerreno = '${precioTerreno}' where id_terreno=${id};`
     conection.query(query, (err, results) => {
         if (err) throw err;
         res.json({ msg: "Terreno actualizado" });
@@ -29,7 +30,7 @@ const editTerreno = (req, res) => {
 
 const createTerreno = (req, res) => {
     const { direccionTerreno, metrosTerrenos, disponibilidadTerreno, precioTerreno } = req.body;
-    const query = `insert into Terrenos (direccionTerreno, metrosTerrenos, disponibilidadTerreno, precioTerreno, activoTerreno) values ('${direccionTerreno}', '${metrosTerrenos}', '${disponibilidadTerreno}', '${precioTerreno}', '${activoTerreno}');`
+    const query = `insert into Terrenos (direccionTerreno, metrosTerrenos, disponibilidadTerreno, precioTerreno) values ('${direccionTerreno}', '${metrosTerrenos}', '${disponibilidadTerreno}', '${precioTerreno}');`
     conection.query(query, (err, results) => {
         if (err) throw err;
         res.json({ msg: "Terreno creado" });

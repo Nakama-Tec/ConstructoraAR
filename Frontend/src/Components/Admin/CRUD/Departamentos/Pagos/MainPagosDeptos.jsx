@@ -1,39 +1,40 @@
 import { useState, useEffect } from 'react';
 import { useReactTable, getCoreRowModel, flexRender, getPaginationRowModel, getFilteredRowModel } from '@tanstack/react-table';
-import { URL_TERRENOS, URL_TERRENOS_ELIMINAR } from '../../../../Constants/endpoints-API';
+import EditarPagoAlquiler from './EditarPagosDepto';
+import CrearPagoAlquiler from './CrearPagoDepto';
+import '../../../../../Styles/table.css';
+import { URL_PAGOS_ALQUILERES, URL_PAGOS_ALQUILERES_ELIMINAR} from '../../../../../Constants/endpoints-API';
+import useAuthStore from '../../../../../Context/useAuthStore';
+import useRegistroStore from '../../../../../Context/useRegistroStore';
+import Aside from '../../../../Layout/Aside';
 import axios from 'axios';
 import Swal from 'sweetalert2';
-import EditarTerrenos from './EditarTerrenos';
-import CrearTerrenos from './CrearTerrenos';
-import useRegistroStore from '../../../../Context/useRegistroStore';
-import useAuthStore from '../../../../Context/useAuthStore';
-import Aside from '../../../Layout/Aside';
-import '../../../../Styles/table.css';
 
-const MainTerrenos = () => {
 
-  const { setRegistroSeleccionado, openRegistroModal } = useRegistroStore();
+const MainPagosDeptos = () => {
+
+    const { setRegistroSeleccionado, openRegistroModal } = useRegistroStore();
     const token = useAuthStore((state) => state.token); 
     
     const [filtrado, setFiltrado] = useState('');
     const [datos, setDatos] = useState([]);
   
   
-    const getTerrenos = async () => {
+    const getPagosAlquileres = async () => {
       try {
-        const response = await axios.get(URL_TERRENOS, { headers: { Authorization: `Bearer ${token}` } });
+        const response = await axios.get(URL_PAGOS_ALQUILERES, { headers: { Authorization: `Bearer ${token}` } });
         console.log(response.data)
         setDatos(response.data);
       } catch (error) {
-        console.error("Error al obtener terrenos:", error);
+        console.error("Error al obtener los pagos de alquiler:", error);
       }
     };
-  
+
     // borrado logico
-  const handleEliminarTerreno = async (terreno) => {
+  const handleEliminarPagoAlquiler = async (pagoAlquiler) => {
     const confirmacion = await Swal.fire({
       title: '¿Estás seguro?',
-      text: `¿Deseas eliminar el terreno?`,
+      text: `¿Deseas eliminar el "${pagoAlquiler.nombreDepartamento}"?`,
       icon: 'warning',
       showCancelButton: true,
       confirmButtonText: 'Sí, eliminar',
@@ -43,24 +44,25 @@ const MainTerrenos = () => {
     if (confirmacion.isConfirmed) {
       try {
         await axios.put(
-          `${URL_TERRENOS_ELIMINAR}${terreno.id_terreno}`,
-          { ...terreno },
+          `${URL_PAGOS_ALQUILERES_ELIMINAR}${pagoAlquiler.id_departamento}`,
+          { ...pagoAlquiler },
           { headers: { Authorization: `Bearer ${token}` } }
         );
-        Swal.fire('Eliminado!', 'El terreno ha sido eliminado correctamente.', 'success');
-        getTerrenos(); 
+        Swal.fire('Eliminado!', 'El pago del alquiler ha sido eliminado correctamente.', 'success');
+        getPagosAlquileres(); 
       } catch (error) {
-        console.error('Error al eliminar el terreno:', error);
-        Swal.fire('Error', 'Hubo un problema al eliminar el terreno.', 'error');
+        console.error('Error al eliminar el pago del alquiler:', error);
+        Swal.fire('Error', 'Hubo un problema al eliminar el pago del alquiler.', 'error');
       }
     }
   };
-
+  
     const columns = [
-      { header: 'Nº', accessorKey: 'id_terreno' },
-      { header: 'Metros Cuadrados', accessorKey: 'metrosTerrenos' },
-      { header: 'Dirección', accessorKey: 'direccionTerreno' },
-      { header: 'Precio', accessorKey: 'precioTerreno' },
+        { header: 'Nº', accessorKey: 'id_pagoAlquiler' },
+        { header: 'Nombre Departamento', accessorKey: 'NombreDepartamento' },
+        { header: 'Monto Pagado', accessorKey: 'MontoPagoAlquiler' },
+        { header: 'Cliente', accessorFn: row => `${row.NombreCliente} ${row.ApellidoCliente}` },
+        { header: 'Fecha del Pago', accessorKey: 'FechaPagoAlquiler' },
       {
         header: 'Acciones',
         cell: ({ row }) => (
@@ -72,7 +74,7 @@ const MainTerrenos = () => {
             Editar
           </button>
           <button
-            onClick={() => handleEliminarTerreno(row.original)}
+            onClick={() => handleEliminarPagoAlquiler(row.original)}
             className="bg-red-600 text-white px-4 py-2 rounded-full transition duration-200 ease-in-out hover:bg-red-800 active:bg-red-900 focus:outline-none"
           >
             Eliminar
@@ -95,12 +97,12 @@ const MainTerrenos = () => {
     });
   
     useEffect(() => {
-      getTerrenos();
+      getPagosAlquileres();
     }, []);
   
     return (
       <div>
-      <p className="text-black font-semibold text-4xl display flex justify-center m-5">Registros de Terrenos</p>
+      <p className="text-black font-semibold text-4xl display flex justify-center m-5">Registros de Pagos Alquileres</p>
       <div className="input-search">
         <input
           className="text-black"
@@ -115,7 +117,7 @@ const MainTerrenos = () => {
           onClick={openRegistroModal}
           className="bg-green-600 text-white px-4 py-2 m-2 rounded-full transition duration-200 ease-in-out hover:bg-green-800 active:bg-green-900 focus:outline-none position relative left-64"
         >
-          Registrar Terreno
+          Registrar Pago Alquiler
         </button>
       </div>
       <div className='display flex'>
@@ -155,10 +157,10 @@ const MainTerrenos = () => {
           Página Siguiente
         </button>
       </div>
-      <EditarTerrenos onTerrenoEditado={getTerrenos} />
-      <CrearTerrenos onTerrenoRegistrado={getTerrenos} />
+      <EditarPagoAlquiler onPagoAlquilerEditado={getPagosAlquileres} />
+      <CrearPagoAlquiler onPagoAlquilerRegistrado={getPagosAlquileres} />
       </div>
     );
   }
 
-export default MainTerrenos
+export default MainPagosDeptos

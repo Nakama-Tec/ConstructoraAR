@@ -1,12 +1,13 @@
 const { conection } = require("../DB/Config")
 
 const allVentaTerreno = (req,res) =>{
-const query = `SELECT * FROM select V.FechaVentaTerreno, T.DireccionTerreno, T.PrecioTerreno, C.NombreCliente, C.TelefonoCliente, C.CondicionCliente 
-from VentaTerrenos V 
+const query = `SELECT V.id_ventaTerreno, V.FechaVentaTerreno, T.DireccionTerreno, T.PrecioTerreno, C.NombreCliente, C.ApellidoCliente, C.TelefonoCliente, C.CondicionCliente
+from VentaTerrenos V
 join Terrenos T
 on T.id_terreno = V.id_terreno
 join Clientes C
-on C.id_cliente = V.id_cliente;
+on C.id_cliente = V.id_cliente
+WHERE V.activoTerreno = 1;
 `
 conection.query(query,(err,results)=>{
     if(err){
@@ -49,7 +50,7 @@ conection.query(query,(err,results)=>{
 }
 const deleteVentaTerreno = (req,res)=>{
 const id = req.params.id;
-const query = `UPDATE VentaTerrenos SET activoVentaTerreno = 0 WHERE id_ventaTerreno = ${id}`;
+const query = `update VentaTerrenos set activoTerreno=0 where id_ventaTerreno=${id}`;
 conection.query(query,(err,results)=>{
     if(err){
         return res.status(500).json({error:'Error en la base de datos', details: err.message});

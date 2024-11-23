@@ -1,7 +1,7 @@
 const { conection } = require("../DB/Config")
 
 const allPagosAlquileres = (req, res) => {
-    const query = `select P.FechaPagoAlquiler, P.MontoPagoAlquiler, C.NombreCliente, D.NombreDepartamento 
+    const query = `select P.id_pagoAlquiler, P.FechaPagoAlquiler, P.MontoPagoAlquiler, C.NombreCliente, C.ApellidoCliente, D.NombreDepartamento 
     from PagosAlquileres P
     join AlquilerDepartamentos A
     on A.id_alquilerDepto = P.id_alquilerDepto
@@ -25,8 +25,9 @@ const singlePagoAlquiler = (req, res) => {
 };
 
 const editPagosAlquileres = (req, res) => {
-    const { id_pagoAlquiler, fechaPagoAlquiler, montoPagoAlquiler } = req.body;
-    const query = `update PagosAlquileres set fechaPagoAlquiler= '${fechaPagoAlquiler}', montoPagoAlquiler= '${montoPagoAlquiler}', activoPagoAlquiler= ${activoPagoAlquiler} where id_pagoAlquiler = ${id_pagoAlquiler};`;
+    const id = req.params.id
+    const {fechaPagoAlquiler, montoPagoAlquiler } = req.body;
+    const query = `update PagosAlquileres set fechaPagoAlquiler='${fechaPagoAlquiler}', montoPagoAlquiler='${montoPagoAlquiler}', activoPagoAlquiler=1 where id_pagoAlquiler=${id};`;
     conection.query(query, (err, results) => {
         if (err) throw err;
         res.send(results);
@@ -35,7 +36,7 @@ const editPagosAlquileres = (req, res) => {
 
 const createPagosAlquileres = (req, res) => {
     const { fechaPagoAlquiler, montoPagoAlquiler, id_alquilerDepto } = req.body;
-    const query = `insert into PagosAlquileres (fechaPagoAlquiler, montoPagoAlquiler, id_alquilerDepto, activoPagoAlquiler) values ('${fechaPagoAlquiler}', '${montoPagoAlquiler}', '${id_alquilerDepto}', '${activoPagoAlquiler}');`;
+    const query = `insert into PagosAlquileres (fechaPagoAlquiler, montoPagoAlquiler, id_alquilerDepto) values ('${fechaPagoAlquiler}', '${montoPagoAlquiler}', '${id_alquilerDepto}');`;
     conection.query(query, (err, results) => {
         if (err) throw err;
         res.send(results);

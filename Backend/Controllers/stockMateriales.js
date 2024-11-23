@@ -17,14 +17,14 @@ const singleStockMateriales = (req,res)=>{
     })
 }
 
-const createStockMateriales = (req,res)=>{
-    const {nombreMaterial, cantidadStock, ubicacionStock, activoStock} = req.body;
-    const query = `insert into StockMateriales (nombreMaterial, cantidadStock, ubicacionStock, activoStock) values ('${nombreMaterial}', ${cantidadStock}, ${ubicacionStock}, ${activoStock});`
-    conection.query(query,(err,results)=>{
-        if(err) throw err;
-        res.json(results);
-    })
-}
+// const createStockMateriales = (req,res)=>{
+//     const {nombreMaterial, cantidadStock, ubicacionStock, activoStock} = req.body;
+//     const query = `insert into StockMateriales (nombreMaterial, ubicacionStock,cantidadStock) values ('${nombreMaterial}',  ${ubicacionStock},${cantidadStock}, activoStock = 1);`
+//     conection.query(query,(err,results)=>{
+//         if(err) throw err;
+//         res.json(results);
+//     })
+// }
 
 
 const editStockMateriales = (req,res)=>{
@@ -46,4 +46,4 @@ const deleteStockMateriales = (req,res)=>{
     })
 }
 
-module.exports = {allStockMateriales, singleStockMateriales, createStockMateriales, editStockMateriales, deleteStockMateriales}
+module.exports = {allStockMateriales, singleStockMateriales, editStockMateriales, deleteStockMateriales}

@@ -24,9 +24,9 @@ const singleViaje = (req, res) => {
 //Funcion para editar un viaje
 
 const editViaje = (req, res) => {
-    const {fechaViaje, id_obra, id_vehiculo, activoViaje} = req.body;
+    const {fechaViaje, id_obra, id_vehiculo} = req.body;
     const id = req.params.id;
-    const query = `update Viajes set fechaViaje= '${fechaViaje}', id_obra= '${id_obra}', id_vehiculo= ${id_vehiculo}, activoViaje= ${activoViaje} where id_viaje = ${id};`
+    const query = `update Viajes set fechaViaje= '${fechaViaje}', id_obra= '${id_obra}', id_vehiculo= ${id_vehiculo} where id_viaje = ${id};`
     conection.query(query, (err, results) => {
         if (err) throw err;
         res.send(results)
@@ -36,8 +36,8 @@ const editViaje = (req, res) => {
 //Funcion para crear un viaje
 
 const createViaje = (req, res) => {
-    const {fechaViaje, id_obra, id_vehiculo, activoViaje} = req.body;
-    const query = `insert into Viajes (fechaViaje, id_obra, id_vehiculo, activoViaje) values ('${fechaViaje}', ${id_obra}, ${id_vehiculo}, ${activoViaje});`
+    const {fechaViaje, id_obra, id_vehiculo} = req.body;
+    const query = `insert into Viajes (fechaViaje, id_obra, id_vehiculo) values ('${fechaViaje}', ${id_obra}, ${id_vehiculo});`
     conection.query(query, (err, results) => {
         if (err) throw err;
         res.json({
