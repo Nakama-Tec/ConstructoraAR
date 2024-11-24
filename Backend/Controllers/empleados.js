@@ -1,7 +1,7 @@
 const { conection } = require("../DB/Config")
 
 const allEmpleado = (req, res) => {
-    const query = `select * from Empleados;`;
+    const query = `select * from Empleados where activoEmpleado=1;`;
     conection.query(query, (err, results) => {
         if (err) throw err;
         res.json(results);
@@ -17,8 +17,8 @@ const singleEmpleado = (req, res) => {
     });}
 
 const createEmpleado = (req, res) => {
-    const { nombreEmpleado, apellidoEmpleado, dniEmpleado, direccionEmpleado, telefonoEmpleado, emailEmpleado } = req.body;
-    const query = `insert into Empleados (nombreEmpleado, apellidoEmpleado, dniEmpleado, direccionEmpleado, telefonoEmpleado, emailEmpleado, id_obra, activoEmpleado) values ('${nombreEmpleado}', '${apellidoEmpleado}', '${dniEmpleado}', '${direccionEmpleado}', '${telefonoEmpleado}', '${emailEmpleado}');`;
+    const { nombreEmpleado, apellidoEmpleado, dniEmpleado, direccionEmpleado, telefonoEmpleado } = req.body;
+    const query = `insert into Empleados (nombreEmpleado, apellidoEmpleado, dniEmpleado, direccionEmpleado, telefonoEmpleado, emailEmpleado, id_obra, activoEmpleado) values ('${nombreEmpleado}', '${apellidoEmpleado}', '${dniEmpleado}', '${direccionEmpleado}', '${telefonoEmpleado}';`;
     conection.query(query, (err, results) => {
         if (err) throw err;
         res.send(results);
@@ -26,9 +26,9 @@ const createEmpleado = (req, res) => {
 }
 
 const editEmpleado = (req, res) => {
-    const { nombreEmpleado, apellidoEmpleado, dniEmpleado, direccionEmpleado, telefonoEmpleado, emailEmpleado } = req.body;
+    const { nombreEmpleado, apellidoEmpleado, dniEmpleado, direccionEmpleado, telefonoEmpleado } = req.body;
     const { id } = req.params;
-    const query = `update Empleados set nombreEmpleado='${nombreEmpleado}', apellidoEmpleado='${apellidoEmpleado}', dniEmpleado='${dniEmpleado}', direccionEmpleado='${direccionEmpleado}', telefonoEmpleado='${telefonoEmpleado}', emailEmpleado='${emailEmpleado}' where id_empleado=${id};`;
+    const query = `update Empleados set nombreEmpleado='${nombreEmpleado}', apellidoEmpleado='${apellidoEmpleado}', dniEmpleado='${dniEmpleado}', direccionEmpleado='${direccionEmpleado}', telefonoEmpleado='${telefonoEmpleado}' where id_empleado=${id};`;
     conection.query(query, (err, results) => {
         if (err) throw err;
         res.send(results);

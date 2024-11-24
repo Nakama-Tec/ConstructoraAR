@@ -24,8 +24,6 @@ const CrearEmpleados = ({ onEmpleadoRegistrado }) => {
           <input id="direccionEmpleado" placeholder="direccionEmpleado" class="swal2-input" />
 
           <input id="telefonoEmpleado" placeholder="telefonoEmpleado" class="swal2-input" />
-
-          <input id="emailEmpleado" placeholder="emailEmpleado" class="swal2-input" />
   
       `,
       confirmButtonText: 'Registrar',
@@ -36,10 +34,9 @@ const CrearEmpleados = ({ onEmpleadoRegistrado }) => {
           const dniEmpleado = document.getElementById('dniEmpleado').value;
           const direccionEmpleado = document.getElementById('direccionEmpleado').value;
           const telefonoEmpleado = document.getElementById('telefonoEmpleado').value;
-          const emailEmpleado = document.getElementById('emailEmpleado').value;
 
 
-        if (!nombreEmpleado || !apellidoEmpleado || !dniEmpleado || !direccionEmpleado || !telefonoEmpleado || !emailEmpleado) {
+        if (!nombreEmpleado || !apellidoEmpleado || !dniEmpleado || !direccionEmpleado || !telefonoEmpleado) {
           Swal.showValidationMessage('Todos los campos son obligatorios');
         }
 
@@ -49,7 +46,6 @@ const CrearEmpleados = ({ onEmpleadoRegistrado }) => {
           dniEmpleado,
           direccionEmpleado,
           telefonoEmpleado,
-          emailEmpleado
         };
       }
     }).then(async (result) => {

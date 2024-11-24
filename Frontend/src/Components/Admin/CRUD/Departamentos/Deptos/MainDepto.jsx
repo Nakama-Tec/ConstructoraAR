@@ -48,7 +48,6 @@ const MainDepto = () => {
         Swal.fire('Eliminado!', 'El departamento ha sido eliminado correctamente.', 'success');
         getDepartamentos(); 
       } catch (error) {
-        console.error('Error al eliminar departamento:', error);
         Swal.fire('Error', 'Hubo un problema al eliminar el departamento.', 'error');
       }
     }

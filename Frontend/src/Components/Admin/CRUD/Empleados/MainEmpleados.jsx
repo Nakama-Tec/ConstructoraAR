@@ -22,7 +22,7 @@ const MainEmpleados = () => {
       console.log(response.data)
       setDatos(response.data);
     } catch (error) {
-      console.error('Error al obtener el empleado:', error);
+      Swal.fire('Error', 'Hubo un problema al eliminar el departamento.', 'error');
     }
   };
   

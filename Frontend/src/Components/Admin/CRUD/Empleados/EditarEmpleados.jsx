@@ -18,13 +18,11 @@ const EditarEmpleados = ({ onEmpleadoEditado }) => {
 
             <input id="apellidoEmpleado" class="swal2-input" value="${registroSeleccionado.apellidoEmpleado}" />
 
-            <input id="dniEmpleado" class="swal2-input" value="${registroSeleccionado.dniEmpleado}" />
+            <input id="dniEmpleado" class="swal2-input" value="${registroSeleccionado.DNIEmpleado}" />
 
-            <input id="direccionEmpleado" class="swal2-input" value="${registroSeleccionado.direccionEmpleado}" />
+            <input id="direccionEmpleado" class="swal2-input" value="${registroSeleccionado.direccion}" />
 
-            <input id="telefonoEmpleado" class="swal2-input" value="${registroSeleccionado.telefonoEmpleado}" />
-
-            <input id="emailEmpleado" class="swal2-input" value="${registroSeleccionado.emailEmpleado}" />
+            <input id="telefonoEmpleado" class="swal2-input" value="${registroSeleccionado.telefono}" />
 
         `,
         confirmButtonText: 'Enviar',
@@ -35,9 +33,8 @@ const EditarEmpleados = ({ onEmpleadoEditado }) => {
             const dniEmpleado = document.getElementById('dniEmpleado').value;
             const direccionEmpleado = document.getElementById('direccionEmpleado').value;
             const telefonoEmpleado = document.getElementById('telefonoEmpleado').value;
-            const emailEmpleado = document.getElementById('emailEmpleado').value;
   
-          if (!nombreEmpleado || !apellidoEmpleado || !dniEmpleado || !direccionEmpleado || !telefonoEmpleado || !emailEmpleado) {
+          if (!nombreEmpleado || !apellidoEmpleado || !dniEmpleado || !direccionEmpleado || !telefonoEmpleado) {
             Swal.showValidationMessage('Todos los campos son obligatorios');
           }
   
@@ -47,7 +44,6 @@ const EditarEmpleados = ({ onEmpleadoEditado }) => {
             dniEmpleado,
             direccionEmpleado,
             telefonoEmpleado,
-            emailEmpleado
           };
         }
       }).then(async (result) => {

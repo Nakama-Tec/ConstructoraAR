@@ -4,7 +4,7 @@ const allClientes = (req, res) => {
 
 console.log("hola cliente")
 
-    const query = `select * from Clientes`
+    const query = `select * from Clientes where activoCliente=1`
     conection.query(query, (err, results) => {
         if (err) throw err;
         res.json(results)
