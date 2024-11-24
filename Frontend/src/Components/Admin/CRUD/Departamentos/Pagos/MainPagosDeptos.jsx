@@ -23,7 +23,6 @@ const MainPagosDeptos = () => {
     const getPagosAlquileres = async () => {
       try {
         const response = await axios.get(URL_PAGOS_ALQUILERES, { headers: { Authorization: `Bearer ${token}` } });
-        console.log(response.data)
         setDatos(response.data);
       } catch (error) {
         console.error("Error al obtener los pagos de alquiler:", error);

@@ -16,7 +16,6 @@ const EditarViaje = ({ onViajeEditado }) => {
     const getVehiculos = async () => {
         try {
           const response = await axios.get(URL_VEHICULOS, { headers: { Authorization: `Bearer ${token}` } });
-          console.log(response.data)
           setVehiculos(response.data);
         } catch (error) {
           console.error('Error al obtener vehículos:', error);
@@ -26,7 +25,6 @@ const EditarViaje = ({ onViajeEditado }) => {
       const getObra = async () => {
         try {
           const response = await axios.get(URL_OBRAS, { headers: { Authorization: `Bearer ${token}` } });
-          console.log(response.data)
           setObras(response.data);
         } catch (error) {
           console.error('Error al obtener la obra:', error);

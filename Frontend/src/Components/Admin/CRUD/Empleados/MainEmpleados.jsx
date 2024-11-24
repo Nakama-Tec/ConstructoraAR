@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import { useReactTable, getCoreRowModel, flexRender, getPaginationRowModel, getFilteredRowModel } from '@tanstack/react-table';
 import '../../../../Styles/table.css';
 import { URL_EMPLEADOS,URL_EMPLEADOS_ELIMINAR } from '../../../../Constants/endpoints-API';
+import CrearEmpleado from './CrearEmpleado';
+import EditarEmpleado from './EditarEmpleado';
 import useAuthStore from '../../../../Context/useAuthStore';
 import useRegistroStore from '../../../../Context/useRegistroStore';
 import Aside from '../../../Layout/Aside';
@@ -97,7 +99,7 @@ const MainEmpleados = () => {
   }, []);
 
   return (
-    <div>
+<div>
       <p className="text-black font-semibold text-4xl display flex justify-center m-5">Registros de Empleados</p>
       <div className="input-search">
         <input
@@ -153,6 +155,8 @@ const MainEmpleados = () => {
           Página Siguiente
         </button>
       </div>
+      <EditarEmpleado onEmpleadoEditado={getEmpleado} />
+      <CrearEmpleado onEmpleadoRegistrado={getEmpleado} />
       </div>
   )
 }

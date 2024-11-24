@@ -14,7 +14,6 @@ const CrearPagoDepto = ({ onPagoAlquilerRegistrado }) => {
   const getClientes = async () => {
     try {
       const response = await axios.get(URL_ALQUILERES, { headers: { Authorization: `Bearer ${token}` } });
-      console.log(response.data)
       setAlquileres(response.data);
     } catch (error) {
       console.error('Error al obtener clientes:', error);
