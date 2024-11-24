@@ -15,8 +15,11 @@ const MainOperaciones = () => {
   const [datos, setDatos] = useState([]);
 
   const getOperaciones = async () => {
+   
     try {
-      const response = await axios.get(URL_OPERACIONES, { headers: { Authorization: `Bearer ${token}` } });
+      console.log("hola try operacion")
+      const response = await axios.get("http://localhost:8000/Operaciones/", { headers: { Authorization: `Bearer ${token}` } });
+      console.log("hola try ok operacion"+token)
       console.log(response.data)
       setDatos(response.data);
     } catch (error) {
