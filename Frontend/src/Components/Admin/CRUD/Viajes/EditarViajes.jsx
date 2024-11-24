@@ -46,19 +46,18 @@ const EditarViaje = ({ onViajeEditado }) => {
             .map(
               (vehiculo) =>
                 `<option value="${vehiculo.id_vehiculo}" ${
-                  vehiculo.id === registroSeleccionado.id_vehiculo ? 'selected' : ''
+                  vehiculo.id_vehiculo === registroSeleccionado.id_vehiculo ? 'selected' : ''
                 }>${vehiculo.patenteVehiculo}</option>`
             )
             .join('')}
         </select>
-
 
         <select id="select_obra" class="swal2-select">
           ${obras
             .map(
               (obra) =>
                 `<option value="${obra.id_obra}" ${
-                  obra.id === registroSeleccionado.id_obra ? 'selected' : ''
+                  obra.id_obra === registroSeleccionado.id_obra ? 'selected' : ''
                 }>${obra.nombreObra}</option>`
             )
             .join('')}

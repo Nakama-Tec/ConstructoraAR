@@ -3,7 +3,13 @@ const { conection } = require("../DB/Config")
 // Funcion para mostrar todos los viajes
 
 const allViajes = (req, res) => {
-    const query = `select * from Viajes where activoViaje = 1;`
+    const query = `select V.id_viaje, V.fechaViaje, O.nombreObra, VH.patenteVehiculo
+from Viajes V
+join Obras O
+on O.id_obra = V.id_obra
+join Vehiculos VH
+on VH.id_vehiculo = V.id_vehiculo
+WHERE V.activoViaje = 1;`
     conection.query(query, (err, results) => {
         if (err) throw err;
         res.json(results);
