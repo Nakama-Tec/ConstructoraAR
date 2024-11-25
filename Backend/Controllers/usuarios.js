@@ -18,9 +18,9 @@ const singleUsuario = (req, res) => {
 }
 
 const editUsuarios = (req, res) => {
-    const { nombreUsuario, mailUsuario, passwordUsuario, rol } = req.body;
+    const { nombreUsuario, mailUsuario, passwordUsuario, rol, activoUsuario, id_Empleado } = req.body;
     const { id_usuario } = req.params;
-    const query = `update Usuarios set nombreUsuario= '${nombreUsuario}', mailUsuario= '${mailUsuario}', passwordUsuario= '${passwordUsuario}', rol= '${rol}',activoUsuario= ${activoUsuario} where id_usuario = ${id_usuario};`
+    const query = `update Usuarios set nombreUsuario= '${nombreUsuario}', mailUsuario= '${mailUsuario}', passwordUsuario= '${passwordUsuario}', rol= '${rol}',activoUsuario= ${activoUsuario}, ${id_Empleado} where id_usuario = ${id_usuario};`
     conection.query(query, (err, results) => {
         if (err) throw err;
         res.send(results)
@@ -28,8 +28,8 @@ const editUsuarios = (req, res) => {
 }
 
 const createUsuarios = (req, res) => {
-    const { nombreUsuario, mailUsuario, passwordUsuario, rol } = req.body;
-    const query = `insert into Usuarios (nombreUsuario, mailUsuario, passwordUsuario, rol, activoUsuario) values ('${nombreUsuario}', '${mailUsuario}', '${passwordUsuario}', '${rol}', '${activoUsuario}');`
+    const { nombreUsuario, mailUsuario, passwordUsuario, rol, activoUsuario, id_Empleado } = req.body;
+    const query = `insert into Usuarios (nombreUsuario, mailUsuario, passwordUsuario, rol, activoUsuario, id_Empleado) values ('${nombreUsuario}', '${mailUsuario}', '${passwordUsuario}', '${rol}', '${activoUsuario}', ${id_Empleado} );`
     conection.query(query, (err, results) => {
         if (err) throw err;
         res.send(results)
