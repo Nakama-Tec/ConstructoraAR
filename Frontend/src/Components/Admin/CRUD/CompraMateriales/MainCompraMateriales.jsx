@@ -7,6 +7,8 @@ import useRegistroStore from '../../../../Context/useRegistroStore';
 import Aside from '../../../Layout/Aside';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import EditarCompraMateriales from './EditarCompraMateriales';
+import CrearCompraMateriales from './CrearCompraMateriales';
 
 const MainCompraMateriales = () => {
     const token = useAuthStore((state) => state.token);
@@ -52,13 +54,14 @@ const MainCompraMateriales = () => {
     };
   
     const columns = [
-      { header: 'Nº', accessorKey: 'id_compraMaterial' },
-      { header: 'Cantidad de Material', accessorKey: 'cantidadMaterial' },
-      { header: 'Precio de Material', accessorKey: 'precioMaterial' },
-      { header: 'Estado de Retiro', accessorKey: 'estadoRetiro' },
-      { header: 'Fecha Compra', accessorKey: 'fechaCompraMateriales' },
-      { header: 'Lugar de Compra', accessorKey: 'lugardeCompra' },
-      { header: 'Id Stock', accessorKey: 'id_stock' },
+      { header: 'Nº', accessorKey: 'N°' },
+      { header: 'Nombre del Material', accessorKey: 'Nombre' },
+      { header: 'Cantidad', accessorKey: 'Cantidad' },
+      { header: 'Precio ($)', accessorKey: 'Precio' },
+      { header: 'Estado', accessorKey: 'Estado' },
+      { header: 'Fecha de Compra', accessorKey: 'Fecha_Compra' },
+      { header: 'Proveedor', accessorKey: 'Proveedor' },
+      { header: 'Destino', accessorKey: 'Destino' },
       {
         header: 'Acciones',
         cell: ({ row }) => (
@@ -153,6 +156,8 @@ const MainCompraMateriales = () => {
             Página Siguiente
           </button>
         </div>
+        <EditarCompraMateriales onCompraMaterialEditado={getCompraMaterial} />
+      <CrearCompraMateriales onCompraMaterialRegistrado={getCompraMaterial} />
         </div>
   )
 }

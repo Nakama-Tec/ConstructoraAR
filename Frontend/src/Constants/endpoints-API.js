@@ -31,9 +31,9 @@ export const URL_EMPLEADOS_ELIMINAR = "http://localhost:8000/empleados/delete/";
 // Operaciones
 
 export const URL_OPERACIONES = "http://localhost:8000/Operaciones";
-export const URL_OPERACIONES_CREAR = "http://localhost:8000/operaciones/create/";
-export const URL_OPERACIONES_EDITAR = "http://localhost:8000/operaciones/edit/";
-export const URL_OPERACIONES_ELIMINAR = "http://localhost:8000/operaciones/delete/";
+export const URL_OPERACIONES_CREAR = "http://localhost:8000/Operaciones/create";
+export const URL_OPERACIONES_EDITAR = "http://localhost:8000/Operaciones/edit/";
+export const URL_OPERACIONES_ELIMINAR = "http://localhost:8000/Operaciones/delete/";
 
 // Flujo de Caja
 
@@ -105,7 +105,7 @@ export const URL_STOCK_ELIMINAR = "http://localhost:8000/stockMateriales/delete/
 // Compra de Materiales
 
 export const URL_COMPRA_MATERIALES = "http://localhost:8000/compraMateriales/";
-export const URL_COMPRA_MATERIALES_CREAR = "http://localhost:8000/compraMateriales/create/";
+export const URL_COMPRA_MATERIALES_CREAR = "http://localhost:8000/compraMateriales/create";
 export const URL_COMPRA_MATERIALES_EDITAR = "http://localhost:8000/compraMateriales/edit/";
 export const URL_COMPRA_MATERIALES_ELIMINAR = "http://localhost:8000/compraMateriales/delete/";
 

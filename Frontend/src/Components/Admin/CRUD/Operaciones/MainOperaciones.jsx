@@ -6,7 +6,9 @@ import useAuthStore from '../../../../Context/useAuthStore';
 import useRegistroStore from '../../../../Context/useRegistroStore';
 import Aside from '../../../Layout/Aside';
 import axios from 'axios';
-import Swal from 'sweetalert2';
+import Swal from 'sweetalert2'; //sirve para mostrar alertas
+import EditarOperaciones from './EditarOperaciones';
+import CrearOperaciones from './CrearOperaciones';
 
 const MainOperaciones = () => {
     const token = useAuthStore((state) => state.token);
@@ -15,9 +17,10 @@ const MainOperaciones = () => {
   const [datos, setDatos] = useState([]);
 
   const getOperaciones = async () => {
+   
     try {
+      
       const response = await axios.get(URL_OPERACIONES, { headers: { Authorization: `Bearer ${token}` } });
-      console.log(response.data)
       setDatos(response.data);
     } catch (error) {
       console.error('Error al obtener la operacion:', error);
@@ -25,8 +28,8 @@ const MainOperaciones = () => {
   };
   
 // borrado logico
-  const handleEliminarOperacion = async (operacion) => {
-    const confirmacion = await Swal.fire({
+  const handleEliminarOperacion = async (operacion) => {//funcion para eliminar una operacion por medio de un id
+    const confirmacion = await Swal.fire({//sirver para mostrar una alerta y confirmar si se quiere eliminar
       title: '¿Estás seguro?',
       text: `¿Deseas eliminar la operacion ${operacion.nombreOperacion}?`,
       icon: 'warning',
@@ -152,7 +155,10 @@ const MainOperaciones = () => {
         <button className=" position relative top-1 m-2 p-2 bg-zinc-900 text-white h-12 rounded-[8px] font-semibold text-[16px]" onClick={() => table.nextPage()} disabled={!table.getCanNextPage()}>
           Página Siguiente
         </button>
+
       </div>
+      <EditarOperaciones onOperacionEditado={getOperaciones} />
+      <CrearOperaciones onOperacionRegistrado={getOperaciones} />
       </div>
   )
 }

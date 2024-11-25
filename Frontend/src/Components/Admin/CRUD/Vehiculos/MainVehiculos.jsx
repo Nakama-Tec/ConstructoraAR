@@ -13,7 +13,6 @@ import Swal from 'sweetalert2';
 const MainVehiculos = () => {
   const token = useAuthStore((state) => state.token);
   const { setRegistroSeleccionado, openRegistroModal } = useRegistroStore();
-
   const [filtrado, setFiltrado] = useState('');
   const [datos, setDatos] = useState([]);
 
