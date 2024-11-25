@@ -37,14 +37,56 @@ const editCompraMateriales = (req, res) => {
 }
 
 //Funcion para crear una compra de material
+// const createCompraMateriales = (req, res) => {
+//     const { cantidadMaterial, precioMaterial, fechaCompraMateriales, estadoRetiro, lugardeCompra, activoCompra } = req.body;
+//     const query = `insert into CompraMateriales (id_stock, cantidadMaterial, precioMaterial, fechaCompraMateriales, estadoRetiro, lugardeCompra, activoCompra) values (${id_stock}, ${cantidadMaterial}, ${precioMaterial}, '${fechaCompraMateriales}', '${estadoRetiro}', '${lugardeCompra}', ${activoCompra});`
+//     conection.query(query, (err, results) => {
+//         if (err) throw err;
+//         res.send(results)
+//     })
+// }
+
+
 const createCompraMateriales = (req, res) => {
-    const { cantidadMaterial, precioMaterial, fechaCompraMateriales, estadoRetiro, lugardeCompra, activoCompra } = req.body;
-    const query = `insert into CompraMateriales (id_stock, cantidadMaterial, precioMaterial, fechaCompraMateriales, estadoRetiro, lugardeCompra, activoCompra) values (${id_stock}, ${cantidadMaterial}, ${precioMaterial}, '${fechaCompraMateriales}', '${estadoRetiro}', '${lugardeCompra}', ${activoCompra});`
-    conection.query(query, (err, results) => {
-        if (err) throw err;
-        res.send(results)
-    })
-}
+    const {
+        nombreMaterial,    // Nombre del material
+        ubicacionStock,    // Ubicación del stock (destino)
+        cantidadMaterial,  // Cantidad comprada
+        precioMaterial,    // Precio unitario
+        fechaCompraMateriales, // Fecha de compra
+        estadoRetiro,      // Estado del retiro
+        lugardeCompra,     // Proveedor o lugar de compra
+        destinoMaterial    // Destino del material
+    } = req.body;
+
+    // Llamar al procedimiento almacenado
+    const query = `CALL gestionarCompraMaterial(
+        ?, ?, ?, ?, ?, ?, ?, ?
+    )`;
+
+    const params = [
+        nombreMaterial,
+        ubicacionStock,
+        cantidadMaterial,
+        precioMaterial,
+        estadoRetiro,
+        fechaCompraMateriales,
+        lugardeCompra,
+        destinoMaterial
+    ];
+
+    conection.query(query, params, (err, results) => {
+        if (err) {
+            console.error("Error al ejecutar la consulta:", err);
+            res.status(500).send("Error al crear la compra de material.");
+        } else {
+            res.status(201).send("Compra de material registrada con éxito.");
+        }
+    });
+};
+
+
+
 
 
 //Funcion para eliminar una compra de material

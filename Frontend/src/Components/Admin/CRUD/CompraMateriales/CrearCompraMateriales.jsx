@@ -13,15 +13,23 @@ const CrearCompraMateriales = ({onCompraMaterialRegistrado}) => {
     Swal.fire({
       title: 'Registrar Operaciones',
       html: `
-        <input id="nombreOperacion" placeholder="Nombre Operaciones" class="swal2-input" />
+        <input id="nombreMaterial" placeholder="Nombre del Material class="swal2-input" />
         
-        <input id="tipoOperacion" placeholder="Tipo Operacion" class="swal2-input" />
-        
-        <input id="montoOperacion" type ="number" placeholder="Monto Operacion" class="swal2-input" />
-        
-        <input id="detalleOperacion" placeholder="Detalle de la Operacion" class="swal2-input" />
+        <input id="ubicacionStock" placeholder="Ubicación del Stock" class="swal2-input" />
 
-        <input id="fechaOperacion" placeholder="Fecha de la Operacion" class="swal2-input" />
+        <input id="cantidadMaterial" placeholder="Cantidad de Material" class="swal2-input" />
+
+        <input id="precioMaterial" placeholder="Precio del Material" class="swal2-input" />
+
+        <input id="fechaCompraMateriales" placeholder="Fecha de Compra" class="swal2-input" />
+
+        <input id="estadoRetiro" placeholder="Estado de Retiro" class="swal2-input" />
+
+        <input id="lugardeCompra" placeholder="Lugar de Compra" class="swal2-input" />
+
+        <input id="destinoMaterial" placeholder="Destino del Material" class="swal2-input" />
+-
+
       `,
       confirmButtonText: 'Registrar',//nombre del boton de confirmacion
       showCancelButton: true,//para que aparezca el boton de cancelar
@@ -49,12 +57,12 @@ const CrearCompraMateriales = ({onCompraMaterialRegistrado}) => {
           await axios.post(URL_COMPRA_MATERIALES_CREAR, result.value, {
             headers: { Authorization: `Bearer ${token}` }
           });
-          Swal.fire('¡Éxito!', 'La Operacion fue registrada correctamente.', 'success');
+          Swal.fire('¡Éxito!', 'La compra del material fue registrada correctamente.', 'success');
           onCompraMaterialRegistrado(); 
           closeRegistroModal(); 
         } catch (error) {
-          console.error('Error al registrar la Operacion:', error);
-          Swal.fire('Error', 'Hubo un problema al registrar la operacion.', 'error');
+          console.error('Error al registrar la compra del material:', error);
+          Swal.fire('Error', 'Hubo un problema al registrar la compra del material.', 'error');
         }
       } else {
         closeRegistroModal(); 
