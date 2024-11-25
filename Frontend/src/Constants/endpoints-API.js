@@ -77,6 +77,9 @@ export const URL_DEPARTAMENTOS_ELIMINAR = "http://localhost:8000/departamentos/d
 // ALQUILERES
 
 export const URL_ALQUILERES = "http://localhost:8000/alquiler/";
+export const URL_ALQUILERES_CREAR = "http://localhost:8000/alquiler/create/";
+export const URL_ALQUILERES_EDITAR = "http://localhost:8000/alquiler/edit/";
+export const URL_ALQUILERES_ELIMINAR = "http://localhost:8000/alquiler/delete/";
 
 // PAGOS ALQUILERES
 

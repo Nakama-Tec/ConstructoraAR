@@ -1,6 +1,6 @@
 import { Sidebar, Menu, MenuItem } from 'react-pro-sidebar';
 import { Link } from 'react-router-dom';
-import { FLUJO_CAJA, STOCK, DEPARTAMENTOS, OBRAS, OPERACIONES, LOGIN, VEHICULOS, TERRENOS, VTA_TERRENOS, COMPRA_MATERIALES, VIAJES, PENDIENTES } from "../../Routes/routes";
+import { FLUJO_CAJA, STOCK, DEPARTAMENTOS, OBRAS, OPERACIONES, LOGIN, VEHICULOS, TERRENOS, VTA_TERRENOS, COMPRA_MATERIALES, VIAJES, PENDIENTES, ALQUILER } from "../../Routes/routes";
 import { FaUser, FaUsers, FaMapMarkedAlt, FaMoneyCheckAlt, FaMoneyBillWave,FaCashRegister, FaCar, FaBoxes, FaBuilding, FaHardHat, FaTasks, FaSignInAlt } from 'react-icons/fa';
 
 
@@ -22,6 +22,7 @@ const Aside = () => {
 <MenuItem icon={<FaTasks />} component={<Link to={OPERACIONES} />}> OPERACIONES</MenuItem>
 <MenuItem icon={<FaTasks />} component={<Link to={VIAJES} />}> VIAJES</MenuItem>
 <MenuItem icon={<FaTasks />} component={<Link to={PENDIENTES} />}> PENDIENTES</MenuItem>
+<MenuItem icon={<FaTasks />} component={<Link to={ALQUILER} />}> ALQUILERES</MenuItem>
 <MenuItem icon={<FaSignInAlt />} component={<Link to={LOGIN} />}> LOGIN</MenuItem>
       </Menu>
     </Sidebar>
