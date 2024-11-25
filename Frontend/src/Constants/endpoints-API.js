@@ -31,7 +31,7 @@ export const URL_EMPLEADOS_ELIMINAR = "http://localhost:8000/empleados/delete/";
 // Operaciones
 
 export const URL_OPERACIONES = "http://localhost:8000/Operaciones";
-export const URL_OPERACIONES_CREAR = "http://localhost:8000/Operaciones/create/";
+export const URL_OPERACIONES_CREAR = "http://localhost:8000/Operaciones/create";
 export const URL_OPERACIONES_EDITAR = "http://localhost:8000/Operaciones/edit/";
 export const URL_OPERACIONES_ELIMINAR = "http://localhost:8000/Operaciones/delete/";
 
@@ -88,9 +88,9 @@ export const URL_PAGOS_ALQUILERES_ELIMINAR = "http://localhost:8000/pagosAlquile
 // PENDIENTES
 
 export const URL_PENDIENTES = "http://localhost:8000/pendientes/";
-export const URL_PENDIENTES_CREAR = "http://localhost:8000/pendientes/create/";
-export const URL_PENDIENTES_EDITAR = "http://localhost:8000/pendientes/edit/";
-export const URL_PENDIENTES_ELIMINAR = "http://localhost:8000/pendientes/delete/";
+export const URL_PENDIENTES_CREAR = "http://localhost:8000/pendiente/create/";
+export const URL_PENDIENTES_EDITAR = "http://localhost:8000/pendiente/edit/";
+export const URL_PENDIENTES_ELIMINAR = "http://localhost:8000/pendiente/delete/";
 
 // Stock Materiales
 
@@ -102,7 +102,7 @@ export const URL_STOCK_ELIMINAR = "http://localhost:8000/stockMateriales/delete/
 // Compra de Materiales
 
 export const URL_COMPRA_MATERIALES = "http://localhost:8000/compraMateriales/";
-export const URL_COMPRA_MATERIALES_CREAR = "http://localhost:8000/compraMateriales/create/";
+export const URL_COMPRA_MATERIALES_CREAR = "http://localhost:8000/compraMateriales/create";
 export const URL_COMPRA_MATERIALES_EDITAR = "http://localhost:8000/compraMateriales/edit/";
 export const URL_COMPRA_MATERIALES_ELIMINAR = "http://localhost:8000/compraMateriales/delete/";
 

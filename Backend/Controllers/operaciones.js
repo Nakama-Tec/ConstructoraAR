@@ -1,57 +1,78 @@
-const { conection } = require("../DB/Config")
+const { conection } = require("../DB/Config");
 
-const allOperaciones = (req,res)=>{
-    
-const query = `select * from Operaciones`
-conection.query(query,(err,results)=>{
-    
-    if(err){
-        return res.status(500).json({error:'Error en la base de datos', details: err.message});
-    
-}});
-}
-const singleOperaciones = (req,res)=> {
-  const id = req.params.id
-  const query = `select * from Operaciones where id_operacion = ${id}`
-  conection.query(query,(err,results)=>{
-    if(err){
-        return res.status(500).json({error:'Error en la base de datos', details: err.message});
-    }
-    res.json(results)
-  })
-}
-const createOperaciones =(req,res)=>{
-const {nombreOperacion,tipoOperacion, montoOperacion,detalleOperacion, fechaOperacion} = req.body
-const query = `insert into Operaciones (nombreOperacion, tipoOperacion, montoOperacion,detalleOperacion,fechaOperacion) values (${nombreOperacion}, ${tipoOperacion}, ${montoOperacion},${detalleOperacion}, ${fechaOperacion})`
-conection.query(query,(err,results)=>{
-    if(err){
-        return res.status(500).json({error:'Error en la base de datos', details: err.message});
+// Obtener todas las operaciones activas
+const allOperaciones = (req, res) => {
+  const query = `SELECT * FROM Operaciones WHERE activoOperacion = 1;`;
+  conection.query(query, (err, results) => {
+    if (err) {
+      console.error("Error al obtener operaciones:", err);
+      return res.status(500).json({ error: "Error al obtener operaciones" });
     }
     res.json(results);
-})
-}
-const editOperaciones = (req,res)=>{
-const id = req.params.id;
-const {nombreOperacion,tipoOperacion, montoOperacion,detalleOperacion, fechaOperacion} = req.body
-const query = `update Operaciones set nombreOperacion = ${nombreOperacion}, tipoOperacion = ${tipoOperacion}, montoOperacion = ${montoOperacion},detalleOperacion = ${detalleOperacion}, fechaOperacion = ${fechaOperacion} where id_operacion = ${id}`
-conection.query(query,(err,results)=>{
-    if(err){
-        return res.status(500).json({erro:'Error en la base de datos', details: err.message});
+  });
+};
+
+// Obtener una operación por ID
+const singleOperaciones = (req, res) => {
+  const id = req.params.id;
+  const query = `SELECT * FROM Operaciones WHERE id_operacion = ?`;
+  conection.query(query, [id], (err, results) => {
+    if (err) {
+      console.error("Error al obtener la operación:", err);
+      return res.status(500).json({ error: "Error al obtener la operación" });
     }
     res.json(results);
-})
-}
-const deleteOperaciones = (req,res) =>{
-    const id = req.params.id;
-    const query = `update Operaciones set activoOperacion = 0 where id_operacion = ${id}`
-    conection.query(query,(err,results)=>{
-        if(err){
-            return res.status(500).json({erro:'Error en la base de datos', details: err.message})
-        }
-        res.json(results);
-    })
-}
+  });
+};
 
-module.exports = {allOperaciones,singleOperaciones,createOperaciones,editOperaciones,deleteOperaciones}
+// Crear una nueva operación
+const createOperaciones = (req, res) => {
+  const { nombreOperacion, tipoOperacion, montoOperacion, detalleOperacion, fechaOperacion } = req.body;
+
+  const query = `INSERT INTO Operaciones (nombreOperacion, tipoOperacion, montoOperacion, detalleOperacion, fechaOperacion) VALUES (?, ?, ?, ?, ?)`;
+  const values = [nombreOperacion, tipoOperacion, montoOperacion, detalleOperacion, fechaOperacion];
+
+  conection.query(query, values, (err, results) => {
+    if (err) {
+      console.error("Error al crear operación:", err);
+      return res.status(500).json({ error: "Error al crear operación" });
+    }
+    res.status(201).json({ message: "Operación creada correctamente", id: results.insertId });
+  });
+};
+
+// Editar una operación existente
+const editOperaciones = (req, res) => {
+  const id = req.params.id;
+  const { nombreOperacion, tipoOperacion, montoOperacion, detalleOperacion, fechaOperacion } = req.body;
+
+  const query = `UPDATE Operaciones SET nombreOperacion = ?, tipoOperacion = ?, montoOperacion = ?, detalleOperacion = ?, fechaOperacion = ? WHERE id_operacion = ?`;
+  const values = [nombreOperacion, tipoOperacion, montoOperacion, detalleOperacion, fechaOperacion, id];
+
+  conection.query(query, values, (err, results) => {
+    if (err) {
+      console.error("Error al editar operación:", err);
+      return res.status(500).json({ error: "Error al editar operación" });
+    }
+    res.json({ message: "Operación actualizada correctamente" });
+  });
+};
+
+// Eliminar una operación (marcar como inactiva)
+const deleteOperaciones = (req, res) => {
+  const id = req.params.id;
+  const query = `UPDATE Operaciones SET activoOperacion = 0 WHERE id_operacion = ?`;
+
+  conection.query(query, [id], (err, results) => {
+    if (err) {
+      console.error("Error al eliminar operación:", err);
+      return res.status(500).json({ error: "Error al eliminar operación" });
+    }
+    res.json({ message: "Operación eliminada correctamente" });
+  });
+};
+
+module.exports = { allOperaciones, singleOperaciones, createOperaciones, editOperaciones, deleteOperaciones };
+
 
 

@@ -13,14 +13,12 @@ import Swal from 'sweetalert2';
 const MainVehiculos = () => {
   const token = useAuthStore((state) => state.token);
   const { setRegistroSeleccionado, openRegistroModal } = useRegistroStore();
-
   const [filtrado, setFiltrado] = useState('');
   const [datos, setDatos] = useState([]);
 
   const getVehiculos = async () => {
     try {
       const response = await axios.get(URL_VEHICULOS, { headers: { Authorization: `Bearer ${token}` } });
-      console.log(response.data)
       setDatos(response.data);
     } catch (error) {
       console.error('Error al obtener vehículos:', error);
