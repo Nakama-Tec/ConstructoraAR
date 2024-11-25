@@ -30,7 +30,7 @@ export const URL_EMPLEADOS_ELIMINAR = "http://localhost:8000/empleados/delete/";
 
 // Operaciones
 
-export const URL_OPERACIONES = "http://localhost:8000/operaciones/";
+export const URL_OPERACIONES = "http://localhost:8000/Operaciones";
 export const URL_OPERACIONES_CREAR = "http://localhost:8000/operaciones/create/";
 export const URL_OPERACIONES_EDITAR = "http://localhost:8000/operaciones/edit/";
 export const URL_OPERACIONES_ELIMINAR = "http://localhost:8000/operaciones/delete/";
@@ -91,9 +91,9 @@ export const URL_PAGOS_ALQUILERES_ELIMINAR = "http://localhost:8000/pagosAlquile
 // PENDIENTES
 
 export const URL_PENDIENTES = "http://localhost:8000/pendientes/";
-export const URL_PENDIENTES_CREAR = "http://localhost:8000/pendientes/create/";
-export const URL_PENDIENTES_EDITAR = "http://localhost:8000/pendientes/edit/";
-export const URL_PENDIENTES_ELIMINAR = "http://localhost:8000/pendientes/delete/";
+export const URL_PENDIENTES_CREAR = "http://localhost:8000/pendiente/create/";
+export const URL_PENDIENTES_EDITAR = "http://localhost:8000/pendiente/edit/";
+export const URL_PENDIENTES_ELIMINAR = "http://localhost:8000/pendiente/delete/";
 
 // Stock Materiales
 

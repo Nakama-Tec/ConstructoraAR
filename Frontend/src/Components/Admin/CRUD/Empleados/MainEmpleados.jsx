@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import { useReactTable, getCoreRowModel, flexRender, getPaginationRowModel, getFilteredRowModel } from '@tanstack/react-table';
 import '../../../../Styles/table.css';
 import { URL_EMPLEADOS,URL_EMPLEADOS_ELIMINAR } from '../../../../Constants/endpoints-API';
+import CrearEmpleado from './CrearEmpleados';
+import EditarEmpleado from './EditarEmpleados';
 import useAuthStore from '../../../../Context/useAuthStore';
 import useRegistroStore from '../../../../Context/useRegistroStore';
 import Aside from '../../../Layout/Aside';
@@ -20,7 +22,7 @@ const MainEmpleados = () => {
       console.log(response.data)
       setDatos(response.data);
     } catch (error) {
-      console.error('Error al obtener el empleado:', error);
+      Swal.fire('Error', 'Hubo un problema al eliminar el departamento.', 'error');
     }
   };
   
@@ -52,7 +54,7 @@ const MainEmpleados = () => {
   };
 
   const columns = [
-    { header: 'Nº', accessorKey: 'id_empleado' },
+    { header: 'Nº', accessorKey: 'id_Empleado' },
     { header: 'Nombre', accessorKey: 'nombreEmpleado' },
     { header: 'Apellido', accessorKey: 'apellidoEmpleado' },
     { header: 'DNI', accessorKey: 'DNIEmpleado' },
@@ -97,7 +99,7 @@ const MainEmpleados = () => {
   }, []);
 
   return (
-    <div>
+<div>
       <p className="text-black font-semibold text-4xl display flex justify-center m-5">Registros de Empleados</p>
       <div className="input-search">
         <input
@@ -153,6 +155,8 @@ const MainEmpleados = () => {
           Página Siguiente
         </button>
       </div>
+      <EditarEmpleado onEmpleadoEditado={getEmpleado} />
+      <CrearEmpleado onEmpleadoRegistrado={getEmpleado} />
       </div>
   )
 }

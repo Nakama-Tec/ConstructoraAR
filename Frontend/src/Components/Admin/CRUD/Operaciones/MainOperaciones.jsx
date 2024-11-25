@@ -1,38 +1,34 @@
 import { useState, useEffect } from 'react';
 import { useReactTable, getCoreRowModel, flexRender, getPaginationRowModel, getFilteredRowModel } from '@tanstack/react-table';
+import '../../../../Styles/table.css';
+import { URL_OPERACIONES,URL_OPERACIONES_ELIMINAR } from '../../../../Constants/endpoints-API';
+import useAuthStore from '../../../../Context/useAuthStore';
+import useRegistroStore from '../../../../Context/useRegistroStore';
+import Aside from '../../../Layout/Aside';
 import axios from 'axios';
 import Swal from 'sweetalert2';
-import { URL_VTA_TERRENOS, URL_VTA_TERRENOS_ELIMINAR } from '../../../../../Constants/endpoints-API';
-import EditarVtaTerrenos from './EditarVtaTerrenos';
-import CrearVtaTerrenos from './CrearVtaTerrenos';
-import useAuthStore from '../../../../../Context/useAuthStore';
-import useRegistroStore from '../../../../../Context/useRegistroStore';
-import Aside from '../../../../Layout/Aside';
-import '../../../../../Styles/table.css';
 
-const MainVtaTerrenos = () => {
+const MainOperaciones = () => {
+    const token = useAuthStore((state) => state.token);
+  const { setRegistroSeleccionado, openRegistroModal } = useRegistroStore();//objeto que se importa de useStockStore
+  const [filtrado, setFiltrado] = useState('');
+  const [datos, setDatos] = useState([]);
 
-    const { setRegistroSeleccionado, openRegistroModal } = useRegistroStore();
-    const token = useAuthStore((state) => state.token); 
-    
-    const [filtrado, setFiltrado] = useState('');
-    const [datos, setDatos] = useState([]);
+  const getOperaciones = async () => {
+    try {
+      const response = await axios.get(URL_OPERACIONES, { headers: { Authorization: `Bearer ${token}` } });
+      console.log(response.data)
+      setDatos(response.data);
+    } catch (error) {
+      console.error('Error al obtener la operacion:', error);
+    }
+  };
   
-  
-    const getVtaTerrenos = async () => {
-      try {
-        const response = await axios.get(URL_VTA_TERRENOS, { headers: { Authorization: `Bearer ${token}` } });
-        setDatos(response.data);
-      } catch (error) {
-        console.error("Error al obtener las ventas de terrenos:", error);
-      }
-    };
-
-    // borrado logico
-  const handleEliminarVtaTerreno = async (vtaTerreno) => {
+// borrado logico
+  const handleEliminarOperacion = async (operacion) => {
     const confirmacion = await Swal.fire({
       title: '¿Estás seguro?',
-      text: `¿Deseas eliminar la venta?`,
+      text: `¿Deseas eliminar la operacion ${operacion.nombreOperacion}?`,
       icon: 'warning',
       showCancelButton: true,
       confirmButtonText: 'Sí, eliminar',
@@ -42,31 +38,31 @@ const MainVtaTerrenos = () => {
     if (confirmacion.isConfirmed) {
       try {
         await axios.put(
-          `${URL_VTA_TERRENOS_ELIMINAR}${vtaTerreno.id_ventaTerreno}`,
-          { ...vtaTerreno },
+          `${URL_OPERACIONES_ELIMINAR}${operacion.id_operacion}`,
+          { ...operacion }, // Se envía el stock con el campo "eliminado" en true
           { headers: { Authorization: `Bearer ${token}` } }
         );
-        Swal.fire('Eliminado!', 'La venta del terreno ha sido eliminado correctamente.', 'success');
-        getVtaTerrenos(); 
+        Swal.fire('Eliminado!', 'La operacion ha sido eliminado correctamente.', 'success');
+        getOperaciones(); 
       } catch (error) {
-        console.error('Error al eliminar la venta del terreno:', error);
-        Swal.fire('Error', 'Hubo un problema al eliminar la venta del terreno.', 'error');
+        console.error('Error al eliminar la operacion:', error);
+        Swal.fire('Error', 'Hubo un problema al eliminar la operacion.', 'error');
       }
     }
   };
-  
-    const columns = [
-      { header: 'Nº', accessorKey: 'id_ventaTerreno' },
-      { header: 'Direccion', accessorKey: 'DireccionTerreno' },
-      { header: 'Precio', accessorKey: 'PrecioTerreno' },
-      { header: 'Cliente', accessorFn: row => `${row.NombreCliente} ${row.ApellidoCliente}` },
-      { header: 'Telefono', accessorKey: 'TelefonoCliente' },
-      { header: 'Condicion', accessorKey: 'CondicionCliente' },
-      { header: 'Fecha de Venta', accessorKey: 'FechaVentaTerreno' },
-      {
-        header: 'Acciones',
-        cell: ({ row }) => (
-          <div className="flex gap-2">
+
+  const columns = [
+    { header: 'Nº', accessorKey: 'id_operacion' },
+    { header: 'Operacion', accessorKey: 'nombreOperacion' },
+    { header: 'Tipo', accessorKey: 'tipoOperacion' },
+    { header: 'Monto', accessorKey: 'montoOperacion' },
+    { header: 'Detalle', accessorKey: 'detalleOperacion' },
+    { header: 'Fecha', accessorKey: 'fechaOperacion' },
+
+    {
+      header: 'Acciones',
+      cell: ({ row }) => (
+        <div className="flex gap-2">
           <button
             onClick={() => setRegistroSeleccionado(row.original)}
             className="bg-orange-600 text-white px-4 py-2 rounded-full transition duration-200 ease-in-out hover:bg-orange-800 active:bg-orange-900 focus:outline-none"
@@ -74,35 +70,35 @@ const MainVtaTerrenos = () => {
             Editar
           </button>
           <button
-            onClick={() => handleEliminarVtaTerreno(row.original)}
+            onClick={() => handleEliminarOperacion(row.original)}
             className="bg-red-600 text-white px-4 py-2 rounded-full transition duration-200 ease-in-out hover:bg-red-800 active:bg-red-900 focus:outline-none"
           >
             Eliminar
           </button>
         </div>
-        )
-      }
-    ];
-  
-    const table = useReactTable({
-      data: datos,
-      columns,
-      getCoreRowModel: getCoreRowModel(),
-      getPaginationRowModel: getPaginationRowModel(),
-      getFilteredRowModel: getFilteredRowModel(),
-      state: {
-        globalFilter: filtrado
-      },
-      onGlobalFilterChange: setFiltrado
-    });
-  
-    useEffect(() => {
-      getVtaTerrenos();
-    }, []);
-  
-    return (
-      <div>
-      <p className="text-black font-semibold text-4xl display flex justify-center m-5">Registros de Ventas de Terrenos</p>
+      )
+    }
+  ];
+
+  const table = useReactTable({
+    data: datos,
+    columns,
+    getCoreRowModel: getCoreRowModel(),
+    getPaginationRowModel: getPaginationRowModel(),
+    getFilteredRowModel: getFilteredRowModel(),
+    state: {
+      globalFilter: filtrado
+    },
+    onGlobalFilterChange: setFiltrado
+  });
+
+  useEffect(() => {
+    getOperaciones();
+  }, []);
+
+  return (
+    <div>
+      <p className="text-black font-semibold text-4xl display flex justify-center m-5">Registros de Operaciones</p>
       <div className="input-search">
         <input
           className="text-black"
@@ -117,7 +113,7 @@ const MainVtaTerrenos = () => {
           onClick={openRegistroModal}
           className="bg-green-600 text-white px-4 py-2 m-2 rounded-full transition duration-200 ease-in-out hover:bg-green-800 active:bg-green-900 focus:outline-none position relative left-64"
         >
-          Registrar Venta de Terreno
+          Registrar Operacion
         </button>
       </div>
       <div className='display flex'>
@@ -157,10 +153,8 @@ const MainVtaTerrenos = () => {
           Página Siguiente
         </button>
       </div>
-      <EditarVtaTerrenos onVtaTerrenoEditado={getVtaTerrenos} />
-      <CrearVtaTerrenos onVtaTerrenoRegistrado={getVtaTerrenos} />
       </div>
-    );
-  }
+  )
+}
 
-export default MainVtaTerrenos
+export default MainOperaciones

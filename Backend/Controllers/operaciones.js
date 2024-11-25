@@ -1,13 +1,13 @@
 const { conection } = require("../DB/Config")
 
 const allOperaciones = (req,res)=>{
-const query = `select * from Operaciones`
-conection.query(query,(err,results)=>{
-    if(err){
-        return res.status(500).json({error:'Error en la base de datos', details: err.message});
-    
-}});
+    const query = `select * from Operaciones where activoOperacion=1;`
+    conection.query(query, (err, results) => {
+        if (err) throw err;
+        res.json(results)
+    })
 }
+
 const singleOperaciones = (req,res)=> {
   const id = req.params.id
   const query = `select * from Operaciones where id_operacion = ${id}`

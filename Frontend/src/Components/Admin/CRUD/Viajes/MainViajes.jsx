@@ -22,7 +22,6 @@ const MainViajes = () => {
     const getViajes = async () => {
       try {
         const response = await axios.get(URL_VIAJES, { headers: { Authorization: `Bearer ${token}` } });
-        console.log("Viajes:", response.data);
         setDatos(response.data);
       } catch (error) {
         console.error("Error al obtener viajes:", error);
@@ -59,8 +58,8 @@ const MainViajes = () => {
 
     const columns = [
       { header: 'Nº Viaje', accessorKey: 'id_viaje' },
-      { header: 'Nº Vehiculo', accessorKey: 'id_vehiculo' },
-      { header: 'Nº Obra', accessorKey: 'id_obra' },
+      { header: 'Nº Vehiculo', accessorKey: 'patenteVehiculo' },
+      { header: 'Nº Obra', accessorKey: 'nombreObra' },
       { header: 'Fecha Viaje', accessorKey: 'fechaViaje' },
       {
         header: 'Acciones',

@@ -67,7 +67,6 @@ const CrearDepto = ({ onDeptoRegistrado }) => {
             onDeptoRegistrado(); 
             closeRegistroModal(); 
           } catch (error) {
-            console.error('Error al registrar vehículo:', error);
             Swal.fire('Error', 'Hubo un problema al registrar el vehículo.', 'error');
           }
         } else {

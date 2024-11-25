@@ -1,7 +1,7 @@
 const { conection } = require("../DB/Config")
 
 const allPedientes = (req, res) => {
-    const query = `select * from Pendientes;`;
+    const query = `select * from Pendientes where activoPendiente=1;`;
     conection.query(query, (err, results) => {
         if (err) throw err;
         res.json(results);
@@ -19,8 +19,8 @@ const singlePendiente = (req, res) => {
 
 
 const createPendiente = (req, res) => {
-    const { fechaPendiente, descripcionPendiente, id_usuario } = req.body;
-    const query = `insert into Pendientes (fechaPendiente, descripcionPendiente, id_usuario, activoPendiente) values ('${fechaPendiente}', '${descripcionPendiente}', '${id_usuario}', '${activoPendiente}');`;
+    const { Descripcion, fechaCreacion, fechaLimite, prioridad, estado } = req.body;
+    const query = `insert into Pendientes (Descripcion, fechaCreacion, fechaLimite, prioridad, estado) values ('${Descripcion}', '${fechaCreacion}', '${fechaLimite}', '${prioridad}', '${estado}');`;
     conection.query(query, (err, results) => {
         if (err) throw err;
         res.send(results);
@@ -28,8 +28,9 @@ const createPendiente = (req, res) => {
 };
 
 const editPendiente = (req, res) => {
-    const { id_pendiente, fechaPendiente, descripcionPendiente } = req.body;
-    const query = `update Pendientes set fechaPendiente= '${fechaPendiente}', descripcionPendiente= '${descripcionPendiente}', activoPendiente= ${activoPendiente} where id_pendiente = ${id_pendiente};`;
+    const { Descripcion, fechaCreacion, fechaLimite, prioridad, estado } = req.body;
+    const { id } = req.params;
+    const query = `update Pendientes set Descripcion='${Descripcion}', fechaCreacion='${fechaCreacion}', fechaLimite='${fechaLimite}', prioridad='${prioridad}', estado='${estado}' where id_pendiente=${id};`;
     conection.query(query, (err, results) => {
         if (err) throw err;
         res.send(results);
@@ -38,7 +39,7 @@ const editPendiente = (req, res) => {
 
 const deletePendiente = (req, res) => {
     const id = req.params.id;
-    const query = `update Pendientes set activoPendiente=0 where id_pendiente = ${id};`;
+    const query = `update Pendientes set activoPendiente=0 where id_pendiente=${id};`;
     conection.query(query, (err, results) => {
         if (err) throw err;
         res.send(results);

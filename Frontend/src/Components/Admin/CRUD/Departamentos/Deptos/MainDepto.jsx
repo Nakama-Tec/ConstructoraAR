@@ -21,7 +21,6 @@ const MainDepto = () => {
   const getDepartamentos = async () => {
     try {
       const response = await axios.get(URL_DEPARTAMENTOS, { headers: { Authorization: `Bearer ${token}` } });
-      console.log(response.data)
       setDatos(response.data);
     } catch (error) {
       console.error('Error al obtener departamentos:', error);
@@ -49,7 +48,6 @@ const MainDepto = () => {
         Swal.fire('Eliminado!', 'El departamento ha sido eliminado correctamente.', 'success');
         getDepartamentos(); 
       } catch (error) {
-        console.error('Error al eliminar departamento:', error);
         Swal.fire('Error', 'Hubo un problema al eliminar el departamento.', 'error');
       }
     }

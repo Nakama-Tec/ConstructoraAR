@@ -1,6 +1,6 @@
 // Importaciones de librerias
 import { BrowserRouter, Routes, Route } from 'react-router-dom' // estas librerias permiten el manejo de rutas en la aplicacion
-import {HOME, HOME_SISTEMA_GESTION, LOGIN,EMPLEADOS, VEHICULOS, PAGOS, FLUJO_CAJA, LIBRO_DIARIO,TERRENOS ,STOCK, CLIENTES, HOME_ADMIN, DEPARTAMENTOS, OBRAS, OPERACIONES, VIAJES, USUARIO, UNAUTHORIZED, VTA_TERRENOS, PAGOS_DPTO, PENDIENTES, COMPRA_MATERIALES, ALQUILER} from "./Routes/routes"
+import {HOME, HOME_SISTEMA_GESTION, LOGIN,EMPLEADOS, VEHICULOS, PAGOS, FLUJO_CAJA, LIBRO_DIARIO,TERRENOS ,STOCK, CLIENTES, DEPARTAMENTOS, OBRAS, OPERACIONES, VIAJES, USUARIO, UNAUTHORIZED, VTA_TERRENOS, PAGOS_DPTO, PENDIENTES, COMPRA_MATERIALES, ALQUILER} from "./Routes/routes"
 
 
 // Paginas
@@ -13,6 +13,7 @@ import CompraMateriales from "./Pages/CompraMateriales/CompraMateriales"
 import Stock from "./Pages/Stock/Stock"
 import Clientes from "./Pages/Clientes/Clientes"
 import Departamentos from "./Pages/Departamentos/Departamentos"
+import Alquiler from "./Pages/Alquileres/Alquileres"
 import Obras from "./Pages/Obras/Obras"
 import Operaciones from "./Pages/Operaciones/Operaciones"
 import Empleados from "./Pages/Empleados/Empleados"
@@ -26,8 +27,6 @@ import HomeSistemaGestion from './Pages/Home/SistemaGestion/HomeSistemaGestion'
 import VtaTerrenos from './Pages/VtaTerrenos/VtaTerrenos'
 import PagosDepartamentos from './Pages/Departamentos/PagosDepartamentos'
 import Pendientes from './Pages/Pendientes/Pendientes'
-import HomeAdmin from './Pages/HomeAdmin/Admin'
-import Alquiler from './Pages/Alquileres/Alquileres'
 
 
 function App() {
@@ -45,7 +44,6 @@ const roleRequired = "admin"//rol requerido para acceder a las rutas protegidas
         {/* Rutas protegidas */}
        
         <Route path={HOME_SISTEMA_GESTION} element={<ProtectedRoute roleRequired={roleRequired}> <HomeSistemaGestion/></ProtectedRoute>} />
-        <Route path={HOME_ADMIN} element={<ProtectedRoute roleRequired={roleRequired}> <HomeAdmin/></ProtectedRoute>} /> 
         <Route path={FLUJO_CAJA} element={<ProtectedRoute roleRequired={roleRequired}> <FlujoCaja/></ProtectedRoute>} />
         <Route path={LIBRO_DIARIO} element={<ProtectedRoute roleRequired={roleRequired}> <LibroDiario/></ProtectedRoute>} />
         <Route path={TERRENOS} element={<ProtectedRoute roleRequired={roleRequired}> <Terrenos/></ProtectedRoute>} />
@@ -63,7 +61,6 @@ const roleRequired = "admin"//rol requerido para acceder a las rutas protegidas
         <Route path={PENDIENTES} element={<ProtectedRoute roleRequired={roleRequired}> <Pendientes/></ProtectedRoute>} />
         <Route path={VIAJES} element={<ProtectedRoute roleRequired={roleRequired}> <Viajes/></ProtectedRoute>} />
         <Route path={ALQUILER} element={<ProtectedRoute roleRequired={roleRequired}> <Alquiler/></ProtectedRoute>} />
-
         {/* Ruta no autorizada */}
         <Route path={UNAUTHORIZED} element={<div><h3>No autorizado</h3></div>} />
         

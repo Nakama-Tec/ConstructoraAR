@@ -16,7 +16,6 @@ const EditarViaje = ({ onViajeEditado }) => {
     const getVehiculos = async () => {
         try {
           const response = await axios.get(URL_VEHICULOS, { headers: { Authorization: `Bearer ${token}` } });
-          console.log(response.data)
           setVehiculos(response.data);
         } catch (error) {
           console.error('Error al obtener vehículos:', error);
@@ -26,7 +25,6 @@ const EditarViaje = ({ onViajeEditado }) => {
       const getObra = async () => {
         try {
           const response = await axios.get(URL_OBRAS, { headers: { Authorization: `Bearer ${token}` } });
-          console.log(response.data)
           setObras(response.data);
         } catch (error) {
           console.error('Error al obtener la obra:', error);
@@ -46,19 +44,18 @@ const EditarViaje = ({ onViajeEditado }) => {
             .map(
               (vehiculo) =>
                 `<option value="${vehiculo.id_vehiculo}" ${
-                  vehiculo.id === registroSeleccionado.id_vehiculo ? 'selected' : ''
+                  vehiculo.id_vehiculo === registroSeleccionado.id_vehiculo ? 'selected' : ''
                 }>${vehiculo.patenteVehiculo}</option>`
             )
             .join('')}
         </select>
-
 
         <select id="select_obra" class="swal2-select">
           ${obras
             .map(
               (obra) =>
                 `<option value="${obra.id_obra}" ${
-                  obra.id === registroSeleccionado.id_obra ? 'selected' : ''
+                  obra.id_obra === registroSeleccionado.id_obra ? 'selected' : ''
                 }>${obra.nombreObra}</option>`
             )
             .join('')}

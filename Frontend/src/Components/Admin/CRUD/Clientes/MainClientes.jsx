@@ -1,15 +1,19 @@
 import { useState, useEffect } from 'react';
 import { useReactTable, getCoreRowModel, flexRender, getPaginationRowModel, getFilteredRowModel } from '@tanstack/react-table';
-import axios from 'axios';
-import Button from 'react-bootstrap/Button';
+import EditarCliente from './EditarClientes';
+import CrearCliente from './CrearClientes';
 import '../../../../Styles/table.css';
-import { URL_CLIENTES } from '../../../../Constants/endpoints-API';
+import { URL_CLIENTES, URL_CLIENTES_ELIMINAR } from '../../../../Constants/endpoints-API';
 import useAuthStore from '../../../../Context/useAuthStore';
+import useRegistroStore from '../../../../Context/useRegistroStore';
 import Aside from '../../../Layout/Aside';
+import axios from 'axios';
+import Swal from 'sweetalert2';
 
 const MainClientes = () => {
 
   const token = useAuthStore((state) => state.token);
+  const { setRegistroSeleccionado, openRegistroModal } = useRegistroStore();
 
   const [filtrado, setFiltrado] = useState('');
   const [datos, setDatos] = useState([]);
@@ -24,6 +28,32 @@ const MainClientes = () => {
     }
   };
 
+// borrado logico
+const handleEliminarCliente = async (cliente) => {
+  const confirmacion = await Swal.fire({
+    title: '¿Estás seguro?',
+    text: `¿Deseas eliminar al cliente "${cliente.nombreCliente} ${cliente.apellidoCliente}"?`,
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonText: 'Sí, eliminar',
+    cancelButtonText: 'Cancelar'
+  });
+
+  if (confirmacion.isConfirmed) {
+    try {
+      await axios.put(
+        `${URL_CLIENTES_ELIMINAR}${cliente.id_cliente}`,
+        { ...cliente },
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+      Swal.fire('Eliminado!', 'El cliente ha sido eliminado correctamente.', 'success');
+      getClientes(); 
+    } catch (error) {
+      Swal.fire('Error', 'Hubo un problema al eliminar el cliente.', 'error');
+    }
+  }
+};
+
   const columns = [
     { header: 'Nº', accessorKey: 'id_cliente' },
     { header: 'Nombre', accessorFn: row => `${row.nombreCliente} ${row.apellidoCliente}` },
@@ -36,9 +66,20 @@ const MainClientes = () => {
     {
       header: 'Acciones',
       cell: ({ row }) => (
-        <Button onClick={() => console.log("Editar:", row.original.id_cliente)} className='bg-orange-600 text-white px-4 py-2 rounded-full transition duration-200 ease-in-out hover:bg-orange-800 active:bg-orange-900 focus:outline-none"'>
-          Editar Cliente
-        </Button>
+        <div className="flex gap-2">
+          <button
+            onClick={() => setRegistroSeleccionado(row.original)}
+            className="bg-orange-600 text-white px-4 py-2 rounded-full transition duration-200 ease-in-out hover:bg-orange-800 active:bg-orange-900 focus:outline-none"
+          >
+            Editar
+          </button>
+          <button
+            onClick={() => handleEliminarCliente(row.original)}
+            className="bg-red-600 text-white px-4 py-2 rounded-full transition duration-200 ease-in-out hover:bg-red-800 active:bg-red-900 focus:outline-none"
+          >
+            Eliminar
+          </button>
+        </div>
       )
     }
   ];
@@ -60,8 +101,8 @@ const MainClientes = () => {
   }, []);
 
   return (
-    <div>
-      <h3 className="text-white text-opacity-50">Visualizando los Pagos</h3>
+<div>
+      <p className="text-black font-semibold text-4xl display flex justify-center m-5">Registros de Clientes</p>
       <div className="input-search">
         <input
           className="text-black"
@@ -71,8 +112,16 @@ const MainClientes = () => {
           onChange={(e) => setFiltrado(e.target.value)}
         />
       </div>
+      <div className="mb-4">
+        <button
+          onClick={openRegistroModal}
+          className="bg-green-600 text-white px-4 py-2 m-2 rounded-full transition duration-200 ease-in-out hover:bg-green-800 active:bg-green-900 focus:outline-none position relative left-64"
+        >
+          Registrar Cliente
+        </button>
+      </div>
       <div className='display flex'>
-      <div className='position relative top-8'>
+        <div className='position relative top-8'>
       <Aside/>
         </div>
       <table className="table">
@@ -101,14 +150,16 @@ const MainClientes = () => {
       </table>
       </div>
       <div className="btn-pages">
-        <button className='m-2 p-2 bg-zinc-900 text-white h-12 rounded-[8px] font-semibold text-[16px]' onClick={() => table.previousPage()} disabled={!table.getCanPreviousPage()}>
+        <button className="position relative top-1 m-2 p-2 bg-zinc-900 text-white h-12 rounded-[8px] font-semibold text-[16px]" onClick={() => table.previousPage()} disabled={!table.getCanPreviousPage()}>
           Página Anterior
         </button>
-        <button className='m-2 p-2 bg-zinc-900 text-white h-12 rounded-[8px] font-semibold text-[16px]' onClick={() => table.nextPage()} disabled={!table.getCanNextPage()}>
+        <button className=" position relative top-1 m-2 p-2 bg-zinc-900 text-white h-12 rounded-[8px] font-semibold text-[16px]" onClick={() => table.nextPage()} disabled={!table.getCanNextPage()}>
           Página Siguiente
         </button>
       </div>
-    </div>
+      <EditarCliente onClienteRegistrado={getClientes} />
+      <CrearCliente onClienteRegistrado={getClientes} />
+      </div>
   );
 }
 
