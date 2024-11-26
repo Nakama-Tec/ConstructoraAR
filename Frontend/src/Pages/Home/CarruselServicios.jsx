@@ -3,7 +3,7 @@ import { blogs } from "../../data/data";
 import CardBlog from "../../Components/CardBlog";
 
 const CarruselServicios = () => {
-  const carouselBlogs = [...blogs, ...blogs];
+  const carouselBlogs = [...blogs, ...blogs, ...blogs];
 
   return (
     <div className="Carrousel">
