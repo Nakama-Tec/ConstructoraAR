@@ -17,15 +17,11 @@ const LoginPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(URL_LOGIN, {
-        nombreUsuario,
-        passwordUsuario,
-      });
+     
+      const response = await axios.post(URL_LOGIN, {nombreUsuario,passwordUsuario });
       setToken(response.data.token);
 
-      axios.defaults.headers.common[
-        "Authorization"
-      ] = `Bearer ${response.data.token}`; //esto es para que el token se envie en cada request
+      axios.defaults.headers.common["Authorization"] = `Bearer ${response.data.token}`; //esto es para que el token se envie en cada request
 
       const decodedToken = JSON.parse(atob(response.data.token.split(".")[1])); //esto es para decodificar el token y obtener el rol del usuario
       setUserRole(decodedToken.role);
