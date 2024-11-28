@@ -5,7 +5,7 @@ import HeaderAdmin from '../../Components/Layout/HeaderAdmin'
 const Operaciones = () => {
   return (
     <>
-    <HeaderAdmin/>
+    {/* <HeaderAdmin/> */}
       <MainOperaciones/>
     </>
   )
