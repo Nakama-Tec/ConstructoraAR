@@ -9,6 +9,7 @@ import useRegistroStore from '../../../../Context/useRegistroStore';
 import useAuthStore from '../../../../Context/useAuthStore';
 import Aside from '../../../Layout/Aside';
 import '../../../../Styles/table.css';
+import VerTerrenos from './VerTerrenos';
 
 const MainTerrenos = () => {
 
@@ -64,6 +65,12 @@ const MainTerrenos = () => {
         header: 'Acciones',
         cell: ({ row }) => (
           <div className="flex gap-2">
+            <button
+            onClick={() => setRegistroSeleccionado(row.original)}
+            className="bg-blue-600 text-white px-4 py-2 rounded-full transition duration-200 ease-in-out hover:bg-blue-800 active:bg-blue-900 focus:outline-none"
+          >
+            Ver más
+          </button>
           <button
             onClick={() => setRegistroSeleccionado(row.original)}
             className="bg-orange-600 text-white px-4 py-2 rounded-full transition duration-200 ease-in-out hover:bg-orange-800 active:bg-orange-900 focus:outline-none"
@@ -156,6 +163,7 @@ const MainTerrenos = () => {
       </div>
       <EditarTerrenos onTerrenoEditado={getTerrenos} />
       <CrearTerrenos onTerrenoRegistrado={getTerrenos} />
+      <VerTerrenos onTerrenoVer={getTerrenos} />
       </div>
     );
   }

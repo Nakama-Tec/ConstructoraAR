@@ -4,6 +4,7 @@ import '../../../../Styles/table.css';
 import { URL_EMPLEADOS,URL_EMPLEADOS_ELIMINAR } from '../../../../Constants/endpoints-API';
 import CrearEmpleado from './CrearEmpleados';
 import EditarEmpleado from './EditarEmpleados';
+import VerEmpleados from './VerEmpleados';
 import useAuthStore from '../../../../Context/useAuthStore';
 import useRegistroStore from '../../../../Context/useRegistroStore';
 import Aside from '../../../Layout/Aside';
@@ -52,11 +53,10 @@ const MainEmpleados = () => {
       }
     }
   };
-
+//     { header: 'Nombre y Apellido', accessorFn: row => `${row.nombreCliente} ${row.apellidoCliente}` },
   const columns = [
     { header: 'Nº', accessorKey: 'id_Empleado' },
-    { header: 'Nombre', accessorKey: 'nombreEmpleado' },
-    { header: 'Apellido', accessorKey: 'apellidoEmpleado' },
+    { header: 'Nombre y Apellido', accessorFn: row => `${row.nombreEmpleado} ${row.apellidoEmpleado}` },
     { header: 'DNI', accessorKey: 'DNIEmpleado' },
     { header: 'Telefono', accessorKey: 'telefono' },
     { header: 'Direccion', accessorKey: 'direccion' },
@@ -65,6 +65,12 @@ const MainEmpleados = () => {
       header: 'Acciones',
       cell: ({ row }) => (
         <div className="flex gap-2">
+            <button
+            onClick={() => setRegistroSeleccionado(row.original)}
+            className="bg-blue-600 text-white px-4 py-2 rounded-full transition duration-200 ease-in-out hover:bg-blue-800 active:bg-blue-900 focus:outline-none"
+          >
+            Ver más
+          </button>
           <button
             onClick={() => setRegistroSeleccionado(row.original)}
             className="bg-orange-600 text-white px-4 py-2 rounded-full transition duration-200 ease-in-out hover:bg-orange-800 active:bg-orange-900 focus:outline-none"
@@ -157,6 +163,7 @@ const MainEmpleados = () => {
       </div>
       <EditarEmpleado onEmpleadoEditado={getEmpleado} />
       <CrearEmpleado onEmpleadoRegistrado={getEmpleado} />
+      <VerEmpleados onEmpleadoVer={getEmpleado} />
       </div>
   )
 }

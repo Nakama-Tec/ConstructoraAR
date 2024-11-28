@@ -47,7 +47,7 @@ conection.connect((error) => {
 app.get("/", (req, res) => {
     console.log("API FUNCIONANDO")
     res.send({message: "CONSTRUCTORA AR - API CONECTADA ✓"})
-})
+}) 
 
 
 app.listen(port, () => {

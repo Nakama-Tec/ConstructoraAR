@@ -9,6 +9,7 @@ import useRegistroStore from '../../../../Context/useRegistroStore';
 import Aside from '../../../Layout/Aside';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import VerPendiente from './VerPendiente';
 const MainPendiente = () => {
 
   const token = useAuthStore((state) => state.token);
@@ -64,6 +65,12 @@ const MainPendiente = () => {
         header: 'Acciones',
         cell: ({ row }) => (
 <div className="flex gap-2">
+          <button
+            onClick={() => setRegistroSeleccionado(row.original)}
+            className="bg-blue-600 text-white px-4 py-2 rounded-full transition duration-200 ease-in-out hover:bg-blue-800 active:bg-blue-900 focus:outline-none"
+          >
+            Ver más
+          </button>
           <button
             onClick={() => setRegistroSeleccionado(row.original)}
             className="bg-orange-600 text-white px-4 py-2 rounded-full transition duration-200 ease-in-out hover:bg-orange-800 active:bg-orange-900 focus:outline-none"
@@ -156,6 +163,7 @@ const MainPendiente = () => {
       </div>
       <EditarPendiente onPendienteEditado={getPendientes} />
       <CrearPendiente onPendienteRegistrado={getPendientes} />
+      <VerPendiente onPendientesVer={getPendientes} />
       </div>
     );
   }

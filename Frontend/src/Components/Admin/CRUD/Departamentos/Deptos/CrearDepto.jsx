@@ -28,7 +28,10 @@ const CrearDepto = ({ onDeptoRegistrado }) => {
 
           <input id="contratoDescripcion" placeholder="Detalles de Contrato" class="swal2-input" />
 
-          <input id="disponibilidadDepartamento" placeholder="Disponibilidad" class="swal2-input" />
+          <select id="disponibilidadDepartamento" class="swal2-select">
+            <option value="1">Si</option>
+            <option value="0">No</option>
+          </select>
         `,
         confirmButtonText: 'Registrar',
         showCancelButton: true,
