@@ -9,29 +9,32 @@ import { HOME_SISTEMA_GESTION } from "../../Routes/routes";
 const LoginPage = () => {
   const [nombreUsuario, setNombreUsuario] = useState("");
   const [passwordUsuario, setPasswordUsuario] = useState("");
+
   const setToken = useAuthStore((state) => state.setToken);
   const setUserRole = useAuthStore((state) => state.setUserRole);
+  const setUserName = useAuthStore((state) => state.setUserName);
 
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-     
-      const response = await axios.post(URL_LOGIN, {nombreUsuario,passwordUsuario });
+      const response = await axios.post(URL_LOGIN, { nombreUsuario, passwordUsuario });
       setToken(response.data.token);
 
-      axios.defaults.headers.common["Authorization"] = `Bearer ${response.data.token}`; //esto es para que el token se envie en cada request
+      axios.defaults.headers.common["Authorization"] = `Bearer ${response.data.token}`;
 
-      const decodedToken = JSON.parse(atob(response.data.token.split(".")[1])); //esto es para decodificar el token y obtener el rol del usuario
+      const decodedToken = JSON.parse(atob(response.data.token.split(".")[1]));
       setUserRole(decodedToken.role);
-      navigate(HOME_SISTEMA_GESTION); //esto es para redirigir a la pagina de inicio
+
+      setUserName(nombreUsuario); // Guardar el nombre de usuario en el estado global
+
+      navigate(HOME_SISTEMA_GESTION);
     } catch (error) {
       console.error("Login incorrecto:", error);
       alert("Usuario o contraseña incorrectos");
     }
   };
-
   return (
     <div className="display flex justify-center relative top-24">
       <Form

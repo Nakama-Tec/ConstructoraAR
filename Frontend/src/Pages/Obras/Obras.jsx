@@ -1,11 +1,12 @@
-import React from 'react'
 import MainObras from '../../Components/Admin/CRUD/Obras/MainObras'
+import HeaderAdmin from '../../Components/Layout/HeaderAdmin'
 
 const Obras = () => {
   return (
-    <div>
-      <MainObras />
-    </div>
+    <>
+    <HeaderAdmin/>
+    <MainObras />
+    </>
   )
 }
 

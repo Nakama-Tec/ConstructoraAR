@@ -1,10 +1,12 @@
 import MainDepto from '../../Components/Admin/CRUD/Departamentos/Deptos/MainDepto'  
+import HeaderAdmin from '../../Components/Layout/HeaderAdmin'
 
 const Departamentos = () => {
   return (
-    <div>
-      <MainDepto />
-    </div>
+    <>
+    <HeaderAdmin/>
+    <MainDepto />
+    </>
   )
 }
 

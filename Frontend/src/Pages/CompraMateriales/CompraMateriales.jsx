@@ -1,10 +1,11 @@
-import React from 'react'
 import MainCompraMateriales from '../../Components/Admin/CRUD/CompraMateriales/MainCompraMateriales'
+import HeaderAdmin from '../../Components/Layout/HeaderAdmin'
 
 const CompraMateriales = () => {
   return (
     <>
-      <MainCompraMateriales/>
+    <HeaderAdmin/>
+    <MainCompraMateriales/>
     </>
   )
 }
