@@ -53,7 +53,6 @@ const MainEmpleados = () => {
       }
     }
   };
-//     { header: 'Nombre y Apellido', accessorFn: row => `${row.nombreCliente} ${row.apellidoCliente}` },
   const columns = [
     { header: 'Nº', accessorKey: 'id_Empleado' },
     { header: 'Nombre y Apellido', accessorFn: row => `${row.nombreEmpleado} ${row.apellidoEmpleado}` },

@@ -1,10 +1,10 @@
 import {useEffect} from 'react';
 import Swal from 'sweetalert2';
-import useRegistroStore from '../../../../Context/useRegistroStore';
+import useVerRegistroStore from '../../../../Context/useVerRegistroStore';
 
 const VerClientes = ({ onClienteVer }) => {
 
-    const { registroSeleccionado } = useRegistroStore();
+    const { verRegistroSeleccionado } = useVerRegistroStore();
   
     const handleVerCliente = () => {
         Swal.fire({
@@ -15,35 +15,35 @@ const VerClientes = ({ onClienteVer }) => {
               <tbody>
                 <tr>
                   <th style="padding: 8px; border-bottom: 1px solid #ddd; text-align: right; width: 35%;">Nombre:</th>
-                  <td style="padding: 8px; border-bottom: 1px solid #ddd;">${registroSeleccionado.nombreCliente}</td>
+                  <td style="padding: 8px; border-bottom: 1px solid #ddd;">${verRegistroSeleccionado.nombreCliente}</td>
                 </tr>
                 <tr>
                   <th style="padding: 8px; border-bottom: 1px solid #ddd; text-align: right;">Apellido:</th>
-                  <td style="padding: 8px; border-bottom: 1px solid #ddd;">${registroSeleccionado.apellidoCliente}</td>
+                  <td style="padding: 8px; border-bottom: 1px solid #ddd;">${verRegistroSeleccionado.apellidoCliente}</td>
                 </tr>
                 <tr>
                   <th style="padding: 8px; border-bottom: 1px solid #ddd; text-align: right;">Condición:</th>
-                  <td style="padding: 8px; border-bottom: 1px solid #ddd;">${registroSeleccionado.condicionCliente}</td>
+                  <td style="padding: 8px; border-bottom: 1px solid #ddd;">${verRegistroSeleccionado.condicionCliente}</td>
                 </tr>
                 <tr>
                   <th style="padding: 8px; border-bottom: 1px solid #ddd; text-align: right;">CUIL:</th>
-                  <td style="padding: 8px; border-bottom: 1px solid #ddd;">${registroSeleccionado.cuilCliente}</td>
+                  <td style="padding: 8px; border-bottom: 1px solid #ddd;">${verRegistroSeleccionado.cuilCliente}</td>
                 </tr>
                 <tr>
                   <th style="padding: 8px; border-bottom: 1px solid #ddd; text-align: right;">Teléfono:</th>
-                  <td style="padding: 8px; border-bottom: 1px solid #ddd;">${registroSeleccionado.telefonoCliente}</td>
+                  <td style="padding: 8px; border-bottom: 1px solid #ddd;">${verRegistroSeleccionado.telefonoCliente}</td>
                 </tr>
                 <tr>
                   <th style="padding: 8px; border-bottom: 1px solid #ddd; text-align: right;">Email:</th>
-                  <td style="padding: 8px; border-bottom: 1px solid #ddd;">${registroSeleccionado.mailCliente}</td>
+                  <td style="padding: 8px; border-bottom: 1px solid #ddd;">${verRegistroSeleccionado.mailCliente}</td>
                 </tr>
                 <tr>
                   <th style="padding: 8px; border-bottom: 1px solid #ddd; text-align: right;">Dirección:</th>
-                  <td style="padding: 8px; border-bottom: 1px solid #ddd;">${registroSeleccionado.direccionCliente}</td>
+                  <td style="padding: 8px; border-bottom: 1px solid #ddd;">${verRegistroSeleccionado.direccionCliente}</td>
                 </tr>
                 <tr>
                   <th style="padding: 8px; border-bottom: 1px solid #ddd; text-align: right;">Datos Garantes:</th>
-                  <td style="padding: 8px; border-bottom: 1px solid #ddd;">${registroSeleccionado.datosGarantes}</td>
+                  <td style="padding: 8px; border-bottom: 1px solid #ddd;">${verRegistroSeleccionado.datosGarantes}</td>
                 </tr>
               </tbody>
             </table>
@@ -57,10 +57,10 @@ const VerClientes = ({ onClienteVer }) => {
       };
   
     useEffect(() => {
-      if (registroSeleccionado) {
+      if (verRegistroSeleccionado) {
         handleVerCliente();
       }
-    }, [registroSeleccionado]);
+    }, [verRegistroSeleccionado]);
   
     return null; // Este componente no renderiza nada en pantalla
   };
