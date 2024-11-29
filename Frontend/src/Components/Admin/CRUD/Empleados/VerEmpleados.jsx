@@ -1,10 +1,10 @@
 import {useEffect} from 'react';
 import Swal from 'sweetalert2';
-import useRegistroStore from '../../../../Context/useRegistroStore';
+import useVerRegistroStore from '../../../../Context/useVerRegistroStore';
 
 const VerEmpleados = ({ onEmpleadoVer }) => {
 
-    const { registroSeleccionado } = useRegistroStore();
+    const { verRegistroSeleccionado, clearVerRegistroSeleccionado } = useVerRegistroStore();
   
     const handleVerEmpleado = () => {
         Swal.fire({
@@ -15,23 +15,23 @@ const VerEmpleados = ({ onEmpleadoVer }) => {
               <tbody>
                 <tr>
                   <th style="padding: 8px; border-bottom: 1px solid #ddd; text-align: right; width: 35%;">Nombre:</th>
-                  <td style="padding: 8px; border-bottom: 1px solid #ddd;">${registroSeleccionado.nombreEmpleado}</td>
+                  <td style="padding: 8px; border-bottom: 1px solid #ddd;">${verRegistroSeleccionado.nombreEmpleado}</td>
                 </tr>
                 <tr>
                   <th style="padding: 8px; border-bottom: 1px solid #ddd; text-align: right;">Apellido:</th>
-                  <td style="padding: 8px; border-bottom: 1px solid #ddd;">${registroSeleccionado.apellidoEmpleado}</td>
+                  <td style="padding: 8px; border-bottom: 1px solid #ddd;">${verRegistroSeleccionado.apellidoEmpleado}</td>
                 </tr>
                 <tr>
                   <th style="padding: 8px; border-bottom: 1px solid #ddd; text-align: right;">Condición:</th>
-                  <td style="padding: 8px; border-bottom: 1px solid #ddd;">${registroSeleccionado.DNIEmpleado}</td>
+                  <td style="padding: 8px; border-bottom: 1px solid #ddd;">${verRegistroSeleccionado.DNIEmpleado}</td>
                 </tr>
                 <tr>
                   <th style="padding: 8px; border-bottom: 1px solid #ddd; text-align: right;">CUIL:</th>
-                  <td style="padding: 8px; border-bottom: 1px solid #ddd;">${registroSeleccionado.telefono}</td>
+                  <td style="padding: 8px; border-bottom: 1px solid #ddd;">${verRegistroSeleccionado.telefono}</td>
                 </tr>
                 <tr>
                   <th style="padding: 8px; border-bottom: 1px solid #ddd; text-align: right;">Teléfono:</th>
-                  <td style="padding: 8px; border-bottom: 1px solid #ddd;">${registroSeleccionado.direccion}</td>
+                  <td style="padding: 8px; border-bottom: 1px solid #ddd;">${verRegistroSeleccionado.direccion}</td>
                 </tr>
               </tbody>
             </table>
@@ -41,14 +41,17 @@ const VerEmpleados = ({ onEmpleadoVer }) => {
             popup: 'swal-wide',
           },
           width: '600px', // Aumentar el ancho del modal para mejor presentación
+          didClose: () => {
+            clearVerRegistroSeleccionado(); // Limpiar los registros al cerrar el modal
+          },
         });
       };
   
     useEffect(() => {
-      if (registroSeleccionado) {
+      if (verRegistroSeleccionado) {
         handleVerEmpleado();
       }
-    }, [registroSeleccionado]);
+    }, [verRegistroSeleccionado]);
   
     return null; // Este componente no renderiza nada en pantalla
   };

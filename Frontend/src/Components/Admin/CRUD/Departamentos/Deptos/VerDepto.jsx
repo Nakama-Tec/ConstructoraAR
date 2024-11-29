@@ -1,10 +1,10 @@
 import {useEffect} from 'react';
 import Swal from 'sweetalert2';
-import useRegistroStore from '../../../../../Context/useRegistroStore';
+import useVerRegistroStore from '../../../../../Context/useVerRegistroStore';
 
 const VerDepto = ({ onDeptoVer }) => {
 
-    const { registroSeleccionado } = useRegistroStore();
+    const { verRegistroSeleccionado, clearVerRegistroSeleccionado } = useVerRegistroStore();
   
     const handleVerDeptos = () => {
         Swal.fire({
@@ -15,35 +15,35 @@ const VerDepto = ({ onDeptoVer }) => {
               <tbody>
                 <tr>
                   <th style="padding: 8px; border-bottom: 1px solid #ddd; text-align: right; width: 35%;">Nombre Departamento:</th>
-                  <td style="padding: 8px; border-bottom: 1px solid #ddd;">${registroSeleccionado.nombreDepartamento}</td>
+                  <td style="padding: 8px; border-bottom: 1px solid #ddd;">${verRegistroSeleccionado.nombreDepartamento}</td>
                 </tr>
                 <tr>
                   <th style="padding: 8px; border-bottom: 1px solid #ddd; text-align: right;">Dirección:</th>
-                  <td style="padding: 8px; border-bottom: 1px solid #ddd;">${registroSeleccionado.direccionDepartamento}</td>
+                  <td style="padding: 8px; border-bottom: 1px solid #ddd;">${verRegistroSeleccionado.direccionDepartamento}</td>
                 </tr>
                 <tr>
                   <th style="padding: 8px; border-bottom: 1px solid #ddd; text-align: right;">Descripción:</th>
-                  <td style="padding: 8px; border-bottom: 1px solid #ddd;">${registroSeleccionado.descripcionDepartamento}</td>
+                  <td style="padding: 8px; border-bottom: 1px solid #ddd;">${verRegistroSeleccionado.descripcionDepartamento}</td>
                 </tr>
                 <tr>
                   <th style="padding: 8px; border-bottom: 1px solid #ddd; text-align: right;">Precio Departamento:</th>
-                  <td style="padding: 8px; border-bottom: 1px solid #ddd;">${registroSeleccionado.precioDepartamento}</td>
+                  <td style="padding: 8px; border-bottom: 1px solid #ddd;">${verRegistroSeleccionado.precioDepartamento}</td>
                 </tr>
                 <tr>
                   <th style="padding: 8px; border-bottom: 1px solid #ddd; text-align: right;">Precio Expensa:</th>
-                  <td style="padding: 8px; border-bottom: 1px solid #ddd;">${registroSeleccionado.precioExpensa}</td>
+                  <td style="padding: 8px; border-bottom: 1px solid #ddd;">${verRegistroSeleccionado.precioExpensa}</td>
                 </tr>
               <tr>
                 <th style="padding: 8px; border-bottom: 1px solid #ddd; text-align: right;">Servicios:</th>
-                <td style="padding: 8px; border-bottom: 1px solid #ddd;">${registroSeleccionado.serviciosIncluidos}</td>
+                <td style="padding: 8px; border-bottom: 1px solid #ddd;">${verRegistroSeleccionado.serviciosIncluidos}</td>
                 </tr>
               <tr>
                <th style="padding: 8px; border-bottom: 1px solid #ddd; text-align: right;">Contrato:</th>
-               <td style="padding: 8px; border-bottom: 1px solid #ddd;">${registroSeleccionado.contratoDescripcion}</td>
+               <td style="padding: 8px; border-bottom: 1px solid #ddd;">${verRegistroSeleccionado.contratoDescripcion}</td>
               </tr>
               <tr>
               <th style="padding: 8px; border-bottom: 1px solid #ddd; text-align: right;">Disponibilidad:</th>
-              <td style="padding: 8px; border-bottom: 1px solid #ddd;">${registroSeleccionado.disponibilidadDepartamento == 1 ? "Si" : "No"}</td>
+              <td style="padding: 8px; border-bottom: 1px solid #ddd;">${verRegistroSeleccionado.disponibilidadDepartamento == 1 ? "Si" : "No"}</td>
               </tr>
               </tbody>
             </table>
@@ -53,14 +53,17 @@ const VerDepto = ({ onDeptoVer }) => {
             popup: 'swal-wide',
           },
           width: '600px', // Aumentar el ancho del modal para mejor presentación
+          didClose: () => {
+            clearVerRegistroSeleccionado(); // Limpiar los registros al cerrar el modal
+          },
         });
       };
   
     useEffect(() => {
-      if (registroSeleccionado) {
+      if (verRegistroSeleccionado) {
         handleVerDeptos();
       }
-    }, [registroSeleccionado]);
+    }, [verRegistroSeleccionado]);
   
     return null; // Este componente no renderiza nada en pantalla
   };

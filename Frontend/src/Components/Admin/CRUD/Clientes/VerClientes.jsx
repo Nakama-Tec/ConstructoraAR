@@ -4,7 +4,7 @@ import useVerRegistroStore from '../../../../Context/useVerRegistroStore';
 
 const VerClientes = ({ onClienteVer }) => {
 
-    const { verRegistroSeleccionado } = useVerRegistroStore();
+    const { verRegistroSeleccionado, clearVerRegistroSeleccionado } = useVerRegistroStore();
   
     const handleVerCliente = () => {
         Swal.fire({
@@ -53,6 +53,9 @@ const VerClientes = ({ onClienteVer }) => {
             popup: 'swal-wide',
           },
           width: '600px', // Aumentar el ancho del modal para mejor presentación
+          didClose: () => {
+            clearVerRegistroSeleccionado(); // Limpiar los registros al cerrar el modal
+          },
         });
       };
   

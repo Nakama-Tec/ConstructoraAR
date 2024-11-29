@@ -1,7 +1,7 @@
 const { conection } = require("../DB/Config")
 
 const allRemuneraciones = (req, res) => {
-    const query = `select * from Remuneraciones;`
+    const query = `select * from Remuneraciones where activoRemuneracion= 1;`
     conection.query(query, (err, results) => {
         if (err) throw err;
         res.json(results);
@@ -18,8 +18,9 @@ const singleRemuneracion = (req, res) => {
 }
 
 const editRemuneracion = (req, res) => {
-    const { id_remuneracion, montoRemuneracion, cantEmpleado, tipoEmpleado, fechaRemuneracion, sectorRemuneracion } = req.body;
-    const query = `update Remuneraciones set montoRemuneracion= '${montoRemuneracion}', cantEmpleado= '${cantEmpleado}', tipoEmpleado= '${tipoEmpleado}', fechaRemuneracion= '${fechaRemuneracion}', sectorRemuneracion= '${sectorRemuneracion}', activoRemuneracion= ${activoRemuneracion} where id_remuneracion = ${id_remuneracion};`
+    const id = req.params.id;
+    const { detalle, montoRemuneracion, cantEmpleado, tipoEmpleado, fechaRemuneracion, sectorRemuneracion } = req.body;
+    const query = `update Remuneraciones set detalle= '${detalle}', montoRemuneracion=  '${montoRemuneracion}', cantEmpleado= '${cantEmpleado}', tipoEmpleado= '${tipoEmpleado}', fechaRemuneracion= '${fechaRemuneracion}', sectorRemuneracion= '${sectorRemuneracion}' where id_remuneracion = ${id};`
     conection.query(query, (err, results) => {
         if (err) throw err;
         res.send(results)
@@ -27,8 +28,8 @@ const editRemuneracion = (req, res) => {
 }
 
 const createRemuneracion = (req, res) => {
-    const { montoRemuneracion, cantEmpleado, tipoEmpleado, fechaRemuneracion, sectorRemuneracion } = req.body;
-    const query = `insert into Remuneraciones (montoRemuneracion, cantEmpleado, tipoEmpleado, fechaRemuneracion, sectorRemuneracion,activoRemuneracion) values ('${montoRemuneracion}', '${cantEmpleado}', '${tipoEmpleado}', '${fechaRemuneracion}', '${sectorRemuneracion}', '${activoRemuneracion}');`
+    const { detalle, montoRemuneracion, cantEmpleado, tipoEmpleado, fechaRemuneracion, sectorRemuneracion } = req.body;
+    const query = `insert into Remuneraciones (detalle, montoRemuneracion, cantEmpleado, tipoEmpleado, fechaRemuneracion, sectorRemuneracion) values ('${detalle}','${montoRemuneracion}', '${cantEmpleado}', '${tipoEmpleado}', '${fechaRemuneracion}', '${sectorRemuneracion}');`
     conection.query(query, (err, results) => {
         if (err) throw err;
         res.send(results)

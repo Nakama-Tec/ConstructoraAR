@@ -114,3 +114,9 @@ export const URL_VIAJES = "http://localhost:8000/viajes/";
 export const URL_VIAJES_CREAR = "http://localhost:8000/viajes/create/";
 export const URL_VIAJES_EDITAR = "http://localhost:8000/viajes/edit/";
 export const URL_VIAJES_ELIMINAR = "http://localhost:8000/viajes/delete/";
+
+//Remuneracion
+export const URL_REMUNERACIONES = "http://localhost:8000/remuneraciones/";
+export const URL_REMUNERACIONES_CREAR = "http://localhost:8000/remuneraciones/create/";
+export const URL_REMUNERACIONES_EDITAR = "http://localhost:8000/remuneraciones/edit/";
+export const URL_REMUNERACIONES_ELIMINAR = "http://localhost:8000/remuneraciones/delete/";

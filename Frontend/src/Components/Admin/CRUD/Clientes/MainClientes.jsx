@@ -16,7 +16,7 @@ const MainClientes = () => {
 
   const token = useAuthStore((state) => state.token);
   const { setRegistroSeleccionado, openRegistroModal } = useRegistroStore();
-  const {setVerRegistroSeleccionado, openVerRegistroModal} = useVerRegistroStore();
+  const {setVerRegistroSeleccionado} = useVerRegistroStore();
 
   const [filtrado, setFiltrado] = useState('');
   const [datos, setDatos] = useState([]);

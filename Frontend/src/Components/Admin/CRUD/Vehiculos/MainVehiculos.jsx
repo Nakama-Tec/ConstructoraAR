@@ -6,6 +6,7 @@ import '../../../../Styles/table.css';
 import { URL_VEHICULOS, URL_VEHICULOS_ELIMINAR } from '../../../../Constants/endpoints-API';
 import useAuthStore from '../../../../Context/useAuthStore';
 import useRegistroStore from '../../../../Context/useRegistroStore';
+import useVerRegistroStore from '../../../../Context/useVerRegistroStore';
 import Aside from '../../../Layout/Aside';
 import axios from 'axios';
 import Swal from 'sweetalert2';
@@ -14,6 +15,7 @@ import VerVehiculo from './VerVehiculo';
 const MainVehiculos = () => {
   const token = useAuthStore((state) => state.token);
   const { setRegistroSeleccionado, openRegistroModal } = useRegistroStore();
+  const { setVerRegistroSeleccionado } = useVerRegistroStore();
   const [filtrado, setFiltrado] = useState('');
   const [datos, setDatos] = useState([]);
 
@@ -64,7 +66,7 @@ const MainVehiculos = () => {
       cell: ({ row }) => (
         <div className="flex gap-2">
           <button
-            onClick={() => setRegistroSeleccionado(row.original)}
+            onClick={() => setVerRegistroSeleccionado(row.original)}
             className="bg-blue-600 text-white px-4 py-2 rounded-full transition duration-200 ease-in-out hover:bg-blue-800 active:bg-blue-900 focus:outline-none"
           >
             Ver más

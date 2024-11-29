@@ -1,11 +1,11 @@
 import {useEffect} from 'react';
 import Swal from 'sweetalert2';
-import useRegistroStore from '../../../../../Context/useRegistroStore';
+import useVerRegistroStore from '../../../../../Context/useVerRegistroStore';
 
 
 const VerVtaTerrenos = ({ onVtaTerrenoVer }) => {
 
-    const { registroSeleccionado } = useRegistroStore();
+    const { verRegistroSeleccionado, clearVerRegistroSeleccionado } = useVerRegistroStore();
   
     const handleVerVtaTerreno = () => {
         Swal.fire({
@@ -16,27 +16,27 @@ const VerVtaTerrenos = ({ onVtaTerrenoVer }) => {
               <tbody>
                 <tr>
                   <th style="padding: 8px; border-bottom: 1px solid #ddd; text-align: right; width: 35%;">Dirección:</th>
-                  <td style="padding: 8px; border-bottom: 1px solid #ddd;">${registroSeleccionado.DireccionTerreno}</td>
+                  <td style="padding: 8px; border-bottom: 1px solid #ddd;">${verRegistroSeleccionado.DireccionTerreno}</td>
                 </tr>
                 <tr>
                   <th style="padding: 8px; border-bottom: 1px solid #ddd; text-align: right;">Precio:</th>
-                  <td style="padding: 8px; border-bottom: 1px solid #ddd;">${registroSeleccionado.PrecioTerreno}</td>
+                  <td style="padding: 8px; border-bottom: 1px solid #ddd;">${verRegistroSeleccionado.PrecioTerreno}</td>
                 </tr>
                 <tr>
                   <th style="padding: 8px; border-bottom: 1px solid #ddd; text-align: right;">Cliente:</th>
-                  <td style="padding: 8px; border-bottom: 1px solid #ddd;">${registroSeleccionado.NombreCliente} ${registroSeleccionado.ApellidoCliente}</td>
+                  <td style="padding: 8px; border-bottom: 1px solid #ddd;">${verRegistroSeleccionado.NombreCliente} ${verRegistroSeleccionado.ApellidoCliente}</td>
                 </tr>
                 <tr>
                   <th style="padding: 8px; border-bottom: 1px solid #ddd; text-align: right;">Telefono:</th>
-                  <td style="padding: 8px; border-bottom: 1px solid #ddd;">${registroSeleccionado.TelefonoCliente}</td>
+                  <td style="padding: 8px; border-bottom: 1px solid #ddd;">${verRegistroSeleccionado.TelefonoCliente}</td>
                 </tr>
                 <tr>
                   <th style="padding: 8px; border-bottom: 1px solid #ddd; text-align: right;">Condición:</th>
-                  <td style="padding: 8px; border-bottom: 1px solid #ddd;">${registroSeleccionado.CondicionCliente}</td>
+                  <td style="padding: 8px; border-bottom: 1px solid #ddd;">${verRegistroSeleccionado.CondicionCliente}</td>
                 </tr>
               <tr>
                 <th style="padding: 8px; border-bottom: 1px solid #ddd; text-align: right;">Fecha de Venta:</th>
-                <td style="padding: 8px; border-bottom: 1px solid #ddd;">${registroSeleccionado.FechaVentaTerreno}</td>
+                <td style="padding: 8px; border-bottom: 1px solid #ddd;">${verRegistroSeleccionado.FechaVentaTerreno}</td>
                 </tr>
               </tbody>
             </table>
@@ -46,14 +46,17 @@ const VerVtaTerrenos = ({ onVtaTerrenoVer }) => {
             popup: 'swal-wide',
           },
           width: '600px', // Aumentar el ancho del modal para mejor presentación
+          didClose: () => {
+            clearVerRegistroSeleccionado(); // Limpiar los registros al cerrar el modal
+          },
         });
       };
   
     useEffect(() => {
-      if (registroSeleccionado) {
+      if (verRegistroSeleccionado) {
         handleVerVtaTerreno();
       }
-    }, [registroSeleccionado]);
+    }, [verRegistroSeleccionado]);
   
     return null; // Este componente no renderiza nada en pantalla
   };
