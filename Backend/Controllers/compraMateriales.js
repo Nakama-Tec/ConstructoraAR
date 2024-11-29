@@ -3,7 +3,7 @@ const { conection } = require("../DB/Config")
 // Funcion para mostrar todas las compras de materiales
 
 const allCompraMateriales = (req, res) => {
-    const query = `select c.id_compraMaterial as N°,s.nombreMaterial as Nombre, c.cantidadMaterial as Cantidad, c.precioMaterial as Precio, c.estadoRetiro as Estado,c.fechaCompraMateriales as Fecha_Compra,
+    const query = `select c.id_compraMaterial as ID,s.nombreMaterial as Nombre, c.cantidadMaterial as Cantidad, c.precioMaterial as Precio, c.estadoRetiro as Estado,c.fechaCompraMateriales as Fecha_Compra,
 c.lugardeCompra as Proveedor,c.destinoMaterial as Destino from StockMateriales s
 join CompraMateriales c on s.id_stock = c.id_stock 
 where c.activoCompra=1;`
@@ -27,25 +27,40 @@ const singleCompraMateriales = (req, res) => {
 
 //Funcion para editar una compra de material
 const editCompraMateriales = (req, res) => {
-    const { cantidadMaterial, precioMaterial, fechaCompraMateriales, estadoRetiro, lugardeCompra, activoCompra } = req.body;
+    const {
+        cantidadMaterial,    // Cantidad comprada
+        precioMaterial,      // Precio unitario
+        fechaCompraMateriales, // Fecha de compra
+        estadoRetiro,        // Estado del retiro
+        lugardeCompra        // Proveedor o lugar de compra
+    } = req.body;
+
     const id = req.params.id;
-    const query = `update CompraMateriales set cantidadMaterial= ${cantidadMaterial}, precioMaterial= ${precioMaterial}, fechaCompraMateriales= '${fechaCompraMateriales}', estadoRetiro= '${estadoRetiro}', lugardeCompra= '${lugardeCompra}', activoCompra= ${activoCompra} where id_compraMaterial = ${id};`
-    conection.query(query, (err, results) => {
-        if (err) throw err;
-        res.send(results)
-    })
-}
 
-//Funcion para crear una compra de material
-// const createCompraMateriales = (req, res) => {
-//     const { cantidadMaterial, precioMaterial, fechaCompraMateriales, estadoRetiro, lugardeCompra, activoCompra } = req.body;
-//     const query = `insert into CompraMateriales (id_stock, cantidadMaterial, precioMaterial, fechaCompraMateriales, estadoRetiro, lugardeCompra, activoCompra) values (${id_stock}, ${cantidadMaterial}, ${precioMaterial}, '${fechaCompraMateriales}', '${estadoRetiro}', '${lugardeCompra}', ${activoCompra});`
-//     conection.query(query, (err, results) => {
-//         if (err) throw err;
-//         res.send(results)
-//     })
-// }
+    // Solo se actualizan compras activas
+    const query = `
+        UPDATE CompraMateriales
+        SET cantidadMaterial = ?, 
+            precioMaterial = ?, 
+            fechaCompraMateriales = ?, 
+            estadoRetiro = ?, 
+            lugardeCompra = ?
+        WHERE id_compraMaterial = ? AND activoCompra = 1;
+    `;
 
+    const params = [cantidadMaterial, precioMaterial, fechaCompraMateriales, estadoRetiro, lugardeCompra, id];
+
+    conection.query(query, params, (err, results) => {
+        if (err) {
+            console.error("Error al actualizar la compra de material:", err);
+            res.status(500).send("Error al actualizar la compra de material.");
+        } else if (results.affectedRows === 0) {
+            res.status(404).send("Compra de material no encontrada o desactivada.");
+        } else {
+            res.status(200).send("Compra de material actualizada con éxito.");
+        }
+    });
+};
 
 const createCompraMateriales = (req, res) => {
     const {
@@ -76,6 +91,7 @@ const createCompraMateriales = (req, res) => {
     ];
 
     conection.query(query, params, (err, results) => {
+        console.log(params);
         if (err) {
             console.error("Error al ejecutar la consulta:", err);
             res.status(500).send("Error al crear la compra de material.");
@@ -92,11 +108,24 @@ const createCompraMateriales = (req, res) => {
 //Funcion para eliminar una compra de material
 const deleteCompraMateriales = (req, res) => {
     const id = req.params.id;
-    const query = `update CompraMateriales set activoCompra = 0 where id_compraMaterial = ${id};`
-    conection.query(query, (err, results) => {
-        if (err) throw err;
-        res.send(results)
-    })
-}
+    console.log(id)
+
+    // Solo desactiva compras activas
+    const query = `
+        UPDATE CompraMateriales SET activoCompra = 0  WHERE id_compraMaterial = ? ;
+    `;
+
+    conection.query(query, [id], (err, results) => {
+        if (err) {
+            console.error("Error al eliminar la compra de material:", err);
+            res.status(500).send("Error al eliminar la compra de material.");
+        } else if (results.affectedRows === 0) {
+            res.status(404).send("Compra de material no encontrada o ya desactivada.");
+        } else {
+            res.status(200).send("Compra de material eliminada (lógica) con éxito.");
+        }
+    });
+};
+
 
 module.exports = { allCompraMateriales, singleCompraMateriales, createCompraMateriales, editCompraMateriales, deleteCompraMateriales }

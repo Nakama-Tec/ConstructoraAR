@@ -27,7 +27,7 @@ const MainCompraMateriales = () => {
     };
     
   // borrado logico
-    const handleEliminarCompra = async (compra) => {
+    const handleEliminarCompra = async (material) => {
       const confirmacion = await Swal.fire({
         title: '¿Estás seguro?',
         text: `¿Deseas eliminar la compra del material ?`,
@@ -38,10 +38,11 @@ const MainCompraMateriales = () => {
       });
   
       if (confirmacion.isConfirmed) {
+      
         try {
           await axios.put(
-            `${URL_COMPRA_MATERIALES_ELIMINAR}${stock.id_compraMaterial}`,
-            { ...compra }, // Se envía el stock con el campo "eliminado" en true
+            `${URL_COMPRA_MATERIALES_ELIMINAR}${material.ID}`,
+            { ...material }, // Se envía el stock con el campo "eliminado" en true
             { headers: { Authorization: `Bearer ${token}` } }
           );
           Swal.fire('Eliminado!', 'La compra del material ha sido eliminado correctamente.', 'success');
@@ -54,7 +55,7 @@ const MainCompraMateriales = () => {
     };
   
     const columns = [
-      { header: 'Nº', accessorKey: 'N°' },
+      { header: 'Nº', accessorKey: 'ID' },
       { header: 'Nombre del Material', accessorKey: 'Nombre' },
       { header: 'Cantidad', accessorKey: 'Cantidad' },
       { header: 'Precio ($)', accessorKey: 'Precio' },
