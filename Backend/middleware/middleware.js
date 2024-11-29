@@ -15,8 +15,6 @@ const verifyToken = (req, res, next) => {
     const authHeader = req.headers["authorization"]; //este dato proviene del front end
     
 
-    console.log("hola token 1 "+authHeader);
-
     // Comprobar si se ha definido la clave secreta
     if (!secretKey) {
         console.log("hola secretkey "+authHeader);
