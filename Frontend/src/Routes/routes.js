@@ -23,5 +23,6 @@ export const VEHICULOS = "/Vehiculos"
 export const PENDIENTES = "/Pendientes"
 export const VIAJES = "/Viajes"
 export const ALQUILER = "/Alquiler"
+export const REMUNERACIONES = "/Remuneraciones"
 // export const NOT_FOUND = "/notfound"
 

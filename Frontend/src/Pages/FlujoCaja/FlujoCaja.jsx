@@ -1,10 +1,10 @@
 import MainCaja from '../../Components/Admin/CRUD/Caja/MainCaja'
-import Aside from '../../Components/Layout/Aside'
+import HeaderAdmin from '../../Components/Layout/HeaderAdmin'
 
 const FlujoCaja = () => {
   return (
     <>
-    <Aside />
+    <HeaderAdmin/>
       <MainCaja />
     </>
   )
