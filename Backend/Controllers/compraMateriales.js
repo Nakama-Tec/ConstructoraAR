@@ -76,6 +76,7 @@ const createCompraMateriales = (req, res) => {
     ];
 
     conection.query(query, params, (err, results) => {
+        console.log(params);
         if (err) {
             console.error("Error al ejecutar la consulta:", err);
             res.status(500).send("Error al crear la compra de material.");
