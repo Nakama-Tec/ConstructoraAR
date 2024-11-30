@@ -149,13 +149,20 @@ const MainUsuarios = () => {
         </tbody>
       </table>
       </div>
-      <div className="btn-pages">
-        <button className="position relative top-1 m-2 p-2 bg-zinc-900 text-white h-12 rounded-[8px] font-semibold text-[16px]" onClick={() => table.previousPage()} disabled={!table.getCanPreviousPage()}>
-          Página Anterior
-        </button>
-        <button className=" position relative top-1 m-2 p-2 bg-zinc-900 text-white h-12 rounded-[8px] font-semibold text-[16px]" onClick={() => table.nextPage()} disabled={!table.getCanNextPage()}>
-          Página Siguiente
-        </button>
+      <div className="pagination flex justify-center mt-4">
+        {Array.from({ length: table.getPageCount() }, (_, index) => ( // Crea un array con la cantidad de páginas y por cada una crea un botón con el número de la página 
+          <button
+            key={index} 
+            className={`m-2 px-4 py-2 rounded-full font-semibold text-[16px] ${
+              table.getState().pagination.pageIndex === index 
+                ? "bg-blue-600 text-white" // Estilo para la página seleccionada
+                : "bg-gray-300 text-black" // Estilo para las páginas no seleccionadas
+            }`}
+            onClick={() => table.setPageIndex(index)} // Cambia a la página seleccionada
+          >
+            {index + 1} 
+          </button>
+        ))}
       </div>
       <EditarUsuario onUsuarioEditado={getUsuarios} />
       <CrearUsuario onUsuarioRegistrado={getUsuarios} />

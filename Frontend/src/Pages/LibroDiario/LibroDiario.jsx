@@ -2,8 +2,6 @@ import VerLibroDiario from '../../Components/Admin/CRUD/LibroDiario/VerLibroDiar
 import FooterAdmin from '../../Components/Layout/FooterAdmin'
 import HeaderAdmin from '../../Components/Layout/HeaderAdmin'
 
-
-
 const LibroDiario = () => {
 
   return (

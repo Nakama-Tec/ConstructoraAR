@@ -3,7 +3,7 @@ import Swal from 'sweetalert2';
 import useVerRegistroStore from '../../../../../Context/useVerRegistroStore';
 
 
-const VerAquiler = ({ onAlquilerVer }) => {
+const VerAlquiler = ({ onAlquilerVer }) => {
   const { verRegistroSeleccionado, clearVerRegistroSeleccionado } = useVerRegistroStore();
   
     const handleVerAlquiler = () => {
@@ -72,4 +72,4 @@ const VerAquiler = ({ onAlquilerVer }) => {
     return null; // Este componente no renderiza nada en pantalla
   };
 
-export default VerAquiler
+export default VerAlquiler
