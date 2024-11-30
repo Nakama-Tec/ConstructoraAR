@@ -1,10 +1,10 @@
 import {useEffect} from 'react';
 import Swal from 'sweetalert2';
-import useRegistroStore from '../../../../../Context/useRegistroStore';
+import useVerRegistroStore from '../../../../../Context/useVerRegistroStore';
 
 const VerPagosDeptos = ({ onPagoDeptoVer }) => {
 
-    const { registroSeleccionado } = useRegistroStore();
+    const { verRegistroSeleccionado, clearVerRegistroSeleccionado } = useVerRegistroStore();
   
     const handleVerPagoDeptos = () => {
         Swal.fire({
@@ -15,19 +15,19 @@ const VerPagosDeptos = ({ onPagoDeptoVer }) => {
               <tbody>
                 <tr>
                   <th style="padding: 8px; border-bottom: 1px solid #ddd; text-align: right; width: 35%;">Nombre Departamento:</th>
-                  <td style="padding: 8px; border-bottom: 1px solid #ddd;">${registroSeleccionado.NombreDepartamento}</td>
+                  <td style="padding: 8px; border-bottom: 1px solid #ddd;">${verRegistroSeleccionado.NombreDepartamento}</td>
                 </tr>
                 <tr>
                   <th style="padding: 8px; border-bottom: 1px solid #ddd; text-align: right;">Monto del Pago:</th>
-                  <td style="padding: 8px; border-bottom: 1px solid #ddd;">${registroSeleccionado.MontoPagoAlquiler}</td>
+                  <td style="padding: 8px; border-bottom: 1px solid #ddd;">${verRegistroSeleccionado.MontoPagoAlquiler}</td>
                 </tr>
                 <tr>
                   <th style="padding: 8px; border-bottom: 1px solid #ddd; text-align: right;">Cliente:</th>
-                  <td style="padding: 8px; border-bottom: 1px solid #ddd;">${registroSeleccionado.NombreCliente} ${registroSeleccionado.ApellidoCliente}</td>
+                  <td style="padding: 8px; border-bottom: 1px solid #ddd;">${verRegistroSeleccionado.NombreCliente} ${verRegistroSeleccionado.ApellidoCliente}</td>
                 </tr>
                 <tr>
                   <th style="padding: 8px; border-bottom: 1px solid #ddd; text-align: right;">Fecha de Pago:</th>
-                  <td style="padding: 8px; border-bottom: 1px solid #ddd;">${registroSeleccionado.FechaPagoAlquiler}</td>
+                  <td style="padding: 8px; border-bottom: 1px solid #ddd;">${verRegistroSeleccionado.FechaPagoAlquiler}</td>
                 </tr>
               </tbody>
             </table>
@@ -37,14 +37,17 @@ const VerPagosDeptos = ({ onPagoDeptoVer }) => {
             popup: 'swal-wide',
           },
           width: '600px', // Aumentar el ancho del modal para mejor presentación
+          didClose: () => {
+            clearVerRegistroSeleccionado(); // Limpiar los registros al cerrar el modal
+          },
         });
       };
   
     useEffect(() => {
-      if (registroSeleccionado) {
+      if (verRegistroSeleccionado) {
         handleVerPagoDeptos();
       }
-    }, [registroSeleccionado]);
+    }, [verRegistroSeleccionado]);
   
     return null; // Este componente no renderiza nada en pantalla
   };

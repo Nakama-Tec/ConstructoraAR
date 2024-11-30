@@ -6,6 +6,7 @@ import '../../../../../Styles/table.css';
 import { URL_PAGOS_ALQUILERES, URL_PAGOS_ALQUILERES_ELIMINAR} from '../../../../../Constants/endpoints-API';
 import useAuthStore from '../../../../../Context/useAuthStore';
 import useRegistroStore from '../../../../../Context/useRegistroStore';
+import useVerRegistroStore from '../../../../../Context/useVerRegistroStore';
 import Aside from '../../../../Layout/Aside';
 import axios from 'axios';
 import Swal from 'sweetalert2';
@@ -15,6 +16,7 @@ import VerPagosDeptos from './VerPagosDeptos';
 const MainPagosDeptos = () => {
 
     const { setRegistroSeleccionado, openRegistroModal } = useRegistroStore();
+    const {  setVerRegistroSeleccionado } = useVerRegistroStore();
     const token = useAuthStore((state) => state.token); 
     
     const [filtrado, setFiltrado] = useState('');
@@ -68,7 +70,7 @@ const MainPagosDeptos = () => {
         cell: ({ row }) => (
           <div className="flex gap-2">
             <button
-            onClick={() => setRegistroSeleccionado(row.original)}
+            onClick={() => setVerRegistroSeleccionado(row.original)}
             className="bg-blue-600 text-white px-4 py-2 rounded-full transition duration-200 ease-in-out hover:bg-blue-800 active:bg-blue-900 focus:outline-none"
           >
             Ver más

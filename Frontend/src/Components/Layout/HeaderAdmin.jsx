@@ -17,7 +17,7 @@ const HeaderAdmin = () => {
     navigate({ LOGIN });
   };
   return (
-    <div className="bg-gray-800 text-white flex justify-between items-center h-24 p-5">
+    <div className="dark:bg-gray-900 text-white flex justify-between items-center h-24 p-5">
       <Link to={"/"} >
       <img
       className="logo h-40 w-auto"

@@ -1,10 +1,10 @@
 import {useEffect} from 'react';
 import Swal from 'sweetalert2';
-import useRegistroStore from '../../../../Context/useRegistroStore';
+import useVerRegistroStore from '../../../../Context/useVerRegistroStore';
 
 const VerPendiente = ({ onPendientesVer }) => {
 
-    const { registroSeleccionado } = useRegistroStore();
+    const { verRegistroSeleccionado, clearVerRegistroSeleccionado } = useVerRegistroStore();
   
     const handleVerVehiculos = () => {
         Swal.fire({
@@ -15,23 +15,23 @@ const VerPendiente = ({ onPendientesVer }) => {
               <tbody>
                 <tr>
                   <th style="padding: 8px; border-bottom: 1px solid #ddd; text-align: right; width: 35%;">Descripción:</th>
-                  <td style="padding: 8px; border-bottom: 1px solid #ddd;">${registroSeleccionado.Descripcion}</td>
+                  <td style="padding: 8px; border-bottom: 1px solid #ddd;">${verRegistroSeleccionado.Descripcion}</td>
                 </tr>
                 <tr>
                   <th style="padding: 8px; border-bottom: 1px solid #ddd; text-align: right;">Estado Actual:</th>
-                  <td style="padding: 8px; border-bottom: 1px solid #ddd;">${registroSeleccionado.estado}</td>
+                  <td style="padding: 8px; border-bottom: 1px solid #ddd;">${verRegistroSeleccionado.estado}</td>
                 </tr>
                 <tr>
                   <th style="padding: 8px; border-bottom: 1px solid #ddd; text-align: right;">Fecha de Creación:</th>
-                  <td style="padding: 8px; border-bottom: 1px solid #ddd;">${registroSeleccionado.fechaCreacion}</td>
+                  <td style="padding: 8px; border-bottom: 1px solid #ddd;">${verRegistroSeleccionado.fechaCreacion}</td>
                 </tr>
                 <tr>
                   <th style="padding: 8px; border-bottom: 1px solid #ddd; text-align: right;">Fecha de Límite:</th>
-                  <td style="padding: 8px; border-bottom: 1px solid #ddd;">${registroSeleccionado.fechaLimite}</td>
+                  <td style="padding: 8px; border-bottom: 1px solid #ddd;">${verRegistroSeleccionado.fechaLimite}</td>
                 </tr>
                 <tr>
                   <th style="padding: 8px; border-bottom: 1px solid #ddd; text-align: right;">Prioridad:</th>
-                  <td style="padding: 8px; border-bottom: 1px solid #ddd;">${registroSeleccionado.prioridad}</td>
+                  <td style="padding: 8px; border-bottom: 1px solid #ddd;">${verRegistroSeleccionado.prioridad}</td>
                 </tr>
               </tbody>
             </table>
@@ -41,14 +41,17 @@ const VerPendiente = ({ onPendientesVer }) => {
             popup: 'swal-wide',
           },
           width: '600px', // Aumentar el ancho del modal para mejor presentación
+          didClose: () => {
+            clearVerRegistroSeleccionado(); // Limpiar los registros al cerrar el modal
+          },
         });
       };
   
     useEffect(() => {
-      if (registroSeleccionado) {
+      if (verRegistroSeleccionado) {
         handleVerVehiculos();
       }
-    }, [registroSeleccionado]);
+    }, [verRegistroSeleccionado]);
   
     return null; // Este componente no renderiza nada en pantalla
   };
