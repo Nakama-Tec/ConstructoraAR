@@ -1,10 +1,6 @@
 import { Sidebar, Menu, MenuItem, SubMenu } from 'react-pro-sidebar';
 import { Link } from 'react-router-dom';
-<<<<<<< HEAD
-import { FLUJO_CAJA, STOCK, DEPARTAMENTOS, OBRAS, OPERACIONES, LOGIN, VEHICULOS, TERRENOS, VTA_TERRENOS, COMPRA_MATERIALES, VIAJES, PENDIENTES, ALQUILER, USUARIO, PAGOS_DPTO, REMUNERACIONES, DETALLEVIAJES } from "../../Routes/routes";
-=======
-import { FLUJO_CAJA, STOCK, DEPARTAMENTOS, OBRAS, OPERACIONES, VEHICULOS, TERRENOS, VTA_TERRENOS, COMPRA_MATERIALES, VIAJES, PENDIENTES, ALQUILER, USUARIO, PAGOS_DPTO, REMUNERACIONES } from "../../Routes/routes";
->>>>>>> 710f3e0816bdf199ef3f8ef94af25fa4742b9d21
+import { FLUJO_CAJA, STOCK, DEPARTAMENTOS, OBRAS, OPERACIONES, VEHICULOS,DETALLEVIAJES, TERRENOS, VTA_TERRENOS, COMPRA_MATERIALES, VIAJES, PENDIENTES, ALQUILER, USUARIO, PAGOS_DPTO, REMUNERACIONES } from "../../Routes/routes";
 import { FaUser, FaUsers, FaMapMarkedAlt, FaMoneyCheckAlt, FaMoneyBillWave,FaCashRegister, FaCar, FaBoxes, FaBuilding, FaHardHat, FaTasks, FaSignInAlt } from 'react-icons/fa';
 
 
