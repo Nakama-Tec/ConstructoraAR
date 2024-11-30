@@ -1,7 +1,7 @@
 import useAuthStore from "../../Context/useAuthStore";
 import { Link, useNavigate } from "react-router-dom";
 import { Button } from "react-bootstrap";
-import { LOGIN } from "../../Routes/routes";
+import { HOME_SISTEMA_GESTION, LOGIN } from "../../Routes/routes";
 import logo from "../../assets/logoConstructora.svg";
 
 const HeaderAdmin = () => {
@@ -18,7 +18,7 @@ const HeaderAdmin = () => {
   };
   return (
     <div className="dark:bg-gray-900 text-white flex justify-between items-center h-24 p-5">
-      <Link to={"/"} >
+      <Link to={HOME_SISTEMA_GESTION} >
       <img
       className="logo h-40 w-auto"
       src={logo}
