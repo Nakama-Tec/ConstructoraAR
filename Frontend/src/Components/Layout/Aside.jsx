@@ -27,14 +27,8 @@ const Aside = () => {
 <MenuItem icon={<FaMoneyCheckAlt />} component={<Link to={OPERACIONES} />}> OPERACIONES</MenuItem>
 <MenuItem icon={<FaTasks />} component={<Link to={VIAJES} />}> VIAJES</MenuItem>
 <MenuItem icon={<FaTasks />} component={<Link to={PENDIENTES} />}> PENDIENTES</MenuItem>
-<<<<<<< HEAD
-<MenuItem icon={<FaUser />} component={<Link to={USUARIO} />}> USUARIO</MenuItem>
-<MenuItem icon={<FaMoneyBillWave />} component={<Link to={REMUNERACIONES} />}> REMUNERACIONES</MenuItem>
-<MenuItem icon={<FaSignInAlt />} component={<Link to={LOGIN} />}> LOGIN</MenuItem>
-=======
 <MenuItem icon={<FaSignInAlt />} component={<Link to={USUARIO} />}> USUARIO</MenuItem>
 <MenuItem icon={<FaMoneyCheckAlt />} component={<Link to={REMUNERACIONES} />}> REMUNERACIONES</MenuItem>
->>>>>>> 0db1d652890cbaf041ae5e2fa0b455dc190d655a
 
 
       </Menu>
