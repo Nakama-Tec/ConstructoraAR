@@ -1,10 +1,10 @@
-import React from 'react'
+import MainDetalleViajes from "../../Components/Admin/CRUD/DetallesViajes/MainDetalleViajes"
 
 const DetalleViajes = () => {
   return (
-    <div>
-      
-    </div>
+    <>
+      <MainDetalleViajes />
+    </>
   )
 }
 
