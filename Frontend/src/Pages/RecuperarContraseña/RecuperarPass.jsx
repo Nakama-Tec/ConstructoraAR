@@ -1,10 +1,10 @@
-import React from 'react'
+import RecuperarContraseña from "../../Components/Auth/RecuperarContraseña"
 
 const RecuperarPass = () => {
   return (
-    <div>
-      
-    </div>
+    <>
+    <RecuperarContraseña />
+    </>
   )
 }
 
