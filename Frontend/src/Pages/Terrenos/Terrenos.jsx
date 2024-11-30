@@ -1,4 +1,5 @@
 import MainTerrenos from '../../Components/Admin/CRUD/Terrenos/MainTerrenos'
+import FooterAdmin from '../../Components/Layout/FooterAdmin'
 import HeaderAdmin from '../../Components/Layout/HeaderAdmin'
 
 const Terrenos = () => {
@@ -6,6 +7,7 @@ const Terrenos = () => {
     <>
     <HeaderAdmin />
     <MainTerrenos/>
+    <FooterAdmin/>
     </>
   )
 }
