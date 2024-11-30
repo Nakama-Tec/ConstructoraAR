@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { Form } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import useAuthStore from "../../Context/useAuthStore";
 import { URL_LOGIN } from "../../Constants/endpoints-API";
 import { HOME_SISTEMA_GESTION } from "../../Routes/routes";
+import Swal from 'sweetalert2';
 
 const LoginPage = () => {
   const [nombreUsuario, setNombreUsuario] = useState("");
@@ -32,7 +33,15 @@ const LoginPage = () => {
       navigate(HOME_SISTEMA_GESTION);
     } catch (error) {
       console.error("Login incorrecto:", error);
-      alert("Usuario o contraseña incorrectos");
+      Swal.fire({
+        icon: 'error',
+        title: 'Error de autenticación',
+        text: 'Usuario o contraseña incorrectos',
+        timer: 3000, // Tiempo en milisegundos para que se cierre automáticamente
+        showConfirmButton: false,
+        toast: true, 
+        position: 'top-center'
+      });
     }
   };
   return (
@@ -51,7 +60,7 @@ const LoginPage = () => {
           <div className="mt-10">
             <div className="relative">
               <label className="block mb-3 text-sm font-medium text-zinc-600 dark:text-zinc-200">
-                Usuario
+                Nombre de Usuario
               </label>
               <input
                 className="block w-full px-4 py-3 mt-2 text-zinc-800 bg-white border-2 rounded-lg dark:border-zinc-600 dark:bg-zinc-800 dark:text-zinc-200 focus:border-blue-500 dark:focus:border-blue-400 focus:ring-opacity-50 focus:outline-none focus:ring focus:ring-blue-400"
@@ -88,10 +97,10 @@ const LoginPage = () => {
         <div className="px-8 py-4 bg-blue-200 dark:bg-zinc-800">
           <div className="text-sm text-blue-900 dark:text-blue-300 text-center">
             Olvidaste tu contraseña?
-            <a className="font-medium" href="#">
+            <Link to={"/area-empleados/RecuperarContraseña"} className="font-medium" href="#">
               {" "}
               Recuperarla
-            </a>
+            </Link>
           </div>
         </div>
       </Form>

@@ -1,6 +1,10 @@
 // Importaciones de librerias
 import { BrowserRouter, Routes, Route } from 'react-router-dom' // estas librerias permiten el manejo de rutas en la aplicacion
+<<<<<<< HEAD
 import {HOME, HOME_SISTEMA_GESTION, LOGIN,EMPLEADOS, DETALLEVIAJES,VEHICULOS, PAGOS, FLUJO_CAJA, LIBRO_DIARIO,TERRENOS ,STOCK, CLIENTES, DEPARTAMENTOS, OBRAS, OPERACIONES, VIAJES, USUARIO, UNAUTHORIZED, VTA_TERRENOS, PAGOS_DPTO, PENDIENTES, COMPRA_MATERIALES, ALQUILER, REMUNERACIONES} from "./Routes/routes"
+=======
+import {HOME, HOME_SISTEMA_GESTION, LOGIN,EMPLEADOS, VEHICULOS, PAGOS, FLUJO_CAJA, LIBRO_DIARIO,TERRENOS ,STOCK, CLIENTES, DEPARTAMENTOS, OBRAS, OPERACIONES, VIAJES, USUARIO, UNAUTHORIZED, VTA_TERRENOS, PAGOS_DPTO, PENDIENTES, COMPRA_MATERIALES, ALQUILER, REMUNERACIONES, RECUPERAR} from "./Routes/routes"
+>>>>>>> 710f3e0816bdf199ef3f8ef94af25fa4742b9d21
 
 
 // Paginas
@@ -29,10 +33,11 @@ import PagosDepartamentos from './Pages/Departamentos/PagosDepartamentos'
 import Pendientes from './Pages/Pendientes/Pendientes'
 import DetalleViajes from './Pages/DetalleViajes/DetalleViajes'
 import Remuneraciones from './Pages/Remuneraciones/Remuneraciones'
+import RecuperarPass from './Pages/RecuperarContraseña/RecuperarPass'
 
 
 function App() {
-const roleRequired = "empleado" //rol requerido para acceder a las rutas protegidas
+const roleRequired = "admin" //rol requerido para acceder a las rutas protegidas
   return (
 // v7_startTransition: true, v7_relativeSplatPath: true permite que la aplicacion use el nuevo manejo de estado y rutas relativas que se implementarán en React Router v7.
     <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}> 
@@ -40,6 +45,8 @@ const roleRequired = "empleado" //rol requerido para acceder a las rutas protegi
         {/* Rutas públicas en estas rutas pueden ingresar usuario comun sin problema es lo que pueden ver y hacer*/}
         <Route path={HOME} element={<Home/>} />
         <Route path={LOGIN} element={<Login/>} />
+        <Route path={RECUPERAR} element={<RecuperarPass/>} />
+        
         {/* <Route path={LIBRO_DIARIO} element={<LibroDiario/>} /> Ruta temporal, eliminar al tenerlo listo y descomentar su version privada */}
         <Route path={PAGOS} element={<Pagos/>} /> {/* Ruta temporal*/}
 

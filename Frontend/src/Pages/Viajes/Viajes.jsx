@@ -1,4 +1,5 @@
 import MainViajes from '../../Components/Admin/CRUD/Viajes/MainViajes'
+import FooterAdmin from '../../Components/Layout/FooterAdmin'
 import HeaderAdmin from '../../Components/Layout/HeaderAdmin'
 
 const Viajes = () => {
@@ -6,6 +7,7 @@ const Viajes = () => {
     <>
     <HeaderAdmin />
     <MainViajes />
+    <FooterAdmin/>
     </>
   )
 }
