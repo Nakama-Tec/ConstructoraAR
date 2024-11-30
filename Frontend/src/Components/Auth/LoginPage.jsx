@@ -60,7 +60,7 @@ const LoginPage = () => {
           <div className="mt-10">
             <div className="relative">
               <label className="block mb-3 text-sm font-medium text-zinc-600 dark:text-zinc-200">
-                Usuario
+                Nombre de Usuario
               </label>
               <input
                 className="block w-full px-4 py-3 mt-2 text-zinc-800 bg-white border-2 rounded-lg dark:border-zinc-600 dark:bg-zinc-800 dark:text-zinc-200 focus:border-blue-500 dark:focus:border-blue-400 focus:ring-opacity-50 focus:outline-none focus:ring focus:ring-blue-400"
