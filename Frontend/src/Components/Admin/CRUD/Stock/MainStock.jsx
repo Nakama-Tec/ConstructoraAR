@@ -4,13 +4,17 @@ import '../../../../Styles/table.css';
 import { URL_STOCK, URL_STOCK_ELIMINAR } from '../../../../Constants/endpoints-API';
 import useAuthStore from '../../../../Context/useAuthStore';
 import useRegistroStore from '../../../../Context/useRegistroStore';
+import useVerRegistroStore from '../../../../Context/useVerRegistroStore';
 import Aside from '../../../Layout/Aside';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import VerStock from './VerStock';
 
 const MainStock = () => {
   const token = useAuthStore((state) => state.token);
   const { setRegistroSeleccionado, openRegistroModal } = useRegistroStore();//objeto que se importa de useStockStore
+  const { setVerRegistroSeleccionado } = useVerRegistroStore();
+
   const [filtrado, setFiltrado] = useState('');
   const [datos, setDatos] = useState([]);
 
@@ -67,6 +71,12 @@ const MainStock = () => {
       cell: ({ row }) => (
         <div className="flex gap-2">
           <button
+            onClick={() => setVerRegistroSeleccionado(row.original)}
+            className="bg-blue-600 text-white px-4 py-2 rounded-full transition duration-200 ease-in-out hover:bg-red-800 active:bg-red-900 focus:outline-none"
+          >
+            Ver más
+          </button>
+          <button
             onClick={() => setRegistroSeleccionado(row.original)}
             className="bg-orange-600 text-white px-4 py-2 rounded-full transition duration-200 ease-in-out hover:bg-orange-800 active:bg-orange-900 focus:outline-none"
           >
@@ -78,6 +88,7 @@ const MainStock = () => {
           >
             Eliminar
           </button>
+          
         </div>
       )
     }
@@ -156,6 +167,8 @@ const MainStock = () => {
           Página Siguiente
         </button>
       </div>
+      <VerStock onStockVer={getStock} />
+
       </div>
   )
 }

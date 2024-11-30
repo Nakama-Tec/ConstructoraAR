@@ -29,6 +29,7 @@ const Aside = () => {
 <MenuItem icon={<FaTasks />} component={<Link to={PENDIENTES} />}> PENDIENTES</MenuItem>
 <MenuItem icon={<FaSignInAlt />} component={<Link to={USUARIO} />}> USUARIO</MenuItem>
 <MenuItem icon={<FaMoneyCheckAlt />} component={<Link to={REMUNERACIONES} />}> REMUNERACIONES</MenuItem>
+<MenuItem icon={<FaMoneyCheckAlt />} component={<Link to={ALQUILER} />}> ALQUILERES</MenuItem>
 
 
       </Menu>
