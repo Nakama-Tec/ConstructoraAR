@@ -7,7 +7,7 @@ const VtaTerrenos = () => {
     <>
     <HeaderAdmin />
      <MainVtaTerrenos /> 
-     <FooterAdmin />
+     <FooterAdmin/>
     </>
   )
 }
