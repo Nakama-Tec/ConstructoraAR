@@ -4,30 +4,41 @@ import axios from 'axios';
 import Swal from 'sweetalert2';
 import Aside from '../../../Layout/Aside';
 import useRegistroStore from '../../../../Context/useRegistroStore';
+import useVerRegistroStore from '../../../../Context/useVerRegistroStore';
 import '../../../../Styles/table.css';
-import { URL_VIAJES, URL_VIAJES_ELIMINAR } from '../../../../Constants/endpoints-API';
+import { URL_VIAJES, URL_VIAJES_ELIMINAR, URL_DETALLES_VIAJES } from '../../../../Constants/endpoints-API';
 import useAuthStore from '../../../../Context/useAuthStore';
 import EditarViaje from './EditarViajes';
 import CrearViajes from './CrearViajes';
+import VerViajes from './VerViajes';
 
 const MainViajes = () => {
     const token = useAuthStore((state) => state.token);
 
     const [filtrado, setFiltrado] = useState('');
     const [datos, setDatos] = useState([]);
+    // const [datos2, SetDatos2] = useState([]);
     const { setRegistroSeleccionado, openRegistroModal } = useRegistroStore();
-
+    const {setVerRegistroSeleccionado, openVerRegistroModal} = useVerRegistroStore();
   
   
     const getViajes = async () => {
       try {
-        const response = await axios.get(URL_VIAJES, { headers: { Authorization: `Bearer ${token}` } });
+        const response = await axios.get(URL_DETALLES_VIAJES, { headers: { Authorization: `Bearer ${token}` } });
         setDatos(response.data);
       } catch (error) {
         console.error("Error al obtener viajes:", error);
       }
     };
   
+    // const getDetalleViajes = async () => {
+    //   try {
+    //     const response = await axios.get(URL_DETALLES_VIAJES, { headers: { Authorization: `Bearer ${token}` } });
+    //     setDatos(response.data);
+    //   } catch (error) {
+    //     console.error("Error al obtener el detalle del viaje:", error);
+    //   }
+    // };
 
     const handleEliminarViaje = async (viaje) => {
       const confirmacion = await Swal.fire({
@@ -65,16 +76,18 @@ const MainViajes = () => {
         header: 'Acciones',
         cell: ({ row }) => (
           <div className="flex gap-2">
-          <button
-            onClick={() => setRegistroSeleccionado(row.original)}
-            className="bg-orange-600 text-white px-4 py-2 rounded-full transition duration-200 ease-in-out hover:bg-orange-800 active:bg-orange-900 focus:outline-none"
-          >
+          <button onClick={() => setVerRegistroSeleccionado(row.original)}
+            className="bg-orange-600 text-white px-4 py-2 rounded-full transition duration-200 ease-in-out hover:bg-orange-800 active:bg-orange-900 focus:outline-none" >
+            Ver más
+          </button>
+
+          <button  onClick={() => setRegistroSeleccionado(row.original)}
+            className="bg-orange-600 text-white px-4 py-2 rounded-full transition duration-200 ease-in-out hover:bg-orange-800 active:bg-orange-900 focus:outline-none" >
             Editar
           </button>
-          <button
-            onClick={() => handleEliminarViaje(row.original)}
-            className="bg-red-600 text-white px-4 py-2 rounded-full transition duration-200 ease-in-out hover:bg-red-800 active:bg-red-900 focus:outline-none"
-          >
+
+          <button onClick={() => handleEliminarViaje(row.original)}
+            className="bg-red-600 text-white px-4 py-2 rounded-full transition duration-200 ease-in-out hover:bg-red-800 active:bg-red-900 focus:outline-none" >
             Eliminar
           </button>
         </div>
@@ -149,8 +162,7 @@ const MainViajes = () => {
       </div>
       <div className="pagination flex justify-center mt-4">
         {Array.from({ length: table.getPageCount() }, (_, index) => ( // Crea un array con la cantidad de páginas y por cada una crea un botón con el número de la página 
-          <button
-            key={index} 
+          <button key={index} 
             className={`m-2 px-4 py-2 rounded-full font-semibold text-[16px] ${
               table.getState().pagination.pageIndex === index 
                 ? "bg-blue-600 text-white" // Estilo para la página seleccionada
@@ -162,6 +174,7 @@ const MainViajes = () => {
           </button>
         ))}
       </div>
+      <VerViajes onViajeVer={getViajes}/> 
       <EditarViaje onViajeEditado={getViajes} />
       <CrearViajes onViajeRegistrado={getViajes} />
       </div>

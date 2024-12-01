@@ -33,7 +33,7 @@ import RecuperarPass from './Pages/RecuperarContraseña/RecuperarPass'
 
 
 function App() {
-const roleRequired = "admin" //rol requerido para acceder a las rutas protegidas
+const roleRequired = "empleado" //rol requerido para acceder a las rutas protegidas
   return (
 // v7_startTransition: true, v7_relativeSplatPath: true permite que la aplicacion use el nuevo manejo de estado y rutas relativas que se implementarán en React Router v7.
     <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}> 
