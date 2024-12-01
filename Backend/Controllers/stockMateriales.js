@@ -29,8 +29,8 @@ const singleStockMateriales = (req,res)=>{
 
 const editStockMateriales = (req,res)=>{
     const id = req.params.id;
-    const {nombreMaterial, cantidadStock, activoStock} = req.body;
-    const query = `update StockMateriales set nombreMaterial = '${nombreMaterial}', cantidadStock = ${cantidadStock},ubicacionStock = ${ubicacionStock}, activoStock = ${activoStock} where id_stock = ${id};`
+    const {nombreMaterial, ubicacionStock,cantidadStock ,activoStock} = req.body;
+    const query = `update StockMateriales set nombreMaterial = '${nombreMaterial}',ubicacionStock = ${ubicacionStock} ,cantidadStock = ${cantidadStock}, activoStock = ${activoStock} where id_stock = ${id};`
     conection.query(query,(err,results)=>{
         if(err) throw err;
         res.json(results);

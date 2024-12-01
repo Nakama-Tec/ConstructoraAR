@@ -6,7 +6,7 @@ import Aside from '../../../Layout/Aside';
 import useRegistroStore from '../../../../Context/useRegistroStore';
 import useVerRegistroStore from '../../../../Context/useVerRegistroStore';
 import '../../../../Styles/table.css';
-import { URL_VIAJES, URL_VIAJES_ELIMINAR, URL_DETALLES_VIAJES } from '../../../../Constants/endpoints-API';
+import { URL_VIAJES_ELIMINAR, URL_DETALLES_VIAJES } from '../../../../Constants/endpoints-API';
 import useAuthStore from '../../../../Context/useAuthStore';
 import EditarViaje from './EditarViajes';
 import CrearViajes from './CrearViajes';
