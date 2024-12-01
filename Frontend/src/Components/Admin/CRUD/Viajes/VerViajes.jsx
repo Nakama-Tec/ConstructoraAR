@@ -1,7 +1,7 @@
 import {useEffect} from 'react';
 import Swal from 'sweetalert2';
 import useVerRegistroStore from '../../../../Context/useVerRegistroStore';
-// import userDetalleStore from '../../../../Context/userDetalleStore';
+
 
 const VerViajes = ({ onViajeVer }) => {
     const { verRegistroSeleccionado, clearVerRegistroSeleccionado } = useVerRegistroStore();
