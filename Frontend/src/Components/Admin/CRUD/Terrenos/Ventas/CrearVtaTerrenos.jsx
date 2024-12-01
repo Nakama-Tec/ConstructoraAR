@@ -33,7 +33,7 @@ const CrearVtaTerrenos = ({ onVtaTerrenoRegistrado }) => {
 
     const handleRegistrarVtaTerreno = () => {
       Swal.fire({
-        title: 'Registrar Vehículo',
+        title: 'Registrar Venta de Terreno',
         html: `
         <select id="select_cliente" class="swal2-select">
           ${clientes

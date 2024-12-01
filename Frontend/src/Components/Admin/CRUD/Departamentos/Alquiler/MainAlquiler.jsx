@@ -64,8 +64,8 @@ const MainAlquiler = () => {
   const columns = [
     { header: 'Nº Alquiler', accessorKey: 'id_alquilerDepto' },
     { header: 'NombreDepartamento', accessorKey: 'NombreDepartamento' },
-    { header: 'PrecioDepartamento', accessorKey: 'PrecioDepartamento' },
-    { header: 'PrecioExpensa', accessorKey: 'PrecioExpensa' },
+    { header: 'Precio Departamento', accessorFn: row => `$${row.PrecioDepartamento}` },
+    { header: 'Precio Expensa', accessorFn: row => `$${row.PrecioExpensa}` },
     { header: 'Cliente', accessorFn: row => `${row.NombreCliente} ${row.ApellidoCliente}` },
     
 

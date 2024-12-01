@@ -21,6 +21,16 @@ const CrearVehiculo = ({ onVehiculoRegistrado }) => {
           <input id="tipoVehiculo" placeholder="Tipo Vehiculo" class="swal2-input" />
           
           <input id="seguroVehiculo" placeholder="Seguro" class="swal2-input" />
+
+          <br/>
+          <br/>
+          <label><strong>Selecciona el tipo de vehiculo:</strong></label>
+          <br/>
+          <select id="seguroVehiculo" class="swal2-select">
+          <option value="Camión">Camión</option>
+          <option value="Auto">Auto</option>
+          </select>
+          <br/>
         `,
         confirmButtonText: 'Registrar',
         showCancelButton: true,

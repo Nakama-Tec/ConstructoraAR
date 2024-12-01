@@ -63,7 +63,12 @@ const MainTerrenos = () => {
       { header: 'Nº', accessorKey: 'id_terreno' },
       { header: 'Metros Cuadrados', accessorKey: 'metrosTerrenos' },
       { header: 'Dirección', accessorKey: 'direccionTerreno' },
-      { header: 'Precio', accessorKey: 'precioTerreno' },
+      { header: 'Precio', accessorFn: row => `$${row.precioTerreno}` },
+      { 
+        header: 'Disponibilidad', 
+        accessorKey: 'disponibilidadTerreno',
+        cell: ({ row }) => (row.original.disponibilidadTerreno === 1 ? 'Sí' : 'No')
+      }, 
       {
         header: 'Acciones',
         cell: ({ row }) => (

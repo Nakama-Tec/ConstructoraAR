@@ -16,14 +16,22 @@ const EditarOperaciones = ({onOperacionEditado}) => {
         html: `
           <input id="nombreOperacion" class="swal2-input" value="${registroSeleccionado.nombreOperacion}" />
           
-            <input id="tipoOperacion" class="swal2-input" value="${registroSeleccionado.tipoOperacion}" />
-
-            <input id="montoOperacion" class="swal2-input" value="${registroSeleccionado.montoOperacion}" />
-
-            <input id="detalleOperacion" class="swal2-input" value="${registroSeleccionado.detalleOperacion}" />
-
-            <input id="fechaOperacion" class="swal2-input" value="${registroSeleccionado.fechaOperacion}" />
-
+          
+          <input id="montoOperacion" class="swal2-input" value="${registroSeleccionado.montoOperacion}" />
+          
+          <input id="detalleOperacion" class="swal2-input" value="${registroSeleccionado.detalleOperacion}" />
+          
+          <input id="fechaOperacion" class="swal2-input" value="${registroSeleccionado.fechaOperacion}" />
+        
+          <br/>
+          <br/>
+          <label><strong>Selecciona el tipo de operación:</strong></label>
+          <br/>
+          <select id="tipoOperacion" class="swal2-select">
+          <option value="Ingreso" ${registroSeleccionado.tipoOperacion === 'Ingreso' ? 'selected' : ''}>Ingreso</option>
+          <option value="Egreso" ${registroSeleccionado.tipoOperacion === 'Egreso' ? 'selected' : ''}>Egreso</option>
+        </select>
+        <br/>
         
         `,
         confirmButtonText: 'Enviar',

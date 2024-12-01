@@ -57,8 +57,8 @@ const MainStock = () => {
 
   const columns = [
     { header: 'Nº', accessorKey: 'id_stock' },
-    { header: 'Nombre Material', accessorKey: 'nombreMaterial' },
-    { header: 'Ubicacion', accessorKey: 'ubicacionStock' },
+    { header: 'Nombre del material', accessorKey: 'nombreMaterial' },
+    { header: 'Ubicación', accessorKey: 'ubicacionStock' },
     { header: 'Cantidad', accessorKey: 'cantidadStock' },
     { 
       header: 'Disponible', 
@@ -72,7 +72,7 @@ const MainStock = () => {
         <div className="flex gap-2">
           <button
             onClick={() => setVerRegistroSeleccionado(row.original)}
-            className="bg-blue-600 text-white px-4 py-2 rounded-full transition duration-200 ease-in-out hover:bg-red-800 active:bg-red-900 focus:outline-none"
+            className="bg-blue-600 text-white px-4 py-2 rounded-full transition duration-200 ease-in-out hover:bg-blue-800 active:bg-blue-900 focus:outline-none"
           >
             Ver más
           </button>

@@ -60,11 +60,11 @@ const MainRemuneracion = () => {
     const columns = [
       { header: 'Nº Remuneracion', accessorKey: 'id_remuneracion' },
       { header: 'Detalle', accessorKey: 'detalle' },
-      { header: 'Monto Remuneracion', accessorKey: 'montoRemuneracion' },
-      { header: 'Cantidad Empleado', accessorKey: 'cantEmpleado' },
-      { header: 'Tipo Empleado', accessorFn: (row) => row.tipoEmpleado == 0 ? "Administrativo" : "Obrero" },
-      { header: 'Fecha Remuneracion', accessorKey: 'fechaRemuneracion' },
-      { header: 'Sector Remuneracion', accessorFn: (row) => row.sectorRemuneracion == 0 ? "Publico" : "Privado" },
+      { header: 'Monto Remuneración', accessorKey: 'montoRemuneracion' },
+      { header: 'Cantidad de empleados', accessorKey: 'cantEmpleado' },
+      { header: 'Tipo de empleado', accessorFn: (row) => row.tipoEmpleado == 0 ? "Administrativo" : "Obrero" },
+      { header: 'Fecha', accessorKey: 'fechaRemuneracion' },
+      { header: 'Sector', accessorFn: (row) => row.sectorRemuneracion == 0 ? "Publico" : "Privado" },
 
       {
         header: 'Acciones',

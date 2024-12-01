@@ -17,8 +17,6 @@ const EditarClientes = ({ onClienteEditado }) => {
 
         <input id="apellidoCliente" class="swal2-input" value="${registroSeleccionado.apellidoCliente}" />
         
-        <input id="condicionCliente" class="swal2-input" value="${registroSeleccionado.condicionCliente}" />
-        
         <input id="cuilCliente" class="swal2-input" value="${registroSeleccionado.cuilCliente}" />
         
         <input id="telefonoCliente" class="swal2-input" value="${registroSeleccionado.telefonoCliente}" />
@@ -28,6 +26,17 @@ const EditarClientes = ({ onClienteEditado }) => {
         <input id="direccionCliente" class="swal2-input" value="${registroSeleccionado.direccionCliente}" />
 
         <input id="datosGarantes" class="swal2-input" value="${registroSeleccionado.datosGarantes}" />
+
+        <br/>
+        <br/>
+        <label><strong>Selecciona la condición del cliente:</strong></label>
+        <br/>
+        <select id="condicionCliente" class="swal2-input">
+        <option value="Autonomo" ${registroSeleccionado.condicionCliente === 'Autonomo' ? 'selected' : ''}>Autónomo</option>
+        <option value="Privado" ${registroSeleccionado.condicionCliente === 'Privado' ? 'selected' : ''}>Privado</option>
+        <option value="Monotributista" ${registroSeleccionado.condicionCliente === 'Monotributista' ? 'selected' : ''}>Monotributista</option>
+      </select>
+      <br/>
       `,
       confirmButtonText: 'Enviar',
       showCancelButton: true,

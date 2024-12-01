@@ -21,17 +21,25 @@ const EditarPendiente = ({ onPendienteEditado }) => {
           
           <input id="fechaLimite" class="swal2-input" value="${registroSeleccionado.fechaLimite}" />
           
+          <br/>
+          <br/>
+          <label><strong>Selecciona el estado:</strong></label>
           <select id="estado" class="swal2-select">
             <option value="Pendiente" ${registroSeleccionado.estado === 'Pendiente' ? 'selected' : ''}>Pendiente</option>
             <option value="En Progreso" ${registroSeleccionado.estado === 'En Progreso' ? 'selected' : ''}>En Progreso</option>
             <option value="Completado" ${registroSeleccionado.estado === 'Completado' ? 'selected' : ''}>Completado</option>
           </select>
           <br>
+          <br/>
+        <br/>
+        <label><strong>Selecciona la prioridad:</strong></label>
+        <br/>
       <select id="prioridad" class="swal2-select">
         <option value="Baja" ${registroSeleccionado.prioridad === 'Baja' ? 'selected' : ''}>Baja</option>
         <option value="Media" ${registroSeleccionado.prioridad === 'Media' ? 'selected' : ''}>Media</option>
         <option value="Alta" ${registroSeleccionado.prioridad === 'Alta' ? 'selected' : ''}>Alta</option>
       </select>
+      <br/>
         `,
         confirmButtonText: 'Enviar',
         showCancelButton: true,

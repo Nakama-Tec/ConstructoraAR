@@ -56,9 +56,9 @@ const MainObras = () => {
       { header: 'Descripcion Obra', accessorKey: 'descripcionObra' },
       { header: 'Fecha Inicio', accessorKey: 'fechainicioObra' },
       { header: 'Fecha Fin', accessorKey: 'fechafinObra' },
-      { header: 'Precio Obra', accessorKey: 'precioObra' },
-      { header: 'Sector', accessorKey: 'sectorObra' },
-      { header: 'Progreso', accessorKey: 'progresoObra' },
+      { header: 'Precio Obra', accessorFn: (row) => `$${row.precioObra}` },
+      { header: 'Sector', accessorFn: (row) => row.sectorObra === 0 ? "Público" : "Privado" },
+      { header: 'Progreso', accessorFn: (row) => `${row.progresoObra}%` },
       { header: 'Id Cliente', accessorKey: 'id_cliente' },
       {
         header: 'Acciones',

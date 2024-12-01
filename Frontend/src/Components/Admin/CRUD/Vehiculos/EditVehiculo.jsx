@@ -21,6 +21,16 @@ const EditVehiculo = ({ onVehiculoEditado }) => {
           <input id="tipoVehiculo" class="swal2-input" value="${registroSeleccionado.tipoVehiculo}" />
           
           <input id="seguroVehiculo" class="swal2-input" value="${registroSeleccionado.seguroVehiculo}" />
+
+          <br/>
+          <br/>
+          <label><strong>Selecciona el tipo de vehiculo:</strong></label>
+          <br/>
+          <select id="seguroVehiculo" class="swal2-select">
+          <option value="Camión" ${registroSeleccionado.seguroVehiculo === 'Camión' ? 'selected' : ''}>Camión</option>
+          <option value="Auto" ${registroSeleccionado.seguroVehiculo === 'Auto' ? 'selected' : ''}>Auto</option>
+        </select>
+        <br/>
         `,
         confirmButtonText: 'Enviar',
         showCancelButton: true,

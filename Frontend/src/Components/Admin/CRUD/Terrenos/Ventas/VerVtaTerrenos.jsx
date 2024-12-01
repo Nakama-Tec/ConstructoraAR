@@ -20,18 +20,18 @@ const VerVtaTerrenos = ({ onVtaTerrenoVer }) => {
                 </tr>
                 <tr>
                   <th style="padding: 8px; border-bottom: 1px solid #ddd; text-align: right;">Precio:</th>
-                  <td style="padding: 8px; border-bottom: 1px solid #ddd;">${verRegistroSeleccionado.PrecioTerreno}</td>
+                  <td style="padding: 8px; border-bottom: 1px solid #ddd;">$${verRegistroSeleccionado.PrecioTerreno}</td>
                 </tr>
                 <tr>
                   <th style="padding: 8px; border-bottom: 1px solid #ddd; text-align: right;">Cliente:</th>
                   <td style="padding: 8px; border-bottom: 1px solid #ddd;">${verRegistroSeleccionado.NombreCliente} ${verRegistroSeleccionado.ApellidoCliente}</td>
                 </tr>
                 <tr>
-                  <th style="padding: 8px; border-bottom: 1px solid #ddd; text-align: right;">Telefono:</th>
+                  <th style="padding: 8px; border-bottom: 1px solid #ddd; text-align: right;">Télefono del cliente:</th>
                   <td style="padding: 8px; border-bottom: 1px solid #ddd;">${verRegistroSeleccionado.TelefonoCliente}</td>
                 </tr>
                 <tr>
-                  <th style="padding: 8px; border-bottom: 1px solid #ddd; text-align: right;">Condición:</th>
+                  <th style="padding: 8px; border-bottom: 1px solid #ddd; text-align: right;">Condición del cliente:</th>
                   <td style="padding: 8px; border-bottom: 1px solid #ddd;">${verRegistroSeleccionado.CondicionCliente}</td>
                 </tr>
               <tr>

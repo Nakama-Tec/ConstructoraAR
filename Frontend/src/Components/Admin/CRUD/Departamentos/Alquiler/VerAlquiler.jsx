@@ -42,11 +42,11 @@ const VerAlquiler = ({ onAlquilerVer }) => {
                   <td style="padding: 8px; border-bottom: 1px solid #ddd;">$${verRegistroSeleccionado.PrecioExpensa}</td>
                 </tr>
                 <tr>
-                  <th style="padding: 8px; border-bottom: 1px solid #ddd; text-align: right;">Nombre Cliente :</th>
+                  <th style="padding: 8px; border-bottom: 1px solid #ddd; text-align: right;">Cliente :</th>
                   <td style="padding: 8px; border-bottom: 1px solid #ddd;">${verRegistroSeleccionado.NombreCliente} ${verRegistroSeleccionado.ApellidoCliente}</td>
                 </tr>
                 <tr>
-                  <th style="padding: 8px; border-bottom: 1px solid #ddd; text-align: right;">Telefono Cliente:</th>
+                  <th style="padding: 8px; border-bottom: 1px solid #ddd; text-align: right;">Télefono del cliente:</th>
                   <td style="padding: 8px; border-bottom: 1px solid #ddd;">${verRegistroSeleccionado.TelefonoCliente}</td>
                 </tr>
               </tbody>

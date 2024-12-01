@@ -28,6 +28,10 @@ const VerTerrenos = ({onTerrenoVer}) => {
               <th style="padding: 8px; border-bottom: 1px solid #ddd; text-align: right;">Precio:</th>
               <td style="padding: 8px; border-bottom: 1px solid #ddd;">${verRegistroSeleccionado.precioTerreno}</td>
             </tr>
+            <tr>
+              <th style="padding: 8px; border-bottom: 1px solid #ddd; text-align: right;">Disponibilidad:</th>
+              <td style="padding: 8px; border-bottom: 1px solid #ddd;">${verRegistroSeleccionado.disponibilidadTerreno === 1 ? "Si" : "No"}</td>
+            </tr>
           </tbody>
         </table>
       `,

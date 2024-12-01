@@ -1,88 +1,139 @@
-import {useEffect} from 'react';
-import Swal from 'sweetalert2';
-import axios from 'axios';
-import useAuthStore from '../../../../Context/useAuthStore';
-import useRegistroStore from '../../../../Context/useRegistroStore';
-import { URL_CLIENTES_CREAR } from '../../../../Constants/endpoints-API';
+import { useEffect } from "react";
+import Swal from "sweetalert2";
+import axios from "axios";
+import useAuthStore from "../../../../Context/useAuthStore";
+import useRegistroStore from "../../../../Context/useRegistroStore";
+import { URL_CLIENTES_CREAR } from "../../../../Constants/endpoints-API";
 
 const CrearClientes = ({ onClienteRegistrado }) => {
 
-    const { isRegistroModalOpen, closeRegistroModal } = useRegistroStore();
-    const token = useAuthStore((state) => state.token);
-  
-    const handleRegistrarCliente = () => {
-      Swal.fire({
-        title: 'Registrar Cliente',
-        html: `
+  const { isRegistroModalOpen, closeRegistroModal } = useRegistroStore();
+  const token = useAuthStore((state) => state.token);
+
+
+  const handleRegistrarCliente = () => {
+    Swal.fire({
+      title: "Registrar Cliente",
+      html: `
             <input id="nombreCliente" placeholder="Nombre" class="swal2-input" />
 
-            <input id="apellidoCliente" placeholder="Apellido" class="swal2-input" />
-
-            <input id="condicionCliente" placeholder="Condicion" class="swal2-input" />
-
+            <input id="apellidoCliente" placeholder="Apellido"  class="swal2-input" />
+            
             <input id="cuilCliente" placeholder="Cuil" class="swal2-input" />
-
+            
             <input id="telefonoCliente" placeholder="Telefono" class="swal2-input" />
-
+            
             <input id="mailCliente" placeholder="Mail" class="swal2-input" />
-
+            
             <input id="direccionCliente" placeholder="Direccion" class="swal2-input" />
-
+            
             <input id="datosGarantes" placeholder="Datos Garantes" class="swal2-input" />
-    
+            
+            <br/>
+            <br/>
+            <label><strong>Selecciona la condición del cliente:</strong></label>
+            <br/>
+            <select id="condicionCliente" class="swal2-select">
+            <option value="Autónomo">Autónomo</option>
+            <option value="Monotributista">Monotributista</option>
+            <option value="Privado">Privado</option>
+          </select>
+          <br/>
         `,
-        confirmButtonText: 'Registrar',
-        showCancelButton: true,
-        preConfirm: () => {
-            const nombreCliente = document.getElementById('nombreCliente').value;
-            const apellidoCliente = document.getElementById('apellidoCliente').value;
-            const condicionCliente = document.getElementById('condicionCliente').value;
-            const cuilCliente = document.getElementById('cuilCliente').value;
-            const telefonoCliente = document.getElementById('telefonoCliente').value;
-            const mailCliente = document.getElementById('mailCliente').value;
-            const direccionCliente = document.getElementById('direccionCliente').value;
-            const datosGarantes = document.getElementById('datosGarantes').value;
+      confirmButtonText: "Registrar",
+      showCancelButton: true,
+      preConfirm: () => {
+        const nombreCliente = document.getElementById("nombreCliente").value;
+        const apellidoCliente = document.getElementById("apellidoCliente").value;
+        const condicionCliente = document.getElementById("condicionCliente").value;
+        const cuilCliente = document.getElementById("cuilCliente").value;
+        const telefonoCliente = document.getElementById("telefonoCliente").value;
+        const mailCliente = document.getElementById("mailCliente").value;
+        const direccionCliente = document.getElementById("direccionCliente").value;
+        const datosGarantes = document.getElementById("datosGarantes").value;
 
-          if (!nombreCliente || !apellidoCliente || !condicionCliente || !cuilCliente || !telefonoCliente || !mailCliente || !direccionCliente || !datosGarantes) {
-            Swal.showValidationMessage('Todos los campos son obligatorios');
-          }
-  
-          return {
-            nombreCliente,
-            apellidoCliente,
-            condicionCliente,
-            cuilCliente,
-            telefonoCliente,
-            mailCliente,
-            direccionCliente,
-            datosGarantes
-          };
+        // Validaciones
+        const nombreRegex = /^[a-zA-Z\s]+$/;
+        const apellidoRegex = /^[a-zA-Z\s]+$/;
+        const cuilRegex = /^\d{2}-\d{8}-\d{1}$/;
+        const telefonoRegex = /^\d{10}$/;
+        const mailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        const direccionRegex = /^[a-zA-Z0-9\s,.-]+$/;
+        const datosGarantesRegex = /^[^@]+$/;
+
+        if (!nombreCliente || !nombreRegex.test(nombreCliente)) {
+          Swal.showValidationMessage("El nombre no debe contener números.");
+          return false;
         }
-      }).then(async (result) => {
-        if (result.isConfirmed) {
-          try {
-            await axios.post(URL_CLIENTES_CREAR, result.value, {
-              headers: { Authorization: `Bearer ${token}` }
-            });
-            Swal.fire('¡Éxito!', 'El cliente fue registrado correctamente.', 'success');
-            onClienteRegistrado(); 
-            closeRegistroModal(); 
-          } catch (error) {
-            Swal.fire('Error', 'Hubo un problema al registrar el cliente.', 'error');
-          }
-        } else {
-          closeRegistroModal(); 
+        if (!apellidoCliente || !apellidoRegex.test(apellidoCliente)) {
+          Swal.showValidationMessage("El apellido no debe contener números.");
+          return false;
         }
-      });
-    };
-  
-useEffect(() => {
-      if (isRegistroModalOpen) {
-        handleRegistrarCliente();
+        if (!cuilCliente || !cuilRegex.test(cuilCliente)) {
+          Swal.showValidationMessage("El CUIL debe contener entre 10 y 11 dígitos, separado por guiones (-).");
+          return false;
+        }
+        if (!telefonoCliente || !telefonoRegex.test(telefonoCliente)) {
+          Swal.showValidationMessage("El teléfono debe contener solo 10 dígitos.");
+          return false;
+        }
+        if (!mailCliente || !mailRegex.test(mailCliente)) {
+          Swal.showValidationMessage("El correo electrónico no es válido.");
+          return false;
+        }
+        if (!direccionCliente || !direccionRegex.test(direccionCliente)) {
+          Swal.showValidationMessage("La dirección no debe contener caracteres especiales.");
+          return false;
+        }
+        if (!datosGarantes || !datosGarantesRegex.test(datosGarantes)) {
+          Swal.showValidationMessage("Los datos de los garantes no deben contener caracteres especiales.");
+          return false;
+        }
+
+        return {
+          nombreCliente,
+          apellidoCliente,
+          condicionCliente,
+          cuilCliente,
+          telefonoCliente,
+          mailCliente,
+          direccionCliente,
+          datosGarantes,
+        };
+      },
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        try {
+          await axios.post(URL_CLIENTES_CREAR, result.value, {
+            headers: { Authorization: `Bearer ${token}` },
+          });
+          Swal.fire(
+            "¡Éxito!",
+            "El cliente fue registrado correctamente.",
+            "success"
+          );
+          onClienteRegistrado();
+          closeRegistroModal();
+        } catch (error) {
+          Swal.fire(
+            "Error",
+            "Hubo un problema al registrar el cliente.",
+            "error"
+          );
+        }
+      } else {
+        closeRegistroModal();
       }
-    }, [isRegistroModalOpen]);
-  
-    return null; // No renderiza nada directamente
+    });
   };
 
-export default CrearClientes
+  useEffect(() => {
+    if (isRegistroModalOpen) {
+      handleRegistrarCliente();
+    }
+  }, [isRegistroModalOpen]);
+
+  return null; // No renderiza nada directamente
+};
+
+export default CrearClientes;

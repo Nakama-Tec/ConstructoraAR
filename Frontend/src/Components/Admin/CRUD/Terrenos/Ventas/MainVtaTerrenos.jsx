@@ -63,8 +63,6 @@ const MainVtaTerrenos = () => {
       { header: 'Direccion', accessorKey: 'DireccionTerreno' },
       { header: 'Precio', accessorKey: 'PrecioTerreno' },
       { header: 'Cliente', accessorFn: row => `${row.NombreCliente} ${row.ApellidoCliente}` },
-      { header: 'Telefono', accessorKey: 'TelefonoCliente' },
-      { header: 'Condicion', accessorKey: 'CondicionCliente' },
       { header: 'Fecha de Venta', accessorKey: 'FechaVentaTerreno' },
       {
         header: 'Acciones',

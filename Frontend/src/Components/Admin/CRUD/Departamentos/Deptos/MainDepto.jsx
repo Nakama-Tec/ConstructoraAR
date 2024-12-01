@@ -61,8 +61,8 @@ const MainDepto = () => {
     { header: 'Nombre Departamento', accessorKey: 'nombreDepartamento' },
     { header: 'Dirección', accessorKey: 'direccionDepartamento' },
     { header: 'Descripción', accessorKey: 'descripcionDepartamento' },
-    { header: 'Precio Departamento', accessorKey: 'precioDepartamento'},
-    { header: 'Precio Expensa', accessorKey: 'precioExpensa' },
+    { header: 'Precio Departamento', accessorFn: row => `$${row.precioDepartamento}` },
+    { header: 'Precio Expensa', accessorFn: row => `$${row.precioExpensa}` },
     {
       header: 'Acciones',
       cell: ({ row }) => (

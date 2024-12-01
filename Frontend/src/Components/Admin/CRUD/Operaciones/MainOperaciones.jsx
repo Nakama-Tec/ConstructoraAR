@@ -58,7 +58,7 @@ const MainOperaciones = () => {
     { header: 'Nº', accessorKey: 'id_operacion' },
     { header: 'Operacion', accessorKey: 'nombreOperacion' },
     { header: 'Tipo', accessorKey: 'tipoOperacion' },
-    { header: 'Monto', accessorKey: 'montoOperacion' },
+    { header: 'Monto', accessorFn: (row) => `$${row.montoOperacion}` },
     { header: 'Detalle', accessorKey: 'detalleOperacion' },
     { header: 'Fecha', accessorKey: 'fechaOperacion' },
 

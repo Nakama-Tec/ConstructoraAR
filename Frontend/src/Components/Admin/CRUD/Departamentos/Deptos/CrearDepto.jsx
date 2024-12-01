@@ -28,11 +28,16 @@ const CrearDepto = ({ onDeptoRegistrado }) => {
 
           <input id="contratoDescripcion" placeholder="Detalles de Contrato" class="swal2-input" />
 
+            <br/>
+            <br/>
+            <label><strong>Selecciona la disponibilidad:</strong></label>
+            <br/>
           <select id="disponibilidadDepartamento" class="swal2-select">
             <option value="1">Si</option>
             <option value="0">No</option>
           </select>
-        `,
+          <br/>
+          `,
         confirmButtonText: 'Registrar',
         showCancelButton: true,
         preConfirm: () => {

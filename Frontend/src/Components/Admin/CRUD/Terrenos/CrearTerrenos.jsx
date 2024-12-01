@@ -20,7 +20,15 @@ const CrearTerrenos = ({ onTerrenoRegistrado }) => {
           
           <input id="precioTerreno" placeholder="Precio" class="swal2-input" />
           
-          <input id="disponibilidadTerreno" placeholder="Disponibilidad" class="swal2-input" />
+            <br/>
+            <br/>
+            <label><strong>Selecciona la disponibilidad:</strong></label>
+            <br/>
+            <select id="condicionCliente" class="swal2-select">
+            <option value="1">Si</option>
+            <option value="0">No</option>
+          </select>
+          <br/>
         `,
         confirmButtonText: 'Registrar',
         showCancelButton: true,
