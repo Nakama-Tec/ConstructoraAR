@@ -61,11 +61,11 @@ const MainCompraMateriales = () => {
       { header: 'Nº', accessorKey: 'ID' },
       { header: 'Nombre del Material', accessorKey: 'Nombre' },
       { header: 'Cantidad', accessorKey: 'Cantidad' },
-      { header: 'Precio ($)', accessorKey: 'Precio' },
-      { header: 'Estado', accessorKey: 'Estado' },
+      // { header: 'Precio ($)', accessorKey: 'Precio' },
+      // { header: 'Estado', accessorKey: 'Estado' },
       { header: 'Fecha de Compra', accessorKey: 'Fecha_Compra' },
       { header: 'Proveedor', accessorKey: 'Proveedor' },
-      { header: 'Destino', accessorKey: 'Destino' },
+      // { header: 'Destino', accessorKey: 'Destino' },
       {
         header: 'Acciones',
         cell: ({ row }) => (
