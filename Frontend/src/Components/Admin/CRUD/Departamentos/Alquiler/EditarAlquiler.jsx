@@ -33,15 +33,17 @@ const EditarAlquiler = ({ onAlquilerEditado }) => {
         Swal.fire({
             title: 'Editar Departamento',
             html: `
-                <label>Fecha Inicio </label> 
+                <label><b>Fecha Inicio</b></label> 
                 <br>
                 <input id="fechaInicioAlquiler" class="swal2-input" type="date" />
                 <br> 
                 <br>
-                <label>Fecha Fin </label> 
+                <label><b>Fecha Fin</b></label> 
                 <br>
                 <input id="fechaFinAlquiler" class="swal2-input"  type="date" />
-                
+                <br/>
+                <br/>
+                <label><b>Selecciona el departamento:</b></label>
                 <select id="select_departamento" class="swal2-select">
                 ${departamentos
                     .map(
@@ -52,7 +54,9 @@ const EditarAlquiler = ({ onAlquilerEditado }) => {
                     )
                     .join('')}
             </select>
-
+            <br/>
+            <br/>
+            <label><b>Selecciona el cliente:</b></label>
             <select id="select_cliente" class="swal2-select">
                 ${clientes
                     .map(

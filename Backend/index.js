@@ -30,7 +30,7 @@ const cors = require('cors');
 
 const app = express()
 const port = 8000;
-app.use(cors({origin: 'http://localhost:5173', allowedHeaders: ["Authorization", "Content-Type"],credentials: true}))
+app.use(cors({origin: '*', allowedHeaders: ["Authorization", "Content-Type"],credentials: true}))
 app.use(bodyParser.json()); // elemento para que me lleguen los correos
 app.use(express.json())
 app.use("/", alquilerDepartamentos,cashFlow,certificados,clientes,compraMateriales,departamentos,detallesViajes,libroDiario,obras,operaciones,pagosAlquileres,remuneraciones,stockMateriales,terrenos,usuarios,vehiculos,ventaTerrenos,viajes,login,contactos,pendientes,empleados,recuperarPass);

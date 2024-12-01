@@ -25,10 +25,17 @@ const CrearPagoDepto = ({ onPagoAlquilerRegistrado }) => {
     Swal.fire({
       title: 'Registrar Pago Alquiler',
       html: `
-        <input id="FechaPagoAlquiler" placeholder="Fecha de Pago" class="swal2-input" />
-        <input id="MontoPagoAlquiler" placeholder="Monto Pagado" class="swal2-input" />
+        <input id="MontoPagoAlquiler" placeholder="Monto Pagado" type="number" min="0" class="swal2-input" />
+        <br/>
+        <br/>
+        <label><strong>Selecciona la fecha de pago:</strong></label>
+        <br/>
+        <input id="FechaPagoAlquiler" type="date" class="swal2-input" />
+        <br/>
+        <br/>
+        <label><strong>Selecciona el alquiler:</strong></label>
+        <br/>
         <select id="id_alquilerDepto" class="swal2-select">
-          <option>Selecciona un alquiler</option>
           ${alquileres.map(alquiler => `<option id="id_alquilerDepto">${alquiler.id_alquilerDepto}</option>`).join('')}
         </select>
       `,
@@ -38,6 +45,7 @@ const CrearPagoDepto = ({ onPagoAlquilerRegistrado }) => {
         const fechaPagoAlquiler = document.getElementById('FechaPagoAlquiler').value;
         const montoPagoAlquiler = document.getElementById('MontoPagoAlquiler').value;
         const id_alquilerDepto = document.getElementById('id_alquilerDepto').value;
+
 
         if (!montoPagoAlquiler || !fechaPagoAlquiler || !id_alquilerDepto) {
           Swal.showValidationMessage('Todos los campos son obligatorios');

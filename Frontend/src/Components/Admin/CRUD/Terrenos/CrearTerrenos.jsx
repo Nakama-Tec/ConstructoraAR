@@ -18,13 +18,13 @@ const CrearTerrenos = ({ onTerrenoRegistrado }) => {
           
           <input id="direccionTerreno" placeholder="Dirección" class="swal2-input" />
           
-          <input id="precioTerreno" placeholder="Precio" class="swal2-input" />
+          <input id="precioTerreno" type="number" min="0" placeholder="Precio" class="swal2-input" />
           
             <br/>
             <br/>
             <label><strong>Selecciona la disponibilidad:</strong></label>
             <br/>
-            <select id="condicionCliente" class="swal2-select">
+            <select id="disponibilidadTerreno" class="swal2-select">
             <option value="1">Si</option>
             <option value="0">No</option>
           </select>
@@ -37,10 +37,31 @@ const CrearTerrenos = ({ onTerrenoRegistrado }) => {
           const direccionTerreno = document.getElementById('direccionTerreno').value;
           const precioTerreno = document.getElementById('precioTerreno').value;
           const disponibilidadTerreno = document.getElementById('disponibilidadTerreno').value;
+
+          // Validaciones
+          const metrosRegex = /^[a-zA-Z0-9]+$/;
+          const direccionRegex = /^[a-zA-Z0-9À-ÿ\s,.-]+$/;
   
-          if (!metrosTerrenos || !direccionTerreno || !precioTerreno || !disponibilidadTerreno) {
-            Swal.showValidationMessage('Todos los campos son obligatorios');
+          if (!metrosRegex || !metrosRegex.test(metrosTerrenos)) {
+            Swal.showValidationMessage("Los metros no debe contener caracteres especiales.");
+            return false;
           }
+
+          if (!direccionTerreno || !direccionRegex.test(direccionTerreno)) {
+            Swal.showValidationMessage("La dirección no debe contener caracteres especiales.");
+            return false;
+          }
+
+
+          if (!precioTerreno) {
+            Swal.showValidationMessage("El precio no debe contener números negativos.");
+            return false;
+          }
+          if (!disponibilidadTerreno) {
+            Swal.showValidationMessage("La disponibilidad es incorrecta.");
+            return false;
+          }
+
   
           return {
             metrosTerrenos,

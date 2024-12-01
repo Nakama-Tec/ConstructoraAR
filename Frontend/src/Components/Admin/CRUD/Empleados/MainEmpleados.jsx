@@ -23,7 +23,6 @@ const MainEmpleados = () => {
   const getEmpleado = async () => {
     try {
       const response = await axios.get(URL_EMPLEADOS, { headers: { Authorization: `Bearer ${token}` } });
-      console.log(response.data)
       setDatos(response.data);
     } catch (error) {
       Swal.fire('Error', 'Hubo un problema al eliminar el departamento.', 'error');
