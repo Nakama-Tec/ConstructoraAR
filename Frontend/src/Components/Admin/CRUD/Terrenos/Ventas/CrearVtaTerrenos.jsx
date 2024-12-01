@@ -57,7 +57,7 @@ const CrearVtaTerrenos = ({ onVtaTerrenoRegistrado }) => {
             .join('')}
         </select>
 
-        <input id="fechaVentaTerreno" class="swal2-input" type="date" />
+        <input id="fechaVentaTerreno" class="swal2-input" type="date" required />
       `,
         confirmButtonText: 'Registrar',
         showCancelButton: true,
@@ -66,6 +66,7 @@ const CrearVtaTerrenos = ({ onVtaTerrenoRegistrado }) => {
           const id_terreno = document.getElementById('select_cliente').value;
           const fechaVentaTerreno = document.getElementById('fechaVentaTerreno').value;
   
+
           if (!id_cliente || !id_terreno || !fechaVentaTerreno) {
             Swal.showValidationMessage('Todos los campos son obligatorios');
           }

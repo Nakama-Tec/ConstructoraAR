@@ -57,7 +57,7 @@ const EditarVtaTerrenos = ({ onVtaTerrenoEditado }) => {
             .join('')}
         </select>
 
-        <input id="fechaVentaTerreno" class="swal2-input" type="date" value="${registroSeleccionado.FechaVentaTerreno}" />
+        <input id="fechaVentaTerreno" class="swal2-input" type="date" required value="${registroSeleccionado.FechaVentaTerreno}" />
       `,
       confirmButtonText: 'Guardar Cambios',
       showCancelButton: true,

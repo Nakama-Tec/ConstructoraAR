@@ -14,9 +14,11 @@ const EditarPagosDepto = ({ onPagoAlquilerEditado }) => {
       Swal.fire({
         title: 'Editar Pago Alquiler',
         html: `
-          <input id="FechaPagoAlquiler" class="swal2-input" value="${registroSeleccionado.FechaPagoAlquiler}" />
-
-          <input id="MontoPagoAlquiler" class="swal2-input" value="${registroSeleccionado.MontoPagoAlquiler}" />
+          <label><strong>Selecciona la fecha de pago:</strong></label>
+          <br/>
+          <input id="FechaPagoAlquiler" type="date" class="swal2-input" value="${registroSeleccionado.FechaPagoAlquiler}" />
+          <br/>
+          <input id="MontoPagoAlquiler" type="number" min="0" class="swal2-input" value="${registroSeleccionado.MontoPagoAlquiler}" />
 
         `,
         confirmButtonText: 'Enviar',

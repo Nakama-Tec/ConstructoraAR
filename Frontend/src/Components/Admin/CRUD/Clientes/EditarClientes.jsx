@@ -50,8 +50,42 @@ const EditarClientes = ({ onClienteEditado }) => {
         const direccionCliente = document.getElementById('direccionCliente').value;
         const datosGarantes = document.getElementById('datosGarantes').value;
 
-        if (!nombreCliente || !apellidoCliente || !condicionCliente || !cuilCliente || !telefonoCliente || !mailCliente || !direccionCliente || !datosGarantes) {
-          Swal.showValidationMessage('Todos los campos son obligatorios');
+        // Validaciones
+        const nombreRegex = /^[a-zA-Z\sÀ-ÿ]+$/;
+        const apellidoRegex = /^[a-zA-Z\sÀ-ÿ]+$/;
+        const cuilRegex = /^\d{2}-\d{8}-\d{1}$/;
+        const telefonoRegex = /^\d{10}$/;
+        const mailRegex = /[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,5}/;
+        const direccionRegex = /^[a-zA-Z0-9À-ÿ\s,.-]+$/;
+        const datosGarantesRegex = /^[^@]+$/;
+
+        if (!nombreCliente || !nombreRegex.test(nombreCliente)) {
+          Swal.showValidationMessage("El nombre no debe contener números.");
+          return false;
+        }
+        if (!apellidoCliente || !apellidoRegex.test(apellidoCliente)) {
+          Swal.showValidationMessage("El apellido no debe contener números.");
+          return false;
+        }
+        if (!cuilCliente || !cuilRegex.test(cuilCliente)) {
+          Swal.showValidationMessage("El CUIL debe contener entre 10 y 11 dígitos, separado por guiones (-).");
+          return false;
+        }
+        if (!telefonoCliente || !telefonoRegex.test(telefonoCliente)) {
+          Swal.showValidationMessage("El teléfono debe contener solo 10 dígitos.");
+          return false;
+        }
+        if (!mailCliente || !mailRegex.test(mailCliente)) {
+          Swal.showValidationMessage("El correo electrónico no es válido.");
+          return false;
+        }
+        if (!direccionCliente || !direccionRegex.test(direccionCliente)) {
+          Swal.showValidationMessage("La dirección no debe contener caracteres especiales.");
+          return false;
+        }
+        if (!datosGarantes || !datosGarantesRegex.test(datosGarantes)) {
+          Swal.showValidationMessage("Los datos de los garantes no deben contener caracteres especiales.");
+          return false;
         }
 
         return {

@@ -53,12 +53,12 @@ const CrearClientes = ({ onClienteRegistrado }) => {
         const datosGarantes = document.getElementById("datosGarantes").value;
 
         // Validaciones
-        const nombreRegex = /^[a-zA-Z\s]+$/;
-        const apellidoRegex = /^[a-zA-Z\s]+$/;
+        const nombreRegex = /^[a-zA-Z\sÀ-ÿ]+$/;
+        const apellidoRegex = /^[a-zA-Z\sÀ-ÿ]+$/;
         const cuilRegex = /^\d{2}-\d{8}-\d{1}$/;
         const telefonoRegex = /^\d{10}$/;
         const mailRegex = /[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,5}/;
-        const direccionRegex = /^[a-zA-Z0-9\s,.-]+$/;
+        const direccionRegex = /^[a-zA-Z0-9À-ÿ\s,.-]+$/;
         const datosGarantesRegex = /^[^@]+$/;
 
         if (!nombreCliente || !nombreRegex.test(nombreCliente)) {

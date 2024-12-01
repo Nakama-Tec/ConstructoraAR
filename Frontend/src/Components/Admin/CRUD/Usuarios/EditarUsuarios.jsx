@@ -30,11 +30,19 @@ const EditarUsuarios = ({onUsuarioEditado}) => {
           <input id="nombreUsuario" class="swal2-input" value="${registroSeleccionado.nombreUsuario}" />
           <input id="mailUsuario" class="swal2-input" value="${registroSeleccionado.mailUsuario}" />
           <input id="passwordUsuario" class="swal2-input" value="${registroSeleccionado.passwordUsuario}" />
+          <br/>
+          <br/>
+          <label><strong>Selecciona el rol:</strong></label>
+          <br/>
           <select id="rol" class="swal2-select">
             <option value="Admin" ${registroSeleccionado.rol === 'Admin' ? 'selected' : ''}>Admin</option>
             <option value="Empleado" ${registroSeleccionado.rol === 'Empleado' ? 'selected' : ''}>Empleado</option>
           </select>
-
+          
+          <br/>
+          <br/>
+          <label><strong>Selecciona el empleado:</strong></label>
+          <br/>
         <select id="select_vehiculo" class="swal2-select">
         ${empleados
           .map(
@@ -57,9 +65,23 @@ const EditarUsuarios = ({onUsuarioEditado}) => {
         const rol = Swal.getPopup().querySelector('#rol').value;
         const id_Empleado = Swal.getPopup().querySelector('#select_vehiculo').value;
         
+        const nombreRegex = /^[a-zA-ZÀ-ÿ\s_]{1,40}$/;
+        const mailRegex = /[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,5}/;
+        const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
 
-        if (!nombreUsuario || !mailUsuario || !passwordUsuario || !rol || !id_Empleado) {
-          Swal.showValidationMessage('Todos los campos son obligatorios');
+        if (!nombreRegex || !nombreRegex.test(nombreUsuario)) {
+          Swal.showValidationMessage("El nombre de usuario no debe contener caracteres especiales.");
+          return false;
+        }
+
+        if (!mailUsuario || !mailRegex.test(mailUsuario)) {
+          Swal.showValidationMessage("El mail no es válido.");
+          return false;
+        }
+
+        if (!passwordUsuario || !passwordRegex.test(passwordUsuario)) {
+          Swal.showValidationMessage("La contraseña debe contener al menos 8 caracteres, una mayúscula, una minúscula y un número.");
+          return false;
         }
 
         return {

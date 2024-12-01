@@ -22,7 +22,10 @@ const MainStock = () => {
   const getStock = async () => {
     try {
       const response = await axios.get(URL_STOCK, { headers: { Authorization: `Bearer ${token}` } });
+<<<<<<< HEAD
    
+=======
+>>>>>>> 92ed50e8475b22cc9e5b2d9375254d97b57ecb61
       setDatos(response.data);
     } catch (error) {
       console.error('Error al obtener stock de materiales:', error);

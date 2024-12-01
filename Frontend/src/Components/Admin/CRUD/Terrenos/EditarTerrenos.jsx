@@ -18,7 +18,7 @@ const EditarTerrenos = ({ onTerrenoEditado }) => {
           
           <input id="direccionTerreno" class="swal2-input" value="${registroSeleccionado.direccionTerreno}" />
           
-          <input id="precioTerreno" class="swal2-input" value="${registroSeleccionado.precioTerreno}" />
+          <input id="precioTerreno" type="number" min="0" class="swal2-input" value="${registroSeleccionado.precioTerreno}" />
           
           <input id="disponibilidadTerreno" class="swal2-input" value="${registroSeleccionado.disponibilidadTerreno}" />
         `,
@@ -29,9 +29,29 @@ const EditarTerrenos = ({ onTerrenoEditado }) => {
           const direccionTerreno = document.getElementById('direccionTerreno').value;
           const precioTerreno = document.getElementById('precioTerreno').value;
           const disponibilidadTerreno = document.getElementById('disponibilidadTerreno').value;
+
+          // Validaciones
+          const metrosRegex = /^[a-zA-Z0-9]+$/;
+          const direccionRegex = /^[a-zA-Z0-9À-ÿ\s,.-]+$/;
   
-          if (!metrosTerrenos || !direccionTerreno || !precioTerreno || !disponibilidadTerreno) {
-            Swal.showValidationMessage('Todos los campos son obligatorios');
+          if (!metrosRegex || !metrosRegex.test(metrosTerrenos)) {
+            Swal.showValidationMessage("Los metros no debe contener caracteres especiales.");
+            return false;
+          }
+
+          if (!direccionTerreno || !direccionRegex.test(direccionTerreno)) {
+            Swal.showValidationMessage("La dirección no debe contener caracteres especiales.");
+            return false;
+          }
+
+
+          if (!precioTerreno) {
+            Swal.showValidationMessage("El precio no debe contener números negativos.");
+            return false;
+          }
+          if (!disponibilidadTerreno) {
+            Swal.showValidationMessage("La disponibilidad es incorrecta.");
+            return false;
           }
   
           return {
