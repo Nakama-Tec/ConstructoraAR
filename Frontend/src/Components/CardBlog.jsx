@@ -10,7 +10,7 @@ const CardBlog = ({ blog }) => {
           className="shadow-xl brightness-50 transition duration-300 ease-in-out transform group-hover:brightness-100 group-hover:scale-105"
         />
         {/* Posicionar el texto en el centro y cambiar el color a blanco */}
-        <span className="absolute inset-0 flex items-center justify-center text-xl font-semibold capitalize text-white">
+        <span className="absolute inset-0 flex items-center justify-center text-xl font-extralight capitalize text-white">
           {blog.category}
         </span>
       </div>
