@@ -9,6 +9,7 @@ import Aside from '../../../Layout/Aside';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import VerStock from './VerStock';
+import EditarStock from './EditarStock';
 
 const MainStock = () => {
   const token = useAuthStore((state) => state.token);
@@ -21,7 +22,7 @@ const MainStock = () => {
   const getStock = async () => {
     try {
       const response = await axios.get(URL_STOCK, { headers: { Authorization: `Bearer ${token}` } });
-      console.log(response.data)
+   
       setDatos(response.data);
     } catch (error) {
       console.error('Error al obtener stock de materiales:', error);
@@ -122,14 +123,14 @@ const MainStock = () => {
           onChange={(e) => setFiltrado(e.target.value)}
         />
       </div>
-      <div className="mb-4">
+      {/* <div className="mb-4">
         <button
           onClick={openRegistroModal}
           className="bg-green-600 text-white px-4 py-2 m-2 rounded-full transition duration-200 ease-in-out hover:bg-green-800 active:bg-green-900 focus:outline-none position relative left-64"
         >
           Registrar Stock del Material
         </button>
-      </div>
+      </div> */}
       <div className='display flex'>
         <div className='position relative top-8'>
       <Aside/>
@@ -175,7 +176,7 @@ const MainStock = () => {
         ))}
       </div>
       <VerStock onStockVer={getStock} />
-
+      <EditarStock onStockEditar={getStock} />
       </div>
   )
 }
