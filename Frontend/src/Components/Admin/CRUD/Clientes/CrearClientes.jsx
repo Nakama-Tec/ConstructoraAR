@@ -57,7 +57,7 @@ const CrearClientes = ({ onClienteRegistrado }) => {
         const apellidoRegex = /^[a-zA-Z\s]+$/;
         const cuilRegex = /^\d{2}-\d{8}-\d{1}$/;
         const telefonoRegex = /^\d{10}$/;
-        const mailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        const mailRegex = /[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,5}/;
         const direccionRegex = /^[a-zA-Z0-9\s,.-]+$/;
         const datosGarantesRegex = /^[^@]+$/;
 
