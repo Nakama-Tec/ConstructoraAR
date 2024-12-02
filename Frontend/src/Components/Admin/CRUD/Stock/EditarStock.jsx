@@ -27,7 +27,7 @@ const EditarStock = ({ onStockEditar }) => {
         <input id="nombreMaterial" class="swal2-input" value="${registroSeleccionado?.nombreMaterial || ''}" />
         <input id="ubicacionStock" class="swal2-input" value="${registroSeleccionado?.ubicacionStock || ''}" />
         <input id="cantidadStock" type="number" class="swal2-input" value="${registroSeleccionado?.cantidadStock || ''}" />
-        <select id="select_stock2" class="swal2-select">
+        <select id="select_stock" class="swal2-select">
           <option value="SI" ${registroSeleccionado?.activoStock === 'SI' ? 'selected' : ''}>SI</option>
           <option value="NO" ${registroSeleccionado?.activoStock === 'NO' ? 'selected' : ''}>NO</option>
         </select>
@@ -38,9 +38,7 @@ const EditarStock = ({ onStockEditar }) => {
         const nombreMaterial = document.getElementById('nombreMaterial').value;
         const ubicacionStock = document.getElementById('ubicacionStock').value;
         const cantidadStock = parseInt(document.getElementById('cantidadStock').value, 10);
-        const activoStock = document.getElementById('select_stock2').value === 'SI' ? 1 : 0;
-
-        console.log('Datos del stock:', { nombreMaterial, ubicacionStock, cantidadStock, activoStock });
+        const activoStock = document.getElementById('select_stock').value === 'SI' ? 1 : 0;
 
         if (!nombreMaterial || !ubicacionStock || isNaN(cantidadStock) || cantidadStock <= 0) {
           Swal.showValidationMessage('Todos los campos son obligatorios y válidos');
@@ -56,8 +54,9 @@ const EditarStock = ({ onStockEditar }) => {
       },
     }).then(async (result) => {
       if (result.isConfirmed) {
+      
         try {
-          await axios.put(`${URL_STOCK_EDITAR}/${registroSeleccionado.id_stock}`, result.value, {
+          await axios.put(`${URL_STOCK_EDITAR}${registroSeleccionado.id_stock}`, result.value, {
             headers: { Authorization: `Bearer ${token}` },
           });
           Swal.fire('¡Éxito!', 'El stock fue actualizado correctamente.', 'success');

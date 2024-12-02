@@ -31,15 +31,7 @@ const MainViajes = () => {
       }
     };
   
-    // const getDetalleViajes = async () => {
-    //   try {
-    //     const response = await axios.get(URL_DETALLES_VIAJES, { headers: { Authorization: `Bearer ${token}` } });
-    //     setDatos(response.data);
-    //   } catch (error) {
-    //     console.error("Error al obtener el detalle del viaje:", error);
-    //   }
-    // };
-
+ 
     const handleEliminarViaje = async (viaje) => {
       const confirmacion = await Swal.fire({
         title: '¿Estás seguro?',

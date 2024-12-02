@@ -22,10 +22,6 @@ const MainStock = () => {
   const getStock = async () => {
     try {
       const response = await axios.get(URL_STOCK, { headers: { Authorization: `Bearer ${token}` } });
-<<<<<<< HEAD
-   
-=======
->>>>>>> 92ed50e8475b22cc9e5b2d9375254d97b57ecb61
       setDatos(response.data);
     } catch (error) {
       console.error('Error al obtener stock de materiales:', error);
@@ -36,7 +32,7 @@ const MainStock = () => {
   const handleEliminarStock = async (stock) => {
     const confirmacion = await Swal.fire({
       title: '¿Estás seguro?',
-      text: `¿Deseas eliminar el stock del material "${stock.patenteVehiculo}"?`,
+      text: `¿Deseas eliminar el stock del material "${stock.nombreMaterial}"?`,
       icon: 'warning',
       showCancelButton: true,
       confirmButtonText: 'Sí, eliminar',
@@ -46,7 +42,7 @@ const MainStock = () => {
     if (confirmacion.isConfirmed) {
       try {
         await axios.put(
-          `${URL_STOCK_ELIMINAR}${stock.id_vehiculo}`,
+          `${URL_STOCK_ELIMINAR}${stock.id_stock}`,
           { ...stock }, // Se envía el stock con el campo "eliminado" en true
           { headers: { Authorization: `Bearer ${token}` } }
         );
