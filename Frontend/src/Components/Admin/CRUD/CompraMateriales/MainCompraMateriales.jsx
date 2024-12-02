@@ -4,17 +4,20 @@ import '../../../../Styles/table.css';
 import { URL_COMPRA_MATERIALES, URL_COMPRA_MATERIALES_ELIMINAR } from '../../../../Constants/endpoints-API';
 import useAuthStore from '../../../../Context/useAuthStore';
 import useRegistroStore from '../../../../Context/useRegistroStore';
+import useVerRegistroStore from '../../../../Context/useVerRegistroStore';
 import Aside from '../../../Layout/Aside';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import EditarCompraMateriales from './EditarCompraMateriales';
 import CrearCompraMateriales from './CrearCompraMateriales';
+import VerCompraMateriales from './VerCompraMateriales';
 
 const MainCompraMateriales = () => {
     const token = useAuthStore((state) => state.token);
     const { setRegistroSeleccionado, openRegistroModal } = useRegistroStore();//objeto que se importa de useStockStore
     const [filtrado, setFiltrado] = useState('');
     const [datos, setDatos] = useState([]);
+    const {setVerRegistroSeleccionado, openVerRegistroModal} = useVerRegistroStore();
   
     const getCompraMaterial = async () => {
       try {
@@ -58,15 +61,21 @@ const MainCompraMateriales = () => {
       { header: 'Nº', accessorKey: 'ID' },
       { header: 'Nombre del Material', accessorKey: 'Nombre' },
       { header: 'Cantidad', accessorKey: 'Cantidad' },
-      { header: 'Precio ($)', accessorKey: 'Precio' },
-      { header: 'Estado', accessorKey: 'Estado' },
+      // { header: 'Precio ($)', accessorKey: 'Precio' },
+      // { header: 'Estado', accessorKey: 'Estado' },
       { header: 'Fecha de Compra', accessorKey: 'Fecha_Compra' },
       { header: 'Proveedor', accessorKey: 'Proveedor' },
-      { header: 'Destino', accessorKey: 'Destino' },
+      // { header: 'Destino', accessorKey: 'Destino' },
       {
         header: 'Acciones',
         cell: ({ row }) => (
           <div className="flex gap-2">
+             <button
+              onClick={() => setVerRegistroSeleccionado(row.original)}
+              className="bg-blue-600 text-white px-4 py-2 rounded-full transition duration-200 ease-in-out hover:bg-blue-800 active:bg-blue-900 focus:outline-none"
+            >
+              Ver Mas
+            </button>
             <button
               onClick={() => setRegistroSeleccionado(row.original)}
               className="bg-orange-600 text-white px-4 py-2 rounded-full transition duration-200 ease-in-out hover:bg-orange-800 active:bg-orange-900 focus:outline-none"
@@ -102,8 +111,8 @@ const MainCompraMateriales = () => {
   
     return (
       <div>
-        <p className="text-black font-semibold text-4xl display flex justify-center m-5">Registros de la compra de Materiales</p>
-        <div className="input-search">
+        <p className="text-black font-semibold text-4xl display flex justify-center relative top-12 m-5">Registros de la compra de Materiales</p>
+        <div className="input-search relative top-20">
           <input
             className="text-black"
             type="search"
@@ -115,9 +124,9 @@ const MainCompraMateriales = () => {
         <div className="mb-4">
           <button
             onClick={openRegistroModal}
-            className="bg-green-600 text-white px-4 py-2 m-2 rounded-full transition duration-200 ease-in-out hover:bg-green-800 active:bg-green-900 focus:outline-none position relative left-64"
+            className="bg-green-600 text-white px-4 py-2 m-2 rounded-full transition duration-200 ease-in-out hover:bg-green-800 active:bg-green-900 focus:outline-none position relative left-72"
           >
-            Registrar compra del Material
+            Registrar compra de material
           </button>
         </div>
         <div className='display flex'>
@@ -164,6 +173,7 @@ const MainCompraMateriales = () => {
           </button>
         ))}
       </div>
+      <VerCompraMateriales onVerCompraMaterial={getCompraMaterial} />
         <EditarCompraMateriales onCompraMaterialEditado={getCompraMaterial} />
       <CrearCompraMateriales onCompraMaterialRegistrado={getCompraMaterial} />
         </div>

@@ -18,9 +18,17 @@ const CrearVehiculo = ({ onVehiculoRegistrado }) => {
           
           <input id="marcaVehiculo" placeholder="Marca" class="swal2-input" />
           
-          <input id="tipoVehiculo" placeholder="Tipo Vehiculo" class="swal2-input" />
-          
           <input id="seguroVehiculo" placeholder="Seguro" class="swal2-input" />
+
+          <br/>
+          <br/>
+          <label><strong>Selecciona el tipo de vehiculo:</strong></label>
+          <br/>
+          <select id="tipoVehiculo" class="swal2-select">
+          <option value="Camión">Camión</option>
+          <option value="Auto">Auto</option>
+          </select>
+          <br/>
         `,
         confirmButtonText: 'Registrar',
         showCancelButton: true,
@@ -29,10 +37,27 @@ const CrearVehiculo = ({ onVehiculoRegistrado }) => {
           const marcaVehiculo = document.getElementById('marcaVehiculo').value;
           const tipoVehiculo = document.getElementById('tipoVehiculo').value;
           const seguroVehiculo = document.getElementById('seguroVehiculo').value;
-  
-          if (!patenteVehiculo || !marcaVehiculo || !tipoVehiculo || !seguroVehiculo) {
-            Swal.showValidationMessage('Todos los campos son obligatorios');
+
+          // Validaciones
+          const patenteRegex = /^[a-zA-Z0-9]+$/;
+          const marcaRegex = /^[a-zA-ZÀ-ÿ\s]+$/;
+          const seguroRegex = /^[a-zA-ZÀ-ÿ\s]+$/;
+
+          if(!patenteRegex || !marcaRegex.test(marcaVehiculo)){
+            Swal.showValidationMessage('La patente no debe contener caracteres especiales.');
+            return false;
           }
+
+          if(!marcaVehiculo || !marcaRegex.test(marcaVehiculo)){
+            Swal.showValidationMessage('La marca no debe contener números ni caracteres especiales.');
+            return false;
+          }
+
+          if(!seguroVehiculo || !seguroRegex.test(seguroVehiculo)){
+            Swal.showValidationMessage('El seguro no debe contener números ni caracteres especiales.');
+            return false;
+          }
+  
   
           return {
             patenteVehiculo,

@@ -9,6 +9,7 @@ import Aside from '../../../Layout/Aside';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import VerStock from './VerStock';
+import EditarStock from './EditarStock';
 
 const MainStock = () => {
   const token = useAuthStore((state) => state.token);
@@ -21,7 +22,6 @@ const MainStock = () => {
   const getStock = async () => {
     try {
       const response = await axios.get(URL_STOCK, { headers: { Authorization: `Bearer ${token}` } });
-      console.log(response.data)
       setDatos(response.data);
     } catch (error) {
       console.error('Error al obtener stock de materiales:', error);
@@ -32,7 +32,7 @@ const MainStock = () => {
   const handleEliminarStock = async (stock) => {
     const confirmacion = await Swal.fire({
       title: '¿Estás seguro?',
-      text: `¿Deseas eliminar el stock del material "${stock.patenteVehiculo}"?`,
+      text: `¿Deseas eliminar el stock del material "${stock.nombreMaterial}"?`,
       icon: 'warning',
       showCancelButton: true,
       confirmButtonText: 'Sí, eliminar',
@@ -42,7 +42,7 @@ const MainStock = () => {
     if (confirmacion.isConfirmed) {
       try {
         await axios.put(
-          `${URL_STOCK_ELIMINAR}${stock.id_vehiculo}`,
+          `${URL_STOCK_ELIMINAR}${stock.id_stock}`,
           { ...stock }, // Se envía el stock con el campo "eliminado" en true
           { headers: { Authorization: `Bearer ${token}` } }
         );
@@ -57,8 +57,8 @@ const MainStock = () => {
 
   const columns = [
     { header: 'Nº', accessorKey: 'id_stock' },
-    { header: 'Nombre Material', accessorKey: 'nombreMaterial' },
-    { header: 'Ubicacion', accessorKey: 'ubicacionStock' },
+    { header: 'Nombre del material', accessorKey: 'nombreMaterial' },
+    { header: 'Ubicación', accessorKey: 'ubicacionStock' },
     { header: 'Cantidad', accessorKey: 'cantidadStock' },
     { 
       header: 'Disponible', 
@@ -72,7 +72,7 @@ const MainStock = () => {
         <div className="flex gap-2">
           <button
             onClick={() => setVerRegistroSeleccionado(row.original)}
-            className="bg-blue-600 text-white px-4 py-2 rounded-full transition duration-200 ease-in-out hover:bg-red-800 active:bg-red-900 focus:outline-none"
+            className="bg-blue-600 text-white px-4 py-2 rounded-full transition duration-200 ease-in-out hover:bg-blue-800 active:bg-blue-900 focus:outline-none"
           >
             Ver más
           </button>
@@ -112,8 +112,8 @@ const MainStock = () => {
 
   return (
     <div>
-      <p className="text-black font-semibold text-4xl display flex justify-center m-5">Registros del Stock de Materiales</p>
-      <div className="input-search">
+      <p className="text-black font-semibold text-4xl display flex justify-center relative top-8 m-5">Registros del Stock de Materiales</p>
+      <div className="input-search relative top-8">
         <input
           className="text-black"
           type="search"
@@ -122,14 +122,14 @@ const MainStock = () => {
           onChange={(e) => setFiltrado(e.target.value)}
         />
       </div>
-      <div className="mb-4">
+      {/* <div className="mb-4">
         <button
           onClick={openRegistroModal}
-          className="bg-green-600 text-white px-4 py-2 m-2 rounded-full transition duration-200 ease-in-out hover:bg-green-800 active:bg-green-900 focus:outline-none position relative left-64"
+          className="bg-green-600 text-white px-4 py-2 m-2 rounded-full transition duration-200 ease-in-out hover:bg-green-800 active:bg-green-900 focus:outline-none position relative left-72"
         >
-          Registrar Stock del Material
+          Registrar stock de material
         </button>
-      </div>
+      </div> */}
       <div className='display flex'>
         <div className='position relative top-8'>
       <Aside/>
@@ -175,7 +175,7 @@ const MainStock = () => {
         ))}
       </div>
       <VerStock onStockVer={getStock} />
-
+      <EditarStock onStockEditar={getStock} />
       </div>
   )
 }

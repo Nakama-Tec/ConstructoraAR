@@ -19,18 +19,23 @@ const CrearPendiente = ({ onPendienteRegistrado }) => {
       <input id="fechaCreacion" placeholder="Fecha Creación" type="date" class="swal2-input" />
 
       <input id="fechaLimite" placeholder="Fecha Límite" type="date" class="swal2-input" />
-      
+       <br/>
+       <br/>
+       <label><strong>Selecciona el estado:</strong></label>
       <select id="estado" class="swal2-select">
         <option value="Pendiente">Pendiente</option>
         <option value="En Progreso">En Progreso</option>
         <option value="Completado">Completado</option>
       </select>
-      
+       <br/>
+       <br/>
+      <label><strong>Selecciona la prioridad:</strong></label>
       <select id="prioridad" class="swal2-select">
         <option value="Baja">Baja</option>
         <option value="Media">Media</option>
         <option value="Alta">Alta</option>
       </select>
+      <br/>
       `,
       confirmButtonText: 'Registrar',
       showCancelButton: true,

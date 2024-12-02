@@ -1,7 +1,24 @@
 const { conection } = require("../DB/Config")
 
 const allUsuarios = (req, res) => {
-    const query = `select * from Usuarios where activoUsuario=1;`
+    const query = `SELECT  
+    u.id_usuario,
+    u.nombreUsuario,
+    u.mailUsuario,
+    u.passwordUsuario,
+    u.rol,
+    u.activoUsuario,
+    u.id_Empleado,
+    CONCAT(e.nombreEmpleado, ' ', e.apellidoEmpleado) AS nomEmpleado
+    FROM 
+    Usuarios u
+    JOIN 
+    Empleados e 
+    ON  
+    u.id_Empleado = e.id_Empleado
+    where activoUsuario=1;`
+
+
     conection.query(query, (err, results) => {
         if (err) throw err;
         res.json(results);

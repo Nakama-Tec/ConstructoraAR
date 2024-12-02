@@ -17,8 +17,8 @@ const CrearRemuneracion = ({onRemuneracionRegistrada}) => {
         title: 'Registrar Remuneracion',
         html: `
                     <input id="detalle" placeholder="Detalle" class="swal2-input" />
-                    <input id="montoRemuneracion" placeholder="Monto" class="swal2-input" />
-                    <input id="cantEmpleado" placeholder="Cantidad de Empleados" type="number" class="swal2-input" />
+                    <input id="montoRemuneracion" placeholder="Monto" type="number" min="0" class="swal2-input" />
+                    <input id="cantEmpleado" placeholder="Cantidad de Empleados" type="number" min="0" class="swal2-input" />
                     <br>
                     <br>
                     <label for="tipoEmpleado">Empleado</label>
@@ -50,10 +50,16 @@ const CrearRemuneracion = ({onRemuneracionRegistrada}) => {
             const fechaRemuneracion = Swal.getPopup().querySelector('#fechaRemuneracion').value;
             const sectorRemuneracion = Swal.getPopup().querySelector('#sectorRemuneracion').value;
 
-
-        if (!montoRemuneracion || !cantEmpleado || !tipoEmpleado || !fechaRemuneracion || !sectorRemuneracion) {
-            Swal.showValidationMessage('Todos los campos son obligatorios');
+         // Validaciones
+         
+         const detallesRegex = /^[^@]+$/;
+ 
+         if (!detalle || !detallesRegex.test(detalle)) {
+           Swal.showValidationMessage("El detalle no debe contener caracteres especiales.");
+           return false;
           }
+  
+ 
   
           return {
             detalle,

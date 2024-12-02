@@ -20,19 +20,24 @@ const CrearDepto = ({ onDeptoRegistrado }) => {
           
           <input id="descripcionDepartamento" placeholder="Descripción" class="swal2-input" />
           
-          <input id="precioDepartamento" placeholder="Precio Departamento" class="swal2-input" />
+          <input id="precioDepartamento" type="number" min="0" placeholder="Precio Departamento" class="swal2-input" />
 
-          <input id="precioExpensa" placeholder="Precio Expensa" class="swal2-input" />
+          <input id="precioExpensa" type="number" min="0" placeholder="Precio Expensa" class="swal2-input" />
 
           <input id="serviciosIncluidos" placeholder="Servicios incluidos" class="swal2-input" />
 
           <input id="contratoDescripcion" placeholder="Detalles de Contrato" class="swal2-input" />
 
+            <br/>
+            <br/>
+            <label><strong>Selecciona la disponibilidad:</strong></label>
+            <br/>
           <select id="disponibilidadDepartamento" class="swal2-select">
             <option value="1">Si</option>
             <option value="0">No</option>
           </select>
-        `,
+          <br/>
+          `,
         confirmButtonText: 'Registrar',
         showCancelButton: true,
         preConfirm: () => {
@@ -44,9 +49,37 @@ const CrearDepto = ({ onDeptoRegistrado }) => {
           const serviciosIncluidos = document.getElementById('serviciosIncluidos').value;
           const contratoDescripcion = document.getElementById('contratoDescripcion').value;
           const disponibilidadDepartamento = document.getElementById('disponibilidadDepartamento').value;
+
+          // Validaciones
+          const nombreRegex = /^[a-zA-Z\sÀ-ÿ]+$/;
+          const descripcionRegex = /^[a-zA-Z0-9À-ÿ\s,.-]+$/;
+          const direccionRegex = /^[a-zA-Z0-9À-ÿ\s,.-]+$/;
+          const serviciosRegex = /^[a-zA-Z0-9\s,.-]+$/;
+          const contratoRegex = /^[a-zA-Z0-9À-ÿ\s,.-]+$/;
   
-          if (!nombreDepartamento || !direccionDepartamento || !descripcionDepartamento || !precioDepartamento || !precioExpensa || !serviciosIncluidos || !contratoDescripcion || !disponibilidadDepartamento) {
-            Swal.showValidationMessage('Todos los campos son obligatorios');
+          if (!nombreDepartamento || !nombreRegex.test(nombreDepartamento)) {
+            Swal.showValidationMessage("El nombre no debe contener números ni caracteres especiales.");
+            return false;
+          }
+
+          if (!direccionDepartamento || !direccionRegex.test(direccionDepartamento)) {
+            Swal.showValidationMessage("La dirección no debe contener caracteres especiales.");
+            return false;
+          }
+
+          if (!descripcionDepartamento || !descripcionRegex.test(descripcionDepartamento)) {
+            Swal.showValidationMessage("La descripción esta incompleta!.");
+            return false;
+          }
+
+          if (!serviciosIncluidos || !serviciosRegex.test(serviciosIncluidos)) {
+            Swal.showValidationMessage("Los servicios no debe contener caracteres especiales.");
+            return false;
+          }
+
+          if (!contratoDescripcion || !contratoRegex.test(contratoDescripcion)) {
+            Swal.showValidationMessage("El contrato no debe contener caracteres especiales.");
+            return false;
           }
   
           return {

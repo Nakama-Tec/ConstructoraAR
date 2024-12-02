@@ -2,8 +2,6 @@ const { conection } = require("../DB/Config")
 
 const allClientes = (req, res) => {
 
-console.log("hola cliente")
-
     const query = `select * from Clientes where activoCliente=1`
     conection.query(query, (err, results) => {
         if (err) throw err;
@@ -12,7 +10,7 @@ console.log("hola cliente")
 }
 
 const singleCliente = (req, res) => {
-    console.log(req.params.id)
+   
     const id = req.params.id
     const query = `select * from Clientes where id_cliente=${id}`
     conection.query(query, (err,results) => {
@@ -21,6 +19,7 @@ const singleCliente = (req, res) => {
         res.send(results)
     })
 }
+
 const createCliente = (req, res) => {
     const {nombreCliente, apellidoCliente, condicionCliente, cuilCliente, telefonoCliente, mailCliente, direccionCliente, datosGarantes} = req.body
 

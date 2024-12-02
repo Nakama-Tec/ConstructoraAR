@@ -40,11 +40,39 @@ const EditarDepto = ({ onDeptoEditado }) => {
           const serviciosIncluidos = document.getElementById('serviciosIncluidos').value;
           const contratoDescripcion = document.getElementById('contratoDescripcion').value;
           const disponibilidadDepartamento = document.getElementById('disponibilidadDepartamento').value;
+
+          // Validaciones
+          const nombreRegex = /^[a-zA-ZÀ-ÿ\s]+$/;
+          const descripcionRegex = /^[a-zA-Z0-9À-ÿ\s,.-]+$/;
+          const direccionRegex = /^[a-zA-Z0-9À-ÿ\s,.-]+$/;
+          const serviciosRegex = /^[a-zA-Z0-9\s,.-]+$/;
+          const contratoRegex = /^[a-zA-Z0-9À-ÿ\s,.-]+$/;
   
-          if (!nombreDepartamento || !direccionDepartamento || !descripcionDepartamento || !precioDepartamento || !precioExpensa || !serviciosIncluidos || !contratoDescripcion || !disponibilidadDepartamento) {
-            Swal.showValidationMessage('Todos los campos son obligatorios');
+          if (!nombreDepartamento || !nombreRegex.test(nombreDepartamento)) {
+            Swal.showValidationMessage("El nombre no debe contener números ni caracteres especiales.");
+            return false;
           }
-  
+
+          if (!direccionDepartamento || !direccionRegex.test(direccionDepartamento)) {
+            Swal.showValidationMessage("La dirección no debe contener caracteres especiales.");
+            return false;
+          }
+
+          if (!descripcionDepartamento || !descripcionRegex.test(descripcionDepartamento)) {
+            Swal.showValidationMessage("La descripción esta incompleta!.");
+            return false;
+          }
+
+          if (!serviciosIncluidos || !serviciosRegex.test(serviciosIncluidos)) {
+            Swal.showValidationMessage("Los servicios no debe contener caracteres especiales.");
+            return false;
+          }
+
+          if (!contratoDescripcion || !contratoRegex.test(contratoDescripcion)) {
+            Swal.showValidationMessage("El contrato no debe contener caracteres especiales.");
+            return false;
+          }
+
           return {
             nombreDepartamento,
             direccionDepartamento,

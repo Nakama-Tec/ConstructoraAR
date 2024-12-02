@@ -56,9 +56,9 @@ const MainObras = () => {
       { header: 'Descripcion Obra', accessorKey: 'descripcionObra' },
       { header: 'Fecha Inicio', accessorKey: 'fechainicioObra' },
       { header: 'Fecha Fin', accessorKey: 'fechafinObra' },
-      { header: 'Precio Obra', accessorKey: 'precioObra' },
-      { header: 'Sector', accessorKey: 'sectorObra' },
-      { header: 'Progreso', accessorKey: 'progresoObra' },
+      { header: 'Precio Obra', accessorFn: (row) => `$${row.precioObra}` },
+      { header: 'Sector', accessorFn: (row) => row.sectorObra === 0 ? "Público" : "Privado" },
+      { header: 'Progreso', accessorFn: (row) => `${row.progresoObra}%` },
       { header: 'Id Cliente', accessorKey: 'id_cliente' },
       {
         header: 'Acciones',
@@ -99,8 +99,8 @@ const MainObras = () => {
   
     return (
       <div>
-        <p className="text-black font-semibold text-4xl display flex justify-center m-5">Registros de las Obras</p>
-        <div className="input-search">
+        <p className="text-black font-semibold text-4xl display flex justify-center relative top-12 m-5">Registros de las Obras</p>
+        <div className="input-search relative top-20">
           <input
             className="text-black"
             type="search"
@@ -112,9 +112,9 @@ const MainObras = () => {
         <div className="mb-4">
           <button
             onClick={openRegistroModal}
-            className="bg-green-600 text-white px-4 py-2 m-2 rounded-full transition duration-200 ease-in-out hover:bg-green-800 active:bg-green-900 focus:outline-none position relative left-64"
+            className="bg-green-600 text-white px-4 py-2 m-2 rounded-full transition duration-200 ease-in-out hover:bg-green-800 active:bg-green-900 focus:outline-none position relative left-72"
           >
-            Registrar Obra
+            Registrar obra
           </button>
         </div>
         <div className='display flex'>

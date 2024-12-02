@@ -3,8 +3,8 @@ const { conection } = require("../DB/Config")
 // Funcion para mostrar todos los detalles de los viajes
 
 const allDetallesViajes = (req, res) => {
-    const query = `SELECT dv.id_DetallesViaje as ID, o.nombreObra AS Obra, o.descripcionObra AS Direccion_Obra, veh.patenteVehiculo AS Patente,
-    veh.tipoVehiculo AS Tipo_Vehiculo, v.fechaViaje AS Fecha_Viaje, sm.nombreMaterial AS Material, sm.ubicacionStock AS Deposito,
+    const query = `SELECT dv.id_DetallesViaje as ID, o.nombreObra, o.descripcionObra AS Direccion_Obra, veh.patenteVehiculo,
+    veh.tipoVehiculo AS Tipo_Vehiculo, v.id_viaje, v.fechaViaje, sm.nombreMaterial AS Material, sm.ubicacionStock AS Deposito,
     sm.cantidadStock AS Cantidad_Material FROM Viajes v
 JOIN 
     Obras o ON v.id_obra = o.id_obra

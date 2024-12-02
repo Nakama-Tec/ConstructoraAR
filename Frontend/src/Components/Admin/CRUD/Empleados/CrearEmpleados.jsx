@@ -35,10 +35,36 @@ const CrearEmpleados = ({ onEmpleadoRegistrado }) => {
           const direccionEmpleado = document.getElementById('direccionEmpleado').value;
           const telefonoEmpleado = document.getElementById('telefonoEmpleado').value;
 
+          // Validaciones
+          const nombreRegex = /^[a-zA-Z\sÀ-ÿ]+$/;
+          const apellidoRegex = /^[a-zA-Z\sÀ-ÿ]+$/;
+          const dniRegex = /^\d{7,8}$/;
+          const telefonoRegex = /^\d{10}$/;
+          const direccionRegex = /^[a-zA-Z0-9À-ÿ\s,.-]+$/;
 
-        if (!nombreEmpleado || !apellidoEmpleado || !dniEmpleado || !direccionEmpleado || !telefonoEmpleado) {
-          Swal.showValidationMessage('Todos los campos son obligatorios');
-        }
+          if (!nombreEmpleado || !nombreRegex.test(nombreEmpleado)) {
+            Swal.showValidationMessage("El nombre no debe contener números.");
+            return false;
+          }
+          if (!apellidoEmpleado || !apellidoRegex.test(apellidoEmpleado)) {
+            Swal.showValidationMessage("El apellido no debe contener números.");
+            return false;
+          }
+          if (!dniRegex || !dniRegex.test(dniEmpleado)) {
+            Swal.showValidationMessage("El DNI debe contener entre 7 y 8 dígitos.");
+            return false;
+          }
+
+          if (!direccionEmpleado || !direccionRegex.test(direccionEmpleado)) {
+            Swal.showValidationMessage("La dirección no debe contener caracteres especiales.");
+            return false;
+          }
+
+          if (!telefonoEmpleado || !telefonoRegex.test(telefonoEmpleado)) {
+            Swal.showValidationMessage("El teléfono debe contener solo 10 dígitos.");
+            return false;
+          }
+          
 
         return {
           nombreEmpleado,
@@ -55,7 +81,7 @@ const CrearEmpleados = ({ onEmpleadoRegistrado }) => {
             headers: { Authorization: `Bearer ${token}` }
           });
           Swal.fire('¡Éxito!', 'El empleado fue registrado correctamente.', 'success');
-          onClienteRegistrado(); 
+          handleRegistrarEmpleado(); 
           closeRegistroModal(); 
         } catch (error) {
           Swal.fire('Error', 'Hubo un problema al registrar al empleado.', 'error');

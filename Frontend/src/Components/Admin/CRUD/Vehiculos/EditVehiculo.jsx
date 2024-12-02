@@ -18,9 +18,17 @@ const EditVehiculo = ({ onVehiculoEditado }) => {
           
           <input id="marcaVehiculo" class="swal2-input" value="${registroSeleccionado.marcaVehiculo}" />
           
-          <input id="tipoVehiculo" class="swal2-input" value="${registroSeleccionado.tipoVehiculo}" />
-          
           <input id="seguroVehiculo" class="swal2-input" value="${registroSeleccionado.seguroVehiculo}" />
+
+          <br/>
+          <br/>
+          <label><strong>Selecciona el tipo de vehiculo:</strong></label>
+          <br/>
+          <select id="tipoVehiculo" class="swal2-select">
+          <option value="Camión" ${registroSeleccionado.seguroVehiculo === 'Camión' ? 'selected' : ''}>Camión</option>
+          <option value="Auto" ${registroSeleccionado.seguroVehiculo === 'Auto' ? 'selected' : ''}>Auto</option>
+        </select>
+        <br/>
         `,
         confirmButtonText: 'Enviar',
         showCancelButton: true,
@@ -29,9 +37,25 @@ const EditVehiculo = ({ onVehiculoEditado }) => {
           const marcaVehiculo = document.getElementById('marcaVehiculo').value;
           const tipoVehiculo = document.getElementById('tipoVehiculo').value;
           const seguroVehiculo = document.getElementById('seguroVehiculo').value;
+
+          // Validaciones
+          const patenteRegex = /^[a-zA-Z0-9]+$/;
+          const marcaRegex = /^[a-zA-ZÀ-ÿ\s]+$/;
+          const seguroRegex = /^[a-zA-ZÀ-ÿ\s]+$/;
   
-          if (!patenteVehiculo || !marcaVehiculo || !tipoVehiculo || !seguroVehiculo) {
-            Swal.showValidationMessage('Todos los campos son obligatorios');
+          if(!patenteRegex || !marcaRegex.test(marcaVehiculo)){
+            Swal.showValidationMessage('La patente no debe contener caracteres especiales.');
+            return false;
+          }
+
+          if(!marcaVehiculo || !marcaRegex.test(marcaVehiculo)){
+            Swal.showValidationMessage('La marca no debe contener números ni caracteres especiales.');
+            return false;
+          }
+
+          if(!seguroVehiculo || !seguroRegex.test(seguroVehiculo)){
+            Swal.showValidationMessage('El seguro no debe contener números ni caracteres especiales.');
+            return false;
           }
   
           return {

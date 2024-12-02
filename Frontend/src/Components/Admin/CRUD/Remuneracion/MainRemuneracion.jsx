@@ -4,11 +4,13 @@ import axios from 'axios';
 import Swal from 'sweetalert2';
 import Aside from '../../../Layout/Aside';
 import useRegistroStore from '../../../../Context/useRegistroStore';
+import useVerRegistroStore from '../../../../Context/useVerRegistroStore';
 import '../../../../Styles/table.css';
 import { URL_REMUNERACIONES, URL_REMUNERACIONES_ELIMINAR } from '../../../../Constants/endpoints-API';
 import useAuthStore from '../../../../Context/useAuthStore';
 import EditarRemuneracion from './EditarRemuneracion';
 import CrearRemuneracion from './CrearRemuneracion';
+import VerRemuneracion from './VerRemuneracion';
 
 
 const MainRemuneracion = () => {
@@ -17,6 +19,8 @@ const MainRemuneracion = () => {
     const [filtrado, setFiltrado] = useState('');
     const [datos, setDatos] = useState([]);
     const { setRegistroSeleccionado, openRegistroModal } = useRegistroStore();
+    const {setVerRegistroSeleccionado} = useVerRegistroStore();
+
 
   
   
@@ -59,17 +63,22 @@ const MainRemuneracion = () => {
 
     const columns = [
       { header: 'Nº Remuneracion', accessorKey: 'id_remuneracion' },
-      { header: 'Detalle', accessorKey: 'detalle' },
-      { header: 'Monto Remuneracion', accessorKey: 'montoRemuneracion' },
-      { header: 'Cantidad Empleado', accessorKey: 'cantEmpleado' },
-      { header: 'Tipo Empleado', accessorFn: (row) => row.tipoEmpleado == 0 ? "Administrativo" : "Obrero" },
-      { header: 'Fecha Remuneracion', accessorKey: 'fechaRemuneracion' },
-      { header: 'Sector Remuneracion', accessorFn: (row) => row.sectorRemuneracion == 0 ? "Publico" : "Privado" },
+      { header: 'Monto Remuneración', accessorKey: 'montoRemuneracion' },
+      { header: 'Cantidad de empleados', accessorKey: 'cantEmpleado' },
+      { header: 'Fecha', accessorKey: 'fechaRemuneracion' },
+      { header: 'Sector', accessorFn: (row) => row.sectorRemuneracion == 0 ? "Publico" : "Privado" },
 
       {
         header: 'Acciones',
         cell: ({ row }) => (
           <div className="flex gap-2">
+             <button
+            onClick={() => setVerRegistroSeleccionado(row.original)}
+            className="bg-blue-600 text-white px-4 py-2 rounded-full transition duration-200 ease-in-out hover:bg-blue-800 active:bg-blue-900 focus:outline-none"
+          >
+            Ver más
+          </button>
+
           <button
             onClick={() => setRegistroSeleccionado(row.original)}
             className="bg-orange-600 text-white px-4 py-2 rounded-full transition duration-200 ease-in-out hover:bg-orange-800 active:bg-orange-900 focus:outline-none"
@@ -105,8 +114,8 @@ const MainRemuneracion = () => {
   
     return (
       <div>
-      <p className="text-black font-semibold text-4xl display flex justify-center m-5">Registros de Viajes</p>
-      <div className="input-search">
+      <p className="text-black font-semibold text-4xl display flex justify-center relative top-12 m-5">Registros de Remuneraciones</p>
+      <div className="input-search relative top-20">
         <input
           className="text-black"
           type="search"
@@ -118,9 +127,9 @@ const MainRemuneracion = () => {
       <div className="mb-4">
         <button
           onClick={openRegistroModal}
-          className="bg-green-600 text-white px-4 py-2 m-2 rounded-full transition duration-200 ease-in-out hover:bg-green-800 active:bg-green-900 focus:outline-none position relative left-64"
+          className="bg-green-600 text-white px-4 py-2 m-2 rounded-full transition duration-200 ease-in-out hover:bg-green-800 active:bg-green-900 focus:outline-none position relative left-72"
         >
-          Registrar Viajes
+          Registrar remuneración
         </button>
       </div>
       <div className='display flex'>
@@ -167,6 +176,7 @@ const MainRemuneracion = () => {
           </button>
         ))}
       </div>
+      <VerRemuneracion onRemuneracionVer={getRemuneracion} />
       <EditarRemuneracion onRemuneracionEditada={getRemuneracion} />
       <CrearRemuneracion onRemuneracionRegistrada={getRemuneracion} />
       </div>
