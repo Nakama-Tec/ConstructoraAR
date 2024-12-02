@@ -27,7 +27,6 @@ import HomeSistemaGestion from './Pages/Home/SistemaGestion/HomeSistemaGestion'
 import VtaTerrenos from './Pages/VtaTerrenos/VtaTerrenos'
 import PagosDepartamentos from './Pages/Departamentos/PagosDepartamentos'
 import Pendientes from './Pages/Pendientes/Pendientes'
-import DetalleViajes from './Pages/DetalleViajes/DetalleViajes'
 import Remuneraciones from './Pages/Remuneraciones/Remuneraciones'
 import RecuperarPass from './Pages/RecuperarContraseña/RecuperarPass'
 
@@ -66,7 +65,6 @@ const roleRequired = "empleado" //rol requerido para acceder a las rutas protegi
         <Route path={PENDIENTES} element={<ProtectedRoute roleRequired={roleRequired}> <Pendientes/></ProtectedRoute>} />
         <Route path={VIAJES} element={<ProtectedRoute roleRequired={roleRequired}> <Viajes/></ProtectedRoute>} />
         <Route path={ALQUILER} element={<ProtectedRoute roleRequired={roleRequired}> <Alquiler/></ProtectedRoute>} />
-        <Route path={DETALLEVIAJES} element={<ProtectedRoute roleRequired={roleRequired}> <DetalleViajes/></ProtectedRoute>} />
         <Route path={REMUNERACIONES} element={<ProtectedRoute roleRequired={roleRequired}> <Remuneraciones/></ProtectedRoute>} />
         {/* Ruta no autorizada */}
         <Route path={UNAUTHORIZED} element={<div><h3>No autorizado</h3></div>} />
