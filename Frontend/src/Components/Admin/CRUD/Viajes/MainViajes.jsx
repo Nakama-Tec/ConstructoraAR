@@ -5,7 +5,7 @@ import Swal from 'sweetalert2';
 import Aside from '../../../Layout/Aside';
 import useRegistroStore from '../../../../Context/useRegistroStore';
 import '../../../../Styles/table.css';
-import { URL_VIAJES, URL_VIAJES_ELIMINAR } from '../../../../Constants/endpoints-API';
+import { URL_DETALLES_VIAJES, URL_VIAJES, URL_VIAJES_ELIMINAR } from '../../../../Constants/endpoints-API';
 import useAuthStore from '../../../../Context/useAuthStore';
 import useVerRegistroStore from "../../../../Context/useVerRegistroStore";
 import EditarViaje from './EditarViajes';
@@ -23,7 +23,7 @@ const MainViajes = () => {
   
     const getViajes = async () => {
       try {
-        const response = await axios.get(URL_VIAJES, { headers: { Authorization: `Bearer ${token}` } });
+        const response = await axios.get(URL_DETALLES_VIAJES, { headers: { Authorization: `Bearer ${token}` } });
         setDatos(response.data);
       } catch (error) {
         console.error("Error al obtener viajes:", error);
