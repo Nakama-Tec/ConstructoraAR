@@ -3,14 +3,14 @@ import Swal from 'sweetalert2';
 import axios from 'axios';
 import useAuthStore from '../../../../Context/useAuthStore';
 import useRegistroStore from '../../../../Context/useRegistroStore';
-import { URL_VIAJES_CREAR, URL_VEHICULOS, URL_OBRAS } from '../../../../Constants/endpoints-API';
+import { URL_VIAJES_CREAR, URL_VEHICULOS, URL_OBRAS, URL_STOCK } from '../../../../Constants/endpoints-API';
 
 
 
 const CrearViajes = ({onViajeRegistrado}) => {
     const { isRegistroModalOpen, closeRegistroModal } = useRegistroStore();
     const token = useAuthStore((state) => state.token);
-
+    const [stocks, setStocks] = useState([]);
     const [vehiculos, setVehiculos] = useState([]);
     const [obras, setObras] = useState([]);
 
@@ -31,6 +31,14 @@ const CrearViajes = ({onViajeRegistrado}) => {
           console.error('Error al obtener la obra:', error);
         }
       };
+
+      const getStock = async () =>{
+        try {
+          const response = await axios.get(URL_STOCK, { headers: { Authorization: `Bearer ${token}` } });
+          setStocks(response.data);
+        } catch (error) {
+          console.error('Error al obtener el stock:', error);
+      }};
   
     const handleRegistrarViajes = () => {
       Swal.fire({
@@ -60,6 +68,30 @@ const CrearViajes = ({onViajeRegistrado}) => {
             .join('')}
         </select>
 
+        <select id="select_stock" class="swal2-select">
+          ${stocks
+            .map(
+              (stock) =>
+                `<option value="${stock.id_stock}" ${
+                  stock.id === stock.id_stock ? 'selected' : ''
+                }>${stock.nombreMaterial}</option>`
+            )
+            .join('')}
+        </select>
+
+        <input id="cantidadStock" class="swal2-input" placeholder="Cantidad" type="number"/>
+
+         <select id="select_ubicacion" class="swal2-select">
+          ${stocks
+            .map(
+              (stock) =>
+                `<option value="${stock.id_stock}" ${
+                  stock.id === stock.id_stock ? 'selected' : ''
+                }>${stock.ubicacionStock}</option>`
+            )
+            .join('')}
+        </select>
+
         `,
         confirmButtonText: 'Registrar',
         showCancelButton: true,
@@ -67,15 +99,21 @@ const CrearViajes = ({onViajeRegistrado}) => {
           const fechaViaje = document.getElementById('fechaViaje').value;
           const id_vehiculo = document.getElementById('select_vehiculo').value;
           const id_obra = document.getElementById('select_obra').value;
+          const id_stock = document.getElementById('select_stock').value;
+          const ubicacionStock = document.getElementById('select_ubicacion').value;
+          const cantidadStock = document.getElementById('cantidadStock').value;
   
-          if (!fechaViaje || !id_vehiculo || !id_obra ) {
+          if (!fechaViaje || !id_vehiculo || !id_obra || !id_stock || !ubicacionStock || !cantidadStock) {
             Swal.showValidationMessage('Todos los campos son obligatorios');
           }
   
           return {
             fechaViaje,
             id_vehiculo,
-            id_obra
+            id_obra,
+            id_stock,
+            ubicacionStock,
+            cantidadStock
           };
         }
       }).then(async (result) => {
@@ -103,6 +141,7 @@ useEffect(() => {
       }
       getVehiculos();
         getObra();
+        getStock();
     }, [isRegistroModalOpen]);
   
     return null; // No renderiza nada directamente
