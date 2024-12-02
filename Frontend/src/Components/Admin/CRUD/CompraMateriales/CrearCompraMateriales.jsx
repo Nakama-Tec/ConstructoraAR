@@ -145,7 +145,7 @@ const CrearCompraMateriales = ({ onCompraMaterialRegistrado }) => {
   useEffect(() => {
     if (isRegistroModalOpen) {
       handleRegistrarCompraMaterial();
-    }
+    } getStockMaterial(); 
   }, [isRegistroModalOpen]);
 
   return null;
