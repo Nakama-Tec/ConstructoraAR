@@ -8,10 +8,7 @@ import '../../../../Styles/table.css';
 import { URL_DETALLES_VIAJES,  URL_DETALLES_VIAJES_ELIMINAR } from '../../../../Constants/endpoints-API';
 import useAuthStore from '../../../../Context/useAuthStore';
 import userDetalleStore from '../../../../Context/userDetalleStore';
-// import VerViajes from '../Viajes/VerViajes';
 import VerDetallesViajes from './VerDetallesViajes';
-// import EditarViaje from './EditarViajes';
-// import CrearViajes from './CrearViajes';
 
 const MainDetalleViajes = () => {
     const token = useAuthStore((state) => state.token);
@@ -19,7 +16,7 @@ const MainDetalleViajes = () => {
     const [filtrado, setFiltrado] = useState('');
     const [datos, setDatos] = useState([]);
     const { setRegistroSeleccionado, openRegistroModal } = useRegistroStore();
-    const { setDetalleRegistroSeleccionado, openDetalleRegistroModal } = useRegistroStore();
+    const { setDetalleRegistroSeleccionado, openDetalleRegistroModal } = userDetalleStore();
 
   
   
