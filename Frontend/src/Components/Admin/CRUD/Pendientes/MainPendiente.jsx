@@ -57,7 +57,7 @@ const MainPendiente = () => {
   };
 
     const columns = [
-      { header: 'Nº', accessorKey: 'id_pendiente' },
+      { header: 'Nº', accessorKey: 'id_Pendiente' },
       { header: 'Descripcion', accessorKey: 'Descripcion' },
       { header: 'Estado', accessorKey: 'estado' },
       { header: 'Fecha de Creacion', accessorKey: 'fechaCreacion' },

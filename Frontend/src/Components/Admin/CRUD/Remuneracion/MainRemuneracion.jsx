@@ -4,11 +4,13 @@ import axios from 'axios';
 import Swal from 'sweetalert2';
 import Aside from '../../../Layout/Aside';
 import useRegistroStore from '../../../../Context/useRegistroStore';
+import useVerRegistroStore from '../../../../Context/useVerRegistroStore';
 import '../../../../Styles/table.css';
 import { URL_REMUNERACIONES, URL_REMUNERACIONES_ELIMINAR } from '../../../../Constants/endpoints-API';
 import useAuthStore from '../../../../Context/useAuthStore';
 import EditarRemuneracion from './EditarRemuneracion';
 import CrearRemuneracion from './CrearRemuneracion';
+import VerRemuneracion from './VerRemuneracion';
 
 
 const MainRemuneracion = () => {
@@ -17,6 +19,8 @@ const MainRemuneracion = () => {
     const [filtrado, setFiltrado] = useState('');
     const [datos, setDatos] = useState([]);
     const { setRegistroSeleccionado, openRegistroModal } = useRegistroStore();
+    const {setVerRegistroSeleccionado} = useVerRegistroStore();
+
 
   
   
@@ -59,10 +63,8 @@ const MainRemuneracion = () => {
 
     const columns = [
       { header: 'Nº Remuneracion', accessorKey: 'id_remuneracion' },
-      { header: 'Detalle', accessorKey: 'detalle' },
       { header: 'Monto Remuneración', accessorKey: 'montoRemuneracion' },
       { header: 'Cantidad de empleados', accessorKey: 'cantEmpleado' },
-      { header: 'Tipo de empleado', accessorFn: (row) => row.tipoEmpleado == 0 ? "Administrativo" : "Obrero" },
       { header: 'Fecha', accessorKey: 'fechaRemuneracion' },
       { header: 'Sector', accessorFn: (row) => row.sectorRemuneracion == 0 ? "Publico" : "Privado" },
 
@@ -70,6 +72,13 @@ const MainRemuneracion = () => {
         header: 'Acciones',
         cell: ({ row }) => (
           <div className="flex gap-2">
+             <button
+            onClick={() => setVerRegistroSeleccionado(row.original)}
+            className="bg-blue-600 text-white px-4 py-2 rounded-full transition duration-200 ease-in-out hover:bg-blue-800 active:bg-blue-900 focus:outline-none"
+          >
+            Ver más
+          </button>
+
           <button
             onClick={() => setRegistroSeleccionado(row.original)}
             className="bg-orange-600 text-white px-4 py-2 rounded-full transition duration-200 ease-in-out hover:bg-orange-800 active:bg-orange-900 focus:outline-none"
@@ -167,6 +176,7 @@ const MainRemuneracion = () => {
           </button>
         ))}
       </div>
+      <VerRemuneracion onRemuneracionVer={getRemuneracion} />
       <EditarRemuneracion onRemuneracionEditada={getRemuneracion} />
       <CrearRemuneracion onRemuneracionRegistrada={getRemuneracion} />
       </div>

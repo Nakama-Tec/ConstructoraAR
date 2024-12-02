@@ -27,7 +27,14 @@ const EditarDepto = ({ onDeptoEditado }) => {
 
           <input id="contratoDescripcion" class="swal2-input" value="${registroSeleccionado.contratoDescripcion}" />
 
-          <input id="disponibilidadDepartamento" class="swal2-input" value="${registroSeleccionado.disponibilidadDepartamento}" />
+          <br/>
+          <br/>
+          <label><strong>Selecciona la disponibilidad:</strong></label>
+          <select id="disponibilidadDepartamento" class="swal2-select">
+            <option value="1" ${registroSeleccionado.disponibilidadDepartamento === 1 ? 'selected' : ''}>Si</option>
+            <option value="0" ${registroSeleccionado.disponibilidadDepartamento === 0 ? 'selected' : ''}>No</option>
+          </select>
+          <br>
         `,
         confirmButtonText: 'Enviar',
         showCancelButton: true,

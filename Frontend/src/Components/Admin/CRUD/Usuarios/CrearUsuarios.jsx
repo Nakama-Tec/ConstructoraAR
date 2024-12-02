@@ -11,7 +11,6 @@ const CrearUsuarios = ({onUsuarioRegistrado}) => {
     const token = useAuthStore((state) => state.token);
 
     const [empleados, setEmpleados] = useState([]);
-    // const [obras, setObras] = useState([]);
 
     const getEmpleados = async () => {
         try {
@@ -25,7 +24,7 @@ const CrearUsuarios = ({onUsuarioRegistrado}) => {
   
     const handleRegistrarUsuarios = () => {
       Swal.fire({
-        title: 'Registrar Viajes',
+        title: 'Registrar Usuarios',
         html: `
           <input id="nombreUsuario" placeholder="Nombre de usuario" class="swal2-input" />
           <input id="mailUsuario" placeholder="Correo" class="swal2-input" />
@@ -48,7 +47,7 @@ const CrearUsuarios = ({onUsuarioRegistrado}) => {
               (empleado) =>
                 `<option value="${empleado.id_Empleado}" ${
                   empleado.id === empleado.id_Empleado ? 'selected' : ''
-                }>${empleado.id_Empleado}</option>`
+                }>${empleado.nombreEmpleado} ${empleado.apellidoEmpleado} </option>`
             )
             .join('')}
         </select>

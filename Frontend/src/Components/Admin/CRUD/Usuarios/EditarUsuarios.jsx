@@ -35,8 +35,9 @@ const EditarUsuarios = ({onUsuarioEditado}) => {
           <label><strong>Selecciona el rol:</strong></label>
           <br/>
           <select id="rol" class="swal2-select">
-            <option value="Admin" ${registroSeleccionado.rol === 'Admin' ? 'selected' : ''}>Admin</option>
-            <option value="Empleado" ${registroSeleccionado.rol === 'Empleado' ? 'selected' : ''}>Empleado</option>
+            <option value="Admin" ${registroSeleccionado.rol.toLowerCase() === 'admin' ? 'selected' : ''}>Admin</option>
+            <option value="Empleado" ${registroSeleccionado.rol.toLowerCase() === 'empleado' ? 'selected' : ''}>Empleado</option>
+
           </select>
           
           <br/>
@@ -49,7 +50,7 @@ const EditarUsuarios = ({onUsuarioEditado}) => {
             (empleado) =>
               `<option value="${empleado.id_Empleado}" ${
                 empleado.id_Empleado === registroSeleccionado.id_Empleado ? 'selected' : ''
-              }>${empleado.id_Empleado}</option>`
+              }>${empleado.nombreEmpleado} ${empleado.apellidoEmpleado}</option>`
           )
           .join('')}
       </select>

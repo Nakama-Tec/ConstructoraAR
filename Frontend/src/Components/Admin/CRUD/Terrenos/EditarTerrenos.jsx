@@ -20,7 +20,14 @@ const EditarTerrenos = ({ onTerrenoEditado }) => {
           
           <input id="precioTerreno" type="number" min="0" class="swal2-input" value="${registroSeleccionado.precioTerreno}" />
           
-          <input id="disponibilidadTerreno" class="swal2-input" value="${registroSeleccionado.disponibilidadTerreno}" />
+           <br/>
+          <br/>
+          <label><strong>Selecciona la disponibilidad:</strong></label>
+          <select id="disponibilidadTerreno" class="swal2-select">
+            <option value="1" ${registroSeleccionado.disponibilidadTerreno === 1 ? 'selected' : ''}>Si</option>
+            <option value="0" ${registroSeleccionado.disponibilidadTerreno === 0 ? 'selected' : ''}>No</option>
+          </select>
+          <br>
         `,
         confirmButtonText: 'Enviar',
         showCancelButton: true,

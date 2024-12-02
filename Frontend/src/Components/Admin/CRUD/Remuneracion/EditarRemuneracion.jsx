@@ -16,8 +16,8 @@ const EditarRemuneracion = ({onRemuneracionEditada}) => {
         title: 'Editar Usuario',
         html: `
             <input id="detalle" class="swal2-input" value="${registroSeleccionado.detalle}" />
-            <input id="montoRemuneracion" class="swal2-input" value="${registroSeleccionado.montoRemuneracion}" />
-            <input id="cantEmpleado" class="swal2-input" value="${registroSeleccionado.cantEmpleado}" />
+            <input id="montoRemuneracion" class="swal2-input" type="number" min="0" value="${registroSeleccionado.montoRemuneracion}" />
+            <input id="cantEmpleado" class="swal2-input" type="number" min="0" value="${registroSeleccionado.cantEmpleado}" />
             <select id="tipoEmpleado" class="swal2-select">
               <option value="0" ${registroSeleccionado.rol === 'Admin' ? 'selected' : ''}>Admin</option>
               <option value="1" ${registroSeleccionado.rol === 'Obrero' ? 'selected' : ''}>Obrero</option>
@@ -41,13 +41,16 @@ const EditarRemuneracion = ({onRemuneracionEditada}) => {
           const tipoEmpleado = Swal.getPopup().querySelector('#tipoEmpleado').value;
           const fechaRemuneracion = Swal.getPopup().querySelector('#fechaRemuneracion').value;
           const sectorRemuneracion = Swal.getPopup().querySelector('#sectorRemuneracion').value;
-
-          
   
-          if (!detalle || !montoRemuneracion || !cantEmpleado || !tipoEmpleado || !fechaRemuneracion || !sectorRemuneracion) {
-            Swal.showValidationMessage('Todos los campos son obligatorios');
+          // Validaciones
+        
+         const detallesRegex = /^[^@]+$/;
+ 
+         if (!detalle || !detallesRegex.test(detalle)) {
+           Swal.showValidationMessage("El detalle no debe contener caracteres especiales.");
+           return false;
           }
-  
+
           return {
             detalle,
             montoRemuneracion,
