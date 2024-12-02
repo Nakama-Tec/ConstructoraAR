@@ -16,8 +16,10 @@ const EditarClientes = ({ onClienteEditado }) => {
         <input id="nombreCliente" class="swal2-input" value="${registroSeleccionado.nombreCliente}" />
 
         <input id="apellidoCliente" class="swal2-input" value="${registroSeleccionado.apellidoCliente}" />
+
+        <input id="telefonoCliente" class="swal2-input" value="${registroSeleccionado.razonSocial}" />
         
-        <input id="cuilCliente" class="swal2-input" value="${registroSeleccionado.cuilCliente}" />
+        <input id="cuil_cuit_cliente" class="swal2-input" value="${registroSeleccionado.cuil_cuit_cliente}" />
         
         <input id="telefonoCliente" class="swal2-input" value="${registroSeleccionado.telefonoCliente}" />
 
@@ -43,6 +45,7 @@ const EditarClientes = ({ onClienteEditado }) => {
       preConfirm: () => {
         const nombreCliente = document.getElementById('nombreCliente').value;
         const apellidoCliente = document.getElementById('apellidoCliente').value;
+        const razonSocial = document.getElementById('razonSocial').value;
         const condicionCliente = document.getElementById('condicionCliente').value;
         const cuilCliente = document.getElementById('cuilCliente').value;
         const telefonoCliente = document.getElementById('telefonoCliente').value;
@@ -91,6 +94,7 @@ const EditarClientes = ({ onClienteEditado }) => {
         return {
           nombreCliente,
           apellidoCliente,
+          razonSocial,
           condicionCliente,
           cuilCliente,
           telefonoCliente,

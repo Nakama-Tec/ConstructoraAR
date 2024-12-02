@@ -2,7 +2,7 @@ const { conection } = require("../DB/Config")
 
 
 const allObras = (req, res) => {
-    const query = `select * from Obras;`
+    const query = `select * from Obras where activoObras = 1;`
     conection.query(query, (err, results) => {
         if (err) throw err;
         res.json(results)
@@ -20,9 +20,9 @@ const singleObra = (req, res) => {
     })
 }
 const createObra = (req, res) => {
-    const {nombreObra, descripcionObra, fechainicioObra, fechafinObra, precioObra, sectorObra, progresoObra} = req.body
+    const {nombreObra, descripcionObra, fechainicioObra, fechafinObra, precioObra, sectorObra, progresoObra,direccionObra} = req.body
 
-    const query = `insert into Obras (nombreObra, descripcionObra, fechainicioObra, fechafinObra, precioObra, sectorObra, progresoObra, activoObras) values("${nombreObra}","${descripcionObra}","${fechainicioObra}","${fechafinObra}", "${precioObra}","${sectorObra}","${progresoObra}",1)`
+    const query = `insert into Obras (nombreObra, descripcionObra, fechainicioObra, fechafinObra, precioObra, sectorObra, progresoObra, activoObras,direccionObra) values("${nombreObra}","${descripcionObra}","${fechainicioObra}","${fechafinObra}", "${precioObra}","${sectorObra}","${progresoObra}",1,"${direccionObra}")`
     conection.query(query, (err,results) => {
         if(err) throw err 
         res.send(results)
@@ -32,8 +32,8 @@ const createObra = (req, res) => {
 const editObra = (req, res) => {
     const id = req.params.id
     console.log(req.body);
-    const {nombreObra, descripcionObra, fechainicioObra, fechafinObra, precioObra, sectorObra, progresoObra} = req.body
-    const query = `update Obras set nombreObra="${nombreObra}",descripcionObra="${descripcionObra}", fechainicioObra="${fechainicioObra}",fechafinObra="${fechafinObra}", precioObra="${precioObra}", sectorObra="${sectorObra}", progresoObra="${progresoObra}",activoObras=1 where id_obra=${id}`
+    const {nombreObra, descripcionObra, fechainicioObra, fechafinObra, precioObra, sectorObra, progresoObra,direccionObra} = req.body
+    const query = `update Obras set nombreObra="${nombreObra}",descripcionObra="${descripcionObra}", fechainicioObra="${fechainicioObra}",fechafinObra="${fechafinObra}", precioObra="${precioObra}", sectorObra="${sectorObra}", progresoObra="${progresoObra}",activoObras=1 where id_obra=${id},direccionObra="${direccionObra}"`
     conection.query(query, (err,results) => {
         if(err) throw err
         res.send(results)

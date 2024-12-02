@@ -19,7 +19,9 @@ const CrearClientes = ({ onClienteRegistrado }) => {
 
             <input id="apellidoCliente" placeholder="Apellido"  class="swal2-input" />
             
-            <input id="cuilCliente" placeholder="Cuil" class="swal2-input" />
+            <input id="razonSocial" placeholder="Razon Social"  class="swal2-input" />
+
+            <input id="cuil_cuit_Cliente" placeholder="Cuil / Cuit" class="swal2-input" />
             
             <input id="telefonoCliente" placeholder="Telefono" class="swal2-input" />
             
@@ -46,7 +48,8 @@ const CrearClientes = ({ onClienteRegistrado }) => {
         const nombreCliente = document.getElementById("nombreCliente").value;
         const apellidoCliente = document.getElementById("apellidoCliente").value;
         const condicionCliente = document.getElementById("condicionCliente").value;
-        const cuilCliente = document.getElementById("cuilCliente").value;
+        const razonSocial = document.getElementById("razonSocial").value;
+        const cuilCliente = document.getElementById("cuil_cuit_Cliente").value;
         const telefonoCliente = document.getElementById("telefonoCliente").value;
         const mailCliente = document.getElementById("mailCliente").value;
         const direccionCliente = document.getElementById("direccionCliente").value;
@@ -94,6 +97,7 @@ const CrearClientes = ({ onClienteRegistrado }) => {
           nombreCliente,
           apellidoCliente,
           condicionCliente,
+          razonSocial,
           cuilCliente,
           telefonoCliente,
           mailCliente,

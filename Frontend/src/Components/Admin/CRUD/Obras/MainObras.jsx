@@ -4,13 +4,18 @@ import '../../../../Styles/table.css';
 import { URL_OBRAS_ELIMINAR, URL_OBRAS } from '../../../../Constants/endpoints-API';
 import useAuthStore from '../../../../Context/useAuthStore';
 import useRegistroStore from '../../../../Context/useRegistroStore';
+import useVerRegistroStore from "../../../../Context/useVerRegistroStore";
 import Aside from '../../../Layout/Aside';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import EditarObra from './EditarObra';
+import CrearObra from './CrearObra';
+import VerObra from './VerObra';
 
 const MainObras = () => {
     const token = useAuthStore((state) => state.token);
     const { setRegistroSeleccionado, openRegistroModal } = useRegistroStore();//objeto que se importa de useStockStore
+    const { setVerRegistroSeleccionado } = useVerRegistroStore();
     const [filtrado, setFiltrado] = useState('');
     const [datos, setDatos] = useState([]);
   
@@ -53,17 +58,23 @@ const MainObras = () => {
     const columns = [
       { header: 'Nº', accessorKey: 'id_obra' },
       { header: 'Nombre de la Obra', accessorKey: 'nombreObra' },
+      { header: 'Dirección Obra', accessorKey: 'direccionObra' },
       { header: 'Descripcion Obra', accessorKey: 'descripcionObra' },
       { header: 'Fecha Inicio', accessorKey: 'fechainicioObra' },
       { header: 'Fecha Fin', accessorKey: 'fechafinObra' },
       { header: 'Precio Obra', accessorFn: (row) => `$${row.precioObra}` },
       { header: 'Sector', accessorFn: (row) => row.sectorObra === 0 ? "Público" : "Privado" },
       { header: 'Progreso', accessorFn: (row) => `${row.progresoObra}%` },
-      { header: 'Id Cliente', accessorKey: 'id_cliente' },
+      { header: 'Cliente', accessorKey: 'id_cliente' },
       {
         header: 'Acciones',
         cell: ({ row }) => (
           <div className="flex gap-2">
+            <button onClick={() => setVerRegistroSeleccionado(row.original)}
+            className="bg-blue-600 text-white px-4 py-2 rounded-full transition duration-200 ease-in-out hover:bg-blue-800 active:bg-blue-900 focus:outline-none"
+          >
+            Ver más
+          </button>
             <button
               onClick={() => setRegistroSeleccionado(row.original)}
               className="bg-orange-600 text-white px-4 py-2 rounded-full transition duration-200 ease-in-out hover:bg-orange-800 active:bg-orange-900 focus:outline-none"
@@ -161,6 +172,9 @@ const MainObras = () => {
           </button>
         ))}
       </div>
+      <EditarObra onObraEditado={getObra} />
+      <CrearObra onObraRegistrado={getObra} />
+      <VerObra onObraVer={getObra} />
         </div>
   )
 }

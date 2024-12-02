@@ -1,19 +1,10 @@
 import { useState, useEffect } from "react";
-import {
-  useReactTable,
-  getCoreRowModel,
-  flexRender,
-  getPaginationRowModel,
-  getFilteredRowModel,
-} from "@tanstack/react-table";
+import {useReactTable,getCoreRowModel,flexRender,getPaginationRowModel,getFilteredRowModel,} from "@tanstack/react-table";
 import EditarCliente from "./EditarClientes";
 import CrearCliente from "./CrearClientes";
 import VerClientes from "./VerClientes";
 import "../../../../Styles/table.css";
-import {
-  URL_CLIENTES,
-  URL_CLIENTES_ELIMINAR,
-} from "../../../../Constants/endpoints-API";
+import {URL_CLIENTES,URL_CLIENTES_ELIMINAR,} from "../../../../Constants/endpoints-API";
 import useAuthStore from "../../../../Context/useAuthStore";
 import useRegistroStore from "../../../../Context/useRegistroStore";
 import useVerRegistroStore from "../../../../Context/useVerRegistroStore";
@@ -76,27 +67,25 @@ const MainClientes = () => {
       header: "Nombre y Apellido",
       accessorFn: (row) => `${row.nombreCliente} ${row.apellidoCliente}`,
     },
+    { header: "Razon Social", accessorKey: "razonSocial" },
     { header: "Condición", accessorKey: "condicionCliente" },
-    { header: "CUIL", accessorKey: "cuilCliente" },
+    { header: "CUIL/CUIT", accessorKey: "cuil_cuit_cliente" },
     { header: "Teléfono", accessorKey: "telefonoCliente" },
     {
       header: "Acciones",
       cell: ({ row }) => (
         <div className="flex gap-2">
-          <button
-            onClick={() => setVerRegistroSeleccionado(row.original)}
+          <button onClick={() => setVerRegistroSeleccionado(row.original)}
             className="bg-blue-600 text-white px-4 py-2 rounded-full transition duration-200 ease-in-out hover:bg-blue-800 active:bg-blue-900 focus:outline-none"
           >
             Ver más
           </button>
-          <button
-            onClick={() => setRegistroSeleccionado(row.original)}
+          <button onClick={() => setRegistroSeleccionado(row.original)}
             className="bg-orange-600 text-white px-4 py-2 rounded-full transition duration-200 ease-in-out hover:bg-orange-800 active:bg-orange-900 focus:outline-none"
           >
             Editar
           </button>
-          <button
-            onClick={() => handleEliminarCliente(row.original)}
+          <button onClick={() => handleEliminarCliente(row.original)}
             className="bg-red-600 text-white px-4 py-2 rounded-full transition duration-200 ease-in-out hover:bg-red-800 active:bg-red-900 focus:outline-none"
           >
             Eliminar
@@ -126,17 +115,10 @@ const MainClientes = () => {
     <div>
       <p className="text-black font-semibold text-4xl display flex justify-center relative top-12 m-5">Registros de Clientes</p>
       <div className="input-search relative top-20">
-        <input
-          className="text-black"
-          type="search"
-          placeholder="Buscador"
-          value={filtrado}
-          onChange={(e) => setFiltrado(e.target.value)}
-        />
+        <input className="text-black" type="search" placeholder="Buscador" value={filtrado} onChange={(e) => setFiltrado(e.target.value)}/>
       </div>
       <div className="mb-4">
-        <button
-          onClick={openRegistroModal}
+        <button onClick={openRegistroModal}
           className="bg-green-600 text-white px-4 py-2 m-2 rounded-full transition duration-200 ease-in-out hover:bg-green-800 active:bg-green-900 focus:outline-none position relative left-72"
         >
           Registrar cliente
