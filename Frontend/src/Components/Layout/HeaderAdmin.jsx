@@ -17,28 +17,40 @@ const HeaderAdmin = () => {
     navigate({ LOGIN });
   };
   return (
-    <div className="dark:bg-gray-900 text-white flex justify-between items-center h-24 p-5">
-      <Link to={HOME_SISTEMA_GESTION} >
-      <img
-      className="logo h-40 w-auto"
+<div className="dark:bg-gray-900 text-white flex flex-col md:flex-row justify-between items-center h-auto md:h-24 p-5">
+
+  <Link to={HOME_SISTEMA_GESTION}>
+    <img
+      className="logo h-28 md:h-24 lg:h-40 w-auto"
       src={logo}
       alt="Logo"
-      />
+    />
+  </Link>
+
+  {userName && (
+    <p className="text-3xl md:text-4xl lg:text-4xl font-semibold mt-4 md:mt-0">
+      Bienvenido, {userName}!
+    </p>
+  )}
+
+  <div className="boton mt-4 md:mt-0">
+    {token !== null && userRole === "admin" ? (
+      <Button
+        onClick={handleLogout}
+        className="inline-flex items-center px-4 py-2 bg-red-600 transition ease-in-out hover:bg-red-700 font-semibold text-sm md:text-base rounded-md hover:scale-105"
+      >
+        Cerrar Sesión
+      </Button>
+    ) : (
+      <Link
+        to={LOGIN}
+        className="text-white bg-yellow-500 px-4 py-2 rounded-md hover:bg-yellow-600 transition"
+      >
+        Iniciar Sesión
       </Link>
-      {userName && <p className="text-4xl font-semibold">Bienvenido, {userName}!</p>}
-      <div className="boton">
-        {token !== null && userRole === "admin" ? (
-          <div>
-            <Button onClick={handleLogout} className="inline-flex items-center px-4 py-2 bg-red-600 transition ease-in-out delay-75 hover:bg-red-700 font-semibold text-sm font-medium rounded-md hover:-translate-y-1 hover:scale-110">
-              Cerrar Sesión
-            </Button>
-          </div>
-        ) : (
-          <Link to={LOGIN} className="login text-white btn-warning">
-          </Link>
-        )}
-      </div>
-    </div>
+    )}
+  </div>
+</div>
   );
 };
 

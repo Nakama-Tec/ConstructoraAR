@@ -10,10 +10,6 @@ const VerTerrenos = ({onTerrenoVer}) => {
       title: 'Información del Terreno',
       icon: 'info',
       html: `
-        <div style="display: flex; justify-content: center; margin-bottom: 20px;">
-          <img src="https://www.atbeydesarrollos.com/wp-content/uploads/2022/03/terreno-ideal-para-construir-casa.jpg" alt="Imagen del Terreno" 
-               style="max-width: 100%; height: auto; border: 1px solid #ddd; border-radius: 8px;">
-        </div>
         <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 14px;">
           <tbody>
             <tr>
