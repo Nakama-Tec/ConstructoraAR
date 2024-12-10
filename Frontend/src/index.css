@@ -1,6 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 #root {
   display: flex;
   flex-direction: column;
@@ -22,3 +23,16 @@ main{
   margin-top: 4rem;  
 }
 
+@keyframes scroll {
+  0%{
+    transform: translateX(0);
+  }
+  100%{
+    transform: translateX(calc(-300px * 4 - 0.5rem * 8));
+  }
+}
+
+.animate-scroll{
+animation: scroll 60s linear infinite;
+
+}
