@@ -1,7 +1,8 @@
 import { Sidebar, Menu, MenuItem, SubMenu } from 'react-pro-sidebar';
 import { Link, useLocation } from 'react-router-dom';
 import { FLUJO_CAJA, STOCK, DEPARTAMENTOS, OBRAS, OPERACIONES, VEHICULOS, TERRENOS, VTA_TERRENOS, 
-  COMPRA_MATERIALES, VIAJES, PENDIENTES, ALQUILER, USUARIO, PAGOS_DPTO, REMUNERACIONES } from "../../Routes/routes";
+  COMPRA_MATERIALES, VIAJES, PENDIENTES, ALQUILER, USUARIO, PAGOS_DPTO, REMUNERACIONES, 
+  CERTIFICADOS} from "../../Routes/routes";
 import { FaUser, FaUsers, FaMapMarkedAlt, FaMoneyCheckAlt, FaMoneyBillWave, FaCashRegister, FaCar, FaBoxes, FaBuilding, FaHardHat, FaTasks, FaSignInAlt } from 'react-icons/fa';
 
 const Aside = () => {
@@ -38,6 +39,7 @@ const Aside = () => {
         <MenuItem icon={<FaTasks />} active={isActive(PENDIENTES)} component={<Link to={PENDIENTES} />}>PENDIENTES</MenuItem>
         <MenuItem icon={<FaSignInAlt />} active={isActive(USUARIO)} component={<Link to={USUARIO} />}>USUARIO</MenuItem>
         <MenuItem icon={<FaMoneyCheckAlt />} active={isActive(REMUNERACIONES)} component={<Link to={REMUNERACIONES} />}>REMUNERACIONES</MenuItem>
+        <MenuItem icon={<FaMoneyCheckAlt />} active={isActive(CERTIFICADOS)} component={<Link to={CERTIFICADOS} />}>CERTIFICADOS</MenuItem>
       </Menu>
     </Sidebar>
   );

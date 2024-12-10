@@ -1,6 +1,6 @@
 // Importaciones de librerias
 import { BrowserRouter, Routes, Route } from 'react-router-dom' // estas librerias permiten el manejo de rutas en la aplicacion
-import {HOME, HOME_SISTEMA_GESTION, LOGIN,EMPLEADOS, VEHICULOS, PAGOS, FLUJO_CAJA, DETALLEVIAJES, LIBRO_DIARIO,TERRENOS ,STOCK, CLIENTES, DEPARTAMENTOS, OBRAS, OPERACIONES, VIAJES, USUARIO, UNAUTHORIZED, VTA_TERRENOS, PAGOS_DPTO, PENDIENTES, COMPRA_MATERIALES, ALQUILER, REMUNERACIONES, RECUPERAR} from "./Routes/routes"
+import {HOME, HOME_SISTEMA_GESTION, CERTIFICADOS,LOGIN,EMPLEADOS, VEHICULOS, PAGOS, FLUJO_CAJA, DETALLEVIAJES, LIBRO_DIARIO,TERRENOS ,STOCK, CLIENTES, DEPARTAMENTOS, OBRAS, OPERACIONES, VIAJES, USUARIO, UNAUTHORIZED, VTA_TERRENOS, PAGOS_DPTO, PENDIENTES, COMPRA_MATERIALES, ALQUILER, REMUNERACIONES, RECUPERAR} from "./Routes/routes"
 
 
 // Paginas
@@ -12,6 +12,7 @@ import Terrenos from "./Pages/Terrenos/Terrenos"
 import CompraMateriales from "./Pages/CompraMateriales/CompraMateriales"
 import Stock from "./Pages/Stock/Stock"
 import Clientes from "./Pages/Clientes/Clientes"
+import Certificados from './Pages/Certificados/Certificados'
 import Departamentos from "./Pages/Departamentos/Departamentos"
 import Alquiler from "./Pages/Alquileres/Alquileres"
 import Obras from "./Pages/Obras/Obras"
@@ -65,6 +66,7 @@ const roleRequired = "empleado" //rol requerido para acceder a las rutas protegi
         <Route path={PENDIENTES} element={<ProtectedRoute roleRequired={roleRequired}> <Pendientes/></ProtectedRoute>} />
         <Route path={VIAJES} element={<ProtectedRoute roleRequired={roleRequired}> <Viajes/></ProtectedRoute>} />
         <Route path={ALQUILER} element={<ProtectedRoute roleRequired={roleRequired}> <Alquiler/></ProtectedRoute>} />
+        <Route path={CERTIFICADOS} element={<ProtectedRoute roleRequired={roleRequired}> <Certificados/></ProtectedRoute>} />
         <Route path={REMUNERACIONES} element={<ProtectedRoute roleRequired={roleRequired}> <Remuneraciones/></ProtectedRoute>} />
         {/* Ruta no autorizada */}
         <Route path={UNAUTHORIZED} element={<div><h3>No autorizado</h3></div>} />

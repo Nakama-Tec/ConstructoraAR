@@ -10,9 +10,20 @@ export const URL_CLIENTES_CREAR = "http://localhost:8000/clientes/create/";
 export const URL_CLIENTES_EDITAR = "http://localhost:8000/clientes/edit/";
 export const URL_CLIENTES_ELIMINAR = "http://localhost:8000/clientes/delete/";
 
+// certificados
+
+export const URL_CERTIFICADOS = "http://localhost:8000/certificados/";
+export const URL_CERTIFICADOS_CREAR = "http://localhost:8000/certificados/create/";
+export const URL_CERTIFICADOS_EDITAR = "http://localhost:8000/certificados/edit/";
+export const URL_CERTIFICADOS_ELIMINAR = "http://localhost:8000/certificados/delete/";
+
 // Libro Diario
 
 export const URL_LIBRO_DIARIO = "http://localhost:8000/libroDiario";
+
+// Flujo de Caja
+
+export const URL_FLUJO_CAJA = "http://localhost:8000/cashFlow"
 
 // Usuarios
 
@@ -34,10 +45,6 @@ export const URL_OPERACIONES = "http://localhost:8000/Operaciones";
 export const URL_OPERACIONES_CREAR = "http://localhost:8000/Operaciones/create";
 export const URL_OPERACIONES_EDITAR = "http://localhost:8000/Operaciones/edit/";
 export const URL_OPERACIONES_ELIMINAR = "http://localhost:8000/Operaciones/delete/";
-
-// Flujo de Caja
-
-export const URL_FLUJO_CAJA = "http://localhost:8000/flujoCaja/";
 
 // Obras
 
