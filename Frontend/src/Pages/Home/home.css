@@ -82,6 +82,8 @@ h1 {
 }
 
   .parallax-container {
+    display: flex;
+    align-items: center;
     color: rgb(41, 40, 40);
     background-size: cover;
     background-repeat: no-repeat;
@@ -90,6 +92,9 @@ h1 {
     position: relative;    
     overflow: hidden;    
     will-change: background-position;
+    h2 {
+      font-size: 2.5rem;
+    }
   }
 
 
@@ -114,11 +119,33 @@ h1 {
     z-index: 0; /* Asegura que el pseudo-elemento esté por debajo del contenido */
   }
 
+  #article-2::after, #article-4::after{
+    content: '';
+    position: absolute;    
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, rgba(2, 2, 2, 0.8) 40%, rgba(255, 255, 255, 0) 100%) ;
+    z-index: 0; /* Asegura que el pseudo-elemento esté por debajo del contenido */
+  }
+
+  #article-2, #article-4{
+
+    height: 50vh;    
+    color: rgb(230, 229, 229);
+    
+    .parallax-content{
+      padding: 0% 0% 0% 25%;      
+      
+  }
+  }
+
 .parallax-content {
     position: relative;    
     z-index: 1; /* Asegura que el contenido esté por encima de la imagen de fondo */
     /* Otros estilos para tu contenido */
-    padding: 10% 10% 0 25%;
+    padding: 0 10% 0 25%;
 }
 
 .parallax-content ul{

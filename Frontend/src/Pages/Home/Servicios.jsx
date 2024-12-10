@@ -44,9 +44,9 @@ const Servicios = () => {
                 <>
                     <p>Ofrecemos una amplia variedad de terrenos en ubicaciones privilegiadas, perfectos para construir la casa de tus sueños o invertir en el futuro.</p>
                     <ul className='ms-10'>
-                        <li>Ubicación 1</li>
-                        <li>Ubicación 2</li>
-                        <li>Ubicación 3</li>
+                        <li>Zonas tranquilas y residenciales</li>
+                        <li>Áreas con proyección de crecimiento</li>
+                        <li>Cercanía a servicios esenciales</li>
                     </ul>
                 </>
             ),
@@ -54,7 +54,7 @@ const Servicios = () => {
         },
         {
             id: "article-2",
-            content: "",
+            title: "Más de 12 años de experiencia respaldan nuestro trabajo.",
             image: "https://img.lagaceta.com.ar/fotos/notas/2023/02/03/1200x813_gran-tucuman-ya-habria-superado-millon-habitantes-978906-234223.webp"
         },
         {
@@ -75,8 +75,8 @@ const Servicios = () => {
         },
         {
             id: "article-4",
-            content: "",
-            image:"https://antigourmet.com.ar/wp-content/uploads/2021/04/42-vista-desde-la-mina.jpg"
+            title: "Contáctanos y descubre cómo podemos hacer realidad tu próximo proyecto.",
+            image:"https://upload.wikimedia.org/wikipedia/commons/d/de/Quebrada_en_El_Infiernillo-_Tucum%C3%A1n.JPG"
         },
         {
             id: "article-5",
