@@ -76,3 +76,52 @@ h1 {
   .textoDestacado{  
     font-weight: 600;  
   }
+
+.servicios{
+  width: 100%;
+}
+
+  .parallax-container {
+    color: rgb(41, 40, 40);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed; /* Mantenemos el fondo en scroll */
+    background-position: center 100px ; /* Posición inicial del fondo */
+    position: relative;    
+    overflow: hidden;    
+    will-change: background-position;
+  }
+
+
+
+
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  #article-1::after, #article-3::after, #article-5::after {
+    content: '';
+    position: absolute;    
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, rgba(255, 255, 255, 1) 50%, rgba(255, 255, 255, 0) 100%) ;
+    z-index: 0; /* Asegura que el pseudo-elemento esté por debajo del contenido */
+  }
+
+.parallax-content {
+    position: relative;    
+    z-index: 1; /* Asegura que el contenido esté por encima de la imagen de fondo */
+    /* Otros estilos para tu contenido */
+    padding: 10% 10% 0 25%;
+}
+
+.parallax-content ul{
+    list-style: outside;
+    padding: 0;
+}
