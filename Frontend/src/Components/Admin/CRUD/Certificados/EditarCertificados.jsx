@@ -1,6 +1,6 @@
 import React from 'react'
 
-const EditarCertificados = () => {
+const EditarCertificados = ({ onCertificadoEditado }) => {
   return (
     <div>
       

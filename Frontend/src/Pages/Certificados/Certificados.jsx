@@ -1,10 +1,13 @@
 import React from 'react'
+import MainCertificados from '../../Components/Admin/CRUD/Certificados/MainCertificados'
 
 const Certificados = () => {
   return (
-    <div>
-      
-    </div>
+    <>
+        <HeaderAdmin/>
+        <MainCertificados/>
+        <FooterAdmin />
+    </>
   )
 }
 

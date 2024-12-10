@@ -1,6 +1,6 @@
 import React from 'react'
 
-const CrearCertificados = () => {
+const CrearCertificados = ({ onCertificadoRegistrado }) => {
   return (
     <div>
       
