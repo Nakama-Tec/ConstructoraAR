@@ -48,10 +48,13 @@ const EditarCompraMateriales = ({ onCompraMaterialEditado }) => {
             ${generateStockOptions()}
           </select>
         </div>
-        <input id="cantidadMaterial" placeholder="Cantidad de Material" class="swal2-input" value="${registroSeleccionado.Cantidad}" />
-        <input id="precioMaterial" placeholder="Precio del Material" class="swal2-input" value="${registroSeleccionado.Precio}" />
-        <input id="fechaCompraMateriales" placeholder="Fecha de Compra" class="swal2-input" value="${registroSeleccionado.Fecha_Compra}" />
-        <input id="estadoRetiro" placeholder="Estado de Retiro" class="swal2-input" value="${registroSeleccionado.Estado}" />
+        <input id="cantidadMaterial" placeholder="Cantidad de Material" type="number" min="0" class="swal2-input" value="${registroSeleccionado.Cantidad}" />
+        <input id="precioMaterial" placeholder="Precio del Material" type="number" min="0" class="swal2-input" value="${registroSeleccionado.Precio}" />
+        <input id="fechaCompraMateriales" placeholder="Fecha de Compra" type="date" class="swal2-input" value="${registroSeleccionado.Fecha_Compra}" />
+        <select id="estadoRetiro" class="swal2-select">
+          <option value="Entregado" ${registroSeleccionado.Estado === 'Entregado' ? 'selected' : ''}>Entregado</option>
+          <option value="Pendiente" ${registroSeleccionado.Estado === 'Pendiente' ? 'selected' : ''}>Pendiente</option>
+        </select>        
         <input id="lugardeCompra" placeholder="Lugar de Compra" class="swal2-input" value="${registroSeleccionado.Proveedor}" />
         <br><br>
         <label for="select_destino"><b>Ubicación del Material</b></label>
@@ -105,6 +108,15 @@ const EditarCompraMateriales = ({ onCompraMaterialEditado }) => {
         const estadoRetiro = document.getElementById('estadoRetiro').value;
         const lugardeCompra = document.getElementById('lugardeCompra').value;
         const destinoMaterial = document.getElementById('select_destino').value;
+
+        //validacion
+        const nombreRegex = /^[a-zA-Z\sÀ-ÿ]+$/;
+
+
+        if (!nombreMaterial || !nombreRegex.test(nombreMaterial)) {
+          Swal.showValidationMessage('El nombre del material no debe contener números.');
+          return false;
+        }
 
         if (!nombreMaterial || !cantidadMaterial || !precioMaterial || !fechaCompraMateriales) {
           Swal.showValidationMessage('Todos los campos son obligatorios');

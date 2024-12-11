@@ -17,9 +17,9 @@ const EditarPendiente = ({ onPendienteEditado }) => {
           <input id="Descripcion" class="swal2-input" value="${registroSeleccionado.Descripcion}" />
       
           
-          <input id="fechaCreacion" class="swal2-input" value="${registroSeleccionado.fechaCreacion}" />
+          <input id="fechaCreacion" class="swal2-input" type="date" value="${registroSeleccionado.fechaCreacion}" />
           
-          <input id="fechaLimite" class="swal2-input" value="${registroSeleccionado.fechaLimite}" />
+          <input id="fechaLimite" class="swal2-input" type="date" value="${registroSeleccionado.fechaLimite}" />
           
           <br/>
           <br/>

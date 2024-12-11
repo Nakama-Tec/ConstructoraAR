@@ -57,9 +57,9 @@ const CrearUsuarios = ({onUsuarioRegistrado}) => {
         confirmButtonText: 'Registrar',
         showCancelButton: true,
         preConfirm: () => {
-            const nombreUsuario = document.getElementById('nombreUsuario').value;
+            const nombreUsuario = document.getElementById('nombreUsuario').value.trim();
             const mailUsuario = document.getElementById('mailUsuario').value;
-            const passwordUsuario = document.getElementById('passwordUsuario').value;
+            const passwordUsuario = document.getElementById('passwordUsuario').value.trim();
             const rol = document.getElementById('rol').value;
             const id_Empleado = document.getElementById('select_empleado').value;
 

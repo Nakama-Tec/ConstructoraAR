@@ -32,8 +32,8 @@ const createObra = (req, res) => {
 const editObra = (req, res) => {
     const id = req.params.id
     console.log(req.body);
-    const {nombreObra, descripcionObra, fechainicioObra, fechafinObra, precioObra, sectorObra, progresoObra,direccionObra} = req.body
-    const query = `update Obras set nombreObra="${nombreObra}",descripcionObra="${descripcionObra}", fechainicioObra="${fechainicioObra}",fechafinObra="${fechafinObra}", precioObra="${precioObra}", sectorObra="${sectorObra}", progresoObra="${progresoObra}",activoObras=1 where id_obra=${id},direccionObra="${direccionObra}"`
+    const {nombreObra, descripcionObra, fechainicioObra, fechafinObra, precioObra, sectorObra, progresoObra,direccionObra, id_cliente} = req.body
+    const query = `update Obras set nombreObra="${nombreObra}",descripcionObra="${descripcionObra}", fechainicioObra="${fechainicioObra}",fechafinObra="${fechafinObra}", precioObra="${precioObra}", sectorObra="${sectorObra}", progresoObra="${progresoObra}",id_cliente="${id_cliente}", activoObras=1, direccionObra="${direccionObra}" where id_obra=${id}`
     conection.query(query, (err,results) => {
         if(err) throw err
         res.send(results)

@@ -1,35 +1,58 @@
-import {useEffect} from 'react';
+import {useEffect, useState} from 'react';
 import Swal from 'sweetalert2';
 import axios from 'axios';
 import useAuthStore from '../../../../Context/useAuthStore';
 import useRegistroStore from '../../../../Context/useRegistroStore';
-import { URL_OBRAS_EDITAR } from '../../../../Constants/endpoints-API';
+import { URL_CLIENTES, URL_OBRAS_EDITAR } from '../../../../Constants/endpoints-API';
 
 const EditarObra = ({ onObraEditado }) => {
     const { registroSeleccionado, clearRegistroSeleccionado } = useRegistroStore();
     const token = useAuthStore((state) => state.token);
+    const [clientes, setClientes] = useState([]);
+
+
+    const getClientes = async () => {
+      try {
+        const response = await axios.get(URL_CLIENTES, { headers: { Authorization: `Bearer ${token}` } });
+        setClientes(response.data);
+      } catch (error) {
+        console.error('Error al obtener Clientes:', error);
+      }
+    };
   
     const handleEditarObra = () => {
       Swal.fire({
         title: 'Editar Obra',
         html: `
-            <input id="nombreCliente" class="swal2-input" value="${registroSeleccionado.nombreObra}" />
+            <input id="nombreObra" class="swal2-input" value="${registroSeleccionado.nombreObra}" />
   
             <input id="direccionObra" class="swal2-input" value="${registroSeleccionado.direccionObra}" />
 
             <input id="descripcionObra" class="swal2-input" value="${registroSeleccionado.descripcionObra}" />
 
-            <input id="fechaInicioObra" class="swal2-input" value="${registroSeleccionado.fechaInicioObra}" />
+            <input id="fechainicioObra" class="swal2-input" type="date" value="${registroSeleccionado.fechainicioObra}" />
 
-            <input id="fechaFinObra" class="swal2-input" value="${registroSeleccionado.fechaFinObra}" />
+            <input id="fechaFinObra" class="swal2-input" type="date" value="${registroSeleccionado.fechafinObra}" />
 
-            <input id="precioObra" class="swal2-input" value="${registroSeleccionado.precioObra}" />
+            <input id="precioObra" class="swal2-input" type="number" min="0" max="100" value="${registroSeleccionado.precioObra}" />
 
-            <input id="sectorObra" class="swal2-input" value="${registroSeleccionado.sectorObra}" />
+            <select id="sectorObra" class="swal2-select">
+              <option value="0" ${registroSeleccionado.sectorObra === '0' ? 'selected' : ''}>Privado</option>
+              <option value="1" ${registroSeleccionado.sectorObra === '1' ? 'selected' : ''}>Publico</option>
+           </select>
 
-             <input id="progresoObra" class="swal2-input" value="${registroSeleccionado.progresoObra}" />
+             <input id="progresoObra" class="swal2-input" type="number" min="0" value="${registroSeleccionado.progresoObra}" />
 
-            <input id="id_cliente" class="swal2-input" value="${registroSeleccionado.id_cliente}" />
+             <select id="id_cliente" class="swal2-select">
+          ${clientes
+            .map(
+              (cliente) =>
+                `<option value="${cliente.id_cliente}" ${
+                  cliente.id_cliente === registroSeleccionado.id_cliente ? 'selected' : ''
+                }>${cliente.nombreCliente} ${cliente.apellidoCliente}</option>`
+            )
+            .join('')}
+        </select>
 
         `,
         confirmButtonText: 'Enviar',
@@ -129,6 +152,7 @@ const EditarObra = ({ onObraEditado }) => {
       if (registroSeleccionado) {
         handleEditarObra();
       }
+      getClientes();
     }, [registroSeleccionado]);
   
     return null; // Este componente no renderiza nada en pantalla

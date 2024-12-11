@@ -60,9 +60,9 @@ const EditarUsuarios = ({onUsuarioEditado}) => {
       confirmButtonText: 'Enviar',
       showCancelButton: true,
       preConfirm: () => {
-        const nombreUsuario = Swal.getPopup().querySelector('#nombreUsuario').value;
+        const nombreUsuario = Swal.getPopup().querySelector('#nombreUsuario').value.trim();
         const mailUsuario = Swal.getPopup().querySelector('#mailUsuario').value;
-        const passwordUsuario = Swal.getPopup().querySelector('#passwordUsuario').value;
+        const passwordUsuario = Swal.getPopup().querySelector('#passwordUsuario').value.trim();
         const rol = Swal.getPopup().querySelector('#rol').value;
         const id_Empleado = Swal.getPopup().querySelector('#select_vehiculo').value;
         
