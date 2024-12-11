@@ -1,10 +1,15 @@
-import React from 'react';
+import React from "react";
+import BannerTerrenos from "../Terrenos/BannerTerrenos";
 
 const MainTerrenos = () => {
   return (
-    <div>
-      
-    </div>
+    
+      <>
+      <BannerTerrenos />
+      <div className="main">
+          <h1>Terrenos</h1>
+      </div>
+      </>
   );
 };
 
