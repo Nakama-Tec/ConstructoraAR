@@ -67,7 +67,7 @@ const LoginPage = () => {
             type="text"
             placeholder="Nombre de usuario"
             autoComplete="username"
-            onChange={(e) => setNombreUsuario(e.target.value)}
+            onChange={(e) => setNombreUsuario(e.target.value.trim())}
             required
           />
         </div>
@@ -79,7 +79,7 @@ const LoginPage = () => {
             className="block w-full px-4 py-3 mt-1 text-zinc-800 bg-white border-2 rounded-lg dark:border-zinc-600 dark:bg-zinc-800 dark:text-zinc-200 focus:border-blue-500 dark:focus:border-blue-400 focus:ring-opacity-50 focus:outline-none focus:ring focus:ring-blue-400"
             type="password"
             placeholder="Contraseña"
-            onChange={(e) => setPasswordUsuario(e.target.value)}
+            onChange={(e) => setPasswordUsuario(e.target.value.trim())}
             required
           />
         </div>
