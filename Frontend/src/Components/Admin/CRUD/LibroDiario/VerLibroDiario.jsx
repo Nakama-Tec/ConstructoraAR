@@ -5,6 +5,7 @@ import axios from 'axios';
 import Button from 'react-bootstrap/Button';
 import Aside from '../../../Layout/Aside';
 import toast, { Toaster } from 'react-hot-toast'; 
+
 const VerLibroDiario = () => {
   const token = useAuthStore((state) => state.token);
   const [fechaRegistro, setFechaRegistro] = useState('');
