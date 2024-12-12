@@ -173,7 +173,7 @@ const Aside = () => {
                       onClick={() => setIsMenuOpen(false)}
                     >
                       <FaBuilding className="mr-2" />
-                      Stock
+                      STOCK
                     </Link>
                   </li>
                   <li>
@@ -185,7 +185,7 @@ const Aside = () => {
                       onClick={() => setIsMenuOpen(false)}
                     >
                       <FaTasks className="mr-2" />
-                      Compra de Materiales
+                      COMPRA DE MATERIALES
                     </Link>
                   </li>
                 </ul>
