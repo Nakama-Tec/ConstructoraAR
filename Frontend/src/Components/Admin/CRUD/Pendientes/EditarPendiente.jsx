@@ -14,13 +14,19 @@ const EditarPendiente = ({ onPendienteEditado }) => {
       Swal.fire({
         title: 'Editar Pendiente',
         html: `
+          <label><b>Descripcion</b></label> 
+          <br>
           <input id="Descripcion" class="swal2-input" value="${registroSeleccionado.Descripcion}" />
-      
-          
+           <br>
+          <br>
+          <label><b>Fecha Creacion</b></label> 
+          <br>
           <input id="fechaCreacion" class="swal2-input" type="date" value="${registroSeleccionado.fechaCreacion}" />
-          
+           <br>
+          <br>
+          <label><b>Fecha Limite</b></label> 
+          <br>
           <input id="fechaLimite" class="swal2-input" type="date" value="${registroSeleccionado.fechaLimite}" />
-          
           <br/>
           <br/>
           <label><strong>Selecciona el estado:</strong></label>

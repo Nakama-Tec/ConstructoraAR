@@ -31,20 +31,35 @@ const CrearObra = ({ onObraRegistrado }) => {
               <input id="direccionObra" placeholder="Direccion de la Obras"  class="swal2-input" />
               
               <input id="descripcionObra" placeholder="Descripcion de la Obra"  class="swal2-input" />
-  
+
+             <input id="precioObra" placeholder="Precio de la Obra" type="number" min="0" class="swal2-input" />
+              <br>
+              <br>
+              <label><b>Fecha Inicio</b></label> 
+              <br>
               <input id="fechainicioObra" placeholder="Fecha Inicio" type="date" class="swal2-input" />
-              
+              <br>
+              <br>
+              <label><b>Fecha Fin</b></label> 
+              <br>
               <input id="fechafinObra" placeholder="Fecha Fin" type="date" class="swal2-input" />
-              
-              <input id="precioObra" placeholder="Precio de la Obra" type="number" min="0" class="swal2-input" />
-              
+              <br>
+              <br>
+              <label><b>Sector Obra</b></label> 
+              <br>
               <select id="sectorObra" class="swal2-select">
                 <option value="0">Privado</option>
                 <option value="1">Publico</option>
               </select>
-              
+              <br>
+              <br>
+              <label><b>Progreso Obra</b></label> 
+              <br>
               <input id="progresoObra" placeholder="Progreso de la Obra" type="number" min="0" class="swal2-input" />
-              
+              <br>
+              <br>
+              <label><b>Cliente</b></label> 
+              <br>
               <select id="id_cliente" class="swal2-select">
                ${clientes
                 .map(

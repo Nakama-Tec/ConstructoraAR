@@ -2,7 +2,18 @@ const { conection } = require("../DB/Config")
 
 
 const allObras = (req, res) => {
-    const query = `select * from Obras where activoObras = 1;`
+    const query = `SELECT 
+    Obras.*,
+    Clientes.nombreCliente,
+    Clientes.apellidoCliente,
+    Clientes.id_cliente
+    FROM 
+    Obras
+    LEFT JOIN 
+    Clientes 
+    ON 
+    Obras.id_cliente = Clientes.id_cliente
+    where activoObras = 1;`
     conection.query(query, (err, results) => {
         if (err) throw err;
         res.json(results)

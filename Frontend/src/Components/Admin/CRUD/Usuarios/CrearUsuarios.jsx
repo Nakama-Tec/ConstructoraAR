@@ -63,7 +63,7 @@ const CrearUsuarios = ({onUsuarioRegistrado}) => {
             const rol = document.getElementById('rol').value;
             const id_Empleado = document.getElementById('select_empleado').value;
 
-            const nombreRegex = /^[a-zA-ZÀ-ÿ\s_]{1,40}$/;
+            const nombreRegex = /^[a-zA-Z0-9À-ÿ\s,.-]+$/;
             const mailRegex = /[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,5}/;
             const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
   

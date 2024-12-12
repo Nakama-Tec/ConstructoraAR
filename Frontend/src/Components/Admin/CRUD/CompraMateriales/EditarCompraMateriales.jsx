@@ -48,13 +48,33 @@ const EditarCompraMateriales = ({ onCompraMaterialEditado }) => {
             ${generateStockOptions()}
           </select>
         </div>
+        <br>
+        <br>
+        <label><b>Cantidad</b></label> 
+        <br>
         <input id="cantidadMaterial" placeholder="Cantidad de Material" type="number" min="0" class="swal2-input" value="${registroSeleccionado.Cantidad}" />
+        <br>
+        <br>
+        <label><b>Precio</b></label> 
+        <br>
         <input id="precioMaterial" placeholder="Precio del Material" type="number" min="0" class="swal2-input" value="${registroSeleccionado.Precio}" />
+        <br>
+        <br>
+        <label><b>Fecha Compra</b></label> 
+        <br>
         <input id="fechaCompraMateriales" placeholder="Fecha de Compra" type="date" class="swal2-input" value="${registroSeleccionado.Fecha_Compra}" />
+        <br>
+        <br>
+        <label><b>Estado</b></label> 
+        <br>
         <select id="estadoRetiro" class="swal2-select">
           <option value="Entregado" ${registroSeleccionado.Estado === 'Entregado' ? 'selected' : ''}>Entregado</option>
           <option value="Pendiente" ${registroSeleccionado.Estado === 'Pendiente' ? 'selected' : ''}>Pendiente</option>
-        </select>        
+        </select>   
+        <br>
+        <br>
+        <label><b>Proveedor</b></label> 
+        <br>     
         <input id="lugardeCompra" placeholder="Lugar de Compra" class="swal2-input" value="${registroSeleccionado.Proveedor}" />
         <br><br>
         <label for="select_destino"><b>Ubicación del Material</b></label>

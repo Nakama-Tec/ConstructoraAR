@@ -3,7 +3,7 @@ import Swal from "sweetalert2";
 import axios from "axios";
 import useAuthStore from "../../../../Context/useAuthStore";
 import useRegistroStore from "../../../../Context/useRegistroStore";
-import { URL_CERTIFICADOS_CREAR} from "../../../../Constants/endpoints-API";
+import { URL_CERTIFICADOS_CREAR } from "../../../../Constants/endpoints-API";
 
 const CrearCertificados = ({ onCertificadoRegistrado }) => {
   const { isRegistroModalOpen, closeRegistroModal } = useRegistroStore();
@@ -17,10 +17,16 @@ const CrearCertificados = ({ onCertificadoRegistrado }) => {
             <input id="montoCert" type="number" placeholder="Monto del Certificado" class="swal2-input" />
 
             <input id="nroCertificado" type="number" placeholder="Numero del Certificado"  class="swal2-input" />
-            
-            <input id="fechaEmisionCert"  placeholder="Fecha de Emision"  class="swal2-input" />
-
-            <input id="fechaPagoCert"  placeholder="Fecha de Pago"  class="swal2-input" />
+            <br>
+            <br>
+            <label><b>Fecha Emision</b></label> 
+            <br>
+            <input id="fechaEmisionCert"  placeholder="Fecha de Emision" type="date" class="swal2-input" />
+            <br>
+            <br>
+            <label><b>Fecha Pago</b></label> 
+            <br>
+            <input id="fechaPagoCert"  placeholder="Fecha de Pago" type="date" class="swal2-input" />
 
             <input id="estadoCert"  placeholder="Estado"  class="swal2-input" /> 
 
@@ -38,8 +44,11 @@ const CrearCertificados = ({ onCertificadoRegistrado }) => {
             </select>
 
             <input id="valorredeterminacion" placeholder="valor de la redeterminacion" class="swal2-input" />
-
-            <input id="fechaRedeterminacion" placeholder="fecha de redeterminacion" class="swal2-input" />
+            <br>
+            <br>
+            <label><b>Fecha Redeterminacion</b></label> 
+            <br>
+            <input id="fechaRedeterminacion" placeholder="fecha de redeterminacion" type="date" class="swal2-input" />
             
            
           <br/>
@@ -70,10 +79,10 @@ const CrearCertificados = ({ onCertificadoRegistrado }) => {
         const fechaRedeterminacionRegex = /^[0-9]{4}-[0-9]{2}-[0-9]{2}$/;
 
 
-        if (!montoRegex.test(montoCert) ||!nroCertificadoRegex.test(nroCertificado) ||!fechaEmisionCertRegex.test(fechaEmisionCert) ||
-          !fechaPagoCertRegex.test(fechaPagoCert) ||!estadoCertRegex.test(estadoCert) ||!linkFacturaCertRegex.test(linkFacturaCert) ||
-          !linkFacturaPagadaCertRegex.test(linkFacturaPagadaCert) ||!valorredeterminacionRegex.test(valorredeterminacion) ||
-          !fechaRedeterminacionRegex.test(fechaRedeterminacion)) { Swal.showValidationMessage("Verifica los datos ingresados.");}
+        if (!montoRegex.test(montoCert) || !nroCertificadoRegex.test(nroCertificado) || !fechaEmisionCertRegex.test(fechaEmisionCert) ||
+          !fechaPagoCertRegex.test(fechaPagoCert) || !estadoCertRegex.test(estadoCert) || !linkFacturaCertRegex.test(linkFacturaCert) ||
+          !linkFacturaPagadaCertRegex.test(linkFacturaPagadaCert) || !valorredeterminacionRegex.test(valorredeterminacion) ||
+          !fechaRedeterminacionRegex.test(fechaRedeterminacion)) { Swal.showValidationMessage("Verifica los datos ingresados."); }
         return {
           montoCert,
           nroCertificado,

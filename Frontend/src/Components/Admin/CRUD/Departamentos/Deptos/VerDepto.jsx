@@ -35,7 +35,7 @@ const VerDepto = ({ onDeptoVer }) => {
                 </tr>
               <tr>
                 <th style="padding: 8px; border-bottom: 1px solid #ddd; text-align: right;">Servicios:</th>
-                <td style="padding: 8px; border-bottom: 1px solid #ddd;">${verRegistroSeleccionado.serviciosIncluidos}</td>
+                <td style="padding: 8px; border-bottom: 1px solid #ddd;">${verRegistroSeleccionado.serviciosIncluidos == 0 ? "No" : "Si"}</td>
                 </tr>
               <tr>
                <th style="padding: 8px; border-bottom: 1px solid #ddd; text-align: right;">Contrato:</th>

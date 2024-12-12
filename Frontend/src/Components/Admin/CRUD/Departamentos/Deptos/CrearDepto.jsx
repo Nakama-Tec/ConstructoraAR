@@ -24,7 +24,14 @@ const CrearDepto = ({ onDeptoRegistrado }) => {
 
           <input id="precioExpensa" type="number" min="0" placeholder="Precio Expensa" class="swal2-input" />
 
-          <input id="serviciosIncluidos" placeholder="Servicios incluidos" class="swal2-input" />
+            <br/>
+            <br/>
+            <label><strong>Servicios Incluidos:</strong></label>
+            <br/>           
+            <select id="serviciosIncluidos" class="swal2-select">
+            <option value="1">Si</option>
+            <option value="0">No</option>
+           </select>
 
           <input id="contratoDescripcion" placeholder="Detalles de Contrato" class="swal2-input" />
 

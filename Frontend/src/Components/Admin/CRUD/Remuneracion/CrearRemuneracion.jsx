@@ -17,24 +17,28 @@ const CrearRemuneracion = ({onRemuneracionRegistrada}) => {
         title: 'Registrar Remuneracion',
         html: `
                     <input id="detalle" placeholder="Detalle" class="swal2-input" />
-                    <input id="montoRemuneracion" placeholder="Monto" type="number" min="0" class="swal2-input" />
+                    <input id="montoRemuneracion" placeholder="Monto Remuneracion" type="number" min="0" class="swal2-input" />
                     <input id="cantEmpleado" placeholder="Cantidad de Empleados" type="number" min="0" class="swal2-input" />
                     <br>
                     <br>
-                    <label for="tipoEmpleado">Empleado</label>
+                    <label><b>Empleado</b></label> 
                     <br>
                     <select id="tipoEmpleado" class="swal2-select">
                         <option value="0">Administrativo</option>
                         <option value="1">Obrero</option>
                         </select>        
-                        <br>
-                        <br>
-                    <label for="sectorRemuneracion">Sector</label>
+                    <br>
+                    <br>
+                    <label><b>Sector</b></label> 
                     <br>            
                     <select id="sectorRemuneracion" class="swal2-select">
                         <option value="0">Publico</option>
                         <option value="1">Privado</option>
                         </select>
+                        <br>
+                    <br>
+                    <label><b>Fecha Remuneracion</b></label> 
+                    <br>
                     <input id="fechaRemuneracion" placeholder="Fecha" class="swal2-input" type="date"/>
 
        

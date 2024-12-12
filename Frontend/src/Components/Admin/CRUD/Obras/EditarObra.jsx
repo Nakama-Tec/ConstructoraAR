@@ -24,25 +24,51 @@ const EditarObra = ({ onObraEditado }) => {
       Swal.fire({
         title: 'Editar Obra',
         html: `
+            <label><b>Nombre Obra</b></label> 
+            <br>
             <input id="nombreObra" class="swal2-input" value="${registroSeleccionado.nombreObra}" />
-  
+            <br>
+            <br>
+            <label><b>Direccion Obra</b></label> 
+            <br>
             <input id="direccionObra" class="swal2-input" value="${registroSeleccionado.direccionObra}" />
-
+            <br>
+            <br>
+            <label><b>Descripcion Obra</b></label> 
+            <br>
             <input id="descripcionObra" class="swal2-input" value="${registroSeleccionado.descripcionObra}" />
-
+            <br>
+            <br>
+            <label><b>Fecha Inicio</b></label> 
+            <br>
             <input id="fechainicioObra" class="swal2-input" type="date" value="${registroSeleccionado.fechainicioObra}" />
-
+            <br>
+            <br>
+            <label><b>Fecha Fin</b></label> 
+            <br>
             <input id="fechafinObra" class="swal2-input" type="date" value="${registroSeleccionado.fechafinObra}" />
-
+            <br>
+            <br>
+            <label><b>Precio Obra</b></label> 
+            <br>
             <input id="precioObra" class="swal2-input" type="number" min="0" max="100" value="${registroSeleccionado.precioObra}" />
-
+            <br>
+            <br>
+            <label><b>Sector Obra</b></label> 
+            <br>
             <select id="sectorObra" class="swal2-select">
               <option value="0" ${registroSeleccionado.sectorObra === '0' ? 'selected' : ''}>Privado</option>
               <option value="1" ${registroSeleccionado.sectorObra === '1' ? 'selected' : ''}>Publico</option>
            </select>
-
+            <br>
+            <br>
+            <label><b>Progreso Obra</b></label> 
+            <br>
              <input id="progresoObra" class="swal2-input" type="number" min="0" value="${registroSeleccionado.progresoObra}" />
-
+            <br>
+            <br>
+            <label><b>Cliente</b></label> 
+            <br>
              <select id="id_cliente" class="swal2-select">
           ${clientes
             .map(
@@ -70,7 +96,7 @@ const EditarObra = ({ onObraEditado }) => {
 
   
           // Validaciones
-            const nombreRegex = /^[a-zA-Z\sÀ-ÿ]+$/;
+            const nombreRegex = /^[a-zA-Z0-9À-ÿ\s,.-]+$/;
             const direccionRegex = /^[a-zA-Z0-9À-ÿ\s,.-]+$/;
             const descripcionRegex = /^[a-zA-Z0-9À-ÿ\s,.-]+$/;
             const fechaInicioRegex = /^[a-zA-Z0-9À-ÿ\s,.-]+$/;
@@ -81,7 +107,7 @@ const EditarObra = ({ onObraEditado }) => {
             const id_clienteRegex = /^[a-zA-Z0-9À-ÿ\s,.-]+$/;
 
           if (!nombreObra || !nombreRegex.test(nombreObra)) {
-            Swal.showValidationMessage("El nombre no debe contener números.");
+            Swal.showValidationMessage("El nombre no debe contener caracteres especiales.");
             return false;
           }
             if (!direccionObra || !direccionRegex.test(direccionObra)) {

@@ -13,20 +13,42 @@ const EditarDepto = ({ onDeptoEditado }) => {
       Swal.fire({
         title: 'Editar Departamento',
         html: `
+            <label><strong>Nombre Departamento:</strong></label>
+            <br/>
           <input id="nombreDepartamento" class="swal2-input" value="${registroSeleccionado.nombreDepartamento}" />
-          
+          <br/>
+          <br/>
+          <label><strong>Direccion:</strong></label>
+          <br/>
           <input id="direccionDepartamento" class="swal2-input" value="${registroSeleccionado.direccionDepartamento}" />
-          
+          <br/>
+          <br/>
+          <label><strong>Descripcion:</strong></label>
+          <br/>
           <input id="descripcionDepartamento" class="swal2-input" value="${registroSeleccionado.descripcionDepartamento}" />
-          
+          <br/>
+          <br/>
+          <label><strong>Precio Departamento:</strong></label>
+          <br/>
           <input id="precioDepartamento" class="swal2-input" value="${registroSeleccionado.precioDepartamento}" />
-
+          <br/>
+          <br/>
+          <label><strong>Precio Expensa:</strong></label>
+          <br/>
           <input id="precioExpensa" class="swal2-input" value="${registroSeleccionado.precioExpensa}" />
-
-          <input id="serviciosIncluidos" class="swal2-input" value="${registroSeleccionado.serviciosIncluidos}" />
-
+          <br/>
+          <br/>
+          <label><strong>Servicios Incluidos:</strong></label>
+          <br/>
+          <select id="serviciosIncluidos" class="swal2-select">
+            <option value="1" ${registroSeleccionado.serviciosIncluidos === 1 ? 'selected' : ''}>Si</option>
+            <option value="0" ${registroSeleccionado.serviciosIncluidos === 0 ? 'selected' : ''}>No</option>
+          </select>
+          <br/>
+          <br/>
+          <label><strong>Descripcion Contrato:</strong></label>
+          <br/>
           <input id="contratoDescripcion" class="swal2-input" value="${registroSeleccionado.contratoDescripcion}" />
-
           <br/>
           <br/>
           <label><strong>Selecciona la disponibilidad:</strong></label>

@@ -17,7 +17,10 @@ const EditarPagosDepto = ({ onPagoAlquilerEditado }) => {
           <label><strong>Selecciona la fecha de pago:</strong></label>
           <br/>
           <input id="FechaPagoAlquiler" type="date" class="swal2-input" value="${registroSeleccionado.FechaPagoAlquiler}" />
-          <br/>
+           <br>
+           <br>
+           <label><b>Monto Pago Alquiler</b></label> 
+           <br>
           <input id="MontoPagoAlquiler" type="number" min="0" class="swal2-input" value="${registroSeleccionado.MontoPagoAlquiler}" />
 
         `,

@@ -13,126 +13,130 @@ import CrearObra from './CrearObra';
 import VerObra from './VerObra';
 
 const MainObras = () => {
-    const token = useAuthStore((state) => state.token);
-    const { setRegistroSeleccionado, openRegistroModal } = useRegistroStore();//objeto que se importa de useStockStore
-    const { setVerRegistroSeleccionado } = useVerRegistroStore();
-    const [filtrado, setFiltrado] = useState('');
-    const [datos, setDatos] = useState([]);
-  
-    const getObra = async () => {
-      try {
-        const response = await axios.get(URL_OBRAS, { headers: { Authorization: `Bearer ${token}` } });
-        console.log(response.data);
-        setDatos(response.data);
-      } catch (error) {
-        console.error('Error al obtener la obra:', error);
-      }
-    };
-    
+  const token = useAuthStore((state) => state.token);
+  const { setRegistroSeleccionado, openRegistroModal } = useRegistroStore();//objeto que se importa de useStockStore
+  const { setVerRegistroSeleccionado } = useVerRegistroStore();
+  const [filtrado, setFiltrado] = useState('');
+  const [datos, setDatos] = useState([]);
+
+  const getObra = async () => {
+    try {
+      const response = await axios.get(URL_OBRAS, { headers: { Authorization: `Bearer ${token}` } });
+      console.log(response.data);
+      setDatos(response.data);
+    } catch (error) {
+      console.error('Error al obtener la obra:', error);
+    }
+  };
+
   // borrado logico
-    const handleEliminarObra = async (obra) => {
-      const confirmacion = await Swal.fire({
-        title: '¿Estás seguro?',
-        text: `¿Deseas eliminar la obra ${obra.nombreObra}?`,
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonText: 'Sí, eliminar',
-        cancelButtonText: 'Cancelar'
-      });
-  
-      if (confirmacion.isConfirmed) {
-        try {
-          await axios.put(
-            `${URL_OBRAS_ELIMINAR}${obra.id_obra}`,
-            { ...obra }, // Se envía el stock con el campo "eliminado" en true
-            { headers: { Authorization: `Bearer ${token}` } }
-          );
-          Swal.fire('Eliminado!', 'La obra ha sido eliminado correctamente.', 'success');
-          getObra(); 
-        } catch (error) {
-          console.error('Error al eliminar la obra:', error);
-          Swal.fire('Error', 'Hubo un problema al eliminar la obra.', 'error');
-        }
+  const handleEliminarObra = async (obra) => {
+    const confirmacion = await Swal.fire({
+      title: '¿Estás seguro?',
+      text: `¿Deseas eliminar la obra ${obra.nombreObra}?`,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Sí, eliminar',
+      cancelButtonText: 'Cancelar'
+    });
+
+    if (confirmacion.isConfirmed) {
+      try {
+        await axios.put(
+          `${URL_OBRAS_ELIMINAR}${obra.id_obra}`,
+          { ...obra }, // Se envía el stock con el campo "eliminado" en true
+          { headers: { Authorization: `Bearer ${token}` } }
+        );
+        Swal.fire('Eliminado!', 'La obra ha sido eliminado correctamente.', 'success');
+        getObra();
+      } catch (error) {
+        console.error('Error al eliminar la obra:', error);
+        Swal.fire('Error', 'Hubo un problema al eliminar la obra.', 'error');
       }
-    };
-  
-    const columns = [
-      { header: 'Nº', accessorKey: 'id_obra' },
-      { header: 'Nombre de la Obra', accessorKey: 'nombreObra' },
-      { header: 'Dirección Obra', accessorKey: 'direccionObra' },
-      { header: 'Descripcion Obra', accessorKey: 'descripcionObra' },
-      { header: 'Fecha Inicio', accessorKey: 'fechainicioObra' },
-      { header: 'Fecha Fin', accessorKey: 'fechafinObra' },
-      { header: 'Precio Obra', accessorFn: (row) => `$${row.precioObra}` },
-      { header: 'Sector', accessorFn: (row) => row.sectorObra === 0 ? "Público" : "Privado" },
-      { header: 'Progreso', accessorFn: (row) => `${row.progresoObra}%` },
-      { header: 'Cliente', accessorKey: 'id_cliente' },
-      {
-        header: 'Acciones',
-        cell: ({ row }) => (
-          <div className="flex gap-2">
-            <button onClick={() => setVerRegistroSeleccionado(row.original)}
+    }
+  };
+
+  const columns = [
+    { header: 'Nº', accessorKey: 'id_obra' },
+    { header: 'Nombre de la Obra', accessorKey: 'nombreObra' },
+    { header: 'Dirección Obra', accessorKey: 'direccionObra' },
+    { header: 'Precio Obra', accessorFn: (row) => `$${row.precioObra}` },
+    { header: 'Progreso', accessorFn: (row) => `${row.progresoObra}%` },
+    { header: 'Cliente', accessorFn: (row) => `${row.nombreCliente} ${row.apellidoCliente}` },
+    {
+      header: 'Acciones',
+      cell: ({ row }) => (
+        <div className="flex gap-2">
+          <button onClick={() => setVerRegistroSeleccionado(row.original)}
             className="bg-blue-600 text-white px-4 py-2 rounded-full transition duration-200 ease-in-out hover:bg-blue-800 active:bg-blue-900 focus:outline-none"
           >
             Ver más
           </button>
-            <button
-              onClick={() => setRegistroSeleccionado(row.original)}
-              className="bg-orange-600 text-white px-4 py-2 rounded-full transition duration-200 ease-in-out hover:bg-orange-800 active:bg-orange-900 focus:outline-none"
-            >
-              Editar
-            </button>
-            <button
-              onClick={() => handleEliminarObra(row.original)}
-              className="bg-red-600 text-white px-4 py-2 rounded-full transition duration-200 ease-in-out hover:bg-red-800 active:bg-red-900 focus:outline-none"
-            >
-              Eliminar
-            </button>
-          </div>
-        )
-      }
-    ];
-  
-    const table = useReactTable({
-      data: datos,
-      columns,
-      getCoreRowModel: getCoreRowModel(),
-      getPaginationRowModel: getPaginationRowModel(),
-      getFilteredRowModel: getFilteredRowModel(),
-      state: {
-        globalFilter: filtrado
-      },
-      onGlobalFilterChange: setFiltrado
-    });
-  
-    useEffect(() => {
-      getObra();
-    }, []);
-  
-    return (
-      <div>
-        <p className="text-black font-semibold text-4xl display flex justify-center relative top-12 m-5">Registros de las Obras</p>
-        <div className="input-search relative top-20">
-          <input
-            className="text-black"
-            type="search"
-            placeholder="Buscador"
-            value={filtrado}
-            onChange={(e) => setFiltrado(e.target.value)}
-          />
-        </div>
-        <div className="mb-4">
           <button
-            onClick={openRegistroModal}
-            className="bg-green-600 text-white px-4 py-2 m-2 rounded-full transition duration-200 ease-in-out hover:bg-green-800 active:bg-green-900 focus:outline-none position relative left-72"
+            onClick={() => setRegistroSeleccionado(row.original)}
+            className="bg-orange-600 text-white px-4 py-2 rounded-full transition duration-200 ease-in-out hover:bg-orange-800 active:bg-orange-900 focus:outline-none"
           >
-            Registrar obra
+            Editar
+          </button>
+          <button
+            onClick={() => handleEliminarObra(row.original)}
+            className="bg-red-600 text-white px-4 py-2 rounded-full transition duration-200 ease-in-out hover:bg-red-800 active:bg-red-900 focus:outline-none"
+          >
+            Eliminar
           </button>
         </div>
-        <div className='display flex'>
-          <div className='position relative top-8'>
-        <Aside/>
+      )
+    }
+  ];
+
+  const table = useReactTable({
+    data: datos,
+    columns,
+    getCoreRowModel: getCoreRowModel(),
+    getPaginationRowModel: getPaginationRowModel(),
+    getFilteredRowModel: getFilteredRowModel(),
+    state: {
+      globalFilter: filtrado
+    },
+    onGlobalFilterChange: setFiltrado
+  });
+
+  useEffect(() => {
+    getObra();
+  }, []);
+
+  return (
+    <div>
+      <div>
+        <p className="text-black font-semibold text-4xl flex justify-center mt-5">Registros de Obras</p>
+
+        {/* Buscador */}
+        <div className="flex justify-center m-10">
+          <div className="relative">
+            <input
+              className="w-80 md:w-96 lg:w-[400px] px-4 py-2 text-gray-800 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              type="search"
+              placeholder="Buscar Obras..."
+              value={filtrado}
+              onChange={(e) => setFiltrado(e.target.value)}
+            />
           </div>
+        </div>
+
+        {/* Botón para registrar */}
+        <div className="flex justify-center m-6">
+          <button
+            onClick={openRegistroModal}
+            className="bg-green-600 text-white px-6 py-2 rounded-full font-medium shadow-md hover:bg-green-800 transition duration-300 focus:outline-none focus:ring-2 focus:ring-green-600 focus:ring-offset-2"
+          >
+            Registrar Obra
+          </button>
+        </div>
+      </div>
+      <div className='display flex'>
+        <div className='position relative top-8'>
+          <Aside />
+        </div>
         <table className="table">
           <thead>
             {table.getHeaderGroups().map(headerGroup => (
@@ -157,26 +161,25 @@ const MainObras = () => {
             ))}
           </tbody>
         </table>
-        </div>
-        <div className="pagination flex justify-center mt-4">
+      </div>
+      <div className="pagination flex justify-center mt-4">
         {Array.from({ length: table.getPageCount() }, (_, index) => ( // Crea un array con la cantidad de páginas y por cada una crea un botón con el número de la página 
           <button
-            key={index} 
-            className={`m-2 px-4 py-2 rounded-full font-semibold text-[16px] ${
-              table.getState().pagination.pageIndex === index 
+            key={index}
+            className={`m-2 px-4 py-2 rounded-full font-semibold text-[16px] ${table.getState().pagination.pageIndex === index
                 ? "bg-blue-600 text-white" // Estilo para la página seleccionada
                 : "bg-gray-300 text-black" // Estilo para las páginas no seleccionadas
-            }`}
+              }`}
             onClick={() => table.setPageIndex(index)} // Cambia a la página seleccionada
           >
-            {index + 1} 
+            {index + 1}
           </button>
         ))}
       </div>
       <EditarObra onObraEditado={getObra} />
       <CrearObra onObraRegistrado={getObra} />
       <VerObra onObraVer={getObra} />
-        </div>
+    </div>
   )
 }
 
