@@ -1,9 +1,8 @@
-/* Contenedor principal del Aside */
 .aside-container {
     position: relative;
   }
   
-  /* Botón de menú hamburguesa */
+  /* Menú hamburguesa */
   .hamburger-btn {
     background-color: #007BFF;
     color: white;
@@ -53,7 +52,6 @@
     flex-direction: column;
   }
   
-  /* Títulos del menú */
   .menu-title {
     font-size: 1.5rem;
     color: #343a40;
@@ -62,7 +60,6 @@
     padding-bottom: 10px;
   }
   
-  /* Items de menú */
   .sidebar-menu .ps-menu-item {
     margin: 10px 0;
     font-size: 1rem;
@@ -80,13 +77,11 @@
   .sidebar-menu .ps-menu-item .ps-menu-item-icon {
     font-size: 1.2rem;
   }
-  
-  /* Submenú */
+
   .sidebar-menu .ps-sub-menu-item {
     padding-left: 20px;
   }
   
-  /* Media Queries para dispositivos móviles */
   @media screen and (max-width: 768px) {
     .hamburger-btn {
       display: block;
