@@ -34,10 +34,10 @@ const Aside = () => {
   const isActive = (path) => location.pathname === path;
 
   return (
-    <>
+    <div className='lg, sm:relative bottom-8'>
       {/* Botón de hamburguesa visible solo en móviles */}
       <button
-        className="md:hidden fixed top-4 left-4 z-50 text-2xl text-gray-800 focus:outline-none"
+        className="md:hidden fixed top-4 left-4 z-50 text-2xl text-neutral-500 focus:outline-none"
         onClick={toggleMenu}
         aria-label="Toggle menu"
       >
@@ -60,7 +60,7 @@ const Aside = () => {
       >
 
         {/* Menú */}
-        <nav className="lg:relative bottom-8">
+        <nav className="">
           <ul>
             {/* CLIENTES */}
             <li>
@@ -148,32 +148,48 @@ const Aside = () => {
               </Link>
             </li>
 
-            {/* COMPRA DE MATERIALES */}
+            {/* COMPRA DE MATERIALES Y STOCK */}
             <li>
-              <Link
-                to={COMPRA_MATERIALES}
-                className={`flex items-center px-4 py-2 text-gray-700 hover:bg-gray-200 ${
-                  isActive(COMPRA_MATERIALES) ? 'bg-gray-200 font-semibold' : ''
-                }`}
-                onClick={() => setIsMenuOpen(false)}
-              >
-                <FaMoneyBillWave className="mr-3" />
-                COMPRA DE MATERIALES
-              </Link>
-            </li>
-
-            {/* STOCK */}
-            <li>
-              <Link
-                to={STOCK}
-                className={`flex items-center px-4 py-2 text-gray-700 hover:bg-gray-200 ${
-                  isActive(STOCK) ? 'bg-gray-200 font-semibold' : ''
-                }`}
-                onClick={() => setIsMenuOpen(false)}
+              <button
+                className="flex items-center w-full px-4 py-2 text-gray-700 hover:bg-gray-200 focus:outline-none"
+                onClick={() => toggleSubmenu('materiales')}
               >
                 <FaBoxes className="mr-3" />
-                STOCK
-              </Link>
+                MATERIALES
+                {openSubmenus['materiales'] ? (
+                  <FaChevronUp className="ml-auto" />
+                ) : (
+                  <FaChevronDown className="ml-auto" />
+                )}
+              </button>
+              {openSubmenus['materiales'] && (
+                <ul className="ml-8">
+                  <li>
+                    <Link
+                      to={STOCK}
+                      className={`flex items-center px-4 py-2 text-gray-600 hover:bg-gray-100 ${
+                        isActive(STOCK) ? 'bg-gray-100 font-medium' : ''
+                      }`}
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      <FaBuilding className="mr-2" />
+                      Stock
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      to={COMPRA_MATERIALES}
+                      className={`flex items-center px-4 py-2 text-gray-600 hover:bg-gray-100 ${
+                        isActive(COMPRA_MATERIALES) ? 'bg-gray-100 font-medium' : ''
+                      }`}
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      <FaTasks className="mr-2" />
+                      Compra de Materiales
+                    </Link>
+                  </li>
+                </ul>
+              )}
             </li>
 
             {/* DEPARTAMENTOS */}
@@ -346,7 +362,7 @@ const Aside = () => {
           </ul>
         </nav>
       </div>
-    </>
+    </div>
   );
 };
 
