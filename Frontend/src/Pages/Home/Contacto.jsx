@@ -42,7 +42,7 @@ const Contacto = () => {
   return (
     <div className="main-section">
     <div className="form-area">
-      <div className="container p-md-3 p-md-5 shadow bg-white rounded my-5">
+      <div className="container p-md-3 p-md-5 rounded my-5">
         <Row className="single-form g-0">
           <Col lg={6}>
             <div className="izquierda-contacto">
