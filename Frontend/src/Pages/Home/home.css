@@ -85,7 +85,7 @@ h1 {
     display: flex;
     align-items: center;
     color: rgb(41, 40, 40);
-    background-size: cover;
+    background-size: 120vw;
     background-repeat: no-repeat;
     background-attachment: fixed; /* Mantenemos el fondo en scroll */
     background-position: center 100px ; /* Posición inicial del fondo */
@@ -151,4 +151,24 @@ h1 {
 .parallax-content ul{
     list-style: outside;
     padding: 0;
+}
+
+@media (max-width: 1200px) {
+  .BannerPrincipal {
+    height: 60vh;
+  }
+
+  .textoBannerPrincipal {
+    font-size: 2.5rem;
+    top: 30%;
+    left: 5%;
+  }
+
+  .parallax-container {
+    background-size: 150vw;
+  }
+
+  .parallax-content {
+    padding: 0 5% 0 10%;
+  }
 }
