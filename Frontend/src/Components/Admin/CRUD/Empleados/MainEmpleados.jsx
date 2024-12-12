@@ -107,24 +107,33 @@ const MainEmpleados = () => {
 
   return (
 <div>
-      <p className="text-black font-semibold text-4xl display flex justify-center relative top-12 m-5">Registros de Empleados</p>
-      <div className="input-search relative top-20">
-        <input
-          className="text-black"
-          type="search"
-          placeholder="Buscador"
-          value={filtrado}
-          onChange={(e) => setFiltrado(e.target.value)}
-        />
-      </div>
-      <div className="mb-4">
-        <button
-          onClick={openRegistroModal}
-          className="bg-green-600 text-white px-4 py-2 m-2 rounded-full transition duration-200 ease-in-out hover:bg-green-800 active:bg-green-900 focus:outline-none position relative left-72"
-        >
-          Registrar empleado
-        </button>
-      </div>
+<div>
+  <p className="text-black font-semibold text-4xl flex justify-center mt-5">Registros de Empleados</p>
+  
+  {/* Buscador */}
+  <div className="flex justify-center m-10">
+    <div className="relative">
+      <input
+        className="w-80 md:w-96 lg:w-[400px] px-4 py-2 text-gray-800 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+        type="search"
+        placeholder="Buscar empleados..."
+        value={filtrado}
+        onChange={(e) => setFiltrado(e.target.value)}
+      />
+    </div>
+  </div>
+
+  {/* Botón para registrar */}
+  <div className="flex justify-center m-6">
+    <button
+      onClick={openRegistroModal}
+      className="bg-green-600 text-white px-6 py-2 rounded-full font-medium shadow-md hover:bg-green-800 transition duration-300 focus:outline-none focus:ring-2 focus:ring-green-600 focus:ring-offset-2"
+    >
+      Registrar empleado
+    </button>
+  </div>
+</div>
+  
       <div className='display flex'>
         <div className='position relative top-8'>
       <Aside/>
