@@ -10,10 +10,6 @@ const allCashFlow =(req,res)=>{
 join VentaTerrenos vt on t.id_terreno = vt.id_terreno
 where vt.fechaVentaTerreno >= '${fechaInicio}' and vt.fechaVentaTerreno <='${fechaFin}'
 UNION ALL
-select "Ingresos por Alquiler duplex " as TIPO_4,sum(montoPagoAlquiler) as Monto_4 from PagosAlquileres where fechaPagoAlquiler >= '${fechaInicio}' 
-and fechaPagoAlquiler <='${fechaFin}'
-
-UNION ALL
 select "Ingresos por Obras Privadas" as TIPO_2, sum(montoCert) as Monto_2 from Certificados c
 join Obras o on o.id_obra = c.id_obra where fechaPagoCert >= '${fechaInicio}' and fechaPagoCert <='${fechaFin}' 
 and sectorObra = 1
@@ -21,9 +17,11 @@ UNION ALL
 select "Ingresos por Obras Publicas" as TIPO_3, sum(montoCert) as Monto_3 from Certificados c
 join Obras o on o.id_obra = c.id_obra where fechaPagoCert >= '${fechaInicio}' and fechaPagoCert <='${fechaFin}' 
 and sectorObra = 0
-
 UNION ALL
-select "OPERACIONES/Cobro Deuda/" as TIPO_5,sum(montoOperacion) as Monto_5 from Operaciones where fechaOperacion >= '${fechaInicio}' 
+select "Ingresos por Alquiler duplex " as TIPO_4,sum(montoPagoAlquiler) as Monto_4 from PagosAlquileres where fechaPagoAlquiler >= '${fechaInicio}' 
+and fechaPagoAlquiler <='${fechaFin}'
+UNION ALL
+select "OPERACIONES" as TIPO_5,sum(montoOperacion) as Monto_5 from Operaciones where fechaOperacion >= '${fechaInicio}' 
 and fechaOperacion <='${fechaFin}'
 UNION ALL
 select "Compra de Materiales Obra" as TIPO_6,sum(precioMaterial) as Monto_6 from CompraMateriales where fechaCompraMateriales >= '${fechaInicio}' and fechaCompraMateriales <='${fechaFin}'
@@ -34,7 +32,7 @@ UNION ALL
 select "Salarios de Obras Privadas" as TIPO_8,sum(montoRemuneracion) as Monto_8 from Remuneraciones where fechaRemuneracion >= '${fechaInicio}' 
 and fechaRemuneracion <='${fechaFin}' and tipoEmpleado = 1 and sectorRemuneracion = 1
 UNION ALL
-select "Salarios de Obras Publicas" as TIPO_9,sum(montoRemuneracion) as Monto_9 from Remuneraciones where fechaRemuneracion >= '${fechaInicio}' 
+select "Salarios de Obras Publicas" as TIPO_,sum(montoRemuneracion) as Monto_9 from Remuneraciones where fechaRemuneracion >= '${fechaInicio}' 
 and fechaRemuneracion <='${fechaFin}' and tipoEmpleado = 1 and sectorRemuneracion = 0
 `
 conection.query(query,(err,results)=>{

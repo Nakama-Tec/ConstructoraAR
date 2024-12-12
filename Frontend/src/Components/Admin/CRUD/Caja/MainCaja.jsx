@@ -39,46 +39,10 @@ const MainCaja = () => {
     setFechaFin(`${año}-01-31`);
   }, []); 
 
-  const verificacionMes =()=>{
-    <Enero>
-      {mes === '01' ? 'selected' : ''}
-    </Enero>;
-    <Febrero>
-      {mes === '02' ? 'selected' : ''}
-    </Febrero>;
-    <Marzo>
-      {mes === '03' ? 'selected' : ''}  
-    </Marzo>;
-    <Abril>
-      {mes === '04' ? 'selected' : ''}
-    </Abril>;
-    <Mayo>
-      {mes === '05' ? 'selected' : ''}
-    </Mayo>;
-    <Junio>
-      {mes === '06' ? 'selected' : ''}
-    </Junio>;
-    <Julio>
-      {mes === '07' ? 'selected' : ''}
-    </Julio>;
-    <Agosto>
-      {mes === '08' ? 'selected' : ''}
-    </Agosto>;
-    <Septiembre>
-      {mes === '09' ? 'selected' : ''}
-    </Septiembre>;
-    <Octubre>
-      {mes === '10' ? 'selected' : ''}
-    </Octubre>;
-    <Noviembre>
-      {mes === '11' ? 'selected' : ''}
-    </Noviembre>;
-    <Diciembre>
-      {mes === '12' ? 'selected' : ''}
-    </Diciembre>;
-  }
+  
 
-  console.log("inicio = "+fechaInicio,"fin = "+fechaFin);
+
+  console.log("1 - inicio = "+fechaInicio," 2 -fin = "+fechaFin);
 
   // Enviar la fecha por POST
   const enviarFechaPorPost = async () => {
