@@ -5,6 +5,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Login from './Pages/Login/Login'
 import Admin from './Pages/Admin/Admin'
 import Home from './Pages/Home/Home'
+import MainTerrenos from './Pages/Terrenos/MainTerrenos'
+import MainConstrucciones from './Pages/Construcciones/MainConstrucciones'
 import Header from './Components/Layout/Header'
 import Footer from './Components/Layout/Footer'
 
@@ -17,6 +19,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Home/>} />
         <Route path="/login" element={<Login/>} />
+        <Route path="/terrenos" element={<MainTerrenos/>} />
+        <Route path="/construcciones" element={<MainConstrucciones/>} />
       </Routes>
       </main>
       <Footer/>
