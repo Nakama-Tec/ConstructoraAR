@@ -6,22 +6,21 @@ import { URL_FLUJO_CAJA } from '../../../../Constants/endpoints-API';
 import useAuthStore from '../../../../Context/useAuthStore';
 import axios from 'axios';
 import Button from 'react-bootstrap/Button';
-import Aside from '../../../Layout/Aside';
-import toast, { Toaster } from 'react-hot-toast'; 
+
 
 
 const MainCaja = () => {
 
   const token = useAuthStore((state) => state.token);
-  const [fechaInicio, setFechaInicio] = useState('');
-  const [fechaFin, setFechaFin] = useState('');
+  // const [fechaInicio, setFechaInicio] = useState('');
+  // const [fechaFin, setFechaFin] = useState('');
   const [fechaSeleccionada, setFechaSeleccionada] = useState('');
   const [prueba, setPrueba] = useState([]);
-  const [año, setAño] = useState('');
-  const [mes, setMes] = useState('');
+  // const [año, setAño] = useState('');
+  // const [mes, setMes] = useState('');
   const [datos, setDatos] = useState([]);
 
-  console.log("1 - inicio = "+fechaInicio," 2 -fin = "+fechaFin);
+
   // setFechaInicio(`${año}-01-01`);
   // setFechaFin(`${año}-01-31`);
 
@@ -29,6 +28,29 @@ const MainCaja = () => {
 //     console.log("Soy una IIFE con una función nombrada");
 // })();
 
+ // Función para obtener la fecha actual en formato "YYYY-MM-DD"
+ const obtenerFechaInicio = () => {
+  const hoy = new Date();
+  const año = hoy.getFullYear();
+  const mes = (hoy.getMonth() + 1).toString().padStart(2, "0");
+  const dia = hoy.getDate().toString().padStart(2, "0");
+  return `${año}-01-01`;
+};
+
+const obtenerFechaFin = () => {
+  const hoy = new Date();
+  const año = hoy.getFullYear();
+  const mes = (hoy.getMonth() + 1).toString().padStart(2, "0");
+  const dia = hoy.getDate().toString().padStart(2, "0");
+  return `${año}-01-31`;
+};
+
+// Estado para las fechas inicializado con la fecha actual
+const [fechaInicio, setFechaInicio] = useState(obtenerFechaInicio);
+const [fechaFin, setFechaFin] = useState(obtenerFechaFin);
+
+console.log("fechaInicio = ", fechaInicio);
+console.log("fechaFin = ", fechaFin);
   // Enviar la fecha por POST
   const enviarFechaPorPost = async () => {
     try {
@@ -77,7 +99,7 @@ console.log("datos = ");
   const data = React.useMemo(
     () => [
       { details: "1. Detalle de Ingresos", style: "green-bold" },
-      { details: ' .  1.1  Ingresos por Ventas de Terrenos', jan: "", feb: "", mar: "", apr: "", may: "", jun: "", jul: "", aug: "", sep: "", oct: "", nov: "", dec: "", style: "green" },
+      { details: ' .  1.1  Ingresos por Ventas de Terrenos', jan: datos[0].Monto_1, feb: "", mar: "", apr: "", may: "", jun: "", jul: "", aug: "", sep: "", oct: "", nov: "", dec: "", style: "green" },
       { details: ' .  1.2  Ingresos por Alquiler duplex', jan: "", feb: "", mar: "", apr: "", may: "", jun: "", jul: "", aug: "", sep: "", oct: "", nov: "", dec: "", style: "green" },
       { details: ' .  1.3  Ingresos por Obras Privadas', jan: "", feb: "", mar: "", apr: "", may: "", jun: "", jul: "", aug: "", sep: "", oct: "", nov: "", dec: "", style: "green" },
       { details: ' .  1.4  Ingresos por Obras Publicas', jan: "", feb: "", mar: "", apr: "", may: "", jun: "", jul: "", aug: "", sep: "", oct: "", nov: "", dec: "", style: "green" },
@@ -121,37 +143,47 @@ console.log("datos = ");
 
  // Obtener la fecha actual en formato YYYY-MM-DD
  useEffect(() => {
-  enviarFechaPorPost()
-  const date = new Date();
-  const año = date.getFullYear();
-  const mes = String(date.getMonth() + 1).padStart(2, '0');
-  const dia = String(date.getDate()).padStart(2, '0');
-  const fechaActual = `${año}-${mes}-${dia}`;
-  // setFechaRegistro(fechaActual);
-  setFechaSeleccionada(fechaActual); // Inicializar con la fecha actual
-  setAño(año);
-  setMes(mes);
-  setFechaInicio(`${año}-01-01`);
-  setFechaFin(`${año}-01-31`);
- 
+  
+  const fechaInicio = obtenerFechaInicio();
+  const fechaFin = obtenerFechaFin();
+    setFechaInicio(fechaInicio);
+    setFechaFin(fechaFin); // Puedes ajustar esto según tus necesidades
+    enviarFechaPorPost()
+  
 }, []); 
 
   return (
     <div>
 
-{datos.map((dato, index) => (
-  <div key={index}>
-    <p>{dato.TIPO_1} : {dato.Monto_1}</p>
-    <p>{dato.TIPO_2} : {dato.Monto_2}</p>
-    <p>{dato.TIPO_3} : {dato.Monto_3}</p>
-    <p>{dato.TIPO_4} : {dato.Monto_4}</p>
-    <p>{dato.TIPO_5} : {dato.Monto_5}</p>
-    <p>{dato.TIPO_6} : {dato.Monto_6}</p>
-    <p>{dato.TIPO_7} : {dato.Monto_7}</p>
-    <p>{dato.TIPO_8} : {dato.Monto_8}</p>
-    <p>{dato.TIPO_9} : {dato.Monto_9}</p>
-  </div>
-))}
+ <div className="main-caja-container">
+      
+
+      <div className="content">
+        <h1>Gestión de Fechas</h1>
+
+        <div className="date-selector">
+          <label htmlFor="fechaInicio">Fecha Inicio:</label>
+          <input
+            type="date"
+            id="fechaInicio"
+            value={fechaInicio}
+            onChange={(e) => setFechaInicio(e.target.value)}
+          />
+
+          <label htmlFor="fechaFin">Fecha Fin:</label>
+          <input
+            type="date"
+            id="fechaFin"
+            value={fechaFin}
+            onChange={(e) => setFechaFin(e.target.value)}
+          />
+        </div>
+
+        <Button variant="primary" onClick={enviarFechaPorPost}>
+          Enviar Fechas
+        </Button>
+      </div>
+    </div>
 
 
 
