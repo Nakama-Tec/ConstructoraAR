@@ -15,9 +15,15 @@ const CrearPendiente = ({ onPendienteRegistrado }) => {
       title: 'Registrar Pendiente',
       html: `
         <input id="Descripcion" placeholder="Descripción" class="swal2-input" />
-      
+       <br>
+       <br>
+       <label><b>Fecha Creacion</b></label> 
+       <br>
       <input id="fechaCreacion" placeholder="Fecha Creación" type="date" class="swal2-input" />
-
+       <br>
+       <br>
+       <label><b>Fecha Limite</b></label> 
+       <br>
       <input id="fechaLimite" placeholder="Fecha Límite" type="date" class="swal2-input" />
        <br/>
        <br/>

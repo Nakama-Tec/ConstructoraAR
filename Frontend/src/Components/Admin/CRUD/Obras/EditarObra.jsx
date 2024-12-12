@@ -1,35 +1,84 @@
-import {useEffect} from 'react';
+import {useEffect, useState} from 'react';
 import Swal from 'sweetalert2';
 import axios from 'axios';
 import useAuthStore from '../../../../Context/useAuthStore';
 import useRegistroStore from '../../../../Context/useRegistroStore';
-import { URL_OBRAS_EDITAR } from '../../../../Constants/endpoints-API';
+import { URL_CLIENTES, URL_OBRAS_EDITAR } from '../../../../Constants/endpoints-API';
 
 const EditarObra = ({ onObraEditado }) => {
     const { registroSeleccionado, clearRegistroSeleccionado } = useRegistroStore();
     const token = useAuthStore((state) => state.token);
+    const [clientes, setClientes] = useState([]);
+
+
+    const getClientes = async () => {
+      try {
+        const response = await axios.get(URL_CLIENTES, { headers: { Authorization: `Bearer ${token}` } });
+        setClientes(response.data);
+      } catch (error) {
+        console.error('Error al obtener Clientes:', error);
+      }
+    };
   
     const handleEditarObra = () => {
       Swal.fire({
         title: 'Editar Obra',
         html: `
-            <input id="nombreCliente" class="swal2-input" value="${registroSeleccionado.nombreObra}" />
-  
+            <label><b>Nombre Obra</b></label> 
+            <br>
+            <input id="nombreObra" class="swal2-input" value="${registroSeleccionado.nombreObra}" />
+            <br>
+            <br>
+            <label><b>Direccion Obra</b></label> 
+            <br>
             <input id="direccionObra" class="swal2-input" value="${registroSeleccionado.direccionObra}" />
-
+            <br>
+            <br>
+            <label><b>Descripcion Obra</b></label> 
+            <br>
             <input id="descripcionObra" class="swal2-input" value="${registroSeleccionado.descripcionObra}" />
-
-            <input id="fechaInicioObra" class="swal2-input" value="${registroSeleccionado.fechaInicioObra}" />
-
-            <input id="fechaFinObra" class="swal2-input" value="${registroSeleccionado.fechaFinObra}" />
-
-            <input id="precioObra" class="swal2-input" value="${registroSeleccionado.precioObra}" />
-
-            <input id="sectorObra" class="swal2-input" value="${registroSeleccionado.sectorObra}" />
-
-             <input id="progresoObra" class="swal2-input" value="${registroSeleccionado.progresoObra}" />
-
-            <input id="id_cliente" class="swal2-input" value="${registroSeleccionado.id_cliente}" />
+            <br>
+            <br>
+            <label><b>Fecha Inicio</b></label> 
+            <br>
+            <input id="fechainicioObra" class="swal2-input" type="date" value="${registroSeleccionado.fechainicioObra}" />
+            <br>
+            <br>
+            <label><b>Fecha Fin</b></label> 
+            <br>
+            <input id="fechafinObra" class="swal2-input" type="date" value="${registroSeleccionado.fechafinObra}" />
+            <br>
+            <br>
+            <label><b>Precio Obra</b></label> 
+            <br>
+            <input id="precioObra" class="swal2-input" type="number" min="0" max="100" value="${registroSeleccionado.precioObra}" />
+            <br>
+            <br>
+            <label><b>Sector Obra</b></label> 
+            <br>
+            <select id="sectorObra" class="swal2-select">
+              <option value="0" ${registroSeleccionado.sectorObra === '0' ? 'selected' : ''}>Privado</option>
+              <option value="1" ${registroSeleccionado.sectorObra === '1' ? 'selected' : ''}>Publico</option>
+           </select>
+            <br>
+            <br>
+            <label><b>Progreso Obra</b></label> 
+            <br>
+             <input id="progresoObra" class="swal2-input" type="number" min="0" value="${registroSeleccionado.progresoObra}" />
+            <br>
+            <br>
+            <label><b>Cliente</b></label> 
+            <br>
+             <select id="id_cliente" class="swal2-select">
+          ${clientes
+            .map(
+              (cliente) =>
+                `<option value="${cliente.id_cliente}" ${
+                  cliente.id_cliente === registroSeleccionado.id_cliente ? 'selected' : ''
+                }>${cliente.nombreCliente} ${cliente.apellidoCliente}</option>`
+            )
+            .join('')}
+        </select>
 
         `,
         confirmButtonText: 'Enviar',
@@ -38,8 +87,8 @@ const EditarObra = ({ onObraEditado }) => {
           const nombreObra = document.getElementById('nombreObra').value;
             const direccionObra = document.getElementById('direccionObra').value;
             const descripcionObra = document.getElementById('descripcionObra').value;
-            const fechaInicioObra = document.getElementById('fechaInicioObra').value;
-            const fechaFinObra = document.getElementById('fechaFinObra').value;
+            const fechainicioObra = document.getElementById('fechainicioObra').value;
+            const fechafinObra = document.getElementById('fechafinObra').value;
             const precioObra = document.getElementById('precioObra').value;
             const sectorObra = document.getElementById('sectorObra').value;
             const progresoObra = document.getElementById('progresoObra').value;
@@ -47,7 +96,7 @@ const EditarObra = ({ onObraEditado }) => {
 
   
           // Validaciones
-            const nombreRegex = /^[a-zA-Z\sÀ-ÿ]+$/;
+            const nombreRegex = /^[a-zA-Z0-9À-ÿ\s,.-]+$/;
             const direccionRegex = /^[a-zA-Z0-9À-ÿ\s,.-]+$/;
             const descripcionRegex = /^[a-zA-Z0-9À-ÿ\s,.-]+$/;
             const fechaInicioRegex = /^[a-zA-Z0-9À-ÿ\s,.-]+$/;
@@ -58,7 +107,7 @@ const EditarObra = ({ onObraEditado }) => {
             const id_clienteRegex = /^[a-zA-Z0-9À-ÿ\s,.-]+$/;
 
           if (!nombreObra || !nombreRegex.test(nombreObra)) {
-            Swal.showValidationMessage("El nombre no debe contener números.");
+            Swal.showValidationMessage("El nombre no debe contener caracteres especiales.");
             return false;
           }
             if (!direccionObra || !direccionRegex.test(direccionObra)) {
@@ -69,11 +118,11 @@ const EditarObra = ({ onObraEditado }) => {
             Swal.showValidationMessage("La descripción no debe contener caracteres especiales.");
             return false;
             }
-            if (!fechaInicioObra || !fechaInicioRegex.test(fechaInicioObra)) {
+            if (!fechainicioObra || !fechaInicioRegex.test(fechainicioObra)) {
             Swal.showValidationMessage("La fecha de inicio no debe contener caracteres especiales.");
             return false;
             }
-            if (!fechaFinObra || !fechaFinRegex.test(fechaFinObra)) {
+            if (!fechafinObra || !fechaFinRegex.test(fechafinObra)) {
             Swal.showValidationMessage("La fecha de fin no debe contener caracteres especiales.");
             return false;
             }
@@ -98,8 +147,8 @@ const EditarObra = ({ onObraEditado }) => {
             nombreObra,
             direccionObra,
             descripcionObra,
-            fechaInicioObra,
-            fechaFinObra,
+            fechainicioObra,
+            fechafinObra,
             precioObra,
             sectorObra,
             progresoObra,
@@ -129,6 +178,7 @@ const EditarObra = ({ onObraEditado }) => {
       if (registroSeleccionado) {
         handleEditarObra();
       }
+      getClientes();
     }, [registroSeleccionado]);
   
     return null; // Este componente no renderiza nada en pantalla

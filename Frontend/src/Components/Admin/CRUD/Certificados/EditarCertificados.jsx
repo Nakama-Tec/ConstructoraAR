@@ -13,19 +13,38 @@ const EditarCertificados = ({ onCertificadoEditado }) => {
     Swal.fire({
       title: 'Editar Certificado',
       html: `
-
+        <label><b>Monto Certificado</b></label> 
+        <br>
         <input id="montoCert" class="swal2-input" value="${registroSeleccionado.montoCert}" />
-
+         <br>
+        <br>
+        <label><b>Numero Certificado</b></label> 
+        <br>
         <input id="nroCertificado" class="swal2-input" value="${registroSeleccionado.nroCertificado}" />
-
+         <br>
+        <br>
+        <label><b>Fecha Emision</b></label> 
+        <br>
         <input id="fechaEmisionCert" class="swal2-input" value="${registroSeleccionado.fechaEmisionCert}" />
-
+         <br>
+        <br>
+        <label><b>Fecha Pago</b></label> 
+        <br>
         <input id="fechaPagoCert" class="swal2-input" value="${registroSeleccionado.fechaPagoCert}" />
-
+         <br>
+        <br>
+        <label><b>Estado</b></label> 
+        <br>
         <input id="estadoCert" class="swal2-input" value="${registroSeleccionado.estadoCert}" />
-
+         <br>
+        <br>
+        <label><b>Link Factura</b></label> 
+        <br>
         <input id="linkFacturaCert" class="swal2-input" value="${registroSeleccionado.linkFacturaCert}" />
-
+         <br>
+        <br>
+        <label><b>Link Factura Pagada</b></label> 
+        <br>
         <input id="linkFacturaPagadaCert" class="swal2-input" value="${registroSeleccionado.linkFacturaPagadaCert}" />
 
         <br/>
@@ -36,9 +55,15 @@ const EditarCertificados = ({ onCertificadoEditado }) => {
         <option value="0" ${registroSeleccionado.redeterminacion === '0' ? 'selected' : ''}>No revalorizado</option>
         <option value="1" ${registroSeleccionado.redeterminacion === '1' ? 'selected' : ''}>Revalorizado</option>
       </select>
-
+       <br>
+        <br>
+        <label><b>Valor Determinacion</b></label> 
+        <br>
       <input id="valorredeterminacion" class="swal2-input" value="${registroSeleccionado.valorredeterminacion}" />
-
+         <br>
+        <br>
+        <label><b>Fecha Redeterminacion</b></label> 
+        <br>
       <input id="fechaRedeterminacion" class="swal2-input" value="${registroSeleccionado.fechaRedeterminacion}" />
 
       `,

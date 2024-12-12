@@ -35,6 +35,8 @@ const CrearVtaTerrenos = ({ onVtaTerrenoRegistrado }) => {
       Swal.fire({
         title: 'Registrar Venta de Terreno',
         html: `
+          <label><b>Cliente</b></label> 
+          <br>
         <select id="select_cliente" class="swal2-select">
           ${clientes
             .map(
@@ -45,7 +47,10 @@ const CrearVtaTerrenos = ({ onVtaTerrenoRegistrado }) => {
             )
             .join('')}
         </select>
-
+          <br>
+          <br>
+          <label><b>Terreno</b></label> 
+          <br>
         <select id="select_terreno" class="swal2-select">
           ${terrenos
             .map(
@@ -56,7 +61,10 @@ const CrearVtaTerrenos = ({ onVtaTerrenoRegistrado }) => {
             )
             .join('')}
         </select>
-
+          <br>
+          <br>
+          <label><b>Fecha Venta </b></label> 
+          <br>
         <input id="fechaVentaTerreno" class="swal2-input" type="date" required />
       `,
         confirmButtonText: 'Registrar',

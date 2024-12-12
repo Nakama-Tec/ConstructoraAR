@@ -51,10 +51,21 @@ const CrearCompraMateriales = ({ onCompraMaterialRegistrado }) => {
             ${generateStockOptions()}
           </select>
         </div>
-        <input id="cantidadMaterial" placeholder="Cantidad de Material" class="swal2-input" />
-        <input id="precioMaterial" placeholder="Precio del Material" class="swal2-input" />
-        <input id="fechaCompraMateriales" placeholder="Fecha de Compra" class="swal2-input" />
-        <input id="estadoRetiro" placeholder="Estado de Retiro" class="swal2-input" />
+        <input id="cantidadMaterial" placeholder="Cantidad de Material" type="number" min="0" class="swal2-input" />
+        <input id="precioMaterial" placeholder="Precio del Material" type="number" min="0" class="swal2-input" />
+        <br>
+        <br>
+        <label><b>Fecha Compra</b></label> 
+        <br>
+        <input id="fechaCompraMateriales" placeholder="Fecha de Compra" type="date" class="swal2-input" />
+        <br>
+        <br>
+        <label><b>Estado</b></label> 
+         <br>
+        <select id="estadoRetiro" class="swal2-select">
+          <option value="Entregado">Entregado</option>
+          <option value="Pendiente">Pendiente</option>
+          </select>
         <input id="lugardeCompra" placeholder="Lugar de Compra" class="swal2-input" />
         <br><br>
         <label for="select_destino"><b>Ubicación del Material</b></label>
@@ -109,8 +120,13 @@ const CrearCompraMateriales = ({ onCompraMaterialRegistrado }) => {
         const lugardeCompra = document.getElementById('lugardeCompra').value;
         const destinoMaterial = document.getElementById('select_destino').value;
 
-        if (!nombreMaterial || !cantidadMaterial || !precioMaterial || !fechaCompraMateriales) {
-          Swal.showValidationMessage('Todos los campos son obligatorios');
+        //validacion
+        const nombreRegex = /^[a-zA-Z\sÀ-ÿ]+$/;
+
+
+        if (!nombreMaterial || !nombreRegex.test(nombreMaterial)) {
+          Swal.showValidationMessage('El nombre del material no debe contener números.');
+          return false;
         }
 
         return {

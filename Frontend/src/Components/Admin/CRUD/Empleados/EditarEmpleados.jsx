@@ -14,14 +14,28 @@ const EditarEmpleados = ({ onEmpleadoEditado }) => {
       Swal.fire({
         title: 'Editar Empleado',
         html: `
-          <input id="nombreEmpleado" class="swal2-input" value="${registroSeleccionado.nombreEmpleado}" />
-
+            <label><b>Nombre Empleado</b></label> 
+            <br>
+            <input id="nombreEmpleado" class="swal2-input" value="${registroSeleccionado.nombreEmpleado}" />
+             <br>
+             <br>
+             <label><b>Apellido Empleado</b></label> 
+             <br>
             <input id="apellidoEmpleado" class="swal2-input" value="${registroSeleccionado.apellidoEmpleado}" />
-
+            <br>
+             <br>
+             <label><b>DNI</b></label> 
+             <br>
             <input id="dniEmpleado" class="swal2-input" value="${registroSeleccionado.DNIEmpleado}" />
-
+            <br>
+             <br>
+             <label><b>Direccion</b></label> 
+             <br>
             <input id="direccionEmpleado" class="swal2-input" value="${registroSeleccionado.direccion}" />
-
+            <br>
+             <br>
+             <label><b>Telefono</b></label> 
+             <br>
             <input id="telefonoEmpleado" class="swal2-input" value="${registroSeleccionado.telefono}" />
 
         `,

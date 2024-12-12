@@ -18,7 +18,10 @@ const CrearOperaciones = ({ onOperacionRegistrado }) => {
           <input id="montoOperacion" type ="number" min="0" placeholder="Monto Operacion" class="swal2-input" />
           
           <input id="detalleOperacion" placeholder="Detalle de la Operacion" class="swal2-input" />
-
+          <br>
+          <br>
+          <label><b>Fecha Operacion</b></label> 
+          <br>
           <input id="fechaOperacion" placeholder="Fecha de la Operacion" type="date" class="swal2-input" />
           <br/>
           <br/>

@@ -35,28 +35,34 @@ const EditarVtaTerrenos = ({ onVtaTerrenoEditado }) => {
     Swal.fire({
       title: 'Editar Venta de Terreno',
       html: `
+          <label><b>Cliente</b></label> 
+          <br>
         <select id="select_cliente" class="swal2-select">
           ${clientes
-            .map(
-              (cliente) =>
-                `<option value="${cliente.id_cliente}" ${
-                  cliente.id === registroSeleccionado.id_cliente ? 'selected' : ''
-                }>${cliente.nombreCliente} ${cliente.apellidoCliente}</option>`
-            )
-            .join('')}
+          .map(
+            (cliente) =>
+              `<option value="${cliente.id_cliente}" ${cliente.id === registroSeleccionado.id_cliente ? 'selected' : ''
+              }>${cliente.nombreCliente} ${cliente.apellidoCliente}</option>`
+          )
+          .join('')}
         </select>
-
+          <br>
+          <br>
+          <label><b>Terreno</b></label> 
+          <br>
         <select id="select_terreno" class="swal2-select">
           ${terrenos
-            .map(
-              (terreno) =>
-                `<option value="${terreno.id_terreno}" ${
-                  terreno.id === registroSeleccionado.id_terreno ? 'selected' : ''
-                }>Nº Terreno: ${terreno.id_terreno}</option>`
-            )
-            .join('')}
+          .map(
+            (terreno) =>
+              `<option value="${terreno.id_terreno}" ${terreno.id === registroSeleccionado.id_terreno ? 'selected' : ''
+              }>Nº Terreno: ${terreno.id_terreno}</option>`
+          )
+          .join('')}
         </select>
-
+          <br>
+          <br>
+          <label><b>Fecha Venta</b></label> 
+          <br>
         <input id="fechaVentaTerreno" class="swal2-input" type="date" required value="${registroSeleccionado.FechaVentaTerreno}" />
       `,
       confirmButtonText: 'Guardar Cambios',

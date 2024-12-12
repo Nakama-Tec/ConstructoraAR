@@ -14,15 +14,24 @@ const EditarOperaciones = ({ onOperacionEditado }) => {
     Swal.fire({//ventana de alerta
       title: 'Editar Operaciones',
       html: `
+          <label><b>Nombre Operacion</b></label> 
+          <br>
           <input id="nombreOperacion" class="swal2-input" value="${registroSeleccionado.nombreOperacion}" />
-          
-          
+          <br>
+          <br>
+          <label><b>Monto Operacion</b></label> 
+          <br>
           <input id="montoOperacion" class="swal2-input" type="number" min="0" value="${registroSeleccionado.montoOperacion}" />
-          
+           <br>
+          <br>
+          <label><b>Detalle Operacion</b></label> 
+          <br>
           <input id="detalleOperacion" class="swal2-input" value="${registroSeleccionado.detalleOperacion}" />
-          
+           <br>
+          <br>
+          <label><b>Fecha Operacion</b></label> 
+          <br>
           <input id="fechaOperacion" class="swal2-input" type="date" value="${registroSeleccionado.fechaOperacion}" />
-        
           <br/>
           <br/>
           <label><strong>Selecciona el tipo de operación:</strong></label>

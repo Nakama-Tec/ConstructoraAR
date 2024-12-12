@@ -15,15 +15,15 @@ const CrearEmpleados = ({ onEmpleadoRegistrado }) => {
     Swal.fire({
       title: 'Registrar Empleado',
       html: `
-          <input id="nombreEmpleado" placeholder="nombreEmpleado" class="swal2-input" />
+          <input id="nombreEmpleado" placeholder="Nombre Empleado" class="swal2-input" />
 
-          <input id="apellidoEmpleado" placeholder="apellidoEmpleado" class="swal2-input" />
+          <input id="apellidoEmpleado" placeholder="Apellido Empleado" class="swal2-input" />
 
-          <input id="dniEmpleado" placeholder="dniEmpleado" class="swal2-input" />
+          <input id="dniEmpleado" placeholder="DNI Empleado" class="swal2-input" />
 
-          <input id="direccionEmpleado" placeholder="direccionEmpleado" class="swal2-input" />
+          <input id="direccionEmpleado" placeholder="Direccion Empleado" class="swal2-input" />
 
-          <input id="telefonoEmpleado" placeholder="telefonoEmpleado" class="swal2-input" />
+          <input id="telefonoEmpleado" placeholder="Telefono Empleado" class="swal2-input" />
   
       `,
       confirmButtonText: 'Registrar',

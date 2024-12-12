@@ -65,7 +65,7 @@ const CrearClientes = ({ onClienteRegistrado }) => {
         const datosGarantesRegex = /^[^@]+$/;
 
         if (!nombreCliente || !nombreRegex.test(nombreCliente)) {
-          Swal.showValidationMessage("El nombre no debe contener números.");
+          Swal.showValidationMessage("El nombre no debe contener números.");  
           return false;
         }
         if (!apellidoCliente || !apellidoRegex.test(apellidoCliente)) {

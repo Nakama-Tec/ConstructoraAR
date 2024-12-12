@@ -21,28 +21,13 @@ const MainCaja = () => {
   const [mes, setMes] = useState('');
   const [datos, setDatos] = useState([]);
 
-
-
-
-  // Obtener la fecha actual en formato YYYY-MM-DD
-  useEffect(() => {
-    const date = new Date();
-    const año = date.getFullYear();
-    const mes = String(date.getMonth() + 1).padStart(2, '0');
-    const dia = String(date.getDate()).padStart(2, '0');
-    const fechaActual = `${año}-${mes}-${dia}`;
-    // setFechaRegistro(fechaActual);
-    setFechaSeleccionada(fechaActual); // Inicializar con la fecha actual
-    setAño(año);
-    setMes(mes);
-    setFechaInicio(`${año}-01-01`);
-    setFechaFin(`${año}-01-31`);
-  }, []); 
-
-  
-
-
   console.log("1 - inicio = "+fechaInicio," 2 -fin = "+fechaFin);
+  // setFechaInicio(`${año}-01-01`);
+  // setFechaFin(`${año}-01-31`);
+
+//   (function saludo() {
+//     console.log("Soy una IIFE con una función nombrada");
+// })();
 
   // Enviar la fecha por POST
   const enviarFechaPorPost = async () => {
@@ -67,13 +52,6 @@ const MainCaja = () => {
   };
 
 
-
-  // Llamar al POST al presionar el botón
-  const handleBuscarFecha = async () => {
-    await enviarFechaPorPost(); // Enviar la fecha por POST
-    // await obtenerDatosPorGet();
-   // await setFechaRegistro(fechaSeleccionada); // Actualizar la fecha usada
-  };
 
 console.log("datos = ");
 
@@ -141,10 +119,42 @@ console.log("datos = ");
 
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } = useTable({ columns, data });
 
-  useEffect(() => { enviarFechaPorPost(); }, []); // Llama a la función al cargar la página
+ // Obtener la fecha actual en formato YYYY-MM-DD
+ useEffect(() => {
+  enviarFechaPorPost()
+  const date = new Date();
+  const año = date.getFullYear();
+  const mes = String(date.getMonth() + 1).padStart(2, '0');
+  const dia = String(date.getDate()).padStart(2, '0');
+  const fechaActual = `${año}-${mes}-${dia}`;
+  // setFechaRegistro(fechaActual);
+  setFechaSeleccionada(fechaActual); // Inicializar con la fecha actual
+  setAño(año);
+  setMes(mes);
+  setFechaInicio(`${año}-01-01`);
+  setFechaFin(`${año}-01-31`);
+ 
+}, []); 
 
   return (
     <div>
+
+{datos.map((dato, index) => (
+  <div key={index}>
+    <p>{dato.TIPO_1} : {dato.Monto_1}</p>
+    <p>{dato.TIPO_2} : {dato.Monto_2}</p>
+    <p>{dato.TIPO_3} : {dato.Monto_3}</p>
+    <p>{dato.TIPO_4} : {dato.Monto_4}</p>
+    <p>{dato.TIPO_5} : {dato.Monto_5}</p>
+    <p>{dato.TIPO_6} : {dato.Monto_6}</p>
+    <p>{dato.TIPO_7} : {dato.Monto_7}</p>
+    <p>{dato.TIPO_8} : {dato.Monto_8}</p>
+    <p>{dato.TIPO_9} : {dato.Monto_9}</p>
+  </div>
+))}
+
+
+
 
       <br />
       {/* <b><h2>Fecha Actual : {fechaActual}</h2></b> */}

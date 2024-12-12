@@ -24,9 +24,23 @@ const EditarStock = ({ onStockEditar }) => {
     Swal.fire({
       title: 'Editar el Stock',
       html: `
+        <label><b>Nombre Material</b></label> 
+        <br>
         <input id="nombreMaterial" class="swal2-input" value="${registroSeleccionado?.nombreMaterial || ''}" />
+        <br>
+        <br>
+        <label><b>Ubicacion</b></label> 
+        <br>
         <input id="ubicacionStock" class="swal2-input" value="${registroSeleccionado?.ubicacionStock || ''}" />
-        <input id="cantidadStock" type="number" class="swal2-input" value="${registroSeleccionado?.cantidadStock || ''}" />
+         <br>
+        <br>
+        <label><b>Cantidad</b></label> 
+        <br>
+        <input id="cantidadStock" type="number" min="0" class="swal2-input" value="${registroSeleccionado?.cantidadStock || ''}" />
+        <br>
+        <br>
+        <label><b>Disponibilidad</b></label> 
+        <br>
         <select id="select_stock" class="swal2-select">
           <option value="SI" ${registroSeleccionado?.activoStock === 'SI' ? 'selected' : ''}>SI</option>
           <option value="NO" ${registroSeleccionado?.activoStock === 'NO' ? 'selected' : ''}>NO</option>
@@ -40,9 +54,16 @@ const EditarStock = ({ onStockEditar }) => {
         const cantidadStock = parseInt(document.getElementById('cantidadStock').value, 10);
         const activoStock = document.getElementById('select_stock').value === 'SI' ? 1 : 0;
 
-        if (!nombreMaterial || !ubicacionStock || isNaN(cantidadStock) || cantidadStock <= 0) {
-          Swal.showValidationMessage('Todos los campos son obligatorios y válidos');
-          return false; // Esto evita enviar un objeto vacío en caso de error
+        const nombreRegex = /^[a-zA-Z\sÀ-ÿ]+$/;
+        const ubicacionRegex = /^[a-zA-Z0-9À-ÿ\s,.-]+$/;
+
+
+
+        if (!nombreRegex || nombreRegex.test(nombreMaterial) ) {
+          Swal.showValidationMessage('El nombre del material no es válido.');
+        }
+        if (!ubicacionRegex || ubicacionRegex.test(ubicacionStock)) {
+          Swal.showValidationMessage('La ubicación del stock no es válida.');
         }
 
         return {

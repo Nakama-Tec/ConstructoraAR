@@ -27,8 +27,18 @@ const EditarUsuarios = ({onUsuarioEditado}) => {
     Swal.fire({
       title: 'Editar Usuario',
       html: `
+          <label><b>Nombre Usuario</b></label> 
+          <br>
           <input id="nombreUsuario" class="swal2-input" value="${registroSeleccionado.nombreUsuario}" />
+          <br>
+          <br>
+          <label><b>Mail Usuario</b></label> 
+          <br>
           <input id="mailUsuario" class="swal2-input" value="${registroSeleccionado.mailUsuario}" />
+          <br>
+          <br>
+          <label><b>Contraseña</b></label> 
+          <br>
           <input id="passwordUsuario" class="swal2-input" value="${registroSeleccionado.passwordUsuario}" />
           <br/>
           <br/>
@@ -60,13 +70,13 @@ const EditarUsuarios = ({onUsuarioEditado}) => {
       confirmButtonText: 'Enviar',
       showCancelButton: true,
       preConfirm: () => {
-        const nombreUsuario = Swal.getPopup().querySelector('#nombreUsuario').value;
+        const nombreUsuario = Swal.getPopup().querySelector('#nombreUsuario').value.trim();
         const mailUsuario = Swal.getPopup().querySelector('#mailUsuario').value;
-        const passwordUsuario = Swal.getPopup().querySelector('#passwordUsuario').value;
+        const passwordUsuario = Swal.getPopup().querySelector('#passwordUsuario').value.trim();
         const rol = Swal.getPopup().querySelector('#rol').value;
         const id_Empleado = Swal.getPopup().querySelector('#select_vehiculo').value;
         
-        const nombreRegex = /^[a-zA-ZÀ-ÿ\s_]{1,40}$/;
+        const nombreRegex = /^[a-zA-Z0-9À-ÿ\s,.-]+$/;
         const mailRegex = /[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,5}/;
         const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
 

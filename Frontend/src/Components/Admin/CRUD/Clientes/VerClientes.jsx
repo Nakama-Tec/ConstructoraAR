@@ -30,8 +30,12 @@ const VerClientes = ({ onAlquilerVer }) => {
                   <td style="padding: 8px; border-bottom: 1px solid #ddd;">${verRegistroSeleccionado.razonSocial}</td>
                 </tr>
                 <tr>
-                  <th style="padding: 8px; border-bottom: 1px solid #ddd; text-align: right;">CUIL/CUIT:</th>
-                  <td style="padding: 8px; border-bottom: 1px solid #ddd;">${verRegistroSeleccionado.cuil_cuit_cliente}</td>
+                  <th style="padding: 8px; border-bottom: 1px solid #ddd; text-align: right;">CUIT:</th>
+                  <td style="padding: 8px; border-bottom: 1px solid #ddd;">${verRegistroSeleccionado.cuitCliente}</td>
+                </tr>
+                <tr>
+                  <th style="padding: 8px; border-bottom: 1px solid #ddd; text-align: right;">CUIL:</th>
+                  <td style="padding: 8px; border-bottom: 1px solid #ddd;">${verRegistroSeleccionado.cuilCliente}</td>
                 </tr>
                 <tr>
                   <th style="padding: 8px; border-bottom: 1px solid #ddd; text-align: right;">Teléfono:</th>

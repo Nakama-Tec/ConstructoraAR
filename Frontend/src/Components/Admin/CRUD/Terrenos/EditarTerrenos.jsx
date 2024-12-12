@@ -14,13 +14,20 @@ const EditarTerrenos = ({ onTerrenoEditado }) => {
       Swal.fire({
         title: 'Editar Terreno',
         html: `
+          <label><b>Metros Terreno</b></label> 
+          <br>
           <input id="metrosTerrenos" class="swal2-input" value="${registroSeleccionado.metrosTerrenos}" />
-          
+          <br>
+          <br>
+          <label><b>Direccion </b></label> 
+          <br>
           <input id="direccionTerreno" class="swal2-input" value="${registroSeleccionado.direccionTerreno}" />
-          
+            <br>
+          <br>
+          <label><b>Precio</b></label> 
+          <br>
           <input id="precioTerreno" type="number" min="0" class="swal2-input" value="${registroSeleccionado.precioTerreno}" />
-          
-           <br/>
+          <br/>
           <br/>
           <label><strong>Selecciona la disponibilidad:</strong></label>
           <select id="disponibilidadTerreno" class="swal2-select">

@@ -90,17 +90,32 @@ const VerLibroDiario = () => {
       <br />
       <br />
       <h2 className="text-center text-black text-4xl">LIBRO DIARIO</h2>
-      <label htmlFor="fecha">Seleccionar Fecha:</label>
+{/* Selección de fecha */}
+<div className="flex flex-col mt-5 sm:flex-row items-center justify-center gap-4 mb-6">
+  <div className="flex flex-col sm:flex-row items-center gap-2">
+    <label
+      htmlFor="fecha"
+      className="text-lg font-semibold text-gray-700 dark:text-dark whitespace-nowrap"
+    >
+      Seleccionar Fecha:
+    </label>
+    <div className="relative">
       <input
         type="date"
         id="fecha"
-        className="text-black"
+        className="px-4 py-2 rounded-lg border-2 border-gray-900 dark:border-zinc-600 dark:bg-gray-100 text-black dark:text-black focus:ring-2 focus:ring-blue-400 focus:outline-none transition-colors duration-300"
         value={fechaSeleccionada}
         onChange={(e) => setFechaSeleccionada(e.target.value)}
       />
-      <Button className="btn btn-primary" onClick={handleBuscarFecha}>
-        Buscar por Fecha
-      </Button>
+    </div>
+  </div>
+  <button
+    onClick={handleBuscarFecha}
+    className="px-4 py-2 bg-gradient-to-r from-blue-600 to-cyan-600 text-white rounded-lg font-semibold hover:from-blue-700 hover:to-cyan-700 focus:outline-none focus:ring-4 focus:ring-blue-400 focus:ring-offset-2 dark:focus:ring-offset-zinc-900 transition-all duration-300"
+  >
+    Buscar Fecha
+  </button>
+</div>
       <hr />
       <br />
       <div className="display flex">

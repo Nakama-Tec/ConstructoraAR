@@ -39,15 +39,15 @@ const VerObra = ({ onObraVer }) => {
                 </tr>
                 <tr>
                   <th style="padding: 8px; border-bottom: 1px solid #ddd; text-align: right;">Sector de la Obra:</th>
-                  <td style="padding: 8px; border-bottom: 1px solid #ddd;">${verRegistroSeleccionado.sectorObra}</td>
+                  <td style="padding: 8px; border-bottom: 1px solid #ddd;">${verRegistroSeleccionado.sectorObra === 1 ? "Privado" : "Publico"}</td>
                 </tr>
                 <tr>
                     <th style="padding: 8px; border-bottom: 1px solid #ddd; text-align: right;">Progreso de la Obra:</th>
                     <td style="padding: 8px; border-bottom: 1px solid #ddd;">${verRegistroSeleccionado.progresoObra}</td>   
                 </tr>
                 <tr>
-                    <th style="padding: 8px; border-bottom: 1px solid #ddd; text-align: right;">ID Cliente:</th>
-                    <td style="padding: 8px; border-bottom: 1px solid #ddd;">${verRegistroSeleccionado.id_cliente}</td>
+                    <th style="padding: 8px; border-bottom: 1px solid #ddd; text-align: right;">Cliente:</th>
+                    <td style="padding: 8px; border-bottom: 1px solid #ddd;">${verRegistroSeleccionado.nombreCliente} ${verRegistroSeleccionado.apellidoCliente}</td>
                 </tr>   
               </tbody>
             </table>

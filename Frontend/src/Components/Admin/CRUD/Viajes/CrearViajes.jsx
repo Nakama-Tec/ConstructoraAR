@@ -44,8 +44,13 @@ const CrearViajes = ({onViajeRegistrado}) => {
       Swal.fire({
         title: 'Registrar Viajes',
         html: `
+          <label><b>Fecha Viaje</b></label> 
+          <br>
           <input id="fechaViaje" class="swal2-input" placeholder="Fecha" type="date"/>
-          
+          <br>
+          <br>
+          <label><b>Patente Vehiculo</b></label> 
+          <br>
           <select id="select_vehiculo" class="swal2-select">
           ${vehiculos
             .map(
@@ -56,7 +61,10 @@ const CrearViajes = ({onViajeRegistrado}) => {
             )
             .join('')}
         </select>
-
+          <br>
+          <br>
+          <label><b>Obra</b></label> 
+          <br>
           <select id="select_obra" class="swal2-select">
           ${obras
             .map(
@@ -67,7 +75,10 @@ const CrearViajes = ({onViajeRegistrado}) => {
             )
             .join('')}
         </select>
-
+            <br>
+          <br>
+          <label><b>Material</b></label> 
+          <br>
         <select id="select_stock" class="swal2-select">
           ${stocks
             .map(
@@ -78,9 +89,15 @@ const CrearViajes = ({onViajeRegistrado}) => {
             )
             .join('')}
         </select>
-
-        <input id="cantidadStock" class="swal2-input" placeholder="Cantidad" type="number"/>
-
+          <br>
+          <br>
+          <label><b>Cantidad</b></label> 
+          <br>
+          <input id="cantidadStock" class="swal2-input" placeholder="Cantidad" type="number"/>
+          <br>
+          <br>
+          <label><b>Ubicacion</b></label> 
+          <br>
          <select id="select_ubicacion" class="swal2-select">
           ${stocks
             .map(

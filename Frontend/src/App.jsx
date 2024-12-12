@@ -1,7 +1,6 @@
 // Importaciones de librerias
 import { BrowserRouter, Routes, Route } from 'react-router-dom' // estas librerias permiten el manejo de rutas en la aplicacion
-import {HOME, HOME_SISTEMA_GESTION, CERTIFICADOS,LOGIN,EMPLEADOS, VEHICULOS, PAGOS, FLUJO_CAJA, DETALLEVIAJES, LIBRO_DIARIO,TERRENOS ,STOCK, CLIENTES, DEPARTAMENTOS, OBRAS, OPERACIONES, VIAJES, USUARIO, UNAUTHORIZED, VTA_TERRENOS, PAGOS_DPTO, PENDIENTES, COMPRA_MATERIALES, ALQUILER, REMUNERACIONES, RECUPERAR} from "./Routes/routes"
-import 'bootstrap/dist/css/bootstrap.min.css';
+import {HOME, HOME_SISTEMA_GESTION, CERTIFICADOS,LOGIN,EMPLEADOS, VEHICULOS, FLUJO_CAJA, DETALLEVIAJES, LIBRO_DIARIO,TERRENOS ,STOCK, CLIENTES, DEPARTAMENTOS, OBRAS, OPERACIONES, VIAJES, USUARIO, UNAUTHORIZED, VTA_TERRENOS, PAGOS_DPTO, PENDIENTES, COMPRA_MATERIALES, ALQUILER, REMUNERACIONES, RECUPERAR} from "./Routes/routes"
 
 
 // Paginas
@@ -20,7 +19,6 @@ import Obras from "./Pages/Obras/Obras"
 import Operaciones from "./Pages/Operaciones/Operaciones"
 import Empleados from "./Pages/Empleados/Empleados"
 import Usuario from "./Pages/Usuarios/Usuarios"
-import Pagos from "./Pages/Pagos/Pagos"
 import Viajes from "./Pages/Viajes/Viajes"
 import ProtectedRoute from './Components/ProteccionRutas/ProtectedRoute'
 import Error from './Components/Layout/Error'
@@ -45,7 +43,6 @@ const roleRequired = "empleado" //rol requerido para acceder a las rutas protegi
         <Route path={RECUPERAR} element={<RecuperarPass/>} />
         
         {/* <Route path={LIBRO_DIARIO} element={<LibroDiario/>} /> Ruta temporal, eliminar al tenerlo listo y descomentar su version privada */}
-        <Route path={PAGOS} element={<Pagos/>} /> {/* Ruta temporal*/}
 
         {/* Rutas protegidas */}
        

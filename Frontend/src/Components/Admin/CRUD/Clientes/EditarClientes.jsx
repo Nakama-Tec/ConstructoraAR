@@ -13,25 +13,48 @@ const EditarClientes = ({ onClienteEditado }) => {
     Swal.fire({
       title: 'Editar Cliente',
       html: `
+        <label><b>Nombre</b></label> 
+        <br>
         <input id="nombreCliente" class="swal2-input" value="${registroSeleccionado.nombreCliente}" />
-
+        <br>
+        <br>
+        <label><b>Apellido</b></label> 
+        <br>
         <input id="apellidoCliente" class="swal2-input" value="${registroSeleccionado.apellidoCliente}" />
-
-        <input id="telefonoCliente" class="swal2-input" value="${registroSeleccionado.razonSocial}" />
-        
+        <br>
+        <br>
+        <label><b>Razon Social</b></label> 
+        <br>
+        <input id="razonSocial" class="swal2-input" value="${registroSeleccionado.razonSocial}" />
+        <br>
+        <br>
+        <label><b>Cuil/Cuit</b></label> 
+        <br>
         <input id="cuil_cuit_cliente" class="swal2-input" value="${registroSeleccionado.cuil_cuit_cliente}" />
-        
+        <br>
+        <br>
+        <label><b>Telefono</b></label> 
+        <br>
         <input id="telefonoCliente" class="swal2-input" value="${registroSeleccionado.telefonoCliente}" />
-
+         <br>
+        <br>
+        <label><b>E-Mail</b></label> 
+        <br>
         <input id="mailCliente" class="swal2-input" value="${registroSeleccionado.mailCliente}" />
-
+         <br>
+        <br>
+        <label><b>Direccion</b></label> 
+        <br>
         <input id="direccionCliente" class="swal2-input" value="${registroSeleccionado.direccionCliente}" />
-
+         <br>
+        <br>
+        <label><b>Datos Garante</b></label> 
+        <br>
         <input id="datosGarantes" class="swal2-input" value="${registroSeleccionado.datosGarantes}" />
 
         <br/>
         <br/>
-        <label><strong>Selecciona la condición del cliente:</strong></label>
+        <label><strong>Condición del cliente:</strong></label>
         <br/>
         <select id="condicionCliente" class="swal2-input">
         <option value="Autonomo" ${registroSeleccionado.condicionCliente === 'Autonomo' ? 'selected' : ''}>Autónomo</option>
