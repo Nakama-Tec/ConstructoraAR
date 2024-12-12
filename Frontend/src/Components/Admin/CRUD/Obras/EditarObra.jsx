@@ -32,7 +32,7 @@ const EditarObra = ({ onObraEditado }) => {
 
             <input id="fechainicioObra" class="swal2-input" type="date" value="${registroSeleccionado.fechainicioObra}" />
 
-            <input id="fechaFinObra" class="swal2-input" type="date" value="${registroSeleccionado.fechafinObra}" />
+            <input id="fechafinObra" class="swal2-input" type="date" value="${registroSeleccionado.fechafinObra}" />
 
             <input id="precioObra" class="swal2-input" type="number" min="0" max="100" value="${registroSeleccionado.precioObra}" />
 
@@ -61,8 +61,8 @@ const EditarObra = ({ onObraEditado }) => {
           const nombreObra = document.getElementById('nombreObra').value;
             const direccionObra = document.getElementById('direccionObra').value;
             const descripcionObra = document.getElementById('descripcionObra').value;
-            const fechaInicioObra = document.getElementById('fechaInicioObra').value;
-            const fechaFinObra = document.getElementById('fechaFinObra').value;
+            const fechainicioObra = document.getElementById('fechainicioObra').value;
+            const fechafinObra = document.getElementById('fechafinObra').value;
             const precioObra = document.getElementById('precioObra').value;
             const sectorObra = document.getElementById('sectorObra').value;
             const progresoObra = document.getElementById('progresoObra').value;
@@ -92,11 +92,11 @@ const EditarObra = ({ onObraEditado }) => {
             Swal.showValidationMessage("La descripción no debe contener caracteres especiales.");
             return false;
             }
-            if (!fechaInicioObra || !fechaInicioRegex.test(fechaInicioObra)) {
+            if (!fechainicioObra || !fechaInicioRegex.test(fechainicioObra)) {
             Swal.showValidationMessage("La fecha de inicio no debe contener caracteres especiales.");
             return false;
             }
-            if (!fechaFinObra || !fechaFinRegex.test(fechaFinObra)) {
+            if (!fechafinObra || !fechaFinRegex.test(fechafinObra)) {
             Swal.showValidationMessage("La fecha de fin no debe contener caracteres especiales.");
             return false;
             }
@@ -121,8 +121,8 @@ const EditarObra = ({ onObraEditado }) => {
             nombreObra,
             direccionObra,
             descripcionObra,
-            fechaInicioObra,
-            fechaFinObra,
+            fechainicioObra,
+            fechafinObra,
             precioObra,
             sectorObra,
             progresoObra,
