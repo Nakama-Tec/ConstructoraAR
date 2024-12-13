@@ -1,10 +1,10 @@
 import React from 'react';
 // Importa las imágenes locales
 import banner from '../../assets/img construcciones/banner.jpg';
-
+import living from "../../assets/img construcciones/living2.jpg";
     import { useEffect, useState } from 'react';
 
-    const images = [banner];
+    const images = [banner, living];
 
     const BannerConstrucciones = () => {
         const [currentIndex, setCurrentIndex] = useState(0);
@@ -12,7 +12,7 @@ import banner from '../../assets/img construcciones/banner.jpg';
         useEffect(() => {
             const interval = setInterval(() => {
                 setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
-            }, 5000);
+            }, 8000);
             return () => clearInterval(interval);
         }, []);
 
@@ -27,9 +27,7 @@ import banner from '../../assets/img construcciones/banner.jpg';
                 <div className=" textoBannerPrincipal">
                     <p>Construimos tu <span className='textoDestacado'>sueño.</span ></p>
                     <p> Construí con <span className='textoDestacado'>nosotros.</span></p>
-                    <button className="bg-white text-black font-medium py-2 px-4 rounded text-lg">
-  Solicitar Presupuesto
-</button>
+                    
                 </div>
                 </div>
             ))}
