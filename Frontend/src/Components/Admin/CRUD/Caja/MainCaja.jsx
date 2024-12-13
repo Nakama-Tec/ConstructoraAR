@@ -107,7 +107,7 @@ useEffect(() => {
 
   const TotalEgresosOperativos = () =>{
     let total = 0;
-    for (let i = 9; i < 20; i++) {
+    for (let i = 9; i < 21; i++) {
       total += parseFloat(datos[i].Monto);
     }
 
@@ -169,6 +169,7 @@ useEffect(() => {
       { details: ' .  2.12 Impuestos', jan: "$"+datos[17].Monto, feb: "$"+datos[17].Monto, mar: "$"+datos[17].Monto, apr: "$"+datos[17].Monto, may: "$"+datos[17].Monto, jun: "$"+datos[17].Monto, jul: "$"+datos[17].Monto, aug: "$"+datos[17].Monto, sep: "$"+datos[17].Monto, oct: "$"+datos[17].Monto, nov: "$"+datos[17].Monto, dec: "$"+datos[17].Monto, style: "yellow" },
       { details:' .  2.13 Amortizaciones', jan: "$"+datos[18].Monto, feb: "$"+datos[18].Monto, mar: "$"+datos[18].Monto, apr: "$"+datos[18].Monto, may: "$"+datos[18].Monto, jun: "$"+datos[18].Monto, jul: "$"+datos[18].Monto, aug: "$"+datos[18].Monto, sep: "$"+datos[18].Monto, oct: "$"+datos[18].Monto, nov: "$"+datos[18].Monto, dec: "$"+datos[18].Monto, style: "yellow" },
       { details:' .  2.14 Intereses', jan: "$"+datos[19].Monto, feb: "$"+datos[19].Monto, mar: "$"+datos[19].Monto, apr: "$"+datos[19].Monto, may: "$"+datos[19].Monto, jun: "$"+datos[19].Monto, jul: "$"+datos[19].Monto, aug: "$"+datos[19].Monto, sep: "$"+datos[19].Monto, oct: "$"+datos[19].Monto, nov: "$"+datos[19].Monto, dec: "$"+datos[19].Monto, style: "yellow" },
+      { details:' .  2.15 Otros Egresos', jan: "$"+datos[20].Monto, feb: "$"+datos[20].Monto, mar: "$"+datos[20].Monto, apr: "$"+datos[20].Monto, may: "$"+datos[20].Monto, jun: "$"+datos[20].Monto, jul: "$"+datos[20].Monto, aug: "$"+datos[20].Monto, sep: "$"+datos[20].Monto, oct: "$"+datos[20].Monto, nov: "$"+datos[20].Monto, dec: "$"+datos[20].Monto, style: "yellow" },
       { details: ' -      Egresos Operativos', jan: "$"+TotalEgresosOperativos(), feb: "$"+TotalEgresosOperativos(), mar: "$"+TotalEgresosOperativos(), apr: "$"+TotalEgresosOperativos(), may: "$"+TotalEgresosOperativos(), jun: "$"+TotalEgresosOperativos(), jul: "$"+TotalEgresosOperativos(), aug: "$"+TotalEgresosOperativos(), sep: "$"+TotalEgresosOperativos(), oct: "$"+TotalEgresosOperativos(), nov: "$"+TotalEgresosOperativos(), dec: "$"+TotalEgresosOperativos(), style: "yellow-bold " },
       { details: "", style: "yellow" },
       { details: "", style: "yellow"},
