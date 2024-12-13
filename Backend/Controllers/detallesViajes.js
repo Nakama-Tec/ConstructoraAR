@@ -4,7 +4,7 @@ const { conection } = require("../DB/Config")
 
 const allDetallesViajes = (req, res) => {
     const query = `SELECT dv.id_DetallesViaje as ID, o.nombreObra, o.descripcionObra AS Direccion_Obra, veh.patenteVehiculo,
-    veh.tipoVehiculo AS Tipo_Vehiculo, v.id_viaje, v.fechaViaje, sm.nombreMaterial AS Material, sm.ubicacionStock AS Deposito,
+    veh.tipoVehiculo AS TIPOVehiculo, v.id_viaje, v.fechaViaje, sm.nombreMaterial AS Material, sm.ubicacionStock AS Deposito,
     sm.cantidadStock AS Cantidad_Material FROM Viajes v
 JOIN 
     Obras o ON v.id_obra = o.id_obra

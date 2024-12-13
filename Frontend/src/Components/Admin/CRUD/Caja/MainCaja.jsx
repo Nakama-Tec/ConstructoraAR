@@ -12,21 +12,9 @@ import Button from 'react-bootstrap/Button';
 const MainCaja = () => {
 
   const token = useAuthStore((state) => state.token);
-  // const [fechaInicio, setFechaInicio] = useState('');
-  // const [fechaFin, setFechaFin] = useState('');
   const [fechaSeleccionada, setFechaSeleccionada] = useState('');
   const [prueba, setPrueba] = useState([]);
-  // const [año, setAño] = useState('');
-  // const [mes, setMes] = useState('');
   const [datos, setDatos] = useState([]);
-
-
-  // setFechaInicio(`${año}-01-01`);
-  // setFechaFin(`${año}-01-31`);
-
-//   (function saludo() {
-//     console.log("Soy una IIFE con una función nombrada");
-// })();
 
  // Función para obtener la fecha actual en formato "YYYY-MM-DD"
  const obtenerFechaInicio = () => {
@@ -49,8 +37,8 @@ const obtenerFechaFin = () => {
 const [fechaInicio, setFechaInicio] = useState(obtenerFechaInicio);
 const [fechaFin, setFechaFin] = useState(obtenerFechaFin);
 
-console.log("fechaInicio = ", fechaInicio);
-console.log("fechaFin = ", fechaFin);
+// console.log("fechaInicio = ", fechaInicio);
+// console.log("fechaFin = ", fechaFin);
   // Enviar la fecha por POST
   const enviarFechaPorPost = async () => {
     try {
@@ -62,8 +50,6 @@ console.log("fechaFin = ", fechaFin);
       if (response.status === 200) {
         console.log('Fecha enviada con éxito Post:', response.data);
 
-        // setDatos(response.data);
-        //obtenerDatosPorGet(); // Llama al GET después del POST
         setDatos(response.data); // Guarda la respuesta en el estado
 
         
@@ -74,8 +60,10 @@ console.log("fechaFin = ", fechaFin);
   };
 
 
-
-console.log("datos = ");
+// Ejecutar enviarFechaPorPost al cargar el componente
+useEffect(() => {
+  enviarFechaPorPost();
+}, [fechaInicio, fechaFin]); // Se ejecuta cuando cambian estas dependencias
 
   const columns = React.useMemo(
     () => [
@@ -97,60 +85,61 @@ console.log("datos = ");
   );
 
   const data = React.useMemo(
-    () => [
+    () => {
+      if (!datos.length) return [];
+    return [
       { details: "1. Detalle de Ingresos", style: "green-bold" },
-      { details: ' .  1.1  Ingresos por Ventas de Terrenos', jan: datos[0].Monto_1, feb: "", mar: "", apr: "", may: "", jun: "", jul: "", aug: "", sep: "", oct: "", nov: "", dec: "", style: "green" },
-      { details: ' .  1.2  Ingresos por Alquiler duplex', jan: "", feb: "", mar: "", apr: "", may: "", jun: "", jul: "", aug: "", sep: "", oct: "", nov: "", dec: "", style: "green" },
-      { details: ' .  1.3  Ingresos por Obras Privadas', jan: "", feb: "", mar: "", apr: "", may: "", jun: "", jul: "", aug: "", sep: "", oct: "", nov: "", dec: "", style: "green" },
-      { details: ' .  1.4  Ingresos por Obras Publicas', jan: "", feb: "", mar: "", apr: "", may: "", jun: "", jul: "", aug: "", sep: "", oct: "", nov: "", dec: "", style: "green" },
-      { details: ' .  1.5  Cobro de Deudas', jan: "", feb: "", mar: "", apr: "", may: "", jun: "", jul: "", aug: "", sep: "", oct: "", nov: "", dec: "", style: "green" },
-      { details: ' .  1.6  Otros Ingresos', jan: "", feb: "", mar: "", apr: "", may: "", jun: "", jul: "", aug: "", sep: "", oct: "", nov: "", dec: "", style: "green" },
-      { details: " .  1.0 Total de Ingresos", jan: "", feb: "", mar: "", apr: "", may: "", jun: "", jul: "", aug: "", sep: "", oct: "", nov: "", dec: "", style: "green-bold" },
+      { details: ' .  1.1  Ingresos por Ventas de Terrenos', jan: "$"+datos[0].Monto, feb: "$", mar: "$", apr: "$", may: "$", jun: "$", jul: "$", aug: "$", sep: "$", oct: "$", nov: "$", dec: "$", style: "green" },
+      { details: ' .  1.2  Ingresos por Alquiler duplex', jan: "$"+datos[1].Monto, feb: "$", mar: "$", apr: "$", may: "$", jun: "$", jul: "$", aug: "$", sep: "$", oct: "$", nov: "$", dec: "$", style: "green" },
+      { details: ' .  1.3  Ingresos por Obras Privadas', jan: "$", feb: "$", mar: "$", apr: "$", may: "$", jun: "$", jul: "$", aug: "$", sep: "$", oct: "$", nov: "$", dec: "$", style: "green" },
+      { details: ' .  1.4  Ingresos por Obras Publicas', jan: "$", feb: "$", mar: "$", apr: "$", may: "$", jun: "$", jul: "$", aug: "$", sep: "$", oct: "$", nov: "$", dec: "$", style: "green" },
+      { details: ' .  1.5  Cobro de Deudas', jan: "$", feb: "$", mar: "$", apr: "$", may: "$", jun: "$", jul: "$", aug: "$", sep: "$", oct: "$", nov: "$", dec: "$", style: "green" },
+      { details: ' .  1.6  Otros Ingresos', jan: "$", feb: "$", mar: "$", apr: "$", may: "$", jun: "$", jul: "$", aug: "$", sep: "$", oct: "$", nov: "$", dec: "$", style: "green" },
+      { details: " .  1.0 Total de Ingresos", jan: "$", feb: "$", mar: "$", apr: "$", may: "$", jun: "$", jul: "$", aug: "$", sep: "$", oct: "$", nov: "$", dec: "$", style: "green-bold" },
       { details: "", style: "white-bold" },
       { details: "", style: "white-bold" },
       { details: "2. Detalle de Egresos", style: "yellow-bold" },
-      { details: " .  2.1 Luz", jan: "", feb: "", mar: "", apr: "", may: "", jun: "", jul: "", aug: "", sep: "", oct: "", nov: "", dec: "", style: "yellow" },
-      { details: " .  2.2 Agua", jan: "", feb: "", mar: "", apr: "", may: "", jun: "", jul: "", aug: "", sep: "", oct: "", nov: "", dec: "", style: "yellow" },
-      { details: " .  2.3 Teléfono", jan: "", feb: "", mar: "", apr: "", may: "", jun: "", jul: "", aug: "", sep: "", oct: "", nov: "", dec: "", style: "yellow" },
-      { details: " -      Egresos en Consumo", jan: "", feb: "", mar: "", apr: "", may: "", jun: "", jul: "", aug: "", sep: "", oct: "", nov: "", dec: "", style: "yellow-bold" },
+      { details: " .  2.1 Luz", jan: "$", feb: "$", mar: "$", apr: "$", may: "$", jun: "$", jul: "$", aug: "$", sep: "$", oct: "$", nov: "$", dec: "$", style: "yellow" },
+      { details: " .  2.2 Agua", jan: "$", feb: "$", mar: "$", apr: "$", may: "$", jun: "$", jul: "$", aug: "$", sep: "$", oct: "$", nov: "$", dec: "$", style: "yellow" },
+      { details: " .  2.3 Teléfono", jan: "$", feb: "$", mar: "$", apr: "$", may: "$", jun: "$", jul: "$", aug: "$", sep: "$", oct: "$", nov: "$", dec: "$", style: "yellow" },
+      { details: " -      Egresos en Consumo", jan: "$", feb: "$", mar: "$", apr: "$", may: "$", jun: "$", jul: "$", aug: "$", sep: "$", oct: "$", nov: "$", dec: "$", style: "yellow-bold" },
       { details: "", style: "yellow" },
       { details: "", style: "yellow" },
-      { details: ' .  2.4  Compra de Elementos de Oficina', jan: "", feb: "", mar: "", apr: "", may: "", jun: "", jul: "", aug: "", sep: "", oct: "", nov: "", dec: "", style: "yellow" },
-      { details: ' .  2.5  Compra de Materiales de Obra', jan: "", feb: "", mar: "", apr: "", may: "", jun: "", jul: "", aug: "", sep: "", oct: "", nov: "", dec: "", style: "yellow" },
-      { details: ' .  2.6  Salarios Administrativos', jan: "", feb: "", mar: "", apr: "", may: "", jun: "", jul: "", aug: "", sep: "", oct: "", nov: "", dec: "", style: "yellow" },
-      { details: ' .  2.7  Salarios de Obras Privadas', jan: "", feb: "", mar: "", apr: "", may: "", jun: "", jul: "", aug: "", sep: "", oct: "", nov: "", dec: "", style: "yellow" },
-      { details: ' .  2.8  Salarios de Obras Públicas', jan: "", feb: "", mar: "", apr: "", may: "", jun: "", jul: "", aug: "", sep: "", oct: "", nov: "", dec: "", style: "yellow" },
-      { details: ' .  2.9  Pagos a Tercerizados O.Privadas', jan: "", feb: "", mar: "", apr: "", may: "", jun: "", jul: "", aug: "", sep: "", oct: "", nov: "", dec: "", style: "yellow" },
-      { details: ' .  2.10 Pagos a Tercerizados O.Públicas', jan: "", feb: "", mar: "", apr: "", may: "", jun: "", jul: "", aug: "", sep: "", oct: "", nov: "", dec: "", style: "yellow" },
-      { details: ' .  2.11 Administración y Ventas', jan: "", feb: "", mar: "", apr: "", may: "", jun: "", jul: "", aug: "", sep: "", oct: "", nov: "", dec: "", style: "yellow" },
-      { details: ' .  2.12 Impuestos', jan: "", feb: "", mar: "", apr: "", may: "", jun: "", jul: "", aug: "", sep: "", oct: "", nov: "", dec: "", style: "yellow" },
-      { details:' .  2.13 Amortizaciones', jan: "", feb: "", mar: "", apr: "", may: "", jun: "", jul: "", aug: "", sep: "", oct: "", nov: "", dec: "", style: "yellow" },
-      { details:' .  2.14 Intereses', jan: "", feb: "", mar: "", apr: "", may: "", jun: "", jul: "", aug: "", sep: "", oct: "", nov: "", dec: "", style: "yellow" },
-      { details: ' -      Egresos Operativos', jan: "", feb: "", mar: "", apr: "", may: "", jun: "", jul: "", aug: "", sep: "", oct: "", nov: "", dec: "", style: "yellow-bold " },
+      { details: ' .  2.4  Compra de Elementos de Oficina', jan: "$", feb: "$", mar: "$", apr: "$", may: "$", jun: "$", jul: "$", aug: "$", sep: "$", oct: "$", nov: "$", dec: "$", style: "yellow" },
+      { details: ' .  2.5  Compra de Materiales de Obra', jan: "$", feb: "$", mar: "$", apr: "$", may: "$", jun: "$", jul: "$", aug: "$", sep: "$", oct: "$", nov: "$", dec: "$", style: "yellow" },
+      { details: ' .  2.6  Salarios Administrativos', jan: "$", feb: "$", mar: "$", apr: "$", may: "$", jun: "$", jul: "$", aug: "$", sep: "$", oct: "$", nov: "$", dec: "$", style: "yellow" },
+      { details: ' .  2.7  Salarios de Obras Privadas', jan: "$", feb: "$", mar: "$", apr: "$", may: "$", jun: "$", jul: "$", aug: "$", sep: "$", oct: "$", nov: "$", dec: "$", style: "yellow" },
+      { details: ' .  2.8  Salarios de Obras Públicas', jan: "$", feb: "$", mar: "$", apr: "$", may: "$", jun: "$", jul: "$", aug: "$", sep: "$", oct: "$", nov: "$", dec: "$", style: "yellow" },
+      { details: ' .  2.9  Pagos a Tercerizados O.Privadas', jan: "$", feb: "$", mar: "$", apr: "$", may: "$", jun: "$", jul: "$", aug: "$", sep: "$", oct: "$", nov: "$", dec: "$", style: "yellow" },
+      { details: ' .  2.10 Pagos a Tercerizados O.Públicas', jan: "$", feb: "$", mar: "$", apr: "$", may: "$", jun: "$", jul: "$", aug: "$", sep: "$", oct: "$", nov: "$", dec: "$", style: "yellow" },
+      { details: ' .  2.11 Administración y Ventas', jan: "$", feb: "$", mar: "$", apr: "$", may: "$", jun: "$", jul: "$", aug: "$", sep: "$", oct: "$", nov: "$", dec: "$", style: "yellow" },
+      { details: ' .  2.12 Impuestos', jan: "$", feb: "$", mar: "$", apr: "$", may: "$", jun: "$", jul: "$", aug: "$", sep: "$", oct: "$", nov: "$", dec: "$", style: "yellow" },
+      { details:' .  2.13 Amortizaciones', jan: "$", feb: "$", mar: "$", apr: "$", may: "$", jun: "$", jul: "$", aug: "$", sep: "$", oct: "$", nov: "$", dec: "$", style: "yellow" },
+      { details:' .  2.14 Intereses', jan: "$", feb: "$", mar: "$", apr: "$", may: "$", jun: "$", jul: "$", aug: "$", sep: "$", oct: "$", nov: "$", dec: "$", style: "yellow" },
+      { details: ' -      Egresos Operativos', jan: "$", feb: "$", mar: "$", apr: "$", may: "$", jun: "$", jul: "$", aug: "$", sep: "$", oct: "$", nov: "$", dec: "$", style: "yellow-bold " },
       { details: "", style: "yellow" },
       { details: "", style: "yellow"},
-      { details: " .  2.0 Total de Egresos", jan: "", feb: "", mar: "", apr: "", may: "", jun: "", jul: "", aug: "", sep: "", oct: "", nov: "", dec: "", style: "yellow-bold" },
+      { details: " .  2.0 Total de Egresos", jan: "$", feb: "$", mar: "$", apr: "$", may: "$", jun: "$", jul: "$", aug: "$", sep: "$", oct: "$", nov: "$", dec: "$", style: "yellow-bold" },
       { details: "", style: "white-bold" },
       { details: "", style: "white-bold" },
-      { details: "3.0 SALDO NETO", jan: "", feb: "", mar: "", apr: "", may: "", jun: "", jul: "", aug: "", sep: "", oct: "", nov: "", dec: "", style: "aqua-bold" },
-      { details: "4.0 SALDO ACUMULADO", jan: "", feb: "", mar: "", apr: "", may: "", jun: "", jul: "", aug: "", sep: "", oct: "", nov: "", dec: "", style: "aqua-bold" },
-    ],
-    []
-  );
+      { details: "3.0 SALDO NETO", jan: "$", feb: "$", mar: "$", apr: "$", may: "$", jun: "$", jul: "$", aug: "$", sep: "$", oct: "$", nov: "$", dec: "$", style: "aqua-bold" },
+      { details: "4.0 SALDO ACUMULADO", jan: "$", feb: "$", mar: "$", apr: "$", may: "$", jun: "$", jul: "$", aug: "$", sep: "$", oct: "$", nov: "$", dec: "$", style: "aqua-bold" },
+    ];
+  }, [datos]);
   
 
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } = useTable({ columns, data });
 
  // Obtener la fecha actual en formato YYYY-MM-DD
- useEffect(() => {
+//  useEffect(() => {
+//   enviarFechaPorPost()
+//   const fechaInicio = obtenerFechaInicio();
+//   const fechaFin = obtenerFechaFin();
+//     setFechaInicio(fechaInicio);
+//     setFechaFin(fechaFin); // Puedes ajustar esto según tus necesidades
   
-  const fechaInicio = obtenerFechaInicio();
-  const fechaFin = obtenerFechaFin();
-    setFechaInicio(fechaInicio);
-    setFechaFin(fechaFin); // Puedes ajustar esto según tus necesidades
-    enviarFechaPorPost()
   
-}, []); 
+// }, []); 
 
   return (
     <div>
