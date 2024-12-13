@@ -5,7 +5,11 @@ const MainConstrucciones = () => {
       
     <> 
     <BannerConstrucciones />
-    
+     <div>
+        <h3>
+            Construcciones
+        </h3>
+     </div>
     </>
        
     );

@@ -1,10 +1,11 @@
 import React from 'react';
+import BannerDepartamentos from './BannerDepartamentos';
 
 const mainDepartamento = () => {
     return (
-        <div>
-            
-        </div>
+        <>
+            <BannerDepartamentos />
+        </>
     );
 };
 
