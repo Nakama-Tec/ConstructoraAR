@@ -1,18 +1,18 @@
 import React from 'react';
-// Importa las imágenes locales
-import banner from '../../assets/img construcciones/banner.jpg';
-import living from "../../assets/img construcciones/living2.jpg";
+import bannerdepa1 from '../../assets/img departamento/bannerdepa.jpg';
+// import bannerdepa2 from '../../assets/img departamento/bannerdepa2.jpg';
+// import bannerdepa3 from '../../assets/img departamento/bannerdepa3.jpg';
     import { useEffect, useState } from 'react';
 
-    const images = [banner, living];
+    const images = [bannerdepa1];
 
-    const BannerConstrucciones = () => {
+    const BannerDepartamentos = () => {
         const [currentIndex, setCurrentIndex] = useState(0);
 
         useEffect(() => {
             const interval = setInterval(() => {
                 setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
-            }, 8000);
+            }, 5000);
             return () => clearInterval(interval);
         }, []);
 
@@ -25,9 +25,8 @@ import living from "../../assets/img construcciones/living2.jpg";
                 >
                 <img src={image} alt={`Banner ${index + 1}`} className="w-full h-full object-cover imagenBannerPrincipal" />
                 <div className=" textoBannerPrincipal">
-                    <p>Construimos tu <span className='textoDestacado'>sueño.</span ></p>
-                    <p> Construí con <span className='textoDestacado'>nosotros.</span></p>
-                    
+                    <br />
+                    <p> Alquileres <span className='textoDestacado'>disponibles.</span ></p>
                 </div>
                 </div>
             ))}
@@ -35,4 +34,4 @@ import living from "../../assets/img construcciones/living2.jpg";
         );
     };
 
-    export default BannerConstrucciones;
+    export default BannerDepartamentos;

@@ -77,7 +77,8 @@ const Servicios = () => {
                     </ul>
                 </>
             ),
-            image: "https://urquiaga.com.ar/wp-content/uploads/2022/01/venta-lotes-en-la-negrita-barrio-privado-vm-03.jpg"
+            image: "https://urquiaga.com.ar/wp-content/uploads/2022/01/venta-lotes-en-la-negrita-barrio-privado-vm-03.jpg",
+            button: "/terrenos"
         },
         {
             id: "article-2",
@@ -98,7 +99,8 @@ const Servicios = () => {
                     </ul>
                 </>
             ),
-            image: "https://fotos.perfil.com/2020/12/02/nova-house-construcciones-1095258.jpg"
+            image: "https://fotos.perfil.com/2020/12/02/nova-house-construcciones-1095258.jpg",
+            button: "/construcciones"
         },
         {
             id: "article-4",
@@ -110,8 +112,9 @@ const Servicios = () => {
             id: "article-5",
             title: "Departamentos",
             subtitle: "VIVE CON COMODIDAD",
-            content: "Encuentra el departamento perfecto que se ajuste a tus expectativas y presupuesto.",
-            image: "https://www.kelman.mx/hs-fs/hubfs/Instrumental/Marketing/Comprar%20departamentos%20en%20M%C3%A9rida/Blogs/arthouse-interior-departamento.webp?width=5000&height=2813&name=arthouse-interior-departamento.webp"
+            content: "Encuentra el departamento perfecto que se ajuste a tus expectativas y presupuesto.\nUbicados en zonas céntricas y seguras, nuestros departamentos cuentan con amenidades y servicios exclusivos.",
+            image: "https://www.kelman.mx/hs-fs/hubfs/Instrumental/Marketing/Comprar%20departamentos%20en%20M%C3%A9rida/Blogs/arthouse-interior-departamento.webp?width=5000&height=2813&name=arthouse-interior-departamento.webp",
+            button: "/departamentos"
         }
     ];
 
@@ -138,7 +141,7 @@ const Servicios = () => {
                         )}
                         {article.content && <>{article.content}</>}
                         {article.button && (
-                            <button onClick={()=>window.location.href =`${article.button}`}  className="boton-contactanos mt-4">Ver más</button>
+                            <button onClick={()=>window.location.href =`${article.button}`}  className="boton-contactanos mt-4 d-block">Ver más</button>
                         )}
                     </div>
                 </div>

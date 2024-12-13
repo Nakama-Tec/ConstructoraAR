@@ -7,6 +7,8 @@ import Admin from './Pages/Admin/Admin'
 import Home from './Pages/Home/Home'
 import MainTerrenos from './Pages/Terrenos/MainTerrenos'
 import MainConstrucciones from './Pages/Construcciones/MainConstrucciones'
+import MainDepartamento from './Pages/Departamentos/MainDepartamento'
+import Institucional from './Pages/Institucional/Institucional'
 import Header from './Components/Layout/Header'
 import Footer from './Components/Layout/Footer'
 
@@ -21,6 +23,8 @@ function App() {
         <Route path="/login" element={<Login/>} />
         <Route path="/terrenos" element={<MainTerrenos/>} />
         <Route path="/construcciones" element={<MainConstrucciones/>} />
+        <Route path="/departamentos" element={<MainDepartamento/>} />
+        <Route path="/institucional" element={<Institucional/>} />
       </Routes>
       </main>
       <Footer/>
