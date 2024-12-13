@@ -12,7 +12,6 @@ const EditarUsuarios = ({onUsuarioEditado}) => {
   const { registroSeleccionado, clearRegistroSeleccionado } = useRegistroStore();
   const token = useAuthStore((state) => state.token);
   const [empleados, setEmpleados] = useState([]);
-  // const [obras, setObras] = useState([]);
 
   const getEmpleados = async () => {
       try {

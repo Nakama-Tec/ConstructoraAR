@@ -29,8 +29,8 @@ const singleOperaciones = (req, res) => {
 const createOperaciones = (req, res) => {
   const { nombreOperacion, tipoOperacion, montoOperacion, detalleOperacion, fechaOperacion } = req.body;
 
-  const query = `INSERT INTO Operaciones (nombreOperacion, tipoOperacion, montoOperacion, detalleOperacion, fechaOperacion) VALUES (?, ?, ?, ?, ?)`;
-  const values = [nombreOperacion, tipoOperacion, montoOperacion, detalleOperacion, fechaOperacion];
+  const query = `INSERT INTO Operaciones (nombreOperacion, tipoOperacion, detalleTipoOperacion, montoOperacion, detalleOperacion, fechaOperacion) VALUES (?, ?, ?, ?, ?, ?)`;
+  const values = [nombreOperacion, tipoOperacion, detalleTipoOperacion, montoOperacion, detalleOperacion, fechaOperacion];
 
   conection.query(query, values, (err, results) => {
     if (err) {
@@ -44,10 +44,10 @@ const createOperaciones = (req, res) => {
 // Editar una operación existente
 const editOperaciones = (req, res) => {
   const id = req.params.id;
-  const { nombreOperacion, tipoOperacion, montoOperacion, detalleOperacion, fechaOperacion } = req.body;
+  const { nombreOperacion, tipoOperacion, detalleTipoOperacion, montoOperacion, detalleOperacion, fechaOperacion } = req.body;
 
-  const query = `UPDATE Operaciones SET nombreOperacion = ?, tipoOperacion = ?, montoOperacion = ?, detalleOperacion = ?, fechaOperacion = ? WHERE id_operacion = ?`;
-  const values = [nombreOperacion, tipoOperacion, montoOperacion, detalleOperacion, fechaOperacion, id];
+  const query = `UPDATE Operaciones SET nombreOperacion = ?, tipoOperacion = ?, detalleTipoOperacion = ?, montoOperacion = ?, detalleOperacion = ?, fechaOperacion = ? WHERE id_operacion = ?`;
+  const values = [nombreOperacion, tipoOperacion, detalleTipoOperacion, montoOperacion, detalleOperacion, fechaOperacion, id];
 
   conection.query(query, values, (err, results) => {
     if (err) {

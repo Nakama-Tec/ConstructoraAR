@@ -25,14 +25,14 @@ const allUsuarios = (req, res) => {
     })
 }
 
-const singleUsuario = (req, res) => {
-    const { id } = req.params.id;
-    const query = `select * from Usuarios where id_usuario = ${id};`
-    conection.query(query, (err, results) => {
-        if (err) throw err;
-        res.json(results);
-    })
-}
+// const singleUsuario = (req, res) => {
+//     const id = req.params.id;
+//     const query = `select * from Usuarios where id_usuario = ${id};`
+//     conection.query(query, (err, results) => {
+//         if (err) throw err;
+//         res.json(results);
+//     })
+// }
 
 const editUsuarios = (req, res) => {
     const { nombreUsuario, mailUsuario, passwordUsuario, rol, id_Empleado } = req.body;
@@ -62,4 +62,4 @@ const deleteUsuarios = (req, res) => {
         res.send(results)
     })
 }
-module.exports = { allUsuarios, singleUsuario, createUsuarios, editUsuarios, deleteUsuarios }
+module.exports = { allUsuarios, createUsuarios, editUsuarios, deleteUsuarios }

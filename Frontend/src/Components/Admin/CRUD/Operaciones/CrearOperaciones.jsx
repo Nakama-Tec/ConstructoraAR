@@ -13,34 +13,81 @@ const CrearOperaciones = ({ onOperacionRegistrado }) => {
     Swal.fire({
       title: 'Registrar Operaciones',
       html: `
-          <input id="nombreOperacion" placeholder="Nombre Operaciones" class="swal2-input" />
-          
-          <input id="montoOperacion" type ="number" min="0" placeholder="Monto Operacion" class="swal2-input" />
-          
-          <input id="detalleOperacion" placeholder="Detalle de la Operacion" class="swal2-input" />
-          <br>
-          <br>
-          <label><b>Fecha Operacion</b></label> 
-          <br>
-          <input id="fechaOperacion" placeholder="Fecha de la Operacion" type="date" class="swal2-input" />
-          <br/>
-          <br/>
-          <label><strong>Selecciona el tipo de operación:</strong></label>
-          <br/>
-          <select id="tipoOperacion" class="swal2-select">
-          <option value="Ingreso" >Ingreso</option>
-          <option value="Egreso" >Egreso</option>
+        <input id="nombreOperacion" placeholder="Nombre Operaciones" class="swal2-input" />
+        <input id="montoOperacion" type="number" min="0" placeholder="Monto Operacion" class="swal2-input" />
+        <input id="detalleOperacion" placeholder="Detalle de la Operacion" class="swal2-input" />
+        <br>
+        <br>
+        <label><b>Fecha Operacion</b></label>
+        <br>
+        <input id="fechaOperacion" type="date" class="swal2-input" />
+        <br>
+        <br>
+        <label><strong>Selecciona el tipo de operación:</strong></label>
+        <br>
+        <select id="tipoOperacion" class="swal2-select">
+          <option value="Ingreso">Ingreso</option>
+          <option value="Egreso">Egreso</option>
         </select>
-        <br/>
-        `,
-      confirmButtonText: 'Registrar',//nombre del boton de confirmacion
-      showCancelButton: true,//para que aparezca el boton de cancelar
+        <br>
+        <div id="detalleTipoOperacion"></div>
+      `,
+      confirmButtonText: 'Registrar',
+      showCancelButton: true,
+      didOpen: () => {
+        const tipoOperacionSelect = document.getElementById('tipoOperacion');
+        const detalleTipoOperacionDiv = document.getElementById('detalleTipoOperacion');
+
+        const renderDetalleOperacion = () => {
+          const tipo = tipoOperacionSelect.value;
+          let detalleHtml = '';
+
+          if (tipo === 'Ingreso') {
+            detalleHtml = `
+              <br>
+              <label><strong>Tipo de Ingreso:</strong></label>
+              <br>
+              <select id="tipoIngreso" class="swal2-select">
+                <option value="Cobro Deuda">Cobro Deuda</option>
+                <option value="Otros ingresos">Otros ingresos</option>
+              </select>
+            `;
+          } else if (tipo === 'Egreso') {
+            detalleHtml = `
+              <br>
+              <label><strong>Tipo de Egreso:</strong></label>
+              <br>
+              <select id="tipoEgreso" class="swal2-select">
+                <option value="Luz">Luz</option>
+                <option value="Agua">Agua</option>
+                <option value="Telefono">Telefono</option>
+                <option value="Oficina">Oficina</option>
+                <option value="Pagos Tercerizados Obra Privada">Pagos Tercerizados Obra Privada</option>
+                <option value="Pagos Tercerizados Obra Pública">Pagos Tercerizados Obra Pública</option>
+                <option value="Administración y Venta">Administración y Venta</option>
+                <option value="Impuesto">Impuesto</option>
+                <option value="Amortizaciones">Amortizaciones</option>
+                <option value="Intereses">Intereses</option>  
+                <option value="Otros egresos">Otros egresos</option>
+              </select>
+            `;
+          } 
+          detalleTipoOperacionDiv.innerHTML = detalleHtml;
+        };
+
+        tipoOperacionSelect.addEventListener('change', renderDetalleOperacion);
+        renderDetalleOperacion(); // Render inicial
+      },
       preConfirm: () => {
         const nombreOperacion = document.getElementById('nombreOperacion').value;
         const tipoOperacion = document.getElementById('tipoOperacion').value;
         const montoOperacion = document.getElementById('montoOperacion').value;
         const detalleOperacion = document.getElementById('detalleOperacion').value;
         const fechaOperacion = document.getElementById('fechaOperacion').value;
+        const detalleTipoOperacion = tipoOperacion === 'Ingreso' 
+          ? document.getElementById('tipoIngreso').value 
+          : document.getElementById('tipoEgreso').value;
+
         // Validaciones
         const nombreRegex = /^[a-zA-Z\sÀ-ÿ]+$/;
         const detallesRegex = /^[^@]+$/;
@@ -49,34 +96,33 @@ const CrearOperaciones = ({ onOperacionRegistrado }) => {
           Swal.showValidationMessage("El nombre no debe contener números.");
           return false;
         }
+
         if (!detalleOperacion || !detallesRegex.test(detalleOperacion)) {
-          Swal.showValidationMessage("El detalle de la operacion no debe contener letras.");
+          Swal.showValidationMessage("El detalle de la operación no debe contener caracteres no válidos.");
           return false;
         }
-       
-
-
 
         return {
           nombreOperacion,
           tipoOperacion,
+          detalleTipoOperacion,
           montoOperacion,
           detalleOperacion,
           fechaOperacion
         };
       }
     }).then(async (result) => {
-      if (result.isConfirmed) {//si se confirma la accion de registrar
+      if (result.isConfirmed) {
         try {
           await axios.post(URL_OPERACIONES_CREAR, result.value, {
             headers: { Authorization: `Bearer ${token}` }
           });
-          Swal.fire('¡Éxito!', 'La Operacion fue registrada correctamente.', 'success');
+          Swal.fire('¡Éxito!', 'La Operación fue registrada correctamente.', 'success');
           onOperacionRegistrado();
           closeRegistroModal();
         } catch (error) {
-          console.error('Error al registrar la Operacion:', error);
-          Swal.fire('Error', 'Hubo un problema al registrar la operacion.', 'error');
+          console.error('Error al registrar la Operación:', error);
+          Swal.fire('Error', 'Hubo un problema al registrar la operación.', 'error');
         }
       } else {
         closeRegistroModal();
@@ -90,7 +136,7 @@ const CrearOperaciones = ({ onOperacionRegistrado }) => {
     }
   }, [isRegistroModalOpen]);
 
-  return null; // No renderiza nada directamente
+  return null;
 };
 
-export default CrearOperaciones
+export default CrearOperaciones;

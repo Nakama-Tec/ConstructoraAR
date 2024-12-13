@@ -30,7 +30,7 @@ const EditarClientes = ({ onClienteEditado }) => {
         <br>
         <label><b>Cuil/Cuit</b></label> 
         <br>
-        <input id="cuil_cuit_cliente" class="swal2-input" value="${registroSeleccionado.cuil_cuit_cliente}" />
+        <input id="cuil_cuit_Cliente" class="swal2-input" value="${registroSeleccionado.cuil_cuit_Cliente}" />
         <br>
         <br>
         <label><b>Telefono</b></label> 
@@ -70,7 +70,7 @@ const EditarClientes = ({ onClienteEditado }) => {
         const apellidoCliente = document.getElementById('apellidoCliente').value;
         const razonSocial = document.getElementById('razonSocial').value;
         const condicionCliente = document.getElementById('condicionCliente').value;
-        const cuilCliente = document.getElementById('cuilCliente').value;
+        const cuil_cuit_Cliente = document.getElementById('cuil_cuit_Cliente').value;
         const telefonoCliente = document.getElementById('telefonoCliente').value;
         const mailCliente = document.getElementById('mailCliente').value;
         const direccionCliente = document.getElementById('direccionCliente').value;
@@ -93,7 +93,7 @@ const EditarClientes = ({ onClienteEditado }) => {
           Swal.showValidationMessage("El apellido no debe contener números.");
           return false;
         }
-        if (!cuilCliente || !cuilRegex.test(cuilCliente)) {
+        if (!cuil_cuit_Cliente || !cuilRegex.test(cuil_cuit_Cliente)) {
           Swal.showValidationMessage("El CUIL debe contener entre 10 y 11 dígitos, separado por guiones (-).");
           return false;
         }
@@ -119,7 +119,7 @@ const EditarClientes = ({ onClienteEditado }) => {
           apellidoCliente,
           razonSocial,
           condicionCliente,
-          cuilCliente,
+          cuil_cuit_Cliente,
           telefonoCliente,
           mailCliente,
           direccionCliente,

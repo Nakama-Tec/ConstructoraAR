@@ -3,7 +3,6 @@ import {useReactTable,getCoreRowModel,flexRender,getPaginationRowModel,getFilter
 import EditarCliente from "./EditarClientes";
 import CrearCliente from "./CrearClientes";
 import VerClientes from "./VerClientes";
-import "../../../../Styles/table.css";
 import {URL_CLIENTES,URL_CLIENTES_ELIMINAR,} from "../../../../Constants/endpoints-API";
 import useAuthStore from "../../../../Context/useAuthStore";
 import useRegistroStore from "../../../../Context/useRegistroStore";
@@ -11,6 +10,7 @@ import useVerRegistroStore from "../../../../Context/useVerRegistroStore";
 import Aside from "../../../Layout/Aside";
 import axios from "axios";
 import Swal from "sweetalert2";
+import "../../../../Styles/table.css";
 
 const MainClientes = () => {
   const token = useAuthStore((state) => state.token);
@@ -68,7 +68,7 @@ const MainClientes = () => {
       accessorFn: (row) => `${row.nombreCliente} ${row.apellidoCliente}`,
     },
     { header: "Condición", accessorKey: "condicionCliente" },
-    { header: "CUIL", accessorKey: "cuilCliente" },
+    { header: "CUIL/CUIT", accessorKey: "cuil_cuit_Cliente" },
     { header: "Teléfono", accessorKey: "telefonoCliente" },
     {
       header: "Acciones",
@@ -112,7 +112,6 @@ const MainClientes = () => {
 
   return (
 <div>
-<div>
   <p className="text-black font-semibold text-4xl flex justify-center mt-5">Registros de Clientes</p>
   
   {/* Buscador */}
@@ -137,18 +136,23 @@ const MainClientes = () => {
       Registrar cliente
     </button>
   </div>
-</div>
-  
-      <div className='display flex'>
-        <div className='position relative top-8'>
-      <Aside/>
-        </div>
-      <table className="table">
-        <thead>
+
+  <div className="flex">
+    <div className="relative top-8">
+      <Aside />
+    </div>
+
+    {/* Contenedor de la tabla con desplazamiento horizontal */}
+    <div className="overflow-x-auto w-full">
+      <table className="min-w-full border-collapse border border-gray-300">
+        <thead className="bg-gray-100">
           {table.getHeaderGroups().map(headerGroup => (
             <tr key={headerGroup.id}>
               {headerGroup.headers.map(header => (
-                <th key={header.id}>
+                <th
+                  key={header.id}
+                  className="px-4 py-2 border border-gray-300 text-left text-sm font-medium text-gray-700"
+                >
                   {flexRender(header.column.columnDef.header, header.getContext())}
                 </th>
               ))}
@@ -157,9 +161,12 @@ const MainClientes = () => {
         </thead>
         <tbody>
           {table.getRowModel().rows.map(row => (
-            <tr key={row.id}>
+            <tr key={row.id} className="odd:bg-white even:bg-gray-50">
               {row.getVisibleCells().map(cell => (
-                <td key={cell.id}>
+                <td
+                  key={cell.id}
+                  className="px-4 py-2 border border-gray-300 text-sm text-gray-600"
+                >
                   {flexRender(cell.column.columnDef.cell, cell.getContext())}
                 </td>
               ))}
@@ -167,28 +174,30 @@ const MainClientes = () => {
           ))}
         </tbody>
       </table>
-      </div>
-      <div className="pagination flex justify-center mt-4">
-        {Array.from({ length: table.getPageCount() }, (_, index) => ( // Crea un array con la cantidad de páginas y por cada una crea un botón con el número de la página 
-          <button
-            key={index} 
-            className={`m-2 px-4 py-2 rounded-full font-semibold text-[16px] ${
-              table.getState().pagination.pageIndex === index 
-                ? "bg-blue-600 text-white" // Estilo para la página seleccionada
-                : "bg-gray-300 text-black" // Estilo para las páginas no seleccionadas
-            }`}
-            onClick={() => table.setPageIndex(index)} // Cambia a la página seleccionada
-          >
-            {index + 1} 
-          </button>
-        ))}
-      </div>
-  
-      {/* Modales */}
-      <EditarCliente onClienteEditado={getClientes} />
-      <CrearCliente onClienteRegistrado={getClientes} />
-      <VerClientes onClienteVer={getClientes} />
     </div>
+  </div>
+
+  <div className="pagination flex justify-center mt-4">
+    {Array.from({ length: table.getPageCount() }, (_, index) => (
+      <button
+        key={index}
+        className={`m-2 px-4 py-2 rounded-full font-semibold text-[16px] ${
+          table.getState().pagination.pageIndex === index 
+            ? "bg-blue-600 text-white"
+            : "bg-gray-300 text-black"
+        }`}
+        onClick={() => table.setPageIndex(index)}
+      >
+        {index + 1}
+      </button>
+    ))}
+  </div>
+
+  {/* Modales */}
+  <EditarCliente onClienteEditado={getClientes} />
+  <CrearCliente onClienteRegistrado={getClientes} />
+  <VerClientes onClienteVer={getClientes} />
+</div>
   );
 };
 
