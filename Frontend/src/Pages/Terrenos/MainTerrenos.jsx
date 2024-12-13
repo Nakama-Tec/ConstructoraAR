@@ -30,9 +30,9 @@ const MainTerrenos = () => {
 
   // Nueva función para scrollear hasta el formulario de contacto
   const handleScrollToContact = () => {
-    const contactSection = document.getElementById("contacto");
-    if (contactSection) {
-      contactSection.scrollIntoView({ behavior: "smooth" });
+    const contactSection = document.getElementById("contacto");  // Aquí se utiliza el método document.getElementById("contacto") para obtener una referencia al elemento del DOM que tenga el atributo id="contacto.  Este id se encuentra, por ejemplo, en el div que contiene el formulario de contacto. 
+    if (contactSection) {  ////con este if la función verifica que contactSection no sea null (es decir, que el elemento con id "contacto" exista realmente en la página).
+      contactSection.scrollIntoView({ behavior: "smooth" });  //El método scrollIntoView() desplaza la ventana del navegador hasta que el elemento en cuestión sea visible en el área de visión del usuario. Al pasarle la opción { behavior: "smooth" }, se indica que la transición de desplazamiento no sea instantánea, sino que se realice de forma suave y gradual.
     }
   };
 
