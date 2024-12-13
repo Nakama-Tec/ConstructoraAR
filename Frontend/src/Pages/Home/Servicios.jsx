@@ -1,7 +1,34 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 const Servicios = () => {
     const parallaxRefs = useRef([]);
+    const [visible, setVisible] = useState([]);
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    const index = parallaxRefs.current.indexOf(entry.target);
+                    if (entry.isIntersecting) {
+                        setVisible((prev) => {
+                            const newVisible = [...prev];
+                            newVisible[index] = true;
+                            return newVisible;
+                        });
+                        observer.unobserve(entry.target);
+                    }
+                });
+            },
+            { threshold: 0.7 }
+        );
+
+        parallaxRefs.current.forEach((ref) => {
+            if (ref) observer.observe(ref);
+        });
+
+        return () => {
+            observer.disconnect();
+        };
+    }, []);
 
     useEffect(() => {
         parallaxRefs.current.forEach((ref) => {
@@ -76,7 +103,8 @@ const Servicios = () => {
         {
             id: "article-4",
             title: "Contáctanos y descubre cómo podemos hacer realidad tu próximo proyecto.",
-            image:"https://upload.wikimedia.org/wikipedia/commons/d/de/Quebrada_en_El_Infiernillo-_Tucum%C3%A1n.JPG"
+            image:"https://upload.wikimedia.org/wikipedia/commons/d/de/Quebrada_en_El_Infiernillo-_Tucum%C3%A1n.JPG",
+            button: "#contacto"
         },
         {
             id: "article-5",
@@ -93,13 +121,15 @@ const Servicios = () => {
                 <div
                     key={article.id}
                     id={article.id}
-                    className="parallax-container h-[600px] w-full"
+                    className={`parallax-container h-[600px] w-full`}
                     ref={(el) => (parallaxRefs.current[index] = el)}
                     style={{
                         backgroundImage: `url(${article.image})`,
                     }}
                 >
-                    <div className="parallax-content  text-left w-1/2">
+                    <div className={`parallax-content text-left w-1/2 transition-opacity duration-1000 ${
+                        visible[index] ? "opacity-100" : "opacity-0"
+                    }`}>
                         {article.title && (
                             <h2 className="text-2xl font-bold mb-2">{article.title}</h2>
                         )}
@@ -107,6 +137,9 @@ const Servicios = () => {
                             <h4 className="text-xl mb-2">{article.subtitle}</h4>
                         )}
                         {article.content && <>{article.content}</>}
+                        {article.button && (
+                            <button onClick={()=>window.location.href =`${article.button}`}  className="boton-contactanos mt-4">Ver más</button>
+                        )}
                     </div>
                 </div>
             ))}
