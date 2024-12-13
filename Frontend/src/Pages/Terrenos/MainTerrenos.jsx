@@ -24,11 +24,23 @@ const MainTerrenos = () => {
     }
   };
 
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  // Nueva función para scrollear hasta el formulario de contacto
+  const handleScrollToContact = () => {
+    const contactSection = document.getElementById("contacto");
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <>
       <BannerTerrenos />
 
-      <div className="container pt-20 mb-28 flex flex-grow">
+      <div className="container pt-10 mb-28 flex flex-grow">
         <div className="ml-12 w-[50%] text-left">
           <p className="pt-10 mb-4">
             <span className="textoDestacado">
@@ -51,118 +63,163 @@ const MainTerrenos = () => {
             </button>
           </div>
         </div>
-        <div className="pt-10 ml-48 w-[35%] mb-24">
+        <div  className="pt-10 ml-48 w-[35%] mb-24">
           <img src={blogpost1} alt="Imagen ilustrativa" />
         </div>
-      </div>
+      </div >
+      <div ref={firstImagesRef} className=""></div>
+      <br />
+      <br />
 
-      {/* Primer conjunto de imágenes con ref */}
-      <div ref={firstImagesRef} className="mt-8 flex ml-10 mb-10">
-        <div className="flex flex-col w-[50%]">
-          <img
-            src={img01}
-            alt="Imagen principal"
-            className="w-full h-80 object-cover"
-          />
-          <div className="flex mt-4 space-x-1">
+      {/* Primer conjunto de imágenes */}
+      <div className="mx-10 mb-10">
+        <div className="bg-white rounded-lg shadow flex overflow-hidden">
+          {/* Sección de imagen (izquierda) */}
+          <div className="w-2/5">
             <img
-              src={img02}
-              alt="Imagen 2"
-              className="w-1/3 h-auto object-cover"
-            />
-            <img
-              src={img03}
-              alt="Imagen 3"
-              className="w-1/3 h-auto object-cover"
-            />
-            <img
-              src={img04}
-              alt="Imagen 4"
-              className="w-1/3 h-auto object-cover"
+              src={img01}
+              alt="Imagen principal"
+              className="w-full h-full object-cover"
             />
           </div>
-        </div>
-        <div className="ml-60 pt-60">
-          <h3 className="text-4xl font-semibold">Lules Tucuman</h3>
-          <p className="mt-2 text-lg">NUEVO MUNDO - BARRIO PRIVADO</p>
-          <button className="mt-4 text-lg text-blue-500 hover:underline">
-            Ver más
-          </button>
+
+          {/* Sección de texto (derecha) */}
+          <div className="w-3/5 p-4 flex flex-col justify-between">
+            <div>
+              <h2 className="text-5xl mt-11 font-semibold text-gray-800">USD 15.500</h2>
+              <p className="text-gray-500 mb-16 text-lg">$35.000 Expensas</p>
+              
+              <h3 className="mt-2 text-2xl  font-medium text-gray-700">Lules Tucuman</h3>
+              <p className="text-gray-600">NUEVO MUNDO - BARRIO PRIVADO</p>
+              
+              <p className="text-gray-600 mt-1 text-sm">364 m² tot.</p>
+              
+              <p className="text-gray-600 mt-4 text-sm">
+                En venta hermoso terreno en praderas del nogal. Mudate al paraíso, a tan solo 15 minutos del centro de Tucumán.
+              </p>
+            </div>
+            
+            <div className="flex justify-end mt-4">
+              <button 
+                onClick={handleScrollToContact} 
+                className="bg-orange-500 hover:bg-orange-600 text-white font-medium py-2 px-4 rounded"
+              >
+                Contactar
+              </button>
+            </div>
+          </div>
         </div>
       </div>
 
       {/* Segundo conjunto de imágenes */}
-      <div className="mt-20 flex ml-10 mb-10">
-        <div className="flex flex-col w-[50%]">
-          <img
-            src={img001}
-            alt="Imagen principal"
-            className="w-full h-auto object-cover"
-          />
-          <div className="flex mt-4 space-x-1">
+      <div className="mx-10 mb-10">
+        <div className="bg-white rounded-lg shadow flex overflow-hidden">
+          <div className="w-2/5 relative">
             <img
-              src={img002}
-              alt="Imagen 2"
-              className="w-1/3 h-auto object-cover"
+              src={img001}
+              alt="Imagen principal"
+              className="w-full h-full object-cover"
             />
-            <img
-              src={img003}
-              alt="Imagen 3"
-              className="w-1/3 h-auto object-cover"
-            />
-            <img
-              src={img004}
-              alt="Imagen 4"
-              className="w-1/3 h-auto object-cover"
-            />
+            <div className="flex mt-2 justify-center space-x-1 p-2">
+              <img src={img002} alt="Imagen 2" className="w-1/4 h-auto object-cover rounded" />
+              <img src={img003} alt="Imagen 3" className="w-1/4 h-auto object-cover rounded" />
+              <img src={img004} alt="Imagen 4" className="w-1/4 h-auto object-cover rounded" />
+            </div>
           </div>
-        </div>
-        <div className="ml-60 pt-60">
-          <h3 className="text-4xl font-semibold">Lules Tucuman</h3>
-          <p className="mt-2 text-lg">LA ARBOLEDA COUNTRY CLUB</p>
-          <button className="mt-4 text-lg text-blue-500 hover:underline">
-            Ver más
-          </button>
+
+          <div className="w-3/5 p-4 flex flex-col justify-between">
+            <div>
+              <h2 className="text-5xl mt-11 font-semibold text-gray-800">USD 20.000</h2>
+              <p className="text-gray-500 mb-16 text-lg">$30.000 Expensas</p>
+              
+              <h3 className="mt-2 text-2xl font-medium text-gray-700">Lules Tucuman</h3>
+              <p className="text-gray-600">LA ARBOLEDA COUNTRY CLUB</p>
+              
+              <p className="text-gray-600 mt-1 text-sm">500 m² tot.</p>
+              
+              <p className="text-gray-600 mt-4 text-sm">
+                En venta hermoso terreno en la Arboleda Country Club. Un espacio privilegiado para tu familia, rodeado de naturaleza.
+              </p>
+            </div>
+
+            <div className="flex justify-end mt-4">
+              <button 
+                onClick={handleScrollToContact}
+                className="bg-orange-500 hover:bg-orange-600 text-white font-medium py-2 px-4 rounded"
+              >
+                Contactar
+              </button>
+            </div>
+          </div>
         </div>
       </div>
 
-      <div className="mt-8 flex ml-10 mb-10">
-        <div className="flex flex-col w-[50%]">
-          <img
-            src={img0001}
-            alt="Imagen principal"
-            className="w-full h-80 object-cover"
-          />
-          <div className="flex mt-4 space-x-1">
-            <img
-              src={img0002}
-              alt="Imagen 2"
-              className="w-1/3 h-auto object-cover"
-            />
+      {/* Tercer conjunto de imágenes */}
+      <div className="mx-10 mb-10">
+        <div className="bg-white rounded-lg shadow flex overflow-hidden">
+          <div className="w-2/5 relative">
             <img
               src={img0003}
-              alt="Imagen 3"
-              className="w-1/3 h-auto object-cover"
+              alt="Imagen principal"
+              className="w-full h-full object-cover"
             />
-            <img
-              src={img0004}
-              alt="Imagen 4"
-              className="w-1/3 h-auto object-cover"
-            />
+            <div className="flex mt-2 justify-center space-x-1 p-2">
+              <img src={img0002} alt="Imagen 2" className="w-1/4 h-auto object-cover rounded" />
+              <img src={img0003} alt="Imagen 3" className="w-1/4 h-auto object-cover rounded" />
+              <img src={img0004} alt="Imagen 4" className="w-1/4 h-auto object-cover rounded" />
+            </div>
           </div>
-        </div>
-        <div className="ml-60 pt-60">
-          <h3 className="text-4xl font-semibold">Tafi viejo Tucuman</h3>
-          <p className="mt-2 text-lg">RUTA 341</p>
-          <button className="mt-4 text-lg text-blue-500 hover:underline">
-            Ver más
-          </button>
+
+          <div className="w-3/5 p-4 flex flex-col justify-between">
+            <div>
+              <h2 className="text-5xl mt-11 font-semibold text-gray-800">USD 25.000</h2>
+              <p className="text-gray-500 mb-16 text-lg">$28.000 Expensas</p>
+              
+              <h3 className="mt-2 text-2xl font-medium text-gray-700">Tafi Viejo Tucuman</h3>
+              <p className="text-gray-600">RUTA 341</p>
+              
+              <p className="text-gray-600 mt-1 text-sm">400 m² tot.</p>
+              
+              <p className="text-gray-600 mt-4 text-sm">
+                Un lugar único en Tafi Viejo, Tucumán. Sobre ruta 341, disfrutá de la naturaleza y el confort a minutos de la ciudad.
+              </p>
+            </div>
+
+            <div className="flex justify-end mt-4">
+              <button 
+                onClick={handleScrollToContact}
+                className="bg-orange-500 hover:bg-orange-600 text-white font-medium py-2 px-4 rounded"
+              >
+                Contactar
+              </button>
+            </div>
+          </div>
         </div>
       </div>
 
       {/* Sección de contacto con id="contacto" */}
       <div id="contacto" className="flex flex-col mb-30">
         <Contacto />
+      </div>
+
+      {/* Flecha que scrollea hacia arriba */}
+      <div className="flecha flex justify-center mb-10">
+        <button 
+          onClick={scrollToTop} 
+          className="bg-gray-700 text-white rounded-full p-4 animate-bounce hover:bg-gray-900 transition-shadow duration-200 shadow-md"
+          aria-label="Volver arriba"
+        >
+          <svg 
+            xmlns="http://www.w3.org/2000/svg" 
+            fill="none" 
+            viewBox="0 0 24 24" 
+            strokeWidth="2" 
+            stroke="currentColor" 
+            className="w-6 h-6"
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" d="M5 15l7-7 7 7" />
+          </svg>
+        </button>
       </div>
     </>
   );
