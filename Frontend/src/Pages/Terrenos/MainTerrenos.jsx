@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import BannerTerrenos from "../Terrenos/BannerTerrenos";
 import Contacto from "../Home/Contacto";
 import img01 from "../../assets/img terrenos/img01.jpg";
@@ -13,14 +13,51 @@ import img0001 from "../../assets/img terrenos/img0001.jpg";
 import img0002 from "../../assets/img terrenos/img0002.jpg";
 import img0003 from "../../assets/img terrenos/img0003.jpg";
 import img0004 from "../../assets/img terrenos/img0004.jpg";
+import blogpost1 from "../../../public/imgs/blogpost1.avif";
 
 const MainTerrenos = () => {
+  const firstImagesRef = useRef(null);
+
+  const handleScrollToImages = () => {
+    if (firstImagesRef.current) {
+      firstImagesRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <>
       <BannerTerrenos />
 
-      {/* Primer conjunto de imágenes */}
-      <div className="mt-8 flex ml-10 mb-10">
+      <div className="container pt-20 mb-28 flex flex-grow">
+        <div className="ml-12 w-[50%] text-left">
+          <p className="pt-10 mb-4">
+            <span className="textoDestacado">
+              ¿Has soñado con un lugar propio en el que ver crecer tus proyectos y disfrutar cada amanecer rodeado de naturaleza?{" "}
+            </span>
+            Tener tu propio terreno es mucho más que adquirir un espacio; es asegurar un futuro lleno de posibilidades. Es la oportunidad de trazar tus propios límites, darle forma a tus deseos y crear, con cada metro cuadrado, la vida que siempre has querido.
+          </p>
+          <p>
+            <span className="textoDestacado">
+              Imagina ese terreno transformándose en el refugio perfecto para tu familia{" "}
+            </span>
+            en una inversión sólida que crece con el tiempo, o en el lienzo ideal para diseñar la casa de tus sueños. Hoy puede ser el día en que comiences esa historia.
+          </p>
+          <div className="pt-4 mb-20">
+            <button
+              onClick={handleScrollToImages}
+              className="bg-slate-500 text-stone-50 font-medium py-2 px-2 rounded text-lg"
+            >
+              Ver terrenos disponibles
+            </button>
+          </div>
+        </div>
+        <div className="pt-10 ml-48 w-[35%] mb-24">
+          <img src={blogpost1} alt="Imagen ilustrativa" />
+        </div>
+      </div>
+
+      {/* Primer conjunto de imágenes con ref */}
+      <div ref={firstImagesRef} className="mt-8 flex ml-10 mb-10">
         <div className="flex flex-col w-[50%]">
           <img
             src={img01}
@@ -89,7 +126,6 @@ const MainTerrenos = () => {
         </div>
       </div>
 
-      
       <div className="mt-8 flex ml-10 mb-10">
         <div className="flex flex-col w-[50%]">
           <img
@@ -117,15 +153,17 @@ const MainTerrenos = () => {
         </div>
         <div className="ml-60 pt-60">
           <h3 className="text-4xl font-semibold">Tafi viejo Tucuman</h3>
-          <p className="mt-2 text-lg">RUTA 341 </p>
+          <p className="mt-2 text-lg">RUTA 341</p>
           <button className="mt-4 text-lg text-blue-500 hover:underline">
             Ver más
           </button>
         </div>
       </div>
-        <div className="flex flex-col mb-30">
-          <Contacto />
-        </div>
+
+      {/* Sección de contacto con id="contacto" */}
+      <div id="contacto" className="flex flex-col mb-30">
+        <Contacto />
+      </div>
     </>
   );
 };
