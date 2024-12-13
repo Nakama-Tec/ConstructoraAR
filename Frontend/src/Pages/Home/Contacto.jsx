@@ -40,7 +40,7 @@ const Contacto = () => {
     );
 };
   return (
-    <div className="main-section">
+    <div id="contacto" className="main-section">
     <div className="form-area">
       <div className="container p-md-3 p-md-5 rounded my-5">
         <Row className="single-form g-0">

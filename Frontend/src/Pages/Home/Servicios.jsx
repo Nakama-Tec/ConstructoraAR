@@ -1,7 +1,34 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 const Servicios = () => {
     const parallaxRefs = useRef([]);
+    const [visible, setVisible] = useState([]);
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    const index = parallaxRefs.current.indexOf(entry.target);
+                    if (entry.isIntersecting) {
+                        setVisible((prev) => {
+                            const newVisible = [...prev];
+                            newVisible[index] = true;
+                            return newVisible;
+                        });
+                        observer.unobserve(entry.target);
+                    }
+                });
+            },
+            { threshold: 0.7 }
+        );
+
+        parallaxRefs.current.forEach((ref) => {
+            if (ref) observer.observe(ref);
+        });
+
+        return () => {
+            observer.disconnect();
+        };
+    }, []);
 
     useEffect(() => {
         parallaxRefs.current.forEach((ref) => {
@@ -50,7 +77,8 @@ const Servicios = () => {
                     </ul>
                 </>
             ),
-            image: "https://urquiaga.com.ar/wp-content/uploads/2022/01/venta-lotes-en-la-negrita-barrio-privado-vm-03.jpg"
+            image: "https://urquiaga.com.ar/wp-content/uploads/2022/01/venta-lotes-en-la-negrita-barrio-privado-vm-03.jpg",
+            button: "/terrenos"
         },
         {
             id: "article-2",
@@ -71,19 +99,22 @@ const Servicios = () => {
                     </ul>
                 </>
             ),
-            image: "https://fotos.perfil.com/2020/12/02/nova-house-construcciones-1095258.jpg"
+            image: "https://fotos.perfil.com/2020/12/02/nova-house-construcciones-1095258.jpg",
+            button: "/construcciones"
         },
         {
             id: "article-4",
             title: "Contáctanos y descubre cómo podemos hacer realidad tu próximo proyecto.",
-            image:"https://upload.wikimedia.org/wikipedia/commons/d/de/Quebrada_en_El_Infiernillo-_Tucum%C3%A1n.JPG"
+            image:"https://upload.wikimedia.org/wikipedia/commons/d/de/Quebrada_en_El_Infiernillo-_Tucum%C3%A1n.JPG",
+            button: "#contacto"
         },
         {
             id: "article-5",
             title: "Departamentos",
             subtitle: "VIVE CON COMODIDAD",
-            content: "Encuentra el departamento perfecto que se ajuste a tus expectativas y presupuesto.",
-            image: "https://www.kelman.mx/hs-fs/hubfs/Instrumental/Marketing/Comprar%20departamentos%20en%20M%C3%A9rida/Blogs/arthouse-interior-departamento.webp?width=5000&height=2813&name=arthouse-interior-departamento.webp"
+            content: "Encuentra el departamento perfecto que se ajuste a tus expectativas y presupuesto.\nUbicados en zonas céntricas y seguras, nuestros departamentos cuentan con amenidades y servicios exclusivos.",
+            image: "https://www.kelman.mx/hs-fs/hubfs/Instrumental/Marketing/Comprar%20departamentos%20en%20M%C3%A9rida/Blogs/arthouse-interior-departamento.webp?width=5000&height=2813&name=arthouse-interior-departamento.webp",
+            button: "/departamentos"
         }
     ];
 
@@ -93,13 +124,15 @@ const Servicios = () => {
                 <div
                     key={article.id}
                     id={article.id}
-                    className="parallax-container h-[600px] w-full"
+                    className={`parallax-container h-[600px] w-full`}
                     ref={(el) => (parallaxRefs.current[index] = el)}
                     style={{
                         backgroundImage: `url(${article.image})`,
                     }}
                 >
-                    <div className="parallax-content  text-left w-1/2">
+                    <div className={`parallax-content text-left w-1/2 transition-opacity duration-1000 ${
+                        visible[index] ? "opacity-100" : "opacity-0"
+                    }`}>
                         {article.title && (
                             <h2 className="text-2xl font-bold mb-2">{article.title}</h2>
                         )}
@@ -107,6 +140,9 @@ const Servicios = () => {
                             <h4 className="text-xl mb-2">{article.subtitle}</h4>
                         )}
                         {article.content && <>{article.content}</>}
+                        {article.button && (
+                            <button onClick={()=>window.location.href =`${article.button}`}  className="boton-contactanos mt-4 d-block">Ver más</button>
+                        )}
                     </div>
                 </div>
             ))}

@@ -2,7 +2,8 @@ import React from "react";
 import BannerConstrucciones from "./BannerConstrucciones";
 import imgConstruccion from "../../assets/img construcciones/imgconstrucciones.jpg";
 import Contacto from "../Home/Contacto";
-
+import './construccion.css'
+import CardConstruccion from "./CardConstruccion";
 // Imágenes para las 6 tarjetas (asegúrate de tenerlas en las rutas correctas)
 import imgladrillo from "../../assets/img construcciones/cardladrillo.jpg";
 import imgmoderno from "../../assets/img construcciones/cardmoderna.jpg";
@@ -10,6 +11,45 @@ import imgpileta from "../../assets/img construcciones/casapileta.jpg";
 import imgrefaccion from "../../assets/img construcciones/cardrefacciones.jpg";
 import imgduplex from "../../assets/img construcciones/cardduplex.jpg";
 import imgdepa from "../../assets/img construcciones/imgdepartamento.jpg";
+
+const opcionesConstruccion = [
+  {
+    id: 1,
+    titulo: "Construcción de Ladrillos",
+    descripcion: "Construir tu propia casa de ladrillos desde cero tiene muchas ventajas. Puedes elegir la ubicación, el tamaño del lote, y diseñar el hogar acorde a tus gustos, sin limitaciones de una casa preexistente.",
+    imagen: imgladrillo,
+  },
+  {
+    id: 2,
+    titulo: "Diseño Moderno",
+    descripcion: "Construir un dúplex permite adquirir más propiedades a menor costo que una casa unifamiliar del mismo tamaño. Además, brinda la posibilidad de crear estilos diferentes, atrayendo a compradores que buscan algo distinto.",
+    imagen: imgmoderno,
+  },
+  {
+    id: 3,
+    titulo: "Piscinas Personalizadas",
+    descripcion: "Las casas con pileta son cada vez más demandadas por quienes buscan confort, funcionalidad y un valor agregado. Tener una pileta no sólo brinda un espacio de relax, sino que también aporta beneficios a la salud y al medio ambiente.",
+    imagen: imgpileta,
+  },
+  {
+    id: 4,
+    titulo: "Refacciones Rápidas",
+    descripcion: "Realizar refacciones en tu hogar puede aumentar significativamente su valor y funcionalidad. Nuestros expertos te guiarán en cada paso para lograr los mejores resultados.",
+    imagen: imgrefaccion,
+  },
+  {
+    id: 5,
+    titulo: "Duplex de Lujo",
+    descripcion: "Ofrecemos soluciones personalizadas para la construcción de dúplex, optimizando espacios y maximizando el valor de tu inversión.",
+    imagen: imgduplex,
+  },
+  {
+    id: 6,
+    titulo: "Departamentos Modernos",
+    descripcion: "Desarrollamos proyectos de departamentos con diseños modernos y funcionales, adaptados a las necesidades actuales del mercado inmobiliario.",
+    imagen: imgdepa,
+  },
+];
 
 const MainConstrucciones = () => {
 
@@ -29,7 +69,7 @@ const MainConstrucciones = () => {
     <>
       <BannerConstrucciones />
 
-      <div className="container pt-12 mb-28 flex flex-grow">
+      <div className="container pt-12 mb-12 flex flex-grow">
         <div className="ml-12 w-[50%] text-left">
           <p className="pt-10 mb-4">
             <span className="textoDestacado">
@@ -49,7 +89,7 @@ const MainConstrucciones = () => {
           <div className="pt-4 mb-20">
             <button
               onClick={handleScrollToContact}
-              className="bg-slate-500 text-stone-50 font-medium py-2 px-2 rounded text-sm"
+              className="bg-slate-500 text-stone-50 font-medium p-2 text-sm"
             >
               Diseña tu casa con nosotros
             </button>
@@ -60,7 +100,7 @@ const MainConstrucciones = () => {
         </div>
       </div>
 
-      <div className="pt-4">
+      <div>
         <p className="text-5xl">
           <span className="textoDestacado">
             Pasos para realizar el diseño de tu casa
@@ -133,153 +173,18 @@ const MainConstrucciones = () => {
         </p>
       </div>
 
-      {/* Aquí añadimos las tarjetas antes de la sección de contacto */}
-      <div className="flex flex-col items-center mb-20">
-        <p className="text-4xl font-bold mb-8">Algunas Opciones de Construcción</p>
-        {/* Cambiar de Flex a Grid para organizar las tarjetas en 3 columnas */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          
-          {/* card ladrillo */}
-          <div className="max-w-sm bg-white shadow-lg rounded-lg overflow-hidden">
-            <img className="w-full h-48 object-cover" src={imgladrillo} alt="Casa de Ladrillo" />
-            <div className="p-6">
-              <h3 className="text-xl font-bold mb-2">Casa de Ladrillo</h3>
-              <p className="text-gray-700 mb-4">
-                Construir tu propia casa de ladrillos desde cero tiene muchas ventajas. 
-                Puedes elegir la ubicación, el tamaño del lote, y diseñar el hogar 
-                acorde a tus gustos, sin limitaciones de una casa preexistente.
-              </p>
-              <button 
-                onClick={handleScrollToContact}
-                className="bg-slate-500 text-white font-medium py-2 px-4 rounded text-sm hover:bg-slate-600"
-              >
-                Consultar
-              </button>
-            </div>
-          </div>
-
-          {/* card moderna */}
-          <div className="max-w-sm bg-white shadow-lg rounded-lg overflow-hidden">
-            <img className="w-full h-48 object-cover" src={imgmoderno} alt="Dúplex Moderno" />
-            <div className="p-6">
-              <h3 className="text-xl font-bold mb-2">Dúplex Moderno</h3>
-              <p className="text-gray-700 mb-4">
-                Construir un dúplex permite adquirir más propiedades a menor costo 
-                que una casa unifamiliar del mismo tamaño. Además, brinda la posibilidad 
-                de crear estilos diferentes, atrayendo a compradores que buscan algo distinto.
-              </p>
-              <button 
-                onClick={handleScrollToContact}
-                className="bg-slate-500 text-white font-medium py-2 px-4 rounded text-sm hover:bg-slate-600"
-              >
-                Consultar
-              </button>
-            </div>
-          </div>
-
-          {/* card pileta */}
-          <div className="max-w-sm bg-white shadow-lg rounded-lg overflow-hidden">
-            <img className="w-full h-48 object-cover" src={imgpileta} alt="Casa con Pileta" />
-            <div className="p-6">
-              <h3 className="text-xl font-bold mb-2">Casa con Pileta</h3>
-              <p className="text-gray-700 mb-4">
-                Las casas con pileta son cada vez más demandadas por quienes buscan 
-                confort, funcionalidad y un valor agregado. Tener una pileta no sólo 
-                brinda un espacio de relax, sino que también aporta beneficios a la 
-                salud y al medio ambiente.
-              </p>
-              <button 
-                onClick={handleScrollToContact}
-                className="bg-slate-500 text-white font-medium py-2 px-4 rounded text-sm hover:bg-slate-600"
-              >
-                Consultar
-              </button>
-            </div>
-          </div>
-
-          {/* card refaccion */}
-          <div className="max-w-sm bg-white shadow-lg rounded-lg overflow-hidden">
-            <img className="w-full h-48 object-cover" src={imgrefaccion} alt="Refacciones" />
-            <div className="p-6">
-              <h3 className="text-xl font-bold mb-2">Refacciones</h3>
-              <p className="text-gray-700 mb-4">
-                Realizar refacciones en tu hogar puede aumentar significativamente su valor y 
-                funcionalidad. Nuestros expertos te guiarán en cada paso para lograr los 
-                mejores resultados.
-              </p>
-              <button 
-                onClick={handleScrollToContact}
-                className="bg-slate-500 text-white font-medium py-2 px-4 rounded text-sm hover:bg-slate-600"
-              >
-                Consultar
-              </button>
-            </div>
-          </div>
-
-          {/* card duplex */}
-          <div className="max-w-sm bg-white shadow-lg rounded-lg overflow-hidden">
-            <img className="w-full h-48 object-cover" src={imgduplex} alt="Dúplex" />
-            <div className="p-6">
-              <h3 className="text-xl font-bold mb-2">Dúplex</h3>
-              <p className="text-gray-700 mb-4">
-                Ofrecemos soluciones personalizadas para la construcción de dúplex, optimizando 
-                espacios y maximizando el valor de tu inversión.
-              </p>
-              <button 
-                onClick={handleScrollToContact}
-                className="bg-slate-500 text-white font-medium py-2 px-4 rounded text-sm hover:bg-slate-600"
-              >
-                Consultar
-              </button>
-            </div>
-          </div>
-
-          {/* card departamento */}
-          <div className="max-w-sm bg-white shadow-lg rounded-lg overflow-hidden">
-            <img className="w-full h-48 object-cover" src={imgdepa} alt="Departamentos" />
-            <div className="p-6">
-              <h3 className="text-xl font-bold mb-2">Departamentos</h3>
-              <p className="text-gray-700 mb-4">
-                Desarrollamos proyectos de departamentos con diseños modernos y funcionales, 
-                adaptados a las necesidades actuales del mercado inmobiliario.
-              </p>
-              <button 
-                onClick={handleScrollToContact}
-                className="bg-slate-500 text-white font-medium py-2 px-4 rounded text-sm hover:bg-slate-600"
-              >
-                Consultar
-              </button>
-            </div>
-          </div>
-
+      <div className="cards-container mt-24 mb-12">
+          {opcionesConstruccion.map((opcion) => (
+            <CardConstruccion
+              key={opcion.id}
+              titulo={opcion.titulo}
+              descripcion={opcion.descripcion}
+              imagen={opcion.imagen}
+            />
+          ))}
         </div>
-      </div>
-          
 
-      {/* Sección de contacto */}
-      <div id="contacto" className="flex flex-col mb-30">
         <Contacto />
-      </div>
-
-      {/* Flecha hacia arriba */}
-      <div className="flecha flex justify-center mb-10">
-        <button
-          onClick={scrollToTop}
-          className="bg-gray-700 text-white rounded-full p-4 animate-bounce hover:bg-gray-900 transition-shadow duration-200 shadow-md"
-          aria-label="Volver arriba"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none" 
-            viewBox="0 0 24 24" 
-            strokeWidth="2" 
-            stroke="currentColor" 
-            className="w-6 h-6"
-          >
-            <path strokeLinecap="round" strokeLinejoin="round" d="M5 15l7-7 7 7" />
-          </svg>
-        </button>
-      </div>
     </>
   );
 };

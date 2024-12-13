@@ -133,12 +133,7 @@ h1 {
   #article-2, #article-4{
 
     height: 50vh;    
-    color: rgb(230, 229, 229);
-    
-    .parallax-content{
-      padding: 0% 0% 0% 25%;      
-      
-  }
+    color: rgb(230, 229, 229);    
   }
 
 .parallax-content {
@@ -171,4 +166,15 @@ h1 {
   .parallax-content {
     padding: 0 5% 0 10%;
   }
+}
+
+.boton-contactanos{
+  margin-top: 2rem;
+  background-color: var(--azul-oscuro-transparente);
+  color: white;
+  border: none;
+  padding: 10px 20px; 
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
 }

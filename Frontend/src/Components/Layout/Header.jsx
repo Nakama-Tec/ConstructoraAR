@@ -16,8 +16,8 @@ const navigationItems = [
   { name: "Construcciones", href: "/construcciones" },
   { name: "Departamentos", href: "/departamentos" },
   { name: "Institucional", href: "/institucional" },
-  // Cambiamos la ruta de contacto por un ancla interna
   { name: "Contacto", href: "#contacto" },
+  { name: "Acceso", href: "/login" },
 ];
 
 function classNames(...classes) {

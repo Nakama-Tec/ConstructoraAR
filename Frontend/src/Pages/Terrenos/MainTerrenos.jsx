@@ -53,7 +53,7 @@ const MainTerrenos = () => {
           <div className="pt-4 mb-20">
             <button
               onClick={handleScrollToImages}
-              className="bg-slate-500 text-stone-50 font-medium py-2 px-2 rounded text-lg"
+              className="bg-slate-500 text-stone-50 font-medium py-2 px-2 text-lg"
             >
               Ver terrenos disponibles
             </button>
@@ -97,7 +97,7 @@ const MainTerrenos = () => {
             <div className="flex justify-end mt-4">
               <button 
                 onClick={handleScrollToContact} 
-                className="bg-orange-500 hover:bg-orange-600 text-white font-medium py-2 px-4 rounded"
+                className="bg-orange-500 hover:bg-orange-600 text-white font-medium py-2 px-4 "
               >
                 Contactar
               </button>
@@ -140,7 +140,7 @@ const MainTerrenos = () => {
             <div className="flex justify-end mt-4">
               <button 
                 onClick={handleScrollToContact}
-                className="bg-orange-500 hover:bg-orange-600 text-white font-medium py-2 px-4 rounded"
+                className="bg-orange-500 hover:bg-orange-600 text-white font-medium py-2 px-4 "
               >
                 Contactar
               </button>
@@ -183,7 +183,7 @@ const MainTerrenos = () => {
             <div className="flex justify-end mt-4">
               <button 
                 onClick={handleScrollToContact}
-                className="bg-orange-500 hover:bg-orange-600 text-white font-medium py-2 px-4 rounded"
+                className="bg-orange-500 hover:bg-orange-600 text-white font-medium py-2 px-4 "
               >
                 Contactar
               </button>
