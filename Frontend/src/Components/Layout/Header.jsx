@@ -17,6 +17,7 @@ const navigationItems = [
   { name: "Departamentos", href: "/departamentos" },
   { name: "Institucional", href: "/institucional" },
   { name: "Contacto", href: "/contacto" },
+  { name: "Acceso", href: "/login" },
 ];
 
 function classNames(...classes) {
