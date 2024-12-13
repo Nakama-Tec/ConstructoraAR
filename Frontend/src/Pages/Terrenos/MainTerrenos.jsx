@@ -45,10 +45,10 @@ const MainTerrenos = () => {
             />
           </div>
         </div>
-        <div className="ml-80 pt-60">
-          <h3 className="text-lg font-semibold">Lules Tucuman</h3>
-          <p className="mt-2">NUEVO MUNDO - BARRIO PRIVADO</p>
-          <button className="mt-4 text-blue-500 hover:underline">
+        <div className="ml-60 pt-60">
+          <h3 className="text-4xl font-semibold">Lules Tucuman</h3>
+          <p className="mt-2 text-lg">NUEVO MUNDO - BARRIO PRIVADO</p>
+          <button className="mt-4 text-lg text-blue-500 hover:underline">
             Ver más
           </button>
         </div>
@@ -80,10 +80,10 @@ const MainTerrenos = () => {
             />
           </div>
         </div>
-        <div className="ml-80 pt-60">
-          <h3 className="text-lg font-semibold">Lules Tucuman</h3>
-          <p className="mt-2">LA ARBOLEDA COUNTRY CLUB</p>
-          <button className="mt-4 text-blue-500 hover:underline">
+        <div className="ml-60 pt-60">
+          <h3 className="text-4xl font-semibold">Lules Tucuman</h3>
+          <p className="mt-2 text-lg">LA ARBOLEDA COUNTRY CLUB</p>
+          <button className="mt-4 text-lg text-blue-500 hover:underline">
             Ver más
           </button>
         </div>
@@ -115,10 +115,10 @@ const MainTerrenos = () => {
             />
           </div>
         </div>
-        <div className="ml-80 pt-60">
-          <h3 className="text-lg font-semibold">Tafi viejo Tucuman</h3>
-          <p className="mt-2">RUTA 341 </p>
-          <button className="mt-4 text-blue-500 hover:underline">
+        <div className="ml-60 pt-60">
+          <h3 className="text-4xl font-semibold">Tafi viejo Tucuman</h3>
+          <p className="mt-2 text-lg">RUTA 341 </p>
+          <button className="mt-4 text-lg text-blue-500 hover:underline">
             Ver más
           </button>
         </div>

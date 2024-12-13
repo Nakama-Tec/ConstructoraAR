@@ -1,13 +1,10 @@
 import React from 'react';
+// Importa las imágenes locales
+import banner from '../../assets/img construcciones/banner.jpg';
 
     import { useEffect, useState } from 'react';
 
-    const images = [
-        'https://canalc.com.ar/wp-content/uploads/2024/01/construir-una-casa-desde-cero.jpg',
-        'https://www.google.com/url?sa=i&url=https%3A%2F%2Fmaxacero.com%2Fblog%2F14-pasos-para-la-construccion-de-una-casa-guia-desde-cero%2F&psig=AOvVaw0yLo5GV9dnwSKR1zd_2s8z&ust=1734012344584000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCPCirMDxn4oDFQAAAAAdAAAAABAK',
-        'https://www.salta.gob.ar/public/images/noticias/77961-avanza-la-construccion-de-100-viviendas-en-oran.jpg',
-        'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.shutterstock.com%2Fes%2Fsearch%2Fconstrucci%25C3%25B3n-de-la-casa&psig=AOvVaw0yLo5GV9dnwSKR1zd_2s8z&ust=1734012344584000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCPCirMDxn4oDFQAAAAAdAAAAABAd'
-    ];
+    const images = [banner];
 
     const BannerConstrucciones = () => {
         const [currentIndex, setCurrentIndex] = useState(0);
@@ -30,6 +27,9 @@ import React from 'react';
                 <div className=" textoBannerPrincipal">
                     <p>Construimos tu <span className='textoDestacado'>sueño.</span ></p>
                     <p> Construí con <span className='textoDestacado'>nosotros.</span></p>
+                    <button className="bg-white text-black font-medium py-2 px-4 rounded text-lg">
+  Solicitar Presupuesto
+</button>
                 </div>
                 </div>
             ))}
