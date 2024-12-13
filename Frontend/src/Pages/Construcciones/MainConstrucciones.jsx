@@ -16,37 +16,37 @@ const opcionesConstruccion = [
   {
     id: 1,
     titulo: "Construcción de Ladrillos",
-    descripcion: "Construcción sólida y duradera utilizando materiales de alta calidad.",
+    descripcion: "Construir tu propia casa de ladrillos desde cero tiene muchas ventajas. Puedes elegir la ubicación, el tamaño del lote, y diseñar el hogar acorde a tus gustos, sin limitaciones de una casa preexistente.",
     imagen: imgladrillo,
   },
   {
     id: 2,
     titulo: "Diseño Moderno",
-    descripcion: "Espacios contemporáneos adaptados a tus necesidades y estilo de vida.",
+    descripcion: "Construir un dúplex permite adquirir más propiedades a menor costo que una casa unifamiliar del mismo tamaño. Además, brinda la posibilidad de crear estilos diferentes, atrayendo a compradores que buscan algo distinto.",
     imagen: imgmoderno,
   },
   {
     id: 3,
     titulo: "Piscinas Personalizadas",
-    descripcion: "Piscinas diseñadas a medida para tu hogar, integradas en el entorno.",
+    descripcion: "Las casas con pileta son cada vez más demandadas por quienes buscan confort, funcionalidad y un valor agregado. Tener una pileta no sólo brinda un espacio de relax, sino que también aporta beneficios a la salud y al medio ambiente.",
     imagen: imgpileta,
   },
   {
     id: 4,
     titulo: "Refacciones Rápidas",
-    descripcion: "Servicios de refacción eficientes para mantener tu propiedad en óptimas condiciones.",
+    descripcion: "Realizar refacciones en tu hogar puede aumentar significativamente su valor y funcionalidad. Nuestros expertos te guiarán en cada paso para lograr los mejores resultados.",
     imagen: imgrefaccion,
   },
   {
     id: 5,
     titulo: "Duplex de Lujo",
-    descripcion: "Viviendas duplex con acabados de lujo y diseño innovador.",
+    descripcion: "Ofrecemos soluciones personalizadas para la construcción de dúplex, optimizando espacios y maximizando el valor de tu inversión.",
     imagen: imgduplex,
   },
   {
     id: 6,
     titulo: "Departamentos Modernos",
-    descripcion: "Departamentos en alquiler con todas las comodidades y ubicados en zonas estratégicas.",
+    descripcion: "Desarrollamos proyectos de departamentos con diseños modernos y funcionales, adaptados a las necesidades actuales del mercado inmobiliario.",
     imagen: imgdepa,
   },
 ];
@@ -89,7 +89,7 @@ const MainConstrucciones = () => {
           <div className="pt-4 mb-20">
             <button
               onClick={handleScrollToContact}
-              className="bg-slate-500 text-stone-50 font-medium py-2 px-2 rounded text-sm"
+              className="bg-slate-500 text-stone-50 font-medium p-2 text-sm"
             >
               Diseña tu casa con nosotros
             </button>
@@ -100,7 +100,7 @@ const MainConstrucciones = () => {
         </div>
       </div>
 
-      <div className="pt-4">
+      <div>
         <p className="text-5xl">
           <span className="textoDestacado">
             Pasos para realizar el diseño de tu casa
@@ -173,7 +173,7 @@ const MainConstrucciones = () => {
         </p>
       </div>
 
-      <div className="cards-container">
+      <div className="cards-container mt-24 mb-12">
           {opcionesConstruccion.map((opcion) => (
             <CardConstruccion
               key={opcion.id}

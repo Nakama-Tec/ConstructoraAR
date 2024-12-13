@@ -9,7 +9,7 @@ const CardConstruccion = ({ titulo, descripcion, imagen }) => {
         <h3 className="card-titulo">{titulo}</h3>
         <p className="card-descripcion">{descripcion}</p>
       </div>
-      <button className="card-boton">Ver más</button>
+      <a className="card-boton" href="#contacto">Consultar</a>
     </div>
   );
 };

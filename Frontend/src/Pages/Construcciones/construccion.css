@@ -35,7 +35,7 @@
   .card-descripcion {
     font-size: 1rem;
     color: #555;
-    
+    text-align: left;
   }
 
   .cards-container {
@@ -47,7 +47,7 @@
   }
 
   .card-boton{
-    background-color: var(--azul-oscuro);
+    background-color: var(--azul);
     border: none;
     color: whitesmoke;
     padding: 10px 20px;
