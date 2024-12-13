@@ -9,7 +9,7 @@ import img004 from "../../assets/img terrenos/img004.jpg";
 import img0002 from "../../assets/img terrenos/img0002.jpg";
 import img0003 from "../../assets/img terrenos/img0003.jpg";
 import img0004 from "../../assets/img terrenos/img0004.jpg";
-import blogpost1 from "../../../public/imgs/blogpost1.avif";
+
 
 const MainTerrenos = () => {
   const firstImagesRef = useRef(null);
@@ -60,8 +60,7 @@ const MainTerrenos = () => {
           </div>
         </div>
         <div  className="pt-10 ml-48 w-[35%] mb-24">
-          <img src={blogpost1} alt="Imagen ilustrativa" />
-        </div>
+        <img src="/imgs/blogpost1.avif" alt="Imagen ilustrativa" />        </div>
       </div >
       <div ref={firstImagesRef} className=""></div>
       <br />
