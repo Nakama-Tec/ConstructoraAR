@@ -63,7 +63,7 @@ const createCertificado = (req, res) => {
             ${valorredeterminacion},
             ${fechaRedeterminacion ? `'${fechaRedeterminacion}'` : "NULL"},
             ${id_obra},
-            ${activoCert}
+            '1'
         )
     `;
 

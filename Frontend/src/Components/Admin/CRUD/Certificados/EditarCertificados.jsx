@@ -3,7 +3,7 @@ import Swal from 'sweetalert2';
 import axios from 'axios';
 import useAuthStore from '../../../../Context/useAuthStore';
 import useRegistroStore from '../../../../Context/useRegistroStore';
-import { URL_CERTIFICADOS_EDITAR, URL_CLIENTES_EDITAR } from '../../../../Constants/endpoints-API';
+import { URL_CERTIFICADOS_EDITAR } from '../../../../Constants/endpoints-API';
 
 const EditarCertificados = ({ onCertificadoEditado }) => {
   const { registroSeleccionado, clearRegistroSeleccionado } = useRegistroStore();
@@ -57,7 +57,7 @@ const EditarCertificados = ({ onCertificadoEditado }) => {
       </select>
        <br>
         <br>
-        <label><b>Valor Determinacion</b></label> 
+        <label><b>Valor Redeterminacion</b></label> 
         <br>
       <input id="valorredeterminacion" class="swal2-input" value="${registroSeleccionado.valorredeterminacion}" />
          <br>

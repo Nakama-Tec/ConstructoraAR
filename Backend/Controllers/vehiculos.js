@@ -22,7 +22,7 @@ const singleVehiculo = (req, res) => {
 const createVehiculo = (req, res) => {
     const {marcaVehiculo, patenteVehiculo, tipoVehiculo, seguroVehiculo} = req.body
 
-    const query = `insert into Vehiculos (marcaVehiculo, patenteVehiculo, tipoVehiculo, seguroVehiculo, activoVehiculo) values("${marcaVehiculo}","${patenteVehiculo}","${tipoVehiculo}","${seguroVehiculo}",1)`
+    const query = `insert into Vehiculos (marcaVehiculo, patenteVehiculo, tipoVehiculo, seguroVehiculo) values("${marcaVehiculo}","${patenteVehiculo}","${tipoVehiculo}","${seguroVehiculo}")`
     conection.query(query, (err,results) => {
         if(err) throw err 
         res.send(results)
@@ -33,7 +33,7 @@ const editVehiculo = (req, res) => {
     const id = req.params.id
     console.log(req.body);
     const {marcaVehiculo,patenteVehiculo, tipoVehiculo, seguroVehiculo} = req.body
-    const query = `update Vehiculos set marcaVehiculo="${marcaVehiculo}",patenteVehiculo="${patenteVehiculo}", tipoVehiculo="${tipoVehiculo}",seguroVehiculo="${seguroVehiculo}",activoVehiculo=1 where id_vehiculo=${id}`
+    const query = `update Vehiculos set marcaVehiculo="${marcaVehiculo}",patenteVehiculo="${patenteVehiculo}", tipoVehiculo="${tipoVehiculo}",seguroVehiculo="${seguroVehiculo}" where id_vehiculo=${id}`
     conection.query(query, (err,results) => {
         if(err) throw err
         res.send(results)

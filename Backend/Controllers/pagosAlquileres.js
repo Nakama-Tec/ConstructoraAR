@@ -1,14 +1,15 @@
 const { conection } = require("../DB/Config")
 
 const allPagosAlquileres = (req, res) => {
-    const query = `select P.id_pagoAlquiler, P.FechaPagoAlquiler, P.MontoPagoAlquiler, C.NombreCliente, C.ApellidoCliente, D.NombreDepartamento 
+    const query = `select P.id_pagoAlquiler, P.FechaPagoAlquiler, A.id_alquilerDepto, P.MontoPagoAlquiler, C.NombreCliente, C.ApellidoCliente, D.NombreDepartamento
     from PagosAlquileres P
     join AlquilerDepartamentos A
     on A.id_alquilerDepto = P.id_alquilerDepto
     join Clientes C
     on C.id_cliente = A.id_cliente
     join Departamentos D
-    on D.id_departamento = A.id_departamento;`;
+    on D.id_departamento = A.id_departamento
+    where activoPagoAlquiler=1;`;
     conection.query(query, (err, results) => {
         if (err) throw err;
         res.json(results);
@@ -26,8 +27,8 @@ const singlePagoAlquiler = (req, res) => {
 
 const editPagosAlquileres = (req, res) => {
     const id = req.params.id
-    const {fechaPagoAlquiler, montoPagoAlquiler } = req.body;
-    const query = `update PagosAlquileres set fechaPagoAlquiler='${fechaPagoAlquiler}', montoPagoAlquiler='${montoPagoAlquiler}', activoPagoAlquiler=1 where id_pagoAlquiler=${id};`;
+    const {fechaPagoAlquiler, montoPagoAlquiler} = req.body;
+    const query = `update PagosAlquileres set fechaPagoAlquiler='${fechaPagoAlquiler}', montoPagoAlquiler='${montoPagoAlquiler}' where id_pagoAlquiler=${id};`;
     conection.query(query, (err, results) => {
         if (err) throw err;
         res.send(results);

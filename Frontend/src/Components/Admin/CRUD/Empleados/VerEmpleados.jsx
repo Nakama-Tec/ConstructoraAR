@@ -23,15 +23,15 @@ const VerEmpleados = ({ onEmpleadoVer }) => {
                 </tr>
                 <tr>
                   <th style="padding: 8px; border-bottom: 1px solid #ddd; text-align: right;">DNI:</th>
-                  <td style="padding: 8px; border-bottom: 1px solid #ddd;">${verRegistroSeleccionado.DNIEmpleado}</td>
+                  <td style="padding: 8px; border-bottom: 1px solid #ddd;">${verRegistroSeleccionado.dniEmpleado}</td>
                 </tr>
                 <tr>
                   <th style="padding: 8px; border-bottom: 1px solid #ddd; text-align: right;">Télefono:</th>
-                  <td style="padding: 8px; border-bottom: 1px solid #ddd;">${verRegistroSeleccionado.telefono}</td>
+                  <td style="padding: 8px; border-bottom: 1px solid #ddd;">${verRegistroSeleccionado.telefonoEmpleado}</td>
                 </tr>
                 <tr>
                   <th style="padding: 8px; border-bottom: 1px solid #ddd; text-align: right;">Dirección:</th>
-                  <td style="padding: 8px; border-bottom: 1px solid #ddd;">${verRegistroSeleccionado.direccion}</td>
+                  <td style="padding: 8px; border-bottom: 1px solid #ddd;">${verRegistroSeleccionado.direccionEmpleado}</td>
                 </tr>
               </tbody>
             </table>
