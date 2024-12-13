@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useTable } from "react-table"; // npm install react-table
 import "../../../../Styles/CashFlowTable.css"; // Asegúrate de usar esta hoja de estilos
-import { useEffect, useState } from 'react';
 import { URL_FLUJO_CAJA } from '../../../../Constants/endpoints-API';
 import useAuthStore from '../../../../Context/useAuthStore';
 import axios from 'axios';
@@ -23,8 +22,6 @@ const MainCaja = () => {
   // setFechaFin(`${año}-01-31`);
 
   // Estado para las fechas inicializado con la fecha actual
-  const [fechaInicio, setFechaInicio] = useState(obtenerFechaActual);
-  const [fechaFin, setFechaFin] = useState(obtenerFechaActual);
 
   // Configurar fecha por defecto cuando el componente se monta
   useEffect(() => {
