@@ -10,12 +10,25 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@emailjs/browser": "^4.4.1",
+    "@fortawesome/fontawesome-free": "^6.6.0",
+    "@headlessui/react": "^2.2.0",
+    "@heroicons/react": "^2.1.5",
     "@tanstack/react-table": "^8.20.5",
     "axios": "^1.7.7",
+    "bootstrap": "^5.3.3",
+    "bootstrap-icons": "^1.11.3",
+    "emailjs": "^4.0.3",
+    "emailjs-com": "^3.2.0",
     "react": "^18.3.1",
+    "react-bootstrap": "^2.10.6",
     "react-dom": "^18.3.1",
+    "react-hook-form": "^7.54.0",
     "react-pro-sidebar": "^1.1.0",
     "react-router-dom": "^6.28.0",
+    "react-slick": "^0.30.2",
+    "slick-carousel": "^1.8.1",
+    "sweetalert2": "^11.14.5",
     "zustand": "^5.0.1"
   },
   "devDependencies": {
@@ -23,11 +36,14 @@
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "@vitejs/plugin-react": "^4.3.1",
+    "autoprefixer": "^10.4.20",
     "eslint": "^9.8.0",
     "eslint-plugin-react": "^7.35.0",
     "eslint-plugin-react-hooks": "^5.1.0-rc.0",
     "eslint-plugin-react-refresh": "^0.4.9",
     "globals": "^15.9.0",
+    "postcss": "^8.4.49",
+    "tailwindcss": "^3.4.14",
     "vite": "^5.4.0"
   }
 }
