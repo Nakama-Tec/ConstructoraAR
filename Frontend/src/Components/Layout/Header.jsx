@@ -16,7 +16,7 @@ const navigationItems = [
   { name: "Construcciones", href: "/construcciones" },
   { name: "Departamentos", href: "/departamentos" },
   { name: "Institucional", href: "/institucional" },
-  { name: "Contacto", href: "#contacto" },
+  { name: "Contacto", href: document.querySelector("#contacto") ? "#contacto" : "/contacto" },
   { name: "Acceso", href: "/login" },
 ];
 
