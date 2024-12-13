@@ -20,8 +20,8 @@ const MainTerrenos = () => {
       <BannerTerrenos />
 
       {/* Primer conjunto de imágenes */}
-      <div className="mt-8 flex ml-4 mb-10">
-        <div className="flex flex-col w-[30%]">
+      <div className="mt-8 flex ml-10 mb-10">
+        <div className="flex flex-col w-[50%]">
           <img
             src={img01}
             alt="Imagen principal"
@@ -45,7 +45,7 @@ const MainTerrenos = () => {
             />
           </div>
         </div>
-        <div className="ml-80 pt-20">
+        <div className="ml-80 pt-60">
           <h3 className="text-lg font-semibold">Lules Tucuman</h3>
           <p className="mt-2">NUEVO MUNDO - BARRIO PRIVADO</p>
           <button className="mt-4 text-blue-500 hover:underline">
@@ -55,8 +55,8 @@ const MainTerrenos = () => {
       </div>
 
       {/* Segundo conjunto de imágenes */}
-      <div className="mt-20 flex ml-4 mb-10">
-        <div className="flex flex-col w-[30%]">
+      <div className="mt-20 flex ml-10 mb-10">
+        <div className="flex flex-col w-[50%]">
           <img
             src={img001}
             alt="Imagen principal"
@@ -80,7 +80,7 @@ const MainTerrenos = () => {
             />
           </div>
         </div>
-        <div className="ml-80 pt-20">
+        <div className="ml-80 pt-60">
           <h3 className="text-lg font-semibold">Lules Tucuman</h3>
           <p className="mt-2">LA ARBOLEDA COUNTRY CLUB</p>
           <button className="mt-4 text-blue-500 hover:underline">
@@ -90,8 +90,8 @@ const MainTerrenos = () => {
       </div>
 
       
-      <div className="mt-8 flex ml-4 mb-10">
-        <div className="flex flex-col w-[30%]">
+      <div className="mt-8 flex ml-10 mb-10">
+        <div className="flex flex-col w-[50%]">
           <img
             src={img0001}
             alt="Imagen principal"
@@ -115,7 +115,7 @@ const MainTerrenos = () => {
             />
           </div>
         </div>
-        <div className="ml-80 pt-20">
+        <div className="ml-80 pt-60">
           <h3 className="text-lg font-semibold">Tafi viejo Tucuman</h3>
           <p className="mt-2">RUTA 341 </p>
           <button className="mt-4 text-blue-500 hover:underline">
