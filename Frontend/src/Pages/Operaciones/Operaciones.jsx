@@ -7,7 +7,7 @@ const Operaciones = () => {
     <>
     <HeaderAdmin/>
     <MainOperaciones/>
-    <FooterAdmin />
+    
     </>
   )
 }

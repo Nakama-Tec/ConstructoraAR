@@ -40,6 +40,7 @@ import Contacto from './Pages/Home/Contacto';
 import { useEffect } from 'react'
 
 const ScrollToTop = () => {
+  
   const location = useLocation();
   useEffect(() => {
     window.scrollTo(0, 0); // Restaura el scroll al inicio de la página
@@ -48,16 +49,14 @@ const ScrollToTop = () => {
   return null; // No renderiza nada, solo realiza la acción del scroll
 };
 
-function App() {
-const roleRequired = "admin" //rol requerido para acceder a las rutas protegidas
+const MainContent = () => {
+  const roleRequired = "admin" //rol requerido para acceder a las rutas protegidas
+  const location = useLocation();
+  const isAdminPath = location.pathname.startsWith("/Admin");
+return (
+  <main className={`${!isAdminPath ? 'contenedor-main' : ''}`}>   
 
-
-  return (
-// v7_startTransition: true, v7_relativeSplatPath: true permite que la aplicacion use el nuevo manejo de estado y rutas relativas que se implementarán en React Router v7.
-    <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}> 
-      <Header />
-      <main>
-      <ScrollToTop />
+ 
       <Routes>
         {/* Rutas públicas en estas rutas pueden ingresar usuario comun sin problema es lo que pueden ver y hacer*/}
         <Route path={HOME} element={<Home/>} />
@@ -99,8 +98,19 @@ const roleRequired = "admin" //rol requerido para acceder a las rutas protegidas
         <Route path='/departamentos' element={<MainDepartamento/>} />
         <Route path='/construcciones' element={<MainConstrucciones/>} />
         </Routes>
+        </main>
+        )
+}
 
-      </main>
+function App() {
+
+
+  return (
+// v7_startTransition: true, v7_relativeSplatPath: true permite que la aplicacion use el nuevo manejo de estado y rutas relativas que se implementarán en React Router v7.
+    <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}> 
+      <Header />
+        <ScrollToTop />
+        <MainContent />     
       <Footer/>
     </BrowserRouter>
   )

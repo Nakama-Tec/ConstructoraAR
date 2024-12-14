@@ -7,7 +7,7 @@ const Empleados = () => {
     <>
     <HeaderAdmin/>
      <MainEmpleados /> 
-     <FooterAdmin />
+     
     </>
   )
 }

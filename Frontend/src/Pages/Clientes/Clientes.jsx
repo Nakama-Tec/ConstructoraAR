@@ -7,7 +7,7 @@ const Clientes = () => {
     <div>
       <HeaderAdmin/>
       <MainClientes/>
-      <FooterAdmin/>
+      
     </div>
   )
 }

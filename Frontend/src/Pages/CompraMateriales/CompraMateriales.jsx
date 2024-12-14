@@ -6,8 +6,7 @@ const CompraMateriales = () => {
   return (
     <>
     <HeaderAdmin/>
-    <MainCompraMateriales/>
-    <FooterAdmin />
+    <MainCompraMateriales/>        
     </>
   )
 }

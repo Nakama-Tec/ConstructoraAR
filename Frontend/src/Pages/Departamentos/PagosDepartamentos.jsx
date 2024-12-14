@@ -7,7 +7,7 @@ const PagosDepartamentos = () => {
     <>
     <HeaderAdmin/>
      <MainPagosDeptos /> 
-     <FooterAdmin />
+     
     </>
   )
 }

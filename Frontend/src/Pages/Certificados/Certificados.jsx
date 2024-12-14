@@ -8,7 +8,7 @@ const Certificados = () => {
     <>
         <HeaderAdmin/>
         <MainCertificados/>
-        <FooterAdmin />
+        
     </>
   )
 }

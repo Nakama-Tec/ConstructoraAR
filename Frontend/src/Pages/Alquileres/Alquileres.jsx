@@ -8,7 +8,7 @@ const Alquileres = () => {
     <>
     <HeaderAdmin/>
     <MainAlquiler />
-    <FooterAdmin/>
+    
     </>
   )
 }
