@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { useState } from "react";
 import { Form } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
@@ -6,6 +7,12 @@ import useAuthStore from "../../Context/useAuthStore";
 import { URL_LOGIN } from "../../Constants/endpoints-API";
 import { HOME_SISTEMA_GESTION } from "../../Routes/routes";
 import Swal from 'sweetalert2';
+=======
+import { useState } from 'react'
+import axios from 'axios'
+import {useNavigate} from 'react-router-dom'
+import "./login.css";
+>>>>>>> dev
 
 const LoginPage = () => {
   const [nombreUsuario, setNombreUsuario] = useState("");

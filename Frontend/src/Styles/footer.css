@@ -1,0 +1,132 @@
+footer {  
+  margin-top: auto;
+}
+
+footer .fas{
+  margin-right: 1rem;
+  min-width: 10%;
+}
+
+footer .container{
+  justify-content: center;
+  align-items: center;
+}
+
+footer .info-contenedor{
+  display: flex;  
+  flex-direction: column;
+  width: 100%;
+  iframe{
+    width: 100%;    
+    }  
+}
+
+footer .informacion{
+  display: flex;
+  flex-direction: row;     
+  justify-content: start;
+  align-items: center;
+  margin: 0.5rem 0;
+}
+
+footer .columnas-footer{
+  width: 30%;
+}
+
+
+
+footer .social-icon {
+    display: inline-block;
+    width: 40px; /* Ajusta el tamaño según sea necesario */
+    height: 40px;
+    line-height: 40px;
+    border-radius: 50%;
+    border: 2px dotted white;
+    text-align: center;
+    color: white;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  footer .social-icon:hover {
+    background-color: white;
+    color: #1f2937; /* Cambia esto según el color que desees al pasar el mouse */
+  }
+
+  @media (max-width: 768px) {
+    footer {
+      text-align: center;
+      padding: 20px;
+    }
+    footer .container{      
+      gap: 10px;            
+    }
+
+    footer .columnas-footer{
+      width: 100%;
+    }
+
+    footer .social-icon {
+      width: 30px;
+      height: 30px;
+      line-height: 30px;
+      margin: 0 5px;
+    }
+
+    footer iframe{
+      
+      width: 70vw;
+      
+      margin: 3rem 0;
+    }
+    .informacion p{      
+      font-size: 0.8rem;      
+    }
+
+
+  }
+
+  @media (max-width: 480px) {
+    footer .container{
+      flex-direction: column;
+      padding: 0;
+      margin: 0;
+      justify-content: center;
+      align-items: center;      
+    }
+    .informacion{
+      display: flex;
+      flex-direction: row;     
+      justify-content: center;
+      align-items: center;
+      margin: 0.5rem 0;
+    }
+
+    .info-contenedor{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      iframe{      
+        
+        height: 200;
+        margin: 3rem 0;
+      }
+    }
+
+    .informacion p{
+      text-wrap: nowrap;
+      font-size: 0.8rem;      
+    }
+
+    footer .social-icon {
+      width: 25px;
+      height: 25px;
+      line-height: 25px;
+      margin: 0 3px;
+    }
+    footer .fas{
+      min-width: 0%;
+    }
+  }
+
+  
