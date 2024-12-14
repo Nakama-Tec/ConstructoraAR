@@ -33,7 +33,7 @@ const Header = () => {
         {({ open }) => (
           <>
             <div className="contenedor-nav">
-              <div className="relative flex h-16">
+              <div className=" contenedor-nav relative flex h-16">
                 <div className="flex items-center">
                   <img className="logo h-40 w-auto " src={logo} alt="Logo" />
                 </div>
