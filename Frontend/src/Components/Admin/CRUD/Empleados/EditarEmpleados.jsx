@@ -26,17 +26,17 @@ const EditarEmpleados = ({ onEmpleadoEditado }) => {
              <br>
              <label><b>DNI</b></label> 
              <br>
-            <input id="dniEmpleado" class="swal2-input" value="${registroSeleccionado.DNIEmpleado}" />
+            <input id="dniEmpleado" class="swal2-input" value="${registroSeleccionado.dniEmpleado}" />
             <br>
              <br>
              <label><b>Direccion</b></label> 
              <br>
-            <input id="direccionEmpleado" class="swal2-input" value="${registroSeleccionado.direccion}" />
+            <input id="direccionEmpleado" class="swal2-input" value="${registroSeleccionado.direccionEmpleado}" />
             <br>
              <br>
              <label><b>Telefono</b></label> 
              <br>
-            <input id="telefonoEmpleado" class="swal2-input" value="${registroSeleccionado.telefono}" />
+            <input id="telefonoEmpleado" class="swal2-input" value="${registroSeleccionado.telefonoEmpleado}" />
 
         `,
         confirmButtonText: 'Enviar',

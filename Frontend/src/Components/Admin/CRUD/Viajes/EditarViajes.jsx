@@ -55,7 +55,7 @@ const EditarViaje = ({ onViajeEditado }) => {
         </select>
           <br>
           <br>
-          <label><b>Obra</b></label> 
+          <label><b>Selecciona la obra</b></label> 
           <br>
         <select id="select_obra" class="swal2-select">
           ${obras

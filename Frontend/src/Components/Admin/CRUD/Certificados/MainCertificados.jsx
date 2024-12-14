@@ -25,6 +25,7 @@ const MainCertificados = () => {
         const response = await axios.get(URL_CERTIFICADOS, {
           headers: { Authorization: `Bearer ${token}` },
         });
+        console.log(response.data)
         setDatos(response.data);
       } catch (error) {
         console.error("Error al obtener certificados:", error);
@@ -63,14 +64,16 @@ const MainCertificados = () => {
   
     const columns = [
       { header: "Nº", accessorKey: "id_certificado" },
-      {
-        header: "Nombre y Apellido",
-        accessorFn: (row) => `${row.nombreCliente} ${row.apellidoCliente}`,
-      },
-      { header: "Razon Social", accessorKey: "razonSocial" },
-      { header: "Condición", accessorKey: "condicionCliente" },
-      { header: "CUIL/CUIT", accessorKey: "cuil_cuit_cliente" },
-      { header: "Teléfono", accessorKey: "telefonoCliente" },
+      // {
+      //   header: "Nombre y Apellido",
+      //   accessorFn: (row) => `${row.nombreCliente} ${row.apellidoCliente}`,
+      // },
+      { header: "Monto", accessorFn: (row) => `$${row.montoCert}.00` },
+      { header: "Fecha de Emisión", accessorKey: "fechaEmisionCert" },
+      { header: "Fecha de Pago", accessorKey: "fechaPagoCert" },
+      { header: "Estado", accessorFn: (row) => (row.estadoCert === 0 ? "Pagado" : "No Pagado") },
+      { header: "Redeterminación", accessorFn: (row) => (row.redeterminacion === 0 ? "Revalorizado" : "No Revalorizado") },
+      { header: "Obra Asociada", accessorKey: "NombreObra" },
       {
         header: "Acciones",
         cell: ({ row }) => (
