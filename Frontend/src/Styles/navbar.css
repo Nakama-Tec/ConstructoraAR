@@ -1,6 +1,10 @@
 header .logo {
     margin-top: 25px; 
 }
+.contenedor-nav{
+    padding: 0 6rem;
+    
+}
 
 header nav{
     height: 4rem;
@@ -10,4 +14,53 @@ header nav{
     background-color: #ffffff;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     z-index: 1000;
+}
+
+@media (max-width: 768px) {
+    .contenedor-nav{
+        padding: 0 1rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+.boton-movil{
+    z-index: 3;
+}
+.lista-desplegable {
+    margin-top: 0px;
+    background-color: var(--azul-oscuro);
+    position: absolute;
+    top: 5vh;
+    z-index: 2;
+    width: 100%;
+    a{
+        border-bottom: 1px solid #ffffff;
+        margin: 0;
+        padding: 0;
+    }
+}
+
+    header .logo {
+        margin-top: 15px;
+    }
+
+    header nav {
+        height: 3.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    header .logo {
+        margin-top: 1.5rem;
+    }
+    .contenedor-nav{
+        width: 100%;
+        justify-content: space-around;
+        padding: 0px 1rem;
+    }
+    header nav {
+        
+        height: 4rem;
+    }
 }

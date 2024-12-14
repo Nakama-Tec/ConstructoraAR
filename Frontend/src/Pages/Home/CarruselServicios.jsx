@@ -51,7 +51,7 @@ const CarruselServicios = () => {
     <div className="Carrousel">
       <div className="container mb-5">
         <div
-          className="overflow-hidden w-full cursor-grab"
+          className="overflow-hidden w-full cursor-grab CardBlog"
           ref={carouselRef}
           onMouseDown={handleMouseDown}
           onMouseLeave={handleMouseLeave}

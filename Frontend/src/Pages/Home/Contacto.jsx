@@ -29,6 +29,7 @@ const Contacto = () => {
           text: "Me contactaré contigo pronto!",
           icon: "success"
         });
+        reset();
       },
       (error) => {
         Swal.fire({

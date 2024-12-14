@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import './servicios.css';
 
 const Servicios = () => {
     const parallaxRefs = useRef([]);
@@ -130,7 +131,7 @@ const Servicios = () => {
                         backgroundImage: `url(${article.image})`,
                     }}
                 >
-                    <div className={`parallax-content text-left w-1/2 transition-opacity duration-1000 ${
+                    <div className={`parallax-content transition-opacity duration-1000 ${
                         visible[index] ? "opacity-100" : "opacity-0"
                     }`}>
                         {article.title && (

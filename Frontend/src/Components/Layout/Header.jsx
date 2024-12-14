@@ -16,7 +16,7 @@ const navigationItems = [
   { name: "Construcciones", href: "/construcciones" },
   { name: "Departamentos", href: "/departamentos" },
   { name: "Institucional", href: "/institucional" },
-  { name: "Contacto", href: "#contacto" },
+  { name: "Contacto", href: "/contacto" },
   { name: "Acceso", href: "/login" },
 ];
 
@@ -32,12 +32,12 @@ const Header = () => {
       <Disclosure as="nav" className="bg-gray-800">
         {({ open }) => (
           <>
-            <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
-              <div className="relative flex h-16 items-center justify-between">
+            <div className="contenedor-nav">
+              <div className=" contenedor-nav relative flex h-16">
                 <div className="flex items-center">
-                  <img className="logo h-40 w-auto" src={logo} alt="Logo" />
+                  <img className="logo h-40 w-auto " src={logo} alt="Logo" />
                 </div>
-                <div className="absolute inset-y-0 right-0 flex items-center md:hidden">
+                <div className="boton-movil absolute inset-y-0 right-0 flex items-center md:hidden">
                   {/* Botón de menú móvil */}
                   <Disclosure.Button className="group relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
                     <span className="sr-only">Open main menu</span>
@@ -49,7 +49,7 @@ const Header = () => {
                   </Disclosure.Button>
                 </div>
                 <div className="flex flex-1 items-center justify-center mx-8">
-                  <div className="hidden md:flex md:space-x-4">
+                  <div className="hidden md:flex md:space-x-4 ms-auto">
                     {navigationItems.map((item) => {
                       const isActive = location.pathname === item.href;
 
@@ -61,7 +61,7 @@ const Header = () => {
                             href={item.href}
                             className={classNames(
                               "text-gray-300 hover:text-white hover:underline",
-                              "px-3 py-2 text-sm font-medium"
+                              " text-sm font-medium"
                             )}
                           >
                             {item.name}
@@ -78,7 +78,7 @@ const Header = () => {
                             isActive
                               ? "text-white underline"
                               : "text-gray-300 hover:text-white hover:underline",
-                            "px-3 py-2 text-sm font-medium"
+                            " text-sm font-medium"
                           )}
                         >
                           {item.name}
@@ -91,7 +91,7 @@ const Header = () => {
             </div>
 
             <Disclosure.Panel className="md:hidden">
-              <div className="space-y-1 px-2 pb-3 pt-2">
+              <div className="lista-desplegable space-y-1 px-2 pb-3 pt-2">
                 {navigationItems.map((item) => {
                   const isActive = location.pathname === item.href;
 
