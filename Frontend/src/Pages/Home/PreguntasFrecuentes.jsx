@@ -21,17 +21,17 @@ const PreguntasFrecuentes = () => {
         <div className="flex justify-center">
             <div className="w-full max-w-2xl">
                 <h2 className="text-2xl font-bold mb-4 text-center">Preguntas Frecuentes</h2>
-                <div className="space-y-4">
+                <div className="space-y-4 preguntas-frecuentes">
                     {faqData.map((item, index) => (
                         <div key={index} className="border-b border-gray-200">
                             <button
-                                className="w-full text-left py-4 focus:outline-none"
+                                className="w-full text-left py-4 focus:outline-none border-bottom border-1 border-dark"
                                 onClick={() => toggleAccordion(index)}
                             >
-                                <span className="font-semibold">{item.question}</span>
+                                <span className="font-semibold ">{item.question}</span>
                             </button>
-                            <div className={`accordion-content ${activeIndex === index ? 'open' : ''}`}>
-                                <p>{item.answer}</p>
+                            <div className={`accordion-content text-left  ${activeIndex === index ? 'open ' : ''}`}>
+                                <p className='py-2'>{item.answer}</p>
                             </div>
                         </div>
                     ))}
