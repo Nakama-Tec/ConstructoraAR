@@ -5,7 +5,7 @@ import {HOME, HOME_SISTEMA_GESTION, CERTIFICADOS,LOGIN,EMPLEADOS, VEHICULOS, FLU
 
 // Paginas
 import Login from './Pages/Login/Login'
-import Home from './Pages/Home/LandingPage/Home'
+import Home from './Pages/Home/Home'
 import FlujoCaja from "./Pages/FlujoCaja/FlujoCaja"
 import LibroDiario from "./Pages/LibroDiario/LibroDiario"
 import Terrenos from "./Pages/Terrenos/Terrenos"
@@ -29,6 +29,8 @@ import PagosDepartamentos from './Pages/Departamentos/PagosDepartamentos'
 import Pendientes from './Pages/Pendientes/Pendientes'
 import Remuneraciones from './Pages/Remuneraciones/Remuneraciones'
 import RecuperarPass from './Pages/RecuperarContraseña/RecuperarPass'
+import Header from './Components/Layout/Header'
+import Footer from './Components/Layout/Footer'
 
 
 function App() {
@@ -36,6 +38,8 @@ const roleRequired = "admin" //rol requerido para acceder a las rutas protegidas
   return (
 // v7_startTransition: true, v7_relativeSplatPath: true permite que la aplicacion use el nuevo manejo de estado y rutas relativas que se implementarán en React Router v7.
     <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}> 
+      <Header/>
+      <main>
       <Routes>
         {/* Rutas públicas en estas rutas pueden ingresar usuario comun sin problema es lo que pueden ver y hacer*/}
         <Route path={HOME} element={<Home/>} />
@@ -74,6 +78,8 @@ const roleRequired = "admin" //rol requerido para acceder a las rutas protegidas
         <Route path='*' element={<Error />} />
         
         </Routes>
+      </main>
+        <Footer />
     </BrowserRouter>
   )
 }

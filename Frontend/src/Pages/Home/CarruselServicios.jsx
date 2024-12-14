@@ -1,4 +1,4 @@
-import React, { useMemo, useRef, useEffect, useState } from "react";
+import { useMemo, useRef, useEffect } from "react";
 import { blogs } from "../../data/data";
 import CardBlog from "../../Components/CardBlog";
 import "./carruselServicios.css";

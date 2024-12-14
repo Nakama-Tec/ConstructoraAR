@@ -1,6 +1,4 @@
-import React from 'react';
-
-    import { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
     const images = [
         'https://www.comunicaciontucuman.gob.ar/fotos/notas/2023/09/26/230926094234_56125.jpeg',
