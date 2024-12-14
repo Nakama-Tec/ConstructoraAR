@@ -195,75 +195,89 @@ useEffect(() => {
 // }, []); 
 
   return (
-    <div>
+<div>
+  <div className="main-caja-container">
+    <div className="content">
+      <h1 className="text-black font-semibold text-4xl mt-5 mb-6 text-center">FLUJO DE CAJA</h1>
+      <p className="text-xl text-gray-700 font-bold mb-3 text-center">Selecciona la fecha</p>
 
- <div className="main-caja-container">
-      
-
-      <div className="content">
-        <h1>Gestión de Fechas</h1>
-
-        <div className="date-selector">
-          <label htmlFor="fechaInicio">Fecha Inicio:</label>
+      <div className="date-selector flex flex-col md:flex-row items-center gap-4 justify-center">
+        <div className="flex flex-col">
+          <label htmlFor="fechaInicio" className="text-sm font-medium mb-1">Fecha Inicio:</label>
           <input
             type="date"
             id="fechaInicio"
             value={fechaInicio}
             onChange={(e) => setFechaInicio(e.target.value)}
+            className="p-2 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none"
           />
+        </div>
 
-          <label htmlFor="fechaFin">Fecha Fin:</label>
+        <div className="flex flex-col">
+          <label htmlFor="fechaFin" className="text-sm font-medium mb-1">Fecha Fin:</label>
           <input
             type="date"
             id="fechaFin"
             value={fechaFin}
             onChange={(e) => setFechaFin(e.target.value)}
+            className="p-2 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none"
           />
         </div>
+      </div>
 
-        <Button variant="primary" onClick={enviarFechaPorPost}>
+      <div className="flex justify-center mt-6">
+        <button
+          onClick={enviarFechaPorPost}
+          className="px-6 py-2 bg-blue-600 text-white font-medium text-sm rounded-md shadow-md hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-1 focus:outline-none"
+        >
           Enviar Fechas
-        </Button>
+        </button>
       </div>
     </div>
+  </div>
 
+  <br />
+  {/* TABLA FLUJO DE CAJA */}
+  <br />
+  <select
+    name="Historial de flujo Caja"
+    id="historial"
+    className="block mx-auto mb-6 p-2 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none"
+  >
+    <option value="1">Año 1</option>
+    <option value="2">Historial 2</option>
+    <option value="3">Historial 3</option>
+  </select>
+  <br/>
 
-
-
-      <br />
-      {/* <b><h2>Fecha Actual : {fechaActual}</h2></b> */}
-      <br />
-      <select name="Historial de flujo Caja" id="historial">
-        <option value="1">Año 1</option>
-        <option value="2">Historial 2</option>
-        <option value="3">Historial 3</option>
-      </select>
-      <b><h2 style={{ textAlign: "center", color: "black" }}>Flujo de Caja</h2></b>
-
-      <table {...getTableProps()} className="cash-flow-table">
-        <thead>
-          {headerGroups.map((headerGroup,index) => (
-            <tr {...headerGroup.getHeaderGroupProps() } key={index}>
-              {headerGroup.headers.map((column,index) => (
-                <th {...column.getHeaderProps()} key={index}>{column.render("Header")}</th>
-              ))}
-            </tr>
+  <table {...getTableProps()} className="cash-flow-table">
+    <thead>
+      {headerGroups.map((headerGroup, index) => (
+        <tr {...headerGroup.getHeaderGroupProps()} key={index}>
+          {headerGroup.headers.map((column, index) => (
+            <th {...column.getHeaderProps()} key={index}>
+              {column.render("Header")}
+            </th>
           ))}
-        </thead>
-        <tbody {...getTableBodyProps()}>
-          {rows.map((row,index) => {
-            prepareRow(row);
-            return (
-              <tr {...row.getRowProps()} className={row.original.style} key={index}>
-                {row.cells.map((cell,index) => (
-                  <td {...cell.getCellProps()} key={index}>{cell.render("Cell")}</td>
-                ))}
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>     
-    </div>
+        </tr>
+      ))}
+    </thead>
+    <tbody {...getTableBodyProps()}>
+      {rows.map((row, index) => {
+        prepareRow(row);
+        return (
+          <tr {...row.getRowProps()} className={row.original.style} key={index}>
+            {row.cells.map((cell, index) => (
+              <td {...cell.getCellProps()} key={index}>
+                {cell.render("Cell")}
+              </td>
+            ))}
+          </tr>
+        );
+      })}
+    </tbody>
+  </table>
+</div>
   );
 };
 

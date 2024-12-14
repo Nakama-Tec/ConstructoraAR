@@ -16,8 +16,12 @@ import {
   FaSignInAlt,
   FaChevronDown,
   FaChevronUp,
+  FaBook,
+  FaFileSignature,
+  FaMapMarkerAlt,
+  FaHandHoldingUsd,
 } from 'react-icons/fa';
-import { ALQUILER, CERTIFICADOS, CLIENTES, COMPRA_MATERIALES, DEPARTAMENTOS, EMPLEADOS, FLUJO_CAJA, OBRAS, OPERACIONES, PAGOS_DPTO, PENDIENTES, REMUNERACIONES, STOCK, TERRENOS, USUARIO, VEHICULOS, VIAJES, VTA_TERRENOS } from '../../Routes/routes';
+import { ALQUILER, CERTIFICADOS, CLIENTES, COMPRA_MATERIALES, DEPARTAMENTOS, EMPLEADOS, FLUJO_CAJA, LIBRO_DIARIO, OBRAS, OPERACIONES, PAGOS_DPTO, PENDIENTES, REMUNERACIONES, STOCK, TERRENOS, USUARIO, VEHICULOS, VIAJES, VTA_TERRENOS } from '../../Routes/routes';
 
 const Aside = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false); // Controla la visibilidad del menú en móviles
@@ -89,6 +93,34 @@ const Aside = () => {
               </Link>
             </li>
 
+            {/* FLUJO CAJA */}
+            <li>
+              <Link
+                to={FLUJO_CAJA}
+                className={`flex items-center px-4 py-2 text-gray-700 hover:bg-gray-200 ${
+                  isActive(FLUJO_CAJA) ? 'bg-gray-200 font-semibold' : ''
+                }`}
+                onClick={() => setIsMenuOpen(false)}
+              >
+                <FaCashRegister className="mr-3" />
+                FLUJO CAJA
+              </Link>
+            </li>
+
+            {/* LIBRO DIARIO */}
+            <li>
+              <Link
+                to={LIBRO_DIARIO}
+                className={`flex items-center px-4 py-2 text-gray-700 hover:bg-gray-200 ${
+                  isActive(LIBRO_DIARIO) ? 'bg-gray-200 font-semibold' : ''
+                }`}
+                onClick={() => setIsMenuOpen(false)}
+              >
+                <FaBook className="mr-3" />
+                LIBRO DIARIO
+              </Link>
+            </li>
+
             {/* TERRENOS */}
             <li>
               <button
@@ -131,20 +163,6 @@ const Aside = () => {
                   </li>
                 </ul>
               )}
-            </li>
-
-            {/* FLUJO CAJA */}
-            <li>
-              <Link
-                to={FLUJO_CAJA}
-                className={`flex items-center px-4 py-2 text-gray-700 hover:bg-gray-200 ${
-                  isActive(FLUJO_CAJA) ? 'bg-gray-200 font-semibold' : ''
-                }`}
-                onClick={() => setIsMenuOpen(false)}
-              >
-                <FaCashRegister className="mr-3" />
-                FLUJO CAJA
-              </Link>
             </li>
 
             {/* COMPRA DE MATERIALES Y STOCK */}
@@ -284,7 +302,7 @@ const Aside = () => {
                 }`}
                 onClick={() => setIsMenuOpen(false)}
               >
-                <FaMoneyCheckAlt className="mr-3" />
+                <FaHandHoldingUsd className="mr-3" />
                 OPERACIONES
               </Link>
             </li>
@@ -298,7 +316,7 @@ const Aside = () => {
                 }`}
                 onClick={() => setIsMenuOpen(false)}
               >
-                <FaTasks className="mr-3" />
+                <FaMapMarkerAlt className="mr-3" />
                 VIAJES
               </Link>
             </li>
@@ -327,7 +345,7 @@ const Aside = () => {
                 onClick={() => setIsMenuOpen(false)}
               >
                 <FaSignInAlt className="mr-3" />
-                USUARIO
+                USUARIOS
               </Link>
             </li>
 
@@ -354,7 +372,7 @@ const Aside = () => {
                 }`}
                 onClick={() => setIsMenuOpen(false)}
               >
-                <FaMoneyCheckAlt className="mr-3" />
+                <FaFileSignature className="mr-3" />
                 CERTIFICADOS
               </Link>
             </li>

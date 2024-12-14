@@ -89,7 +89,7 @@ const VerLibroDiario = () => {
       <Toaster /> {/* Componente para mostrar notificaciones */}
       <br />
       <br />
-      <h2 className="text-center text-black text-4xl">LIBRO DIARIO</h2>
+      <h2 className="text-center text-black font-semibold text-4xl">LIBRO DIARIO</h2>
 {/* Selección de fecha */}
 <div className="flex flex-col mt-5 sm:flex-row items-center justify-center gap-4 mb-6">
   <div className="flex flex-col sm:flex-row items-center gap-2">
