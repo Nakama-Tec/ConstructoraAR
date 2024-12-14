@@ -5,7 +5,7 @@ import {HOME, HOME_SISTEMA_GESTION, CERTIFICADOS,LOGIN,EMPLEADOS, VEHICULOS, FLU
 import "bootstrap/dist/css/bootstrap.min.css";
 // Paginas
 import Login from './Pages/Login/Login'
-import Home from './Pages/Home/LandingPage/Home'
+import Home from './Pages/Home/Home'
 import FlujoCaja from "./Pages/FlujoCaja/FlujoCaja"
 import LibroDiario from "./Pages/LibroDiario/LibroDiario"
 import Terrenos from "./Pages/Terrenos/Terrenos"
@@ -94,7 +94,11 @@ const roleRequired = "admin" //rol requerido para acceder a las rutas protegidas
         { /* Ruta no encontradas */}
 
         <Route path='*' element={<Error />} />
-        <Routes/>
+        <Route path='/contacto' element={<Contacto />} />
+        <Route path='/terrenos' element={<MainTerrenos />} />
+        <Route path='/departamentos' element={<MainDepartamento/>} />
+        <Route path='/construcciones' element={<MainConstrucciones/>} />
+        </Routes>
 
       </main>
       <Footer/>
