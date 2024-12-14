@@ -1,7 +1,60 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+:root {
+  --main-font: 'Satoshi', sans-serif;
+  --azul: rgb(100, 116, 139);
+  --azul-oscuro: rgb(32, 41, 56,1);
+  --azul-oscuro-transparente: rgb(32, 41, 56,0.5);
+  --azul-claro: rgb(220, 234, 253, 1);
+  --negro: rgb(46, 46, 46, 1);
+  --negro-transparente: rgb(46, 46, 46, 0.5);
+}
 
- /* :root {
-  background-color: #dbdbdb;
-} */
+* {
+  font-family: var(--main-font);
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  border: none;
+}
+
+
+html {
+  scroll-behavior: smooth;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+body{
+    font-family: 'Roboto', sans-serif;
+    background-color: #f3f4f6;
+    color: #1f2937;
+}
+
+main{  
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  margin-top: 4rem;  
+}
+
+@keyframes scroll {
+  0%{
+    transform: translateX(0);
+  }
+  100%{
+    transform: translateX(calc(-300px * 4 - 0.5rem * 8));
+  }
+}
+
+.animate-scroll{
+animation: scroll 60s linear infinite;
+
+}
