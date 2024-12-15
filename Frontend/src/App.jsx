@@ -97,6 +97,7 @@ return (
         <Route path='/terrenos' element={<MainTerrenos />} />
         <Route path='/departamentos' element={<MainDepartamento/>} />
         <Route path='/construcciones' element={<MainConstrucciones/>} />
+        <Route path='/institucional' element={<Institucional/>} />
         </Routes>
         </main>
         )
