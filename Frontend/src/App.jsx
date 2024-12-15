@@ -1,6 +1,8 @@
 // Importaciones de librerias
-import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom' // estas librerias permiten el manejo de rutas en la aplicacion
-import {HOME, HOME_SISTEMA_GESTION, CERTIFICADOS,LOGIN,EMPLEADOS, VEHICULOS, FLUJO_CAJA, DETALLEVIAJES, LIBRO_DIARIO,TERRENOS ,STOCK, CLIENTES, DEPARTAMENTOS, OBRAS, OPERACIONES, VIAJES, USUARIO, UNAUTHORIZED, VTA_TERRENOS, PAGOS_DPTO, PENDIENTES, COMPRA_MATERIALES, ALQUILER, REMUNERACIONES, RECUPERAR} from "./Routes/routes"
+
+import { BrowserRouter, Routes, Route } from 'react-router-dom' // estas librerias permiten el manejo de rutas en la aplicacion
+import {HOME, HOME_SISTEMA_GESTION, CERTIFICADOS,CREAR_CERTIFICADOS,LOGIN,EMPLEADOS, VEHICULOS, FLUJO_CAJA, DETALLEVIAJES, LIBRO_DIARIO,TERRENOS ,STOCK, CLIENTES, DEPARTAMENTOS, OBRAS, OPERACIONES, VIAJES, USUARIO, UNAUTHORIZED, VTA_TERRENOS, PAGOS_DPTO, PENDIENTES, COMPRA_MATERIALES, ALQUILER, REMUNERACIONES, RECUPERAR} from "./Routes/routes"
+
 
 import "bootstrap/dist/css/bootstrap.min.css";
 // Paginas
@@ -28,6 +30,7 @@ import VtaTerrenos from './Pages/VtaTerrenos/VtaTerrenos'
 import PagosDepartamentos from './Pages/Departamentos/PagosDepartamentos'
 import Pendientes from './Pages/Pendientes/Pendientes'
 import Remuneraciones from './Pages/Remuneraciones/Remuneraciones'
+import CrearCertificado from './Pages/Certificados/CrearCertificado'
 import RecuperarPass from './Pages/RecuperarContraseña/RecuperarPass'
 
 import MainTerrenos from './Pages/Terrenos/MainTerrenos'
@@ -86,6 +89,7 @@ return (
         <Route path={VIAJES} element={<ProtectedRoute roleRequired={roleRequired}> <Viajes/></ProtectedRoute>} />
         <Route path={ALQUILER} element={<ProtectedRoute roleRequired={roleRequired}> <Alquiler/></ProtectedRoute>} />
         <Route path={CERTIFICADOS} element={<ProtectedRoute roleRequired={roleRequired}> <Certificados/></ProtectedRoute>} />
+        <Route path={CREAR_CERTIFICADOS} element={<ProtectedRoute roleRequired={roleRequired}> <CrearCertificado/></ProtectedRoute>} />
         <Route path={REMUNERACIONES} element={<ProtectedRoute roleRequired={roleRequired}> <Remuneraciones/></ProtectedRoute>} />
         {/* Ruta no autorizada */}
         <Route path={UNAUTHORIZED} element={<div><h3>No autorizado</h3></div>} />

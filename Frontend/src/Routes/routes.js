@@ -4,7 +4,9 @@ export const HOME_SISTEMA_GESTION = "/Admin"
 
 export const LOGIN = "/area-empleados/Login"
 export const RECUPERAR = "/area-empleados/RecuperarContraseña"
+
 export const CERTIFICADOS = "/Admin/Certificados"
+export const CREAR_CERTIFICADOS = "/Admin/CrearCertificados"
 export const HOME_ADMIN = "/HomeAdmin"
 export const FLUJO_CAJA = "/Admin/FlujoCaja"
 export const LIBRO_DIARIO = "/Admin/LibroDiario"
@@ -27,5 +29,6 @@ export const VIAJES = "/Admin/Viajes"
 export const DETALLEVIAJES = "/Admin/DetalleViajes" 
 export const ALQUILER = "/Admin/Alquiler"
 export const REMUNERACIONES = "/Admin/Remuneraciones"
+
 // export const NOT_FOUND = "/notfound"
 

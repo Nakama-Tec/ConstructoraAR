@@ -23,21 +23,29 @@ import {
 } from 'react-icons/fa';
 import { ALQUILER, CERTIFICADOS, CLIENTES, COMPRA_MATERIALES, DEPARTAMENTOS, EMPLEADOS, FLUJO_CAJA, LIBRO_DIARIO, OBRAS, OPERACIONES, PAGOS_DPTO, PENDIENTES, REMUNERACIONES, STOCK, TERRENOS, USUARIO, VEHICULOS, VIAJES, VTA_TERRENOS } from '../../Routes/routes';
 
-const Aside = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false); // Controla la visibilidad del menú en móviles
-  const [openSubmenus, setOpenSubmenus] = useState({}); // Controla la apertura de submenús
-  const location = useLocation();
 
-  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+const AsideLibroDiario = ({ onSeleccionarOpcion }) => {
+    const [isMenuOpen, setIsMenuOpen] = useState(false); // Controla la visibilidad del menú en móviles
+    const [openSubmenus, setOpenSubmenus] = useState({}); // Controla la apertura de submenús
+    const location = useLocation();
+  
+    const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+  
+    const toggleSubmenu = (menu) => {
+      setOpenSubmenus((prev) => ({ ...prev, [menu]: !prev[menu] }));
+    };
+  
+    const isActive = (path) => location.pathname === path;
+  
+    return (
+        
+      <div className='lg, sm:relative bottom-8'>
+<div>
+      <button onClick={() => onSeleccionarOpcion('Certificados')}>Certificados</button>
+      <button onClick={() => onSeleccionarOpcion('Operaciones')}>Operaciones</button>
+      {/* Agrega botones para otras opciones */}
+    </div>
 
-  const toggleSubmenu = (menu) => {
-    setOpenSubmenus((prev) => ({ ...prev, [menu]: !prev[menu] }));
-  };
-
-  const isActive = (path) => location.pathname === path;
-
-  return (
-    <div className='lg, sm:relative bottom-8'>
         {/* Botón de hamburguesa visible solo en móviles */}
         <button className="md:hidden fixed top-4 left-4 z-50 text-2xl text-neutral-500 focus:outline-none" onClick={toggleMenu} aria-label="Toggle menu" >
           <FaBars />
@@ -52,6 +60,8 @@ const Aside = () => {
         <div className={`fixed top-0 left-0 h-full bg-white shadow-lg z-50 transform ${
             isMenuOpen ? 'translate-x-0' : '-translate-x-full'
           } transition-transform duration-300 ease-in-out md:translate-x-0 md:static md:shadow-none w-64`}>
+
+
   
           {/* Menú */}
           <nav className="">
@@ -120,9 +130,7 @@ const Aside = () => {
                   TERRENOS
                   {openSubmenus['terrenos'] ? (
                     <FaChevronUp className="ml-auto" />
-                  ) : (
-                    <FaChevronDown className="ml-auto" />
-                  )}
+                  ) : (<FaChevronDown className="ml-auto" /> )}
                 </button>
                 {openSubmenus['terrenos'] && (
                   <ul className="ml-8">
@@ -368,7 +376,10 @@ const Aside = () => {
                   USUARIOS
                 </Link>
               </li>
-
+  
+            
+  
+             
             </ul>
           </nav>
         </div>
@@ -376,7 +387,4 @@ const Aside = () => {
     );
   };
 
-
-export default Aside;
-
-
+export default AsideLibroDiario
