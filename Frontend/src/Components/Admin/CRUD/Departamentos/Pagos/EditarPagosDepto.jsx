@@ -22,6 +22,8 @@ const EditarPagosDepto = ({ onPagoAlquilerEditado }) => {
            <label><b>Monto Pago Alquiler</b></label> 
            <br>
           <input id="MontoPagoAlquiler" type="number" min="0" class="swal2-input" value="${registroSeleccionado.MontoPagoAlquiler}" />
+          <br>
+          
 
         `,
         confirmButtonText: 'Enviar',

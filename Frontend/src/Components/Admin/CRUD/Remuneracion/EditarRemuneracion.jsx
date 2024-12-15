@@ -13,7 +13,7 @@ const EditarRemuneracion = ({onRemuneracionEditada}) => {
   
     const handleEditarRemuneracion = () => {
       Swal.fire({
-        title: 'Editar Usuario',
+        title: 'Editar Remuneración',
         html: `
             <label><b>Detalle</b></label> 
             <br>
@@ -48,7 +48,7 @@ const EditarRemuneracion = ({onRemuneracionEditada}) => {
             <br>
             <label><b>Fecha Remuneracion</b></label> 
             <br>
-            <input id="fechaRemuneracion" placeholder="Fecha" class="swal2-input" type="date"/>
+            <input id="fechaRemuneracion" placeholder="Fecha" class="swal2-input" type="date" value='${registroSeleccionado.fechaRemuneracion}' />
 
   
   

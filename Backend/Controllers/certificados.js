@@ -34,37 +34,10 @@ const createCertificado = (req, res) => {
     valorredeterminacion,
     fechaRedeterminacion,
     id_obra,
-    activoCert,
   } = req.body;
 
   const query = `
-        INSERT INTO Certificados (
-            montoCert,
-            nroCertificado,
-            fechaEmisionCert,
-            fechaPagoCert,
-            estadoCert,
-            linkFacturaCert,
-            linkFacturaPagadaCert,
-            redeterminacion,
-            valorredeterminacion,
-            fechaRedeterminacion,
-            id_obra,
-            activoCert
-        ) VALUES (
-            ${montoCert},
-            ${nroCertificado},
-            '${fechaEmisionCert}',
-            '${fechaPagoCert}',
-            ${estadoCert},
-            '${linkFacturaCert}',
-            '${linkFacturaPagadaCert}',
-            ${redeterminacion},
-            ${valorredeterminacion},
-            ${fechaRedeterminacion ? `'${fechaRedeterminacion}'` : "NULL"},
-            ${id_obra},
-            ${activoCert}
-        )
+        INSERT INTO Certificados (montoCert, nroCertificado, fechaEmisionCert, fechaPagoCert, estadoCert, linkFacturaCert, linkFacturaPagadaCert, redeterminacion, valorredeterminacion, fechaRedeterminacion, id_obra, activoCert) values(${montoCert},${nroCertificado},'${fechaEmisionCert}', '${fechaPagoCert}', ${estadoCert}, '${linkFacturaCert}', '${linkFacturaPagadaCert}', ${redeterminacion}, ${valorredeterminacion}, '${fechaRedeterminacion}', ${id_obra}, 1)
     `;
 
   conection.query(query, (err, results) => {
@@ -89,12 +62,10 @@ const editCertificado = (req, res) => {
     redeterminacion,
     valorredeterminacion,
     fechaRedeterminacion,
-    id_obra,
-    activoCert,
   } = req.body;
 
   const query = `
-        UPDATE Certificados SET
+            UPDATE Certificados SET
             montoCert = ${montoCert},
             nroCertificado = ${nroCertificado},
             fechaEmisionCert = '${fechaEmisionCert}',
@@ -106,9 +77,7 @@ const editCertificado = (req, res) => {
             valorredeterminacion = ${valorredeterminacion},
             fechaRedeterminacion = ${
               fechaRedeterminacion ? `'${fechaRedeterminacion}'` : "NULL"
-            },
-            id_obra = ${id_obra},
-            activoCert = ${activoCert}
+            }
         WHERE id_Certificado = ${id}
     `;
 

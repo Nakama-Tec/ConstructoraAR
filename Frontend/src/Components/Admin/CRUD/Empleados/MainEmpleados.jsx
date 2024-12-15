@@ -25,7 +25,7 @@ const MainEmpleados = () => {
       const response = await axios.get(URL_EMPLEADOS, { headers: { Authorization: `Bearer ${token}` } });
       setDatos(response.data);
     } catch (error) {
-      Swal.fire('Error', 'Hubo un problema al eliminar el departamento.', 'error');
+      Swal.fire('Error', 'Hubo un problema al eliminar el empleado.', 'error');
     }
   };
   
@@ -33,7 +33,7 @@ const MainEmpleados = () => {
   const handleEliminarEmpleado = async (empleado) => {
     const confirmacion = await Swal.fire({
       title: '¿Estás seguro?',
-      text: `¿Deseas eliminar al empleado ${empleado.DNIEmpleado}?`,
+      text: `¿Deseas eliminar al empleado ${empleado.nombreEmpleado} ${empleado.apellidoEmpleado}?`,
       icon: 'warning',
       showCancelButton: true,
       confirmButtonText: 'Sí, eliminar',
@@ -58,9 +58,9 @@ const MainEmpleados = () => {
   const columns = [
     { header: 'Nº', accessorKey: 'id_Empleado' },
     { header: 'Nombre y Apellido', accessorFn: row => `${row.nombreEmpleado} ${row.apellidoEmpleado}` },
-    { header: 'DNI', accessorKey: 'DNIEmpleado' },
-    { header: 'Telefono', accessorKey: 'telefono' },
-    { header: 'Direccion', accessorKey: 'direccion' },
+    { header: 'DNI', accessorKey: 'dniEmpleado' },
+    { header: 'Telefono', accessorKey: 'telefonoEmpleado' },
+    { header: 'Direccion', accessorKey: 'direccionEmpleado' },
 
     {
       header: 'Acciones',
@@ -128,7 +128,7 @@ const MainEmpleados = () => {
       onClick={openRegistroModal}
       className="bg-green-600 text-white px-6 py-2 rounded-full font-medium shadow-md hover:bg-green-800 transition duration-300 focus:outline-none focus:ring-2 focus:ring-green-600 focus:ring-offset-2"
     >
-      Registrar empleado
+      Registrar Empleado
     </button>
   </div>
 

@@ -108,7 +108,6 @@ const MainDepto = () => {
 
   return (
 <div>
-<div>
   <p className="text-black font-semibold text-4xl flex justify-center mt-5">Registros de Departamentos</p>
   
   {/* Buscador */}
@@ -117,7 +116,7 @@ const MainDepto = () => {
       <input
         className="w-80 md:w-96 lg:w-[400px] px-4 py-2 text-gray-800 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
         type="search"
-        placeholder="Buscar departamento..."
+        placeholder="Buscar departamentos..."
         value={filtrado}
         onChange={(e) => setFiltrado(e.target.value)}
       />
@@ -130,20 +129,26 @@ const MainDepto = () => {
       onClick={openRegistroModal}
       className="bg-green-600 text-white px-6 py-2 rounded-full font-medium shadow-md hover:bg-green-800 transition duration-300 focus:outline-none focus:ring-2 focus:ring-green-600 focus:ring-offset-2"
     >
-      Registrar departamento
+      Registrar Departamento
     </button>
   </div>
-</div>
-      <div className='display flex'>
-        <div className='position relative top-8'>
-      <Aside/>
-        </div>
-      <table className="table">
-        <thead>
+
+  <div className="flex">
+    <div className="relative top-8">
+      <Aside />
+    </div>
+
+    {/* Contenedor de la tabla con desplazamiento horizontal */}
+    <div className="overflow-x-auto w-full">
+      <table className="min-w-full border-collapse border border-gray-300">
+        <thead className="bg-gray-100">
           {table.getHeaderGroups().map(headerGroup => (
             <tr key={headerGroup.id}>
               {headerGroup.headers.map(header => (
-                <th key={header.id}>
+                <th
+                  key={header.id}
+                  className="px-4 py-2 border border-gray-300 text-left text-sm font-medium text-gray-700"
+                >
                   {flexRender(header.column.columnDef.header, header.getContext())}
                 </th>
               ))}
@@ -152,9 +157,12 @@ const MainDepto = () => {
         </thead>
         <tbody>
           {table.getRowModel().rows.map(row => (
-            <tr key={row.id}>
+            <tr key={row.id} className="odd:bg-white even:bg-gray-50">
               {row.getVisibleCells().map(cell => (
-                <td key={cell.id}>
+                <td
+                  key={cell.id}
+                  className="px-4 py-2 border border-gray-300 text-sm text-gray-600"
+                >
                   {flexRender(cell.column.columnDef.cell, cell.getContext())}
                 </td>
               ))}
@@ -162,22 +170,24 @@ const MainDepto = () => {
           ))}
         </tbody>
       </table>
-      </div>
-      <div className="pagination flex justify-center mt-4">
-        {Array.from({ length: table.getPageCount() }, (_, index) => ( // Crea un array con la cantidad de páginas y por cada una crea un botón con el número de la página 
-          <button
-            key={index} 
-            className={`m-2 px-4 py-2 rounded-full font-semibold text-[16px] ${
-              table.getState().pagination.pageIndex === index 
-                ? "bg-blue-600 text-white" // Estilo para la página seleccionada
-                : "bg-gray-300 text-black" // Estilo para las páginas no seleccionadas
-            }`}
-            onClick={() => table.setPageIndex(index)} // Cambia a la página seleccionada
-          >
-            {index + 1} 
-          </button>
-        ))}
-      </div>
+    </div>
+  </div>
+
+  <div className="pagination flex justify-center mt-4">
+    {Array.from({ length: table.getPageCount() }, (_, index) => (
+      <button
+        key={index}
+        className={`m-2 px-4 py-2 rounded-full font-semibold text-[16px] ${
+          table.getState().pagination.pageIndex === index 
+            ? "bg-blue-600 text-white"
+            : "bg-gray-300 text-black"
+        }`}
+        onClick={() => table.setPageIndex(index)}
+      >
+        {index + 1}
+      </button>
+    ))}
+  </div>
       <EditarDepartamento onDeptoEditado={getDepartamentos} />
       <CrearDepartamento onDeptoRegistrado={getDepartamentos} />
       <VerDepto onDeptoVer={getDepartamentos} />

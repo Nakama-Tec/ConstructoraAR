@@ -16,7 +16,7 @@ const VerCompraMateriales = (onVerCompraMaterial) => {
               <tbody>
                 <tr>
                   <th style="padding: 8px; border-bottom: 1px solid #ddd; text-align: right; width: 35%;">Nº :</th>
-                  <td style="padding: 8px; border-bottom: 1px solid #ddd;">${verRegistroSeleccionado.ID}</td>
+                  <td style="padding: 8px; border-bottom: 1px solid #ddd;">${verRegistroSeleccionado.Nombre}</td>
                 </tr>
                 <tr>
                   <th style="padding: 8px; border-bottom: 1px solid #ddd; text-align: right; width: 35%;">Cantidad de Material :</th>

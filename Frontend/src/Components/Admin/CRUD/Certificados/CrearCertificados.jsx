@@ -1,22 +1,34 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import axios from "axios";
 import useAuthStore from "../../../../Context/useAuthStore";
 import useRegistroStore from "../../../../Context/useRegistroStore";
-import { URL_CERTIFICADOS_CREAR } from "../../../../Constants/endpoints-API";
+import { URL_CERTIFICADOS_CREAR, URL_OBRAS } from "../../../../Constants/endpoints-API";
 
 const CrearCertificados = ({ onCertificadoRegistrado }) => {
   const { isRegistroModalOpen, closeRegistroModal } = useRegistroStore();
   const token = useAuthStore((state) => state.token);
 
+  const [obras, setObras] = useState([]);
+
+  const getObras = async () => {
+    try {
+      const response = await axios.get(URL_OBRAS, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      setObras(response.data);
+    } catch (error) {
+      console.error('Error al obtener empleados:', error);
+    }
+  };
 
   const handleRegistrarCertificados = () => {
     Swal.fire({
       title: "Registrar Certificado",
       html: `
-            <input id="montoCert" type="number" placeholder="Monto del Certificado" class="swal2-input" />
+            <input id="montoCert" type="number" min="0" placeholder="Monto del Certificado" class="swal2-input" />
 
-            <input id="nroCertificado" type="number" placeholder="Numero del Certificado"  class="swal2-input" />
+            <input id="nroCertificado" type="number" min="0" placeholder="Numero del Certificado"  class="swal2-input" />
             <br>
             <br>
             <label><b>Fecha Emision</b></label> 
@@ -27,9 +39,14 @@ const CrearCertificados = ({ onCertificadoRegistrado }) => {
             <label><b>Fecha Pago</b></label> 
             <br>
             <input id="fechaPagoCert"  placeholder="Fecha de Pago" type="date" class="swal2-input" />
-
-            <input id="estadoCert"  placeholder="Estado"  class="swal2-input" /> 
-
+            <br/>
+            <br/>
+            <label><strong>Selecciona el estado:</strong></label>
+            <br/>
+            <select id="estadoCert" class="swal2-select">
+            <option value="0">Pagado</option>
+            <option value="1">No Pagado</option>
+            <br/>
             <input id="linkFacturaCert" placeholder="Link de Facturacion" class="swal2-input" />
 
             <input id="linkFacturaPagadaCert" placeholder="Link de factura del Certificado" class="swal2-input" />
@@ -49,9 +66,14 @@ const CrearCertificados = ({ onCertificadoRegistrado }) => {
             <label><b>Fecha Redeterminacion</b></label> 
             <br>
             <input id="fechaRedeterminacion" placeholder="fecha de redeterminacion" type="date" class="swal2-input" />
-            
-           
-          <br/>
+            <br/>
+            <br/>
+            <label><strong>Selecciona la obra asociada:</strong></label>
+            <br/>
+            <select id="id_obra" class="swal2-select">
+            ${obras.map((obra) => `<option value="${obra.id_obra}">${obra.nombreObra}</option>`).join('')}
+            </select>
+
         `,
       confirmButtonText: "Registrar",
       showCancelButton: true,
@@ -66,23 +88,41 @@ const CrearCertificados = ({ onCertificadoRegistrado }) => {
         const redeterminacion = document.getElementById("redeterminacion").value;
         const valorredeterminacion = document.getElementById("valorredeterminacion").value;
         const fechaRedeterminacion = document.getElementById("fechaRedeterminacion").value;
+        const id_obra = document.getElementById("id_obra").value;
 
         // Validaciones
         const montoRegex = /^[0-9]+$/;
         const nroCertificadoRegex = /^[0-9]+$/;
-        const fechaEmisionCertRegex = /^[0-9]{4}-[0-9]{2}-[0-9]{2}$/;
-        const fechaPagoCertRegex = /^[0-9]{4}-[0-9]{2}-[0-9]{2}$/;
-        const estadoCertRegex = /^[a-zA-Z\sÀ-ÿ]+$/;
-        const linkFacturaCertRegex = /^[a-zA-Z0-9À-ÿ\s,.-]+$/;
-        const linkFacturaPagadaCertRegex = /^[a-zA-Z0-9À-ÿ\s,.-]+$/;
+        const linkFacturaCertRegex = /^(?:(?:http|https|ftp):\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-._~:/?#[\]@!$&'()*+,;=%]+$/
+        const linkFacturaPagadaCertRegex = /^(?:(?:http|https|ftp):\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-._~:/?#[\]@!$&'()*+,;=%]+$/
         const valorredeterminacionRegex = /^[0-9]+$/;
-        const fechaRedeterminacionRegex = /^[0-9]{4}-[0-9]{2}-[0-9]{2}$/;
+
+       if(!montoCert || !montoRegex.test(montoCert)){
+          Swal.showValidationMessage("El monto del certificado no puede estar vacio y debe ser un numero.");
+          return false;
+        }
+
+        if(!nroCertificado || !nroCertificadoRegex.test(nroCertificado)){
+          Swal.showValidationMessage("El numero del certificado no puede estar vacio y debe ser un numero.");
+          return false;
+        }
+
+        if(!linkFacturaCert || !linkFacturaCertRegex.test(linkFacturaCert)){
+          Swal.showValidationMessage("El link de la factura no puede estar vacio y debe ser un link.");
+          return false;
+        }
+
+        if(!linkFacturaPagadaCert || !linkFacturaPagadaCertRegex.test(linkFacturaPagadaCert)){
+          Swal.showValidationMessage("El link de la factura pagada no puede estar vacio y debe ser un link.");
+          return false;
+        }
+
+        if(!valorredeterminacion || !valorredeterminacionRegex.test(valorredeterminacion)){
+          Swal.showValidationMessage("El valor de la redeterminacion no puede estar vacio y debe ser un numero.");
+          return false;
+        }
 
 
-        if (!montoRegex.test(montoCert) || !nroCertificadoRegex.test(nroCertificado) || !fechaEmisionCertRegex.test(fechaEmisionCert) ||
-          !fechaPagoCertRegex.test(fechaPagoCert) || !estadoCertRegex.test(estadoCert) || !linkFacturaCertRegex.test(linkFacturaCert) ||
-          !linkFacturaPagadaCertRegex.test(linkFacturaPagadaCert) || !valorredeterminacionRegex.test(valorredeterminacion) ||
-          !fechaRedeterminacionRegex.test(fechaRedeterminacion)) { Swal.showValidationMessage("Verifica los datos ingresados."); }
         return {
           montoCert,
           nroCertificado,
@@ -94,6 +134,7 @@ const CrearCertificados = ({ onCertificadoRegistrado }) => {
           redeterminacion,
           valorredeterminacion,
           fechaRedeterminacion,
+          id_obra,
         };
       },
     }).then(async (result) => {
@@ -126,6 +167,7 @@ const CrearCertificados = ({ onCertificadoRegistrado }) => {
     if (isRegistroModalOpen) {
       handleRegistrarCertificados();
     }
+    getObras();
   }, [isRegistroModalOpen]);
 
   return null; // No renderiza nada directamente

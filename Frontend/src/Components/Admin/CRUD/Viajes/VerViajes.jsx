@@ -37,7 +37,7 @@ const VerViajes = ({ onViajeVer }) => {
                 </tr>
                 <tr>
                   <th style="padding: 8px; border-bottom: 1px solid #ddd; text-align: right;">Tipo Vehiculo:</th>
-                  <td style="padding: 8px; border-bottom: 1px solid #ddd;">${verRegistroSeleccionado.Tipo_Vehiculo}</td>
+                  <td style="padding: 8px; border-bottom: 1px solid #ddd;">${verRegistroSeleccionado.TIPOVehiculo}</td>
                 </tr>
                 <tr>
                   <th style="padding: 8px; border-bottom: 1px solid #ddd; text-align: right;">Material:</th>

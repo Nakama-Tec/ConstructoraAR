@@ -31,16 +31,16 @@ const EditarAlquiler = ({ onAlquilerEditado }) => {
 
     const handleEditarAlquiler = () => {
         Swal.fire({
-            title: 'Editar Departamento',
+            title: 'Editar Alquiler',
             html: `
                 <label><b>Fecha Inicio</b></label> 
                 <br>
-                <input id="fechaInicioAlquiler" class="swal2-input" type="date" />
+                <input id="fechaInicioAlquiler" class="swal2-input" type="date" value="${registroSeleccionado.FechaInicioAlquiler}" />
                 <br> 
                 <br>
                 <label><b>Fecha Fin</b></label> 
                 <br>
-                <input id="fechaFinAlquiler" class="swal2-input"  type="date" />
+                <input id="fechaFinAlquiler" class="swal2-input" type="date" value="${registroSeleccionado.FechaFinAlquiler}" />
                 <br/>
                 <br/>
                 <label><b>Selecciona el departamento:</b></label>

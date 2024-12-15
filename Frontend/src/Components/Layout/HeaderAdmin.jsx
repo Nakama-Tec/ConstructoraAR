@@ -28,7 +28,7 @@ const HeaderAdmin = () => {
   </Link>
 
   {userName && (
-    <p className="text-3xl md:text-4xl lg:text-4xl font-semibold mt-4 md:mt-0">
+    <p className="text-3xl md:text-4xl lg:text-4xl font-semibold mt-4 md:mt-0 uppercase">
       Bienvenido, {userName}!
     </p>
   )}

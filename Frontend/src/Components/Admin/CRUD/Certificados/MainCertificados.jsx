@@ -25,6 +25,7 @@ const MainCertificados = () => {
         const response = await axios.get(URL_CERTIFICADOS, {
           headers: { Authorization: `Bearer ${token}` },
         });
+        console.log(response.data)
         setDatos(response.data);
       } catch (error) {
         console.error("Error al obtener certificados:", error);
@@ -63,14 +64,16 @@ const MainCertificados = () => {
   
     const columns = [
       { header: "Nº", accessorKey: "id_certificado" },
-      {
-        header: "Nombre y Apellido",
-        accessorFn: (row) => `${row.nombreCliente} ${row.apellidoCliente}`,
-      },
-      { header: "Razon Social", accessorKey: "razonSocial" },
-      { header: "Condición", accessorKey: "condicionCliente" },
-      { header: "CUIL/CUIT", accessorKey: "cuil_cuit_cliente" },
-      { header: "Teléfono", accessorKey: "telefonoCliente" },
+      // {
+      //   header: "Nombre y Apellido",
+      //   accessorFn: (row) => `${row.nombreCliente} ${row.apellidoCliente}`,
+      // },
+      { header: "Monto", accessorFn: (row) => `$${row.montoCert}.00` },
+      { header: "Fecha de Emisión", accessorKey: "fechaEmisionCert" },
+      { header: "Fecha de Pago", accessorKey: "fechaPagoCert" },
+      { header: "Estado", accessorFn: (row) => (row.estadoCert === 0 ? "Pagado" : "No Pagado") },
+      { header: "Redeterminación", accessorFn: (row) => (row.redeterminacion === 0 ? "Revalorizado" : "No Revalorizado") },
+      { header: "Obra Asociada", accessorKey: "NombreObra" },
       {
         header: "Acciones",
         cell: ({ row }) => (
@@ -113,7 +116,6 @@ const MainCertificados = () => {
   
     return (
 <div>
-<div>
   <p className="text-black font-semibold text-4xl flex justify-center mt-5">Registros de Certificados</p>
   
   {/* Buscador */}
@@ -135,58 +137,65 @@ const MainCertificados = () => {
       onClick={openRegistroModal}
       className="bg-green-600 text-white px-6 py-2 rounded-full font-medium shadow-md hover:bg-green-800 transition duration-300 focus:outline-none focus:ring-2 focus:ring-green-600 focus:ring-offset-2"
     >
-      Registrar certificado
+      Registrar Certificado
     </button>
   </div>
-</div>
-        <div className="display flex">
-          <div className="position relative top-8">
-            <Aside />
-          </div>
-          <table className="table">
-            <thead>
-              {table.getHeaderGroups().map((headerGroup) => (
-                <tr key={headerGroup.id}>
-                  {headerGroup.headers.map((header) => (
-                    <th key={header.id}>
-                      {flexRender(
-                        header.column.columnDef.header,
-                        header.getContext()
-                      )}
-                    </th>
-                  ))}
-                </tr>
+
+  <div className="flex">
+    <div className="relative top-8">
+      <Aside />
+    </div>
+
+    {/* Contenedor de la tabla con desplazamiento horizontal */}
+    <div className="overflow-x-auto w-full">
+      <table className="min-w-full border-collapse border border-gray-300">
+        <thead className="bg-gray-100">
+          {table.getHeaderGroups().map(headerGroup => (
+            <tr key={headerGroup.id}>
+              {headerGroup.headers.map(header => (
+                <th
+                  key={header.id}
+                  className="px-4 py-2 border border-gray-300 text-left text-sm font-medium text-gray-700"
+                >
+                  {flexRender(header.column.columnDef.header, header.getContext())}
+                </th>
               ))}
-            </thead>
-            <tbody>
-              {table.getRowModel().rows.map((row) => (
-                <tr key={row.id}>
-                  {row.getVisibleCells().map((cell) => (
-                    <td key={cell.id}>
-                      {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                    </td>
-                  ))}
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-        
-        <div className="pagination flex justify-center mt-4">
-          {Array.from({ length: table.getPageCount() }, (_, index) => ( // Crea un array con la cantidad de páginas y por cada una crea un botón con el número de la página 
-            <button
-              key={index} 
-              className={`m-2 px-4 py-2 rounded-full font-semibold text-[16px] ${
-                table.getState().pagination.pageIndex === index 
-                  ? "bg-blue-600 text-white" // Estilo para la página seleccionada
-                  : "bg-gray-300 text-black" // Estilo para las páginas no seleccionadas
-              }`}
-              onClick={() => table.setPageIndex(index)} // Cambia a la página seleccionada
-            >
-              {index + 1} 
-            </button>
+            </tr>
           ))}
-        </div>
+        </thead>
+        <tbody>
+          {table.getRowModel().rows.map(row => (
+            <tr key={row.id} className="odd:bg-white even:bg-gray-50">
+              {row.getVisibleCells().map(cell => (
+                <td
+                  key={cell.id}
+                  className="px-4 py-2 border border-gray-300 text-sm text-gray-600"
+                >
+                  {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div className="pagination flex justify-center mt-4">
+    {Array.from({ length: table.getPageCount() }, (_, index) => (
+      <button
+        key={index}
+        className={`m-2 px-4 py-2 rounded-full font-semibold text-[16px] ${
+          table.getState().pagination.pageIndex === index 
+            ? "bg-blue-600 text-white"
+            : "bg-gray-300 text-black"
+        }`}
+        onClick={() => table.setPageIndex(index)}
+      >
+        {index + 1}
+      </button>
+    ))}
+  </div>
   
         <EditarCertificados onCertificadoEditado={getCertificados} />
         <CrearCertificados onCertificadoRegistrado={getCertificados} />

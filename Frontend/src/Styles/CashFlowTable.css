@@ -1,4 +1,53 @@
+/* Archivo: CashFlowTable.css */
+
 .cash-flow-table {
+  width: 98%;
+  border-collapse: collapse;
+}
+
+.cash-flow-table th,
+.cash-flow-table td {
+  border: 1px solid black;
+  padding: 10px;
+  text-align: justify;
+}
+
+.cash-flow-table th {
+  background-color: #0a0a0a;
+  color: white;
+  font-weight: bold;
+  position: sticky;
+  top: 0; /* Fija el encabezado en la parte superior */
+  z-index: 1; /* Asegura que el encabezado esté por encima del contenido */
+  opacity: 0.8;
+}
+
+.green {
+  background-color: #d4edda; /* Verde claro */
+}
+
+.green-bold {
+  background-color: #6de388; /* Verde más intenso */
+  font-weight: bold;
+}
+
+.yellow {
+  background-color: #fff3cd; /* Amarillo claro */
+}
+
+.yellow-bold {
+  background-color: #f0c23a; /* Amarillo más intenso */
+  font-weight: bold;
+}
+
+.aqua-bold {
+  background-color: #d1ecf1; /* Verde agua */
+  font-weight: bold;
+}
+
+
+
+/* .cash-flow-table {
     width: 100%;
     border-collapse: collapse;
   }
@@ -13,15 +62,15 @@
   .cash-flow-table th {
     background-color: #6e6e6e;
     font-weight: bold;
-  }
+  } */
   
   /* Fijar la primera columna */
-  .cash-flow-table th:first-child,
+  /* .cash-flow-table th:first-child,
   .cash-flow-table td:first-child {
     position: sticky;
     left: 0;
     background-color: #ffffff;
     z-index: 1;
     color: #202020;
-  }
+  } */
   

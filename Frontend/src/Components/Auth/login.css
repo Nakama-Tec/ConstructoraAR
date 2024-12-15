@@ -1,0 +1,198 @@
+
+h1, h2, h3, h4, h5, h6, p {
+  margin: 0;
+}
+
+body{
+  background-color: rgb(255, 255, 255);
+}
+
+.loginContainer {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    border-radius: 2rem;
+    min-height: 100vh;
+    width: 100%;
+  }
+  
+  .loginLeft {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: calc((100% / 12) * 6 );
+    height: 100vh;
+    background-image: url('..\..\assets\logoconfondo.jpg');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-blend-mode: multiply;
+    position: relative;
+  }
+  
+  .loginLeft::after{
+    content: '';
+    width: 100%;
+    height: 100vh;
+    background: linear-gradient(
+      180.67deg,
+      rgba(0, 0, 0, 0.22) -0.83%,
+      rgba(0, 112, 255, 0.8) 99.43%
+    );
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0;
+  }
+    
+  .loginLeftText {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    font-size: 3rem;
+    line-height: 3rem;
+  }
+  
+  .loginLeftText p {
+    width: 60%;
+    margin: auto;
+    color: #FFFFFF;
+  }
+  
+  .loginRight {
+    width: calc((100% / 12) * 6 );
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+    background: #FFFFFF;
+    position: relative;
+  }
+    
+  .formContainer{
+    width: 400px;
+    margin-inline: 10rem;
+  }
+  
+  .formContainer h2 {
+    color: var(--negro);
+    font-size: 2rem;
+    font-weight: 500;
+  }
+    
+  .formContainer p {
+    margin-top: 1rem;
+    color: var(--negro-transparente);
+    font-size: 1rem;
+    font-weight: 500;
+  }
+    
+  .loginForm {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+  }
+    
+  .formControl {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin: 1.5rem 0;
+  }
+    
+  .formControl label {
+    color: var(--negro);
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+    
+  .formControl input {
+    width: 100%;
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+    border: 1px solid var(--negro-transparente);
+    background: #FFFFFF;
+  }
+    
+  .loginSubmitBtn {
+    width: 160px;
+    height: 40px;
+    border-radius: 0.25rem;
+    background: var(--azul);
+    color: #FFFFFF;
+    align-self: end;
+    margin-top: 1.5rem;
+  }
+  
+  .btnCreateAccount {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    width: 150px;
+    height: 40px;
+    background: var(--negro);
+    border-radius: 0.25rem;
+    color: #FFFFFF;
+    font-size: 1rem;
+  }
+  input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    transition: background-color 5000s ease-in-out 0s;
+    -webkit-text-fill-color: black !important;
+}
+  
+.form-control:focus {
+    box-shadow: none;
+    border-color: none;
+    border: none;
+    background-color: transparent;
+}
+  
+.form-control.is-invalid:focus {
+    box-shadow: none;
+    border-color: none;
+}
+  
+input[type=search]::-ms-clear {
+    display: none;
+    width: 0;
+    height: 0;
+}
+  
+input[type=search]::-ms-reveal {
+    display: none;
+    width: 0;
+    height: 0;
+}
+  
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration {
+    display: none;
+}
+  
+@media (max-width: 576px) {
+  
+}
+  
+@media (min-width: 576px) and (max-width: 992px) {
+  
+}
+
+@media (min-width: 992px) and (max-width: 1200px) {
+
+}
+  
+@media (min-width: 1200px) and (max-width: 1920px) {
+  
+}
+
+@media (min-width: 1920px) {
+
+}

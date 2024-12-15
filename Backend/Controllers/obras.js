@@ -31,9 +31,9 @@ const singleObra = (req, res) => {
     })
 }
 const createObra = (req, res) => {
-    const {nombreObra, descripcionObra, fechainicioObra, fechafinObra, precioObra, sectorObra, progresoObra,id_cliente, direccionObra} = req.body
+    const {nombreObra, direccionObra, descripcionObra, fechainicioObra, fechafinObra, precioObra, sectorObra, progresoObra,id_cliente} = req.body
 
-    const query = `insert into Obras (nombreObra, descripcionObra, fechainicioObra, fechafinObra, precioObra, sectorObra, progresoObra, id_cliente, activoObras,direccionObra) values("${nombreObra}","${descripcionObra}","${fechainicioObra}","${fechafinObra}", "${precioObra}","${sectorObra}","${progresoObra}", "${id_cliente}",1,"${direccionObra}")`
+    const query = `insert into Obras (nombreObra, direccionObra, descripcionObra, fechainicioObra, fechafinObra, precioObra, sectorObra, progresoObra, id_cliente, activoObras) values("${nombreObra}", "${direccionObra}", "${descripcionObra}","${fechainicioObra}","${fechafinObra}", "${precioObra}","${sectorObra}","${progresoObra}", "${id_cliente}",1)`
     conection.query(query, (err,results) => {
         if(err) throw err 
         res.send(results)

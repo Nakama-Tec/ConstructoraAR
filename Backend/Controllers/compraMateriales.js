@@ -28,11 +28,14 @@ const singleCompraMateriales = (req, res) => {
 //Funcion para editar una compra de material
 const editCompraMateriales = (req, res) => {
     const {
+        nombreMaterial,      // Nombre del material
+        ubicacionStock,      // Ubicación del stock (destino)
         cantidadMaterial,    // Cantidad comprada
         precioMaterial,      // Precio unitario
         fechaCompraMateriales, // Fecha de compra
         estadoRetiro,        // Estado del retiro
-        lugardeCompra        // Proveedor o lugar de compra
+        lugardeCompra,        // Proveedor o lugar de compra
+        destinoMaterial      // Destino del material
     } = req.body;
 
     const id = req.params.id;
@@ -40,15 +43,18 @@ const editCompraMateriales = (req, res) => {
     // Solo se actualizan compras activas
     const query = `
         UPDATE CompraMateriales
-        SET cantidadMaterial = ?, 
+        SET nombreMaterial = ?,
+            ubicacionStock = ?,
+            cantidadMaterial = ?, 
             precioMaterial = ?, 
             fechaCompraMateriales = ?, 
             estadoRetiro = ?, 
-            lugardeCompra = ?
+            lugardeCompra = ?,
+            destinoMaterial = ?
         WHERE id_compraMaterial = ? AND activoCompra = 1;
     `;
 
-    const params = [cantidadMaterial, precioMaterial, fechaCompraMateriales, estadoRetiro, lugardeCompra, id];
+    const params = [nombreMaterial, ubicacionStock, cantidadMaterial, precioMaterial, fechaCompraMateriales, estadoRetiro, lugardeCompra, destinoMaterial, id];
 
     conection.query(query, params, (err, results) => {
         if (err) {
@@ -68,8 +74,8 @@ const createCompraMateriales = (req, res) => {
         ubicacionStock,    // Ubicación del stock (destino)
         cantidadMaterial,  // Cantidad comprada
         precioMaterial,    // Precio unitario
-        fechaCompraMateriales, // Fecha de compra
         estadoRetiro,      // Estado del retiro
+        fechaCompraMateriales, // Fecha de compra
         lugardeCompra,     // Proveedor o lugar de compra
         destinoMaterial    // Destino del material
     } = req.body;

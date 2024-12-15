@@ -27,6 +27,10 @@ export const VerOperaciones = ({ onOperaciconVer }) => {
                   <td style="padding: 8px; border-bottom: 1px solid #ddd;">${verRegistroSeleccionado.tipoOperacion}</td>
                 </tr>
                 <tr>
+                  <th style="padding: 8px; border-bottom: 1px solid #ddd; text-align: right;">Tipo de operacion:</th>
+                  <td style="padding: 8px; border-bottom: 1px solid #ddd;">${verRegistroSeleccionado.detalleTipoOperacion}</td>
+                </tr>
+                <tr>
                   <th style="padding: 8px; border-bottom: 1px solid #ddd; text-align: right;">Monto:</th>
                   <td style="padding: 8px; border-bottom: 1px solid #ddd;">$${verRegistroSeleccionado.montoOperacion}</td>
                 </tr>

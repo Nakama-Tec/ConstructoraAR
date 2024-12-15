@@ -21,9 +21,9 @@ const singleCliente = (req, res) => {
 }
 
 const createCliente = (req, res) => {
-    const {nombreCliente, apellidoCliente, condicionCliente, cuil_cuit_Cliente, telefonoCliente, mailCliente, direccionCliente, datosGarantes, razonSocial} = req.body
+    const {nombreCliente, apellidoCliente, condicionCliente, razonSocial, cuil_cuit_Cliente, telefonoCliente, mailCliente, direccionCliente, datosGarantes} = req.body
 
-    const query = `insert into Clientes (nombreCliente, apellidoCliente, condicionCliente, cuil_cuit_Cliente, telefonoCliente, mailCliente, direccionCliente, datosGarantes, activoCliente,razonSocial) values("${nombreCliente}","${apellidoCliente}","${condicionCliente}","${cuil_cuit_Cliente}","${telefonoCliente}","${mailCliente}", "${direccionCliente}", "${datosGarantes}",1,"${razonSocial}")`
+    const query = `insert into Clientes (nombreCliente, apellidoCliente, condicionCliente, razonSocial, cuil_cuit_Cliente, telefonoCliente, mailCliente, direccionCliente, datosGarantes) values("${nombreCliente}","${apellidoCliente}","${condicionCliente}", "${razonSocial}", "${cuil_cuit_Cliente}", "${telefonoCliente}","${mailCliente}", "${direccionCliente}", "${datosGarantes}")`
     conection.query(query, (err,results) => {
         if(err) throw err 
         res.send(results)
@@ -33,8 +33,8 @@ const createCliente = (req, res) => {
 const editCliente = (req, res) => {
     const id = req.params.id
     console.log(req.body);
-    const {nombreCliente, apellidoCliente, condicionCliente, cuil_cuit_Cliente, telefonoCliente, mailCliente, direccionCliente, datosGarantes, razonSocial} = req.body
-    const query = `update Clientes set nombreCliente="${nombreCliente}", apellidoCliente="${apellidoCliente}", condicionCliente="${condicionCliente}", cuilCliente="${cuil_cuit_Cliente}",telefonoCliente="${telefonoCliente}",mailCliente="${mailCliente}", direccionCliente="${direccionCliente}", datosGarantes="${datosGarantes}", activoCliente=1 where id_cliente=${id}, razonSocial="${razonSocial}"`
+    const {nombreCliente, apellidoCliente, condicionCliente, razonSocial, cuil_cuit_Cliente, telefonoCliente, mailCliente, direccionCliente, datosGarantes} = req.body
+    const query = `update Clientes set nombreCliente="${nombreCliente}", apellidoCliente="${apellidoCliente}", condicionCliente="${condicionCliente}", razonSocial="${razonSocial}", cuil_cuit_Cliente="${cuil_cuit_Cliente}",telefonoCliente="${telefonoCliente}",mailCliente="${mailCliente}", direccionCliente="${direccionCliente}", datosGarantes="${datosGarantes}", activoCliente=1 where id_cliente=${id}`
     conection.query(query, (err,results) => {
         if(err) throw err
         res.send(results)

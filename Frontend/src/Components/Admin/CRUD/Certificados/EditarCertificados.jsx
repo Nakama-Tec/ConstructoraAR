@@ -3,7 +3,7 @@ import Swal from 'sweetalert2';
 import axios from 'axios';
 import useAuthStore from '../../../../Context/useAuthStore';
 import useRegistroStore from '../../../../Context/useRegistroStore';
-import { URL_CERTIFICADOS_EDITAR, URL_CLIENTES_EDITAR } from '../../../../Constants/endpoints-API';
+import { URL_CERTIFICADOS_EDITAR } from '../../../../Constants/endpoints-API';
 
 const EditarCertificados = ({ onCertificadoEditado }) => {
   const { registroSeleccionado, clearRegistroSeleccionado } = useRegistroStore();
@@ -35,7 +35,10 @@ const EditarCertificados = ({ onCertificadoEditado }) => {
         <br>
         <label><b>Estado</b></label> 
         <br>
-        <input id="estadoCert" class="swal2-input" value="${registroSeleccionado.estadoCert}" />
+        <select id="estadoCert" class="swal2-select">
+        <option value="0" ${registroSeleccionado.estadoCert === 0 ? 'selected' : ''}>Pagado</option>
+        <option value="1" ${registroSeleccionado.estadoCert === 1 ? 'selected' : ''}>No Pagado</option>
+        </select>
          <br>
         <br>
         <label><b>Link Factura</b></label> 
@@ -52,12 +55,12 @@ const EditarCertificados = ({ onCertificadoEditado }) => {
         <label><strong>Selecciona la redeterminacion:</strong></label>
         <br/>
         <select id="redeterminacion" class="swal2-select">
-        <option value="0" ${registroSeleccionado.redeterminacion === '0' ? 'selected' : ''}>No revalorizado</option>
-        <option value="1" ${registroSeleccionado.redeterminacion === '1' ? 'selected' : ''}>Revalorizado</option>
+        <option value="0" ${registroSeleccionado.redeterminacion === '0' ? 'selected' : ''}>Revalorizado</option>
+        <option value="1" ${registroSeleccionado.redeterminacion === '1' ? 'selected' : ''}>No Revalorizado</option>
       </select>
        <br>
         <br>
-        <label><b>Valor Determinacion</b></label> 
+        <label><b>Valor Redeterminacion</b></label> 
         <br>
       <input id="valorredeterminacion" class="swal2-input" value="${registroSeleccionado.valorredeterminacion}" />
          <br>
@@ -65,7 +68,6 @@ const EditarCertificados = ({ onCertificadoEditado }) => {
         <label><b>Fecha Redeterminacion</b></label> 
         <br>
       <input id="fechaRedeterminacion" class="swal2-input" value="${registroSeleccionado.fechaRedeterminacion}" />
-
       `,
       confirmButtonText: 'Enviar',
       showCancelButton: true,
@@ -85,7 +87,6 @@ const EditarCertificados = ({ onCertificadoEditado }) => {
         const montoRegex = /^[0-9]+$/;
         const nroCertificadoRegex = /^[0-9]+$/;
         const fechaRegex = /^\d{4}-\d{2}-\d{2}$/;
-        const estadoRegex = /^[a-zA-Z\sÀ-ÿ]+$/;
         const linkRegex = /^(http|https):\/\/[^ "]+$/;
         const valorredeterminacionRegex = /^[0-9]+$/;
         const fechaRedeterminacionRegex = /^\d{4}-\d{2}-\d{2}$/;
@@ -107,10 +108,7 @@ const EditarCertificados = ({ onCertificadoEditado }) => {
           Swal.showValidationMessage('La fecha de pago debe tener el formato YYYY-MM-DD.');
           return false;
         }
-        if (!estadoCert || !estadoRegex.test(estadoCert)) {
-          Swal.showValidationMessage('El estado debe ser un texto.');
-          return false;
-        }
+        
         if (!linkFacturaCert || !linkRegex.test(linkFacturaCert)) {
           Swal.showValidationMessage('El link de la factura debe ser una URL.');
           return false;
@@ -154,7 +152,7 @@ const EditarCertificados = ({ onCertificadoEditado }) => {
             headers: { Authorization: `Bearer ${token}` }
           });
           Swal.fire('¡Éxito!', 'El certificado fue actualizado correctamente.', 'success');
-          onClienteEditado(); 
+          onCertificadoEditado();
           clearRegistroSeleccionado(); 
         } catch (error) {
           Swal.fire('Error', 'Hubo un problema al actualizar el certificado.', 'error');

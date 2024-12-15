@@ -49,7 +49,7 @@ const CrearClientes = ({ onClienteRegistrado }) => {
         const apellidoCliente = document.getElementById("apellidoCliente").value;
         const condicionCliente = document.getElementById("condicionCliente").value;
         const razonSocial = document.getElementById("razonSocial").value;
-        const cuilCliente = document.getElementById("cuil_cuit_Cliente").value;
+        const cuil_cuit_Cliente = document.getElementById("cuil_cuit_Cliente").value;
         const telefonoCliente = document.getElementById("telefonoCliente").value;
         const mailCliente = document.getElementById("mailCliente").value;
         const direccionCliente = document.getElementById("direccionCliente").value;
@@ -63,6 +63,7 @@ const CrearClientes = ({ onClienteRegistrado }) => {
         const mailRegex = /[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,5}/;
         const direccionRegex = /^[a-zA-Z0-9À-ÿ\s,.-]+$/;
         const datosGarantesRegex = /^[^@]+$/;
+        const razonRegex = /^[a-zA-Z\sÀ-ÿ]+$/;
 
         if (!nombreCliente || !nombreRegex.test(nombreCliente)) {
           Swal.showValidationMessage("El nombre no debe contener números.");  
@@ -72,7 +73,7 @@ const CrearClientes = ({ onClienteRegistrado }) => {
           Swal.showValidationMessage("El apellido no debe contener números.");
           return false;
         }
-        if (!cuilCliente || !cuilRegex.test(cuilCliente)) {
+        if (!cuil_cuit_Cliente || !cuilRegex.test(cuil_cuit_Cliente)) {
           Swal.showValidationMessage("El CUIL debe contener entre 10 y 11 dígitos, separado por guiones (-).");
           return false;
         }
@@ -93,12 +94,17 @@ const CrearClientes = ({ onClienteRegistrado }) => {
           return false;
         }
 
+        if (!razonSocial || !razonRegex.test(razonSocial)) {
+          Swal.showValidationMessage("La razon social no es correcta.");
+          return false;
+        }
+
         return {
           nombreCliente,
           apellidoCliente,
           condicionCliente,
           razonSocial,
-          cuilCliente,
+          cuil_cuit_Cliente,
           telefonoCliente,
           mailCliente,
           direccionCliente,

@@ -4,7 +4,6 @@ const {verifyToken} = require("../middleware/middleware") // importo la funcion 
 const router = express.Router()
 
 router.get("/usuarios", verifyToken,allUsuarios)
-router.get("/usuarios/:id", verifyToken,singleUsuario)
 router.post("/usuarios/create/",verifyToken, createUsuarios)
 router.put("/usuarios/edit/:id",verifyToken, editUsuarios)
 router.put("/usuarios/delete/:id",verifyToken, deleteUsuarios)

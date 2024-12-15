@@ -4,7 +4,7 @@ const { conection } = require("../DB/Config")
 
 const allDetallesViajes = (req, res) => {
     const query = `SELECT dv.id_DetallesViaje as ID, o.nombreObra, o.descripcionObra AS Direccion_Obra, veh.patenteVehiculo,
-    veh.tipoVehiculo AS Tipo_Vehiculo, v.id_viaje, v.fechaViaje, sm.nombreMaterial AS Material, sm.ubicacionStock AS Deposito,
+    veh.tipoVehiculo AS TIPOVehiculo, v.id_viaje, v.fechaViaje, sm.nombreMaterial AS Material, sm.ubicacionStock AS Deposito,
     sm.cantidadStock AS Cantidad_Material FROM Viajes v
 JOIN 
     Obras o ON v.id_obra = o.id_obra
@@ -41,9 +41,9 @@ const singleDetallesViajes = (req, res) => {
 //Funcion para editar un detalle de viaje
 
 const editDetallesViajes = (req, res) => {
-    const {cantidadMaterial ,id_viaje, id_stock, activoDetalleViaje} = req.body;
+    const {cantidadMaterial ,id_viaje, id_stock} = req.body;
     const id = req.params.id;
-    const query = `update DetallesViajes set id_viaje= ${id_viaje},  cantidadMaterial= ${cantidadMaterial}, id_stock= ${id_stock}, activoDetalleViaje= ${activoDetalleViaje} where id_detalleViaje = ${id};`
+    const query = `update DetallesViajes set id_viaje= ${id_viaje},  cantidadMaterial= ${cantidadMaterial}, id_stock= ${id_stock} where id_detalleViaje = ${id};`
     conection.query(query, (err, results) => {
         if (err) throw err;
         res.send(results)
@@ -53,8 +53,8 @@ const editDetallesViajes = (req, res) => {
 //Funcion para crear un detalle de viaje
 
 const createDetallesViajes = (req, res) => {
-    const {cantidadMaterial ,id_viaje, id_stock, activoDetalleViaje} = req.body;
-    const query = `insert into DetallesViajes (id_viaje, cantidadMaterial, id_stock, activoDetalleViaje) values (${id_viaje}, ${cantidadMaterial}, ${id_stock}, ${activoDetalleViaje});`
+    const {cantidadMaterial ,id_viaje, id_stock} = req.body;
+    const query = `insert into DetallesViajes (id_viaje, cantidadMaterial, id_stock) values (${id_viaje}, ${cantidadMaterial}, ${id_stock});`
     conection.query(query, (err, results) => {
         if (err) throw err;
         res.send(results)

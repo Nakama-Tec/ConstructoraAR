@@ -10,7 +10,6 @@ const EditarCompraMateriales = ({ onCompraMaterialEditado }) => {
   const token = useAuthStore((state) => state.token);
   const [stock, setStock] = useState([]);
 
-  // Obtener stock de materiales desde el backend
   const getStockMaterial = async () => {
     try {
       const response = await axios.get(URL_STOCK, {
@@ -22,99 +21,84 @@ const EditarCompraMateriales = ({ onCompraMaterialEditado }) => {
     }
   };
 
-  // Generar opciones para el select de materiales
-  const generateStockOptions = () =>
-    stock
-      .map((material) => `<option value="${material.Nombre}">${registroSeleccionado.Nombre || 'Sin Nombre'}</option>`)
-      .join('');
+  const generateStockOptions = () => {
+    if (!registroSeleccionado) return '';
 
-  const generateStockOptions2 = () =>
-    stock
-      .map((material) => `<option value="${material.ubicacionStock}">${registroSeleccionado.Destino || 'Sin Nombre'}</option>`)
-      .join('');
+    const opciones = stock.map((material) =>
+      `<option value="${material.nombreMaterial}" ${
+        material.nombreMaterial === registroSeleccionado.Nombre ? 'selected' : ''
+      }>${material.nombreMaterial}</option>`
+    );
 
-  const handleEditarCompra = () => {
+    return opciones.join('');
+  };
+
+  const handleEditarCompra = async () => {
+    if (stock.length === 0) {
+      await getStockMaterial(); // Asegura que los datos estén cargados
+    }
+
     Swal.fire({
       title: 'Editar Compra',
       html: `
         <label><b>Tipo de Material</b></label>
-        <div>
-          <button type="button" id="toggleMaterialType" data-is-custom="false" class="swal2-button">
-            Usar material existente
-          </button>
-        </div>
+        <br>
+        <br>
+          <input type="checkbox" id="toggleMaterialType" data-is-custom="false">
+            Añadir nuevo material
+          </input>
         <div id="materialInputContainer">
           <select id="select_stock" class="swal2-select">
             ${generateStockOptions()}
           </select>
         </div>
         <br>
+        <label><b>Cantidad</b></label>
         <br>
-        <label><b>Cantidad</b></label> 
-        <br>
-        <input id="cantidadMaterial" placeholder="Cantidad de Material" type="number" min="0" class="swal2-input" value="${registroSeleccionado.Cantidad}" />
-        <br>
-        <br>
-        <label><b>Precio</b></label> 
-        <br>
-        <input id="precioMaterial" placeholder="Precio del Material" type="number" min="0" class="swal2-input" value="${registroSeleccionado.Precio}" />
+        <input id="cantidadMaterial" type="number" min="0" class="swal2-input" value="${registroSeleccionado?.Cantidad || ''}" />
         <br>
         <br>
-        <label><b>Fecha Compra</b></label> 
+        <label><b>Precio</b></label>
         <br>
-        <input id="fechaCompraMateriales" placeholder="Fecha de Compra" type="date" class="swal2-input" value="${registroSeleccionado.Fecha_Compra}" />
+        <input id="precioMaterial" type="number" min="0" class="swal2-input" value="${registroSeleccionado?.Precio || ''}" />
         <br>
         <br>
-        <label><b>Estado</b></label> 
+        <label><b>Fecha Compra</b></label>
+        <br>
+        <input id="fechaCompraMateriales" type="date" class="swal2-input" value="${registroSeleccionado?.Fecha_Compra || ''}" />
+        <br>
+        <br>
+        <label><b>Estado</b></label>
         <br>
         <select id="estadoRetiro" class="swal2-select">
-          <option value="Entregado" ${registroSeleccionado.Estado === 'Entregado' ? 'selected' : ''}>Entregado</option>
-          <option value="Pendiente" ${registroSeleccionado.Estado === 'Pendiente' ? 'selected' : ''}>Pendiente</option>
-        </select>   
+          <option value="Entregado" ${registroSeleccionado?.Estado === 'Entregado' ? 'selected' : ''}>Entregado</option>
+          <option value="Pendiente" ${registroSeleccionado?.Estado === 'Pendiente' ? 'selected' : ''}>Pendiente</option>
+        </select>
         <br>
         <br>
-        <label><b>Proveedor</b></label> 
-        <br>     
-        <input id="lugardeCompra" placeholder="Lugar de Compra" class="swal2-input" value="${registroSeleccionado.Proveedor}" />
-        <br><br>
-        <label for="select_destino"><b>Ubicación del Material</b></label>
-        <div>
-          <button type="button" id="toggleMaterialType2" data-is-custom="false" class="swal2-button">
-            Usar Deposito/Obra existente
-          </button>
-        </div>
+        <br>
+        <label><b>Ubicación del Material</b></label>
+        <br>
         <div id="materialInputContainer2">
           <select id="select_destino" class="swal2-select">
-            ${generateStockOptions2()}
+            ${stock.map((material) => `<option value="${material.ubicacionStock}">${material.ubicacionStock}</option>`).join('')}
           </select>
         </div>
       `,
       confirmButtonText: 'Registrar',
       showCancelButton: true,
       didRender: () => {
-        const toggleButton = document.getElementById('toggleMaterialType');
-        const toggleButton2 = document.getElementById('toggleMaterialType2');
-        const materialInputContainer = document.getElementById('materialInputContainer');
-        const materialInputContainer2 = document.getElementById('materialInputContainer2');
-
-        // Evento para cambiar entre opciones de material existente o nuevo
-        toggleButton.addEventListener('click', () => {
-          const isCustom = toggleButton.getAttribute('data-is-custom') === 'true';
-          toggleButton.setAttribute('data-is-custom', !isCustom);
-          toggleButton.textContent = isCustom ? 'Usar material existente' : 'Agregar nuevo material';
-          materialInputContainer.innerHTML = isCustom
-            ? `<select id="select_stock" class="swal2-select">${generateStockOptions()}</select>`
+        const toggleMaterialType = document.getElementById('toggleMaterialType');
+        toggleMaterialType.addEventListener('click', () => {
+          const isCustom = toggleMaterialType.getAttribute('data-is-custom') === 'true';
+          toggleMaterialType.setAttribute('data-is-custom', !isCustom);
+          toggleMaterialType.textContent = isCustom ? 'Usar material existente' : 'Agregar nuevo material';
+          const container = document.getElementById('materialInputContainer');
+          container.innerHTML = isCustom
+            ? `<select id="select_stock" class="swal2-select">
+                ${generateStockOptions()}
+              </select>`
             : `<input id="nombreMaterial" placeholder="Nuevo nombre del Material" class="swal2-input" />`;
-        });
-
-        // Evento para cambiar entre opciones de destino existente o nuevo
-        toggleButton2.addEventListener('click', () => {
-          const isCustom = toggleButton2.getAttribute('data-is-custom') === 'true';
-          toggleButton2.setAttribute('data-is-custom', !isCustom);
-          toggleButton2.textContent = isCustom ? 'Usar Deposito/Obra existente' : 'Agregar nuevo destino';
-          materialInputContainer2.innerHTML = isCustom
-            ? `<select id="select_destino" class="swal2-select">${generateStockOptions2()}</select>`
-            : `<input id="destinoMaterial" placeholder="Nuevo destino del Material" class="swal2-input" />`;
         });
       },
       preConfirm: () => {
@@ -126,44 +110,24 @@ const EditarCompraMateriales = ({ onCompraMaterialEditado }) => {
         const precioMaterial = document.getElementById('precioMaterial').value;
         const fechaCompraMateriales = document.getElementById('fechaCompraMateriales').value;
         const estadoRetiro = document.getElementById('estadoRetiro').value;
-        const lugardeCompra = document.getElementById('lugardeCompra').value;
         const destinoMaterial = document.getElementById('select_destino').value;
 
-        //validacion
-        const nombreRegex = /^[a-zA-Z\sÀ-ÿ]+$/;
-
-
-        if (!nombreMaterial || !nombreRegex.test(nombreMaterial)) {
-          Swal.showValidationMessage('El nombre del material no debe contener números.');
-          return false;
-        }
-
         if (!nombreMaterial || !cantidadMaterial || !precioMaterial || !fechaCompraMateriales) {
-          Swal.showValidationMessage('Todos los campos son obligatorios');
+          Swal.showValidationMessage('Todos los campos son obligatorios.');
         }
 
-        return {
-          nombreMaterial,
-          cantidadMaterial,
-          precioMaterial,
-          fechaCompraMateriales,
-          estadoRetiro,
-          lugardeCompra,
-          destinoMaterial,
-        };
+        return { nombreMaterial, cantidadMaterial, precioMaterial, fechaCompraMateriales, estadoRetiro, destinoMaterial };
       },
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          alert(registroSeleccionado.ID)
           await axios.put(`${URL_COMPRA_MATERIALES_EDITAR}${registroSeleccionado.ID}`, result.value, {
-            headers: { Authorization: `Bearer ${token}` }
+            headers: { Authorization: `Bearer ${token}` },
           });
-          Swal.fire('¡Éxito!', 'La Compra fue actualizada correctamente.', 'success');
+          Swal.fire('¡Éxito!', 'La compra fue actualizada correctamente.', 'success');
           onCompraMaterialEditado();
           clearRegistroSeleccionado();
         } catch (error) {
-          console.error('Error al actualizar la compra:', error);
           Swal.fire('Error', 'Hubo un problema al actualizar la compra.', 'error');
         }
       } else {
@@ -176,10 +140,13 @@ const EditarCompraMateriales = ({ onCompraMaterialEditado }) => {
     if (registroSeleccionado) {
       handleEditarCompra();
     }
-    getStockMaterial();
   }, [registroSeleccionado]);
 
-  return null; // Este componente no renderiza nada en pantalla
+  useEffect(() => {
+    getStockMaterial();
+  }, []);
+
+  return null;
 };
 
 export default EditarCompraMateriales;
