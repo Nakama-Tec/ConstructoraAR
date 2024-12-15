@@ -34,8 +34,8 @@ const MainTerrenos = () => {
     <>
       <BannerTerrenos />
 
-      <div className="container pt-10 mb-28 flex flex-col md:flex-row">
-        <div className="ml-4 md:ml-12 w-full md:w-[50%] text-left">
+      <div className="container pt-12 mb-12 flex flex-col md:flex-row flex-grow">
+        <div className="px-4 md:px-12 w-full md:w-[50%] text-left">
           <p className="pt-10 mb-4">
             <span className="textoDestacado">
               ¿Has soñado con un lugar propio en el que ver crecer tus proyectos y disfrutar cada amanecer rodeado de naturaleza?{" "}
@@ -57,7 +57,7 @@ const MainTerrenos = () => {
             </button>
           </div>
         </div>
-        <div className="pt-10 ml-0 md:ml-48 w-full md:w-[35%] mb-24">
+        <div className="p-10 w-full md:w-[50%] mb-24">
           <img src="/imgs/blogpost1.avif" alt="Imagen ilustrativa" />
         </div>
       </div>

@@ -31,8 +31,8 @@ const MainDepartamento = () => {
   return (
     <>
       <BannerDepartamentos />
-      <div className="container pt-10 mt-3 mb-28 flex flex-col md:flex-row flex-grow">
-        <div className="md:ml-12 w-full md:w-[50%] text-left">
+      <div className="container pt-12 mb-12 flex flex-col md:flex-row flex-grow">
+        <div className="px-4 md:px-12 w-full md:w-[50%] text-left">
           <p className="pt-10 mb-4">
             <span className="textoDestacado">
               ¿Has soñado con un hogar donde puedas desarrollar tus proyectos y disfrutar de cada amanecer en un entorno acogedor?{" "}
@@ -48,13 +48,13 @@ const MainDepartamento = () => {
           <div className="pt-4 mb-20">
             <button
               onClick={handleScrollToImages}
-              className="bg-slate-500 text-stone-50 font-medium py-2 px-4 rounded text-lg"
+              className="bg-slate-500 text-stone-50 font-medium py-2 px-4 text-lg"
             >
               Ver departamentos disponibles
             </button>
           </div>
         </div>
-        <div className="pt-10 md:ml-48 w-full md:w-[50%] mb-24">
+        <div className="p-10 w-full md:w-[50%] mb-24">
           <img src={img4} alt="Imagen ilustrativa" className="w-full h-auto" />
         </div>
       </div>
@@ -97,7 +97,7 @@ const MainDepartamento = () => {
             <div className="flex justify-end mt-4">
               <button
                 onClick={handleScrollToContact}
-                className="bg-orange-500 hover:bg-orange-600 text-white font-medium py-2 px-4 rounded"
+                className="bg-orange-500 hover:bg-orange-600 text-white font-medium py-2 px-4"
               >
                 Contactar
               </button>
@@ -138,7 +138,7 @@ const MainDepartamento = () => {
             <div className="flex justify-end mt-4">
               <button
                 onClick={handleScrollToContact}
-                className="bg-orange-500 hover:bg-orange-600 text-white font-medium py-2 px-4 rounded"
+                className="bg-orange-500 hover:bg-orange-600 text-white font-medium py-2 px-4"
               >
                 Contactar
               </button>
@@ -178,7 +178,7 @@ const MainDepartamento = () => {
             <div className="flex justify-end mt-4">
               <button
                 onClick={handleScrollToContact}
-                className="bg-orange-500 hover:bg-orange-600 text-white font-medium py-2 px-4 rounded"
+                className="bg-orange-500 hover:bg-orange-600 text-white font-medium py-2 px-4"
               >
                 Contactar
               </button>

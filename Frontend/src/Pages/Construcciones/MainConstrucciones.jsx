@@ -95,7 +95,7 @@ const MainConstrucciones = () => {
             </button>
           </div>
         </div>
-        <div className="pt-10 px-4 md:px-9 w-full md:w-[35%]">
+        <div className="p-10 px-4 md:px-9 w-full md:w-[50%]">
           <img src={imgConstruccion} alt="Imagen ilustrativa" />
         </div>
       </div>
