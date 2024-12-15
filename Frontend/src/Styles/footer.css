@@ -1,5 +1,5 @@
 footer {  
-  margin-top: auto;
+  margin-top: auto; 
 }
 
 footer .fas{
@@ -10,6 +10,8 @@ footer .fas{
 footer .container{
   justify-content: center;
   align-items: center;
+  margin: 0;
+  padding: 0;
 }
 
 footer .info-contenedor{
