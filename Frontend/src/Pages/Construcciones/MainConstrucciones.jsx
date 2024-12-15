@@ -69,8 +69,8 @@ const MainConstrucciones = () => {
     <>
       <BannerConstrucciones />
 
-      <div className="container pt-12 mb-12 flex flex-grow">
-        <div className="ml-12 w-[50%] text-left">
+      <div className="container pt-12 mb-12 flex flex-col md:flex-row flex-grow">
+        <div className="ml-4 md:ml-12 w-full md:w-[50%] text-left">
           <p className="pt-10 mb-4">
             <span className="textoDestacado">
               ¿Te gustaría diseñar tu propia casa, pero no sabes por dónde empezar?{" "}
@@ -95,20 +95,20 @@ const MainConstrucciones = () => {
             </button>
           </div>
         </div>
-        <div className="pt-10 ml-9 w-[35%]">
+        <div className="pt-10 ml-4 md:ml-9 w-full md:w-[35%]">
           <img src={imgConstruccion} alt="Imagen ilustrativa" />
         </div>
       </div>
 
       <div>
-        <p className="text-5xl">
+        <p className="text-2xl md:text-5xl">
           <span className="textoDestacado">
             Pasos para realizar el diseño de tu casa
           </span>
         </p>
       </div>
       
-      <div className="recomendaciones text-left ml-48 mr-14 pt-10">
+      <div className="recomendaciones text-left ml-4 md:ml-48 mr-4 md:mr-14 pt-10">
         <p>
           <span className="textoDestacado">
             ✅ Define tus necesidades y preferencias:
@@ -121,7 +121,7 @@ const MainConstrucciones = () => {
         </p>
       </div>
 
-      <div className="text-left ml-48 mr-14 pt-10">
+      <div className="text-left ml-4 md:ml-48 mr-4 md:mr-14 pt-10">
         <p>
           <span className="textoDestacado">
             ✅ Haz un plano de planta:
@@ -138,7 +138,7 @@ const MainConstrucciones = () => {
         </p>
       </div>
 
-      <div className="text-left ml-48 mr-14 pt-10">
+      <div className="text-left ml-4 md:ml-48 mr-4 md:mr-14 pt-10">
         <p>
           <span className="textoDestacado">
             ✅ Elige los materiales y los colores:
@@ -150,7 +150,7 @@ const MainConstrucciones = () => {
         </p>
       </div>
 
-      <div className="text-left ml-48 mr-14 pt-10">
+      <div className="text-left ml-4 md:ml-48 mr-4 md:mr-14 pt-10">
         <p>
           <span className="textoDestacado">
             ✅ Aprovecha la luz natural:
@@ -162,7 +162,7 @@ const MainConstrucciones = () => {
         </p>
       </div>
 
-      <div className="text-left ml-48 mr-14 pt-10 mb-10">
+      <div className="text-left ml-4 md:ml-48 mr-4 md:mr-14 pt-10 mb-10">
         <p>
           <span className="textoDestacado">
             ✅ Decora con personalidad:
