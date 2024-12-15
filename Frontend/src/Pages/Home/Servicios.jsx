@@ -150,7 +150,7 @@ const Servicios = () => {
                 >
                     <div className={`parallax-content transition-opacity duration-1000 ${
                         visible[index] ? "opacity-100" : "opacity-0"
-                    } p-4 md:p-2 sm:p-1`}>
+                    }`}>
                         {article.title && (
                             <h2 className="text-2xl font-bold mb-2 md:text-xl sm:text-lg">{article.title}</h2>
                         )}

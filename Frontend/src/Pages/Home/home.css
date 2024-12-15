@@ -160,7 +160,7 @@ h1 {
     position: relative;    
     z-index: 1; /* Asegura que el contenido esté por encima de la imagen de fondo */
     /* Otros estilos para tu contenido */
-    padding: 0 10% 0 25%;
+    padding: 0 10%;
 }
 
 .parallax-content ul{
@@ -203,7 +203,7 @@ h1 {
 @media (max-width: 600px) {
   .parallax-content{
     width: 100%;
-    ;
+    padding: 0 2% 0 5%;
   }
   .BannerPrincipal {
     height: 50vh;
@@ -218,28 +218,15 @@ h1 {
   .preguntas-frecuentes {
     padding: 0 1rem;
   }
-
   .parallax-container {
-    background-size: 200vw;
-  }
-
-  .parallax-content {
-    padding: 0 2% 0 5%;
-  }
-
-  .boton-contactanos {
-    font-size: 1rem;
-    padding: 8px 16px;
-  }
-}
-@media (max-width: 600px) {
-  .parallax-container {
-    background-attachment: fixed;    
+    background-attachment: scroll;    
     background-size: cover;
+    background-position: center 0px !important;
     height: 100%;
     margin: 0;    
     
   }
+
   .servicios{
     display: flex;
     flex-direction: column;
@@ -248,13 +235,11 @@ h1 {
     text-align: center;
   
     width: 100%;
-    button{
-      display: flex;      
-      align-items: center;
-      padding: 0;
-      margin: 0;
-      height: 2rem;
-      width: 100%;      
-    }
+    
+  }
+
+  #article-1::after, #article-3::after, #article-5::after {
+background: rgb(0,0,0);
+background: linear-gradient(0deg, rgba(0,0,0,0) 0%, rgba(255,255,255,0.7) 25%,rgba(255,255,255,0.7) 75%, rgba(0,0,0,0) 100%);
   }
 }
