@@ -58,7 +58,7 @@ const RecuperarContraseña = () => {
     }
   };
   return (
-    <div className="display flex justify-center relative top-24">
+    <div className="display flex justify-center relative w-full">
     <Form
       onSubmit={handleSubmit}
       className="bg-white dark:bg-zinc-900 shadow-2xl rounded-2xl overflow-hidden border-4 border-blue-400 dark:border-blue-800 m-10 w-[40%]"

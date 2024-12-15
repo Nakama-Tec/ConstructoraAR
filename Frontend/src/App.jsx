@@ -52,7 +52,7 @@ const ScrollToTop = () => {
 const MainContent = () => {
   const roleRequired = "admin" //rol requerido para acceder a las rutas protegidas
   const location = useLocation();
-  const isAdminPath = location.pathname.startsWith("/Admin");
+  const isAdminPath = location.pathname.toLowerCase().startsWith("/admin");
 return (
   <main className={`${!isAdminPath ? 'contenedor-main' : ''}`}>   
 
@@ -97,6 +97,7 @@ return (
         <Route path='/terrenos' element={<MainTerrenos />} />
         <Route path='/departamentos' element={<MainDepartamento/>} />
         <Route path='/construcciones' element={<MainConstrucciones/>} />
+        <Route path='/institucional' element={<Institucional/>} />
         </Routes>
         </main>
         )
