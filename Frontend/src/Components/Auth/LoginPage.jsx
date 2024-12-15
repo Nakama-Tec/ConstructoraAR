@@ -90,8 +90,8 @@ const LoginPage = () => {
               <button type="submit" className="loginSubmitBtn">
                 Ingresar
               </button>
-              <div className="px-4 py-4 mt-5 bg-blue-200 dark:bg-zinc-800">
-                <div className="text-sm text-blue-900 dark:text-blue-300 text-center">
+              <div className="px-4 py-4 mt-5 recuperar-pass  ">
+                <div className=" text-sm text-center">
                   Olvidaste tu contraseña?
                   <Link
                     to={"/area-empleados/RecuperarContraseña"}
