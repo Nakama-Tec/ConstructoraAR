@@ -1,0 +1,28 @@
+/* Contenedor principal para Misión y Visión */
+.mision-vision-container {
+    display: flex; /* Activa Flexbox */
+    justify-content: space-between; /* Espaciado entre los elementos */
+    align-items: flex-start; /* Alinea al inicio verticalmente */
+    gap: 20px; /* Espaciado horizontal entre los componentes */
+    flex-wrap: wrap; /* Permite que los elementos se envuelvan si no hay suficiente espacio */
+  margin-top: 100px;
+}
+  
+  /* Estilo individual para Misión y Visión */
+  .mision-vision-container > * {
+    flex: 1; /* Ambos elementos ocupan el mismo espacio */
+    max-width: 48%; /* Ocupa hasta el 48% del ancho del contenedor */
+  }
+  
+  /* Consulta de medios para pantallas pequeñas */
+  @media (max-width: 768px) {
+    .mision-vision-container {
+      flex-direction: column; /* Cambia a disposición en columna */
+      gap: 10px; /* Espaciado vertical entre los componentes */
+    }
+  
+    .mision-vision-container > * {
+      max-width: 100%; /* Ocupan todo el ancho */
+    }
+  }
+  

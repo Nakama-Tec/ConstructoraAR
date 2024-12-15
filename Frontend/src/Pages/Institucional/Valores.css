@@ -1,0 +1,52 @@
+.container {
+    padding: 2rem;
+    text-align: center;
+  }
+  
+  .title {
+    color: rgb(32, 41, 56, 1);
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+  }
+  
+  .description {
+    color: #555;
+    margin-bottom: 2rem;
+  }
+  
+  .card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+  }
+  
+  .card {
+    flex: 1 1 calc(30% - 1rem); /* Cada tarjeta ocupa aproximadamente un 30% del ancho */
+    max-width: 350px; /* Máximo ancho de cada tarjeta */
+    background-color: rgb(220, 234, 253, 1); /* Fondo claro */
+    padding: 3rem; /* Puedes ajustar este valor para cambiar el tamaño interno de las tarjetas */
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    color: rgb(100, 116, 139);
+    margin: 1rem; /* Espaciado entre tarjetas */
+    transition: transform 0.3s ease; /* Transición suave */
+  }
+  
+  .hover-card:hover {
+    transform: scale(1.05); /* Efecto de agrandamiento */
+  }
+  
+  .card-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    color: rgb(32, 41, 56, 1);
+  }
+  
+  .card-text {
+    font-size: 1.25rem;
+    color: rgb(32, 41, 56, 1);
+  }
