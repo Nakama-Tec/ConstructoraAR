@@ -199,10 +199,62 @@ h1 {
   transition: background-color 0.3s;
 }
 
-@media (max-width: 600px) {
 
+@media (max-width: 600px) {
   .parallax-content{
     width: 100%;
     ;
+  }
+  .BannerPrincipal {
+    height: 50vh;
+  }
+
+  .textoBannerPrincipal {
+    font-size: 2rem;
+    top: 25%;
+    left: 5%;
+  }
+
+  .preguntas-frecuentes {
+    padding: 0 1rem;
+  }
+
+  .parallax-container {
+    background-size: 200vw;
+  }
+
+  .parallax-content {
+    padding: 0 2% 0 5%;
+  }
+
+  .boton-contactanos {
+    font-size: 1rem;
+    padding: 8px 16px;
+  }
+}
+@media (max-width: 600px) {
+  .parallax-container {
+    background-attachment: fixed;    
+    background-size: cover;
+    height: 100%;
+    margin: 0;    
+    
+  }
+  .servicios{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  
+    width: 100%;
+    button{
+      display: flex;      
+      align-items: center;
+      padding: 0;
+      margin: 0;
+      height: 2rem;
+      width: 100%;      
+    }
   }
 }
