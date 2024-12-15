@@ -180,7 +180,9 @@ h1 {
   }
 
   .parallax-container {
-    background-size: 150vw;
+    background-attachment: scroll;
+    background-size: cover;
+    background-position: center 0px!important;
   }
 
   .parallax-content {
