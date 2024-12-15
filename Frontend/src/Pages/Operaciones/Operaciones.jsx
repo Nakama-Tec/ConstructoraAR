@@ -1,5 +1,4 @@
 import MainOperaciones from '../../Components/Admin/CRUD/Operaciones/MainOperaciones'
-import FooterAdmin from '../../Components/Layout/FooterAdmin'
 import HeaderAdmin from '../../Components/Layout/HeaderAdmin'
 
 const Operaciones = () => {
@@ -7,7 +6,7 @@ const Operaciones = () => {
     <>
     <HeaderAdmin/>
     <MainOperaciones/>
-    <FooterAdmin />
+    
     </>
   )
 }

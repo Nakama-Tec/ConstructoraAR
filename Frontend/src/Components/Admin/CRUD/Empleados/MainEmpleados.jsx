@@ -25,7 +25,7 @@ const MainEmpleados = () => {
       const response = await axios.get(URL_EMPLEADOS, { headers: { Authorization: `Bearer ${token}` } });
       setDatos(response.data);
     } catch (error) {
-      Swal.fire('Error', 'Hubo un problema al eliminar el departamento.', 'error');
+      Swal.fire('Error', 'Hubo un problema al eliminar el empleado.', 'error');
     }
   };
   
@@ -33,7 +33,7 @@ const MainEmpleados = () => {
   const handleEliminarEmpleado = async (empleado) => {
     const confirmacion = await Swal.fire({
       title: '¿Estás seguro?',
-      text: `¿Deseas eliminar al empleado ${empleado.DNIEmpleado}?`,
+      text: `¿Deseas eliminar al empleado ${empleado.nombreEmpleado} ${empleado.apellidoEmpleado}?`,
       icon: 'warning',
       showCancelButton: true,
       confirmButtonText: 'Sí, eliminar',

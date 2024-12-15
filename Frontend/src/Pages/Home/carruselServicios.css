@@ -1,0 +1,60 @@
+/* carruselServicios.css */
+
+.Carrousel {
+    overflow: hidden; /* Evita el desbordamiento del carrusel */
+}
+
+.Carrousel .flex {
+    display: flex;
+    user-select: none; /* Evita la selección de texto */
+    transition: transform 0.3s ease;
+}
+
+.overflow-hidden {
+    user-select: none; /* Evita la selección de texto */
+}
+
+.cursor-grab {
+    cursor: grab;
+    user-select: none; /* Evita la selección de texto */
+}
+
+.cursor-grabbing {
+    cursor: grabbing;
+    user-select: none; /* Evita la selección de texto */
+}
+
+.active {
+    cursor: grabbing;
+    user-select: none; /* Evita la selección de texto */
+}
+
+/* Asegura que todo el contenido dentro de CardBlog no sea seleccionable */
+.CardBlog * {
+     /* Evita la selección de texto */
+    object-fit: cover;
+   
+}
+
+.CardBlog img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+   
+
+/* Responsividad */
+@media (max-width: 768px) {
+    .Carrousel .flex {
+        gap: 10px; /* Espacio entre tarjetas en pantallas pequeñas */
+    }
+
+}
+
+@media (max-width: 480px) {
+    .Carrousel{
+        overflow: auto; /* Agrega una barra de desplazamiento horizontal en dispositivos muy pequeños */
+        width: 100%;
+        
+    }
+}

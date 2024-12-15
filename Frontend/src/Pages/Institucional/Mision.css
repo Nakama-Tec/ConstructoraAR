@@ -1,0 +1,48 @@
+/* Mision.css */
+
+.containerMision {
+  background-color: rgba(220, 234, 253, 1); /* Color de fondo */
+  padding: 1rem; /* Espaciado interno */
+  padding-top: 1.5rem; /* Espaciado superior */
+  border-radius: 12px; /* Bordes redondeados */
+  text-align: center; /* Centrado del texto */
+  max-width: 1300px; /* Ancho máximo del componente */
+  margin: 2rem auto; /* Centrar en la pantalla con margen superior e inferior */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para dar profundidad */
+  transition: transform 0.3s ease; /* Transición suave */
+  height: auto; /* Ajustar altura automáticamente */
+  margin-bottom: 100px;
+}
+
+.containerMision:hover {
+  transform: scale(1.05); /* Efecto de agrandamiento */
+}
+
+.title {
+  font-size: 2.25rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: rgb(32, 41, 56); /* Color del título */
+}
+
+.text {
+  font-size: 1.25rem;
+  color: rgb(32, 41, 56); 
+  line-height: 1.5; /* Espaciado entre líneas */
+  text-align: justify; /* Justifica el texto */
+  position: relative; /* Para posicionar el cursor */
+}
+
+/* Cursor parpadeante */
+.text::after {
+  content: '|'; /* Cursor */
+  display: inline-block;
+  margin-left: 5px;
+  animation: blink 0.7s step-end infinite; /* Animación de parpadeo */
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
