@@ -3,7 +3,7 @@ import { Form } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import useAuthStore from "../../Context/useAuthStore";
-import { URL_LOGIN } from "../../Constants/endpoints-API";
+import { URL_RECUPERAR_CONTRASENA } from "../../Constants/endpoints-API";
 import { HOME_SISTEMA_GESTION } from "../../Routes/routes";
 import Swal from "sweetalert2";
 
@@ -35,7 +35,7 @@ const RecuperarContraseña = () => {
     }
 
     try {
-    const response = await axios.post(URL_LOGIN, { correoUsuario });
+    const response = await axios.post(URL_RECUPERAR_CONTRASENA, { correoUsuario });
     setToken(response.data.token);
   
     axios.defaults.headers.common["Authorization"] = `Bearer ${response.data.token}`;

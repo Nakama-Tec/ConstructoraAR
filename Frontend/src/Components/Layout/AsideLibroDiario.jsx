@@ -23,21 +23,25 @@ import {
 } from 'react-icons/fa';
 import { ALQUILER, CERTIFICADOS, CLIENTES, COMPRA_MATERIALES, DEPARTAMENTOS, EMPLEADOS, FLUJO_CAJA, LIBRO_DIARIO, OBRAS, OPERACIONES, PAGOS_DPTO, PENDIENTES, REMUNERACIONES, STOCK, TERRENOS, USUARIO, VEHICULOS, VIAJES, VTA_TERRENOS } from '../../Routes/routes';
 
-const Aside = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false); // Controla la visibilidad del menú en móviles
-  const [openSubmenus, setOpenSubmenus] = useState({}); // Controla la apertura de submenús
-  const location = useLocation();
 
-  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+const AsideLibroDiario = () => {
+    const [isMenuOpen, setIsMenuOpen] = useState(false); // Controla la visibilidad del menú en móviles
+    const [openSubmenus, setOpenSubmenus] = useState({}); // Controla la apertura de submenús
+    const location = useLocation();
+  
+    const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+  
+    const toggleSubmenu = (menu) => {
+      setOpenSubmenus((prev) => ({ ...prev, [menu]: !prev[menu] }));
+    };
+  
+    const isActive = (path) => location.pathname === path;
+  
+    return (
 
-  const toggleSubmenu = (menu) => {
-    setOpenSubmenus((prev) => ({ ...prev, [menu]: !prev[menu] }));
-  };
 
-  const isActive = (path) => location.pathname === path;
 
-  return (
-    <div className='lg, sm:relative bottom-8'>
+      <div className='lg, sm:relative bottom-8'>
         {/* Botón de hamburguesa visible solo en móviles */}
         <button className="md:hidden fixed top-4 left-4 z-50 text-2xl text-neutral-500 focus:outline-none" onClick={toggleMenu} aria-label="Toggle menu" >
           <FaBars />
@@ -368,7 +372,10 @@ const Aside = () => {
                   USUARIOS
                 </Link>
               </li>
-
+  
+            
+  
+             
             </ul>
           </nav>
         </div>
@@ -376,5 +383,4 @@ const Aside = () => {
     );
   };
 
-
-export default Aside;
+export default AsideLibroDiario

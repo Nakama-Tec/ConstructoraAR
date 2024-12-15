@@ -13,8 +13,13 @@
 }
 
 .cash-flow-table th {
-  background-color: #f0f0f0;
+  background-color: #0a0a0a;
+  color: white;
   font-weight: bold;
+  position: sticky;
+  top: 0; /* Fija el encabezado en la parte superior */
+  z-index: 1; /* Asegura que el encabezado esté por encima del contenido */
+  opacity: 0.8;
 }
 
 .green {

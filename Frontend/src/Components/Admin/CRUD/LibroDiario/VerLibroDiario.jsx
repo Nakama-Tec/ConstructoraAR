@@ -89,7 +89,7 @@ const VerLibroDiario = () => {
       <Toaster /> {/* Componente para mostrar notificaciones */}
       <br />
       <br />
-      <h2 className="text-center text-black text-4xl">LIBRO DIARIO</h2>
+      <h2 className="text-center text-black font-semibold text-4xl">LIBRO DIARIO</h2>
 {/* Selección de fecha */}
 <div className="flex flex-col mt-5 sm:flex-row items-center justify-center gap-4 mb-6">
   <div className="flex flex-col sm:flex-row items-center gap-2">
@@ -132,9 +132,9 @@ const VerLibroDiario = () => {
               <th>Fecha</th>
             </tr>
           </thead>
+          <tbody>
           {prueba.length > 0 ? (
-            <tbody>
-              {prueba.map((item, index) => (
+              prueba.map((item, index) => (
                 <tr key={index}>
                   <td>{index + 1}</td>
                   <td>{item.TIPO}</td>
@@ -142,11 +142,16 @@ const VerLibroDiario = () => {
                   <td>{item.Monto}</td>
                   <td>{item.Fecha}</td>
                 </tr>
-              ))}
-            </tbody>
+              ))
+           
           ) : (
-            <p></p>
+            <tr>
+            <td colSpan="5" className="text-center">
+              No hay datos disponibles.
+            </td>
+          </tr>
           )}
+           </tbody>
         </table>
       </div>
     </div>

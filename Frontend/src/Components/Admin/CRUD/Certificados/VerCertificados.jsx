@@ -14,7 +14,7 @@ const VerCertificados = ({ onCertificadoVer }) => {
             <tbody>
               <tr>
                 <th style="padding: 8px; border-bottom: 1px solid #ddd; text-align: right; width: 35%;">Monto del Certificado:</th>
-                <td style="padding: 8px; border-bottom: 1px solid #ddd;">${verRegistroSeleccionado.montoCert}</td>
+                <td style="padding: 8px; border-bottom: 1px solid #ddd;">$${verRegistroSeleccionado.montoCert}</td>
               </tr>
               <tr>
                 <th style="padding: 8px; border-bottom: 1px solid #ddd; text-align: right;">Nro del Certificado:</th>
@@ -30,7 +30,7 @@ const VerCertificados = ({ onCertificadoVer }) => {
               </tr>
               <tr>
                 <th style="padding: 8px; border-bottom: 1px solid #ddd; text-align: right;">Estado del certificado:</th>
-                <td style="padding: 8px; border-bottom: 1px solid #ddd;">${verRegistroSeleccionado.estadoCert}</td>
+                <td style="padding: 8px; border-bottom: 1px solid #ddd;">${verRegistroSeleccionado.estadoCert === 0 ? "Pagado" : "No Pagado" }</td>
               </tr>
                <tr>
                 <th style="padding: 8px; border-bottom: 1px solid #ddd; text-align: right;">Link de la factura:</th>
@@ -43,17 +43,37 @@ const VerCertificados = ({ onCertificadoVer }) => {
                </tr>
                  <tr>
                 <th style="padding: 8px; border-bottom: 1px solid #ddd; text-align: right;">Redeterminacion:</th>
-                <td style="padding: 8px; border-bottom: 1px solid #ddd;">${verRegistroSeleccionado.redeterminacion}</td>
+                <td style="padding: 8px; border-bottom: 1px solid #ddd;">${verRegistroSeleccionado.redeterminacion === 0 ? "Revalorizado" : "No Revalorizado"}</td>
               </tr>
               </tr>
                  <tr>
-                <th style="padding: 8px; border-bottom: 1px solid #ddd; text-align: right;">Calor de la Redeterminacion:</th>
-                <td style="padding: 8px; border-bottom: 1px solid #ddd;">${verRegistroSeleccionado.valorredeterminacion}</td>
+                <th style="padding: 8px; border-bottom: 1px solid #ddd; text-align: right;">Valor de la Redeterminacion:</th>
+                <td style="padding: 8px; border-bottom: 1px solid #ddd;">$${verRegistroSeleccionado.valorredeterminacion}</td>
               </tr>
               </tr>
                  <tr>
                 <th style="padding: 8px; border-bottom: 1px solid #ddd; text-align: right;">Fecha de la Redemterminacion:</th>
                 <td style="padding: 8px; border-bottom: 1px solid #ddd;">${verRegistroSeleccionado.fechaRedeterminacion}</td>
+              </tr>
+              </tr>
+                 <tr>
+                <th style="padding: 8px; border-bottom: 1px solid #ddd; text-align: right;">Obra asociada:</th>
+                <td style="padding: 8px; border-bottom: 1px solid #ddd;">${verRegistroSeleccionado.NombreObra}</td>
+              </tr>
+              </tr>
+                 <tr>
+                <th style="padding: 8px; border-bottom: 1px solid #ddd; text-align: right;">Precio de la obra:</th>
+                <td style="padding: 8px; border-bottom: 1px solid #ddd;">${verRegistroSeleccionado.PrecioObra}</td>
+              </tr>
+              </tr>
+                 <tr>
+                <th style="padding: 8px; border-bottom: 1px solid #ddd; text-align: right;">Progreso de la obra:</th>
+                <td style="padding: 8px; border-bottom: 1px solid #ddd;">${verRegistroSeleccionado.ProgresoObra}%</td>
+              </tr>
+              </tr>
+                 <tr>
+                <th style="padding: 8px; border-bottom: 1px solid #ddd; text-align: right;">Sector de la obra:</th>
+                <td style="padding: 8px; border-bottom: 1px solid #ddd;">${verRegistroSeleccionado.SectorObra === 0 ? "Público" : "Privado"}</td>
               </tr>
             </tbody>
           </table>

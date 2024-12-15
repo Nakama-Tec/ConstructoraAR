@@ -5,6 +5,8 @@ import { useEffect, useState } from 'react';
 import { URL_FLUJO_CAJA } from '../../../../Constants/endpoints-API';
 import useAuthStore from '../../../../Context/useAuthStore';
 import axios from 'axios';
+import { LIBRO_DIARIO } from '../../../../Routes/routes';
+import { Link } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 
 
@@ -16,6 +18,7 @@ const MainCaja = () => {
   const [prueba, setPrueba] = useState([]);
   const [datos, setDatos] = useState([]);
   const [datosMensuales, setDatosMensuales] = useState([]);
+  const [año, setAño] = useState(new Date().getFullYear());
 
   const [mes, setMes] = useState([]);
   const [todosLosDatos, setTodosLosDatos] = useState([]); // Nuevo estado para almacenar todas las respuestas
@@ -39,8 +42,8 @@ const obtenerFechaFin = () => {
 
 
 // Estado para las fechas inicializado con la fecha actual
-const [fechaInicio, setFechaInicio] = useState(obtenerFechaInicio);
-const [fechaFin, setFechaFin] = useState(obtenerFechaFin);
+// const [fechaInicio, setFechaInicio] = useState(obtenerFechaInicio);
+// const [fechaFin, setFechaFin] = useState(obtenerFechaFin);
 
 // console.log("fechaInicio = ", fechaInicio);
 // console.log("fechaFin = ", fechaFin);
@@ -48,7 +51,7 @@ const [fechaFin, setFechaFin] = useState(obtenerFechaFin);
   const enviarFechaPorPost = async () => {
     try {
       const hoy = new Date();
-      const año = hoy.getFullYear();
+      // const año = hoy.getFullYear();
   
       // Crear un array para almacenar los datos de cada mes
       let datosAcumulados = [];
@@ -83,7 +86,8 @@ const [fechaFin, setFechaFin] = useState(obtenerFechaFin);
 // Ejecutar enviarFechaPorPost al cargar el componente
 useEffect(() => {
   enviarFechaPorPost();
-}, [fechaInicio, fechaFin]); // Se ejecuta cuando cambian estas dependencias
+}, [//fechaInicio, //fechaFin
+]); // Se ejecuta cuando cambian estas dependencias
 
   const columns = React.useMemo(
     () => [
@@ -357,75 +361,108 @@ const SaldoAcumulado = (mesIndex) => {
 // }, []); 
 
   return (
-    <div>
+<div>
 
- <div className="main-caja-container">
-      
+  <div className="main-caja-container">
+    <div className="content">
+      <h1 className="text-black font-semibold text-4xl mt-5 mb-6 text-center">FLUJO DE CAJA - AÑO : {año}</h1>
+      {/* <p className="text-xl text-gray-700 font-bold mb-3 text-center">Selecciona la fecha</p> */}
 
-      <div className="content">
-        <h1>Gestión de Fechas</h1>
-
-        <div className="date-selector">
-          <label htmlFor="fechaInicio">Fecha Inicio:</label>
+      {/* <div className="date-selector flex flex-col md:flex-row items-center gap-4 justify-center">
+        <div className="flex flex-col">
+          <label htmlFor="fechaInicio" className="text-sm font-medium mb-1">Fecha Inicio:</label>
           <input
             type="date"
             id="fechaInicio"
-            value={fechaInicio}
+           value={fechaInicio}
             onChange={(e) => setFechaInicio(e.target.value)}
+            className="p-2 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none"
           />
+        </div> */}
 
-          <label htmlFor="fechaFin">Fecha Fin:</label>
+        {/* <div className="flex flex-col">
+          <label htmlFor="fechaFin" className="text-sm font-medium mb-1">Fecha Fin:</label>
           <input
             type="date"
             id="fechaFin"
-            value={fechaFin}
+           value={fechaFin}
             onChange={(e) => setFechaFin(e.target.value)}
+            className="p-2 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none"
           />
         </div>
+      </div> */}
 
-        <Button variant="primary" onClick={enviarFechaPorPost}>
+      {/* <div className="flex justify-center mt-6">
+        <button
+          onClick={enviarFechaPorPost}
+          className="px-6 py-2 bg-blue-600 text-white font-medium text-sm rounded-md shadow-md hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-1 focus:outline-none "
+        >
           Enviar Fechas
-        </Button>
+        </button>
+      </div> */}
+    </div>
+  </div>
+  {/* <div className="btn librodirario flex justify-end back">
+< Link to={LIBRO_DIARIO} className="px-6 py-2 bg-green-600 text-white font-medium text-4xl rounded-md shadow-md hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-1 focus:outline-none mr-16">
+LIBRO DIARIO</Link>
+</div> */}
+  <br />
+  {/* TABLA FLUJO DE CAJA */}
+  <p className="text-xl text-gray-700 font-bold mb-3 text-center">Selecciona Historial de Caja</p>
+  <br />
+  <p htmlFor="año" className="text-xl font-medium mb-1 text-center">Año:</p>
+  <select 
+  name="Historial de flujo Caja" 
+  id="historial"
+  className="block mx-auto mb-6 p-2 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none"
+  onChange={(e) => setAño(e.target.value)}
+>
+  <option value="2024">2024</option>
+  <option value="2023">2023</option>
+  <option value="2022">2022</option>
+</select>
+  <div className="flex justify-center mt-6">
+        <button
+          onClick={enviarFechaPorPost}
+          className="px-6 py-2 bg-blue-600 text-white font-medium text-sm rounded-md shadow-md hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-1 focus:outline-none "
+        >
+          Enviar Historial de Caja
+        </button>
       </div>
-    </div>
+      <div className="btn librodirario flex justify-end back">
+< Link to={LIBRO_DIARIO} className="px-6 py-2 bg-green-600 text-white font-medium text-4xl rounded-md shadow-md hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-1 focus:outline-none mr-16">
+LIBRO DIARIO</Link>
+</div>
+  <br/>
 
-
-
-
-      <br />
-      {/* <b><h2>Fecha Actual : {fechaActual}</h2></b> */}
-      <br />
-      <select name="Historial de flujo Caja" id="historial">
-        <option value="1">Año 1</option>
-        <option value="2">Historial 2</option>
-        <option value="3">Historial 3</option>
-      </select>
-      <b><h2 style={{ textAlign: "center", color: "black" }}>Flujo de Caja</h2></b>
-
-      <table {...getTableProps()} className="cash-flow-table">
-        <thead>
-          {headerGroups.map((headerGroup,index) => (
-            <tr {...headerGroup.getHeaderGroupProps() } key={index}>
-              {headerGroup.headers.map((column,index) => (
-                <th {...column.getHeaderProps()} key={index}>{column.render("Header")}</th>
-              ))}
-            </tr>
+  <table {...getTableProps()} className="cash-flow-table">
+    <thead>
+      {headerGroups.map((headerGroup, index) => (
+        <tr {...headerGroup.getHeaderGroupProps()} key={index}>
+          {headerGroup.headers.map((column, index) => (
+            <th {...column.getHeaderProps()} key={index}>
+              {column.render("Header")}
+            </th>
           ))}
-        </thead>
-        <tbody {...getTableBodyProps()}>
-          {rows.map((row,index) => {
-            prepareRow(row);
-            return (
-              <tr {...row.getRowProps()} className={row.original.style} key={index}>
-                {row.cells.map((cell,index) => (
-                  <td {...cell.getCellProps()} key={index}>{cell.render("Cell")}</td>
-                ))}
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>     
-    </div>
+        </tr>
+      ))}
+    </thead>
+    <tbody {...getTableBodyProps()}>
+      {rows.map((row, index) => {
+        prepareRow(row);
+        return (
+          <tr {...row.getRowProps()} className={row.original.style} key={index}>
+            {row.cells.map((cell, index) => (
+              <td {...cell.getCellProps()} key={index}>
+                {cell.render("Cell")}
+              </td>
+            ))}
+          </tr>
+        );
+      })}
+    </tbody>
+  </table>
+</div>
   );
 };
 

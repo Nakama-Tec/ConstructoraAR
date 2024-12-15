@@ -11,7 +11,7 @@ const EditarOperaciones = ({ onOperacionEditado }) => {
 
   const handleEditarOperaciones = () => {
     Swal.fire({
-      title: 'Editar Operaciones',
+      title: 'Editar Operación',
       html: `
         <input id="nombreOperacion" class="swal2-input" value="${registroSeleccionado.nombreOperacion || ''}" placeholder="Nombre Operación" />
         <input id="montoOperacion" class="swal2-input" type="number" min="0" value="${registroSeleccionado.montoOperacion || ''}" placeholder="Monto Operación" />

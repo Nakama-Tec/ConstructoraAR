@@ -3,6 +3,11 @@
 // Login
 export const URL_LOGIN = "http://localhost:8000/login";
 
+// Recuperacion de Contraseña
+
+export const URL_RECUPERAR_CONTRASENA = "http://localhost:8000/recuperarPass";
+export const URL_CAMBIAR_CONTRASENA = "http://localhost:8000/reset-password";
+
 // Clientes
 
 export const URL_CLIENTES = "http://localhost:8000/clientes/";  
