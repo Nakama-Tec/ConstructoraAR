@@ -1,11 +1,11 @@
 // Rutas de Page
 export const HOME = "/"
-export const HOME_SISTEMA_GESTION = "/HomeSistemaGestion"
+export const HOME_SISTEMA_GESTION = "/Admin"
 
 export const LOGIN = "/area-empleados/Login"
 export const RECUPERAR = "/area-empleados/RecuperarContraseña"
 export const CERTIFICADOS = "/Admin/Certificados"
-export const HOME_ADMIN = "/Admin"
+export const HOME_ADMIN = "/HomeAdmin"
 export const FLUJO_CAJA = "/Admin/FlujoCaja"
 export const LIBRO_DIARIO = "/Admin/LibroDiario"
 export const TERRENOS = "/Admin/Terrenos"
