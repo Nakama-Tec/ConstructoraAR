@@ -1,5 +1,4 @@
 import MainVehiculos from '../../Components/Admin/CRUD/Vehiculos/MainVehiculos'
-import FooterAdmin from '../../Components/Layout/FooterAdmin'
 import HeaderAdmin from '../../Components/Layout/HeaderAdmin'
 
 const Vehiculos = () => {
@@ -7,7 +6,6 @@ const Vehiculos = () => {
     <>
     <HeaderAdmin />
     <MainVehiculos />
-    <FooterAdmin/>
     </>
   )
 }
