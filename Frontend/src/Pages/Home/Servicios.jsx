@@ -1,9 +1,25 @@
 import React, { useEffect, useRef, useState } from 'react';
 import './servicios.css';
+import { Link } from 'react-router-dom';
 
 const Servicios = () => {
     const parallaxRefs = useRef([]);
     const [visible, setVisible] = useState([]);
+    const [isParallaxEnabled, setIsParallaxEnabled] = useState(true);
+
+    useEffect(() => {
+        const handleResize = () => {
+            setIsParallaxEnabled(window.innerWidth > 768); // Disable parallax for screens smaller than 768px
+        };
+
+        window.addEventListener('resize', handleResize);
+        handleResize();
+
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
+
     useEffect(() => {
         const observer = new IntersectionObserver(
             (entries) => {
@@ -32,6 +48,8 @@ const Servicios = () => {
     }, []);
 
     useEffect(() => {
+        if (!isParallaxEnabled) return;
+
         parallaxRefs.current.forEach((ref) => {
             if (ref) {
                 const computedStyle = window.getComputedStyle(ref);
@@ -61,7 +79,7 @@ const Servicios = () => {
         return () => {
             window.removeEventListener('scroll', handleScroll);
         };
-    }, []);
+    }, [isParallaxEnabled]);
 
     const articles = [
         {
@@ -125,7 +143,7 @@ const Servicios = () => {
                 <div
                     key={article.id}
                     id={article.id}
-                    className={`parallax-container h-[600px] w-full`}
+                    className={`parallax-container h-[600px] w-full md:h-[400px] sm:h-[300px]`}
                     ref={(el) => (parallaxRefs.current[index] = el)}
                     style={{
                         backgroundImage: `url(${article.image})`,
@@ -135,14 +153,16 @@ const Servicios = () => {
                         visible[index] ? "opacity-100" : "opacity-0"
                     }`}>
                         {article.title && (
-                            <h2 className="text-2xl font-bold mb-2">{article.title}</h2>
+                            <h2 className="text-2xl font-bold mb-2 md:text-xl sm:text-lg">{article.title}</h2>
                         )}
                         {article.subtitle && (
-                            <h4 className="text-xl mb-2">{article.subtitle}</h4>
+                            <h4 className="text-xl mb-2 md:text-lg sm:text-base">{article.subtitle}</h4>
                         )}
                         {article.content && <>{article.content}</>}
                         {article.button && (
-                            <button onClick={()=>window.location.href =`${article.button}`}  className="boton-contactanos mt-4 d-block">Ver más</button>
+                            <Link to={article.button}>
+                                <button className="boton-contactanos mt-4 d-block">Ver más</button>
+                            </Link>
                         )}
                     </div>
                 </div>

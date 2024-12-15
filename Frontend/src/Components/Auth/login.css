@@ -93,6 +93,7 @@ body{
     flex-direction: column;
     justify-content: center;
     align-items: end;
+    text-align: left;
   }
     
   .formControl {
@@ -133,8 +134,7 @@ body{
     right: 5.5rem;
     width: 150px;
     height: 40px;
-    background: var(--negro);
-    border-radius: 0.25rem;
+    background: var(--negro);    
     color: #FFFFFF;
     font-size: 1rem;
   }
@@ -176,13 +176,52 @@ input[type="search"]::-webkit-search-results-button,
 input[type="search"]::-webkit-search-results-decoration {
     display: none;
 }
-  
+  .recuperar-pass{
+    background-color: var(--azul-oscuro);
+    color: whitesmoke;
+    border-radius: 0.25rem;
+  }
 @media (max-width: 576px) {
-  
+   .loginRight {
+    width: 100%; 
+    flex-grow: 1;    
+  }
+  .loginLeft {
+    display: none;
+  }
+
+  .formContainer {    
+    padding: 1rem;    
+    
+  }
+
+  .btnCreateAccount {
+    top: 3rem;
+    right: 1.5rem;
+  }
+  .loginContainer {
+    flex-direction: column-reverse;
+    
+  }
 }
   
 @media (min-width: 576px) and (max-width: 992px) {
+  .loginRight {
+    width: 100%;
+    flex-grow: 1;
+  }
+  .loginLeft {
+    display: none;
+  }
   
+  .btnCreateAccount {
+    top: 2rem;
+    right: 4rem;
+  }
+
+  .loginContainer {
+    flex-direction: column-reverse;
+  }
 }
 
 @media (min-width: 992px) and (max-width: 1200px) {

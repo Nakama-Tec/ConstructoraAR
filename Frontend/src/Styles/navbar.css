@@ -16,7 +16,10 @@ header nav{
     z-index: 1000;
 }
 
+
 @media (max-width: 768px) {
+
+ 
     .contenedor-nav{
         padding: 0 1rem;
         display: flex;
@@ -46,7 +49,7 @@ header nav{
     }
 
     header nav {
-        height: 3.5rem;
+        height: 4rem;
     }
 }
 

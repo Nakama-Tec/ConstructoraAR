@@ -61,3 +61,15 @@
     ;
     
   }
+
+  @media (max-width: 768px) {
+    .card-construccion {
+      width: 45%;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .card-construccion {
+      width: 100%;
+    }
+  }
