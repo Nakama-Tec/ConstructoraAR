@@ -2,13 +2,14 @@ import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import logo from "../../assets/sinfondo.svg";
 import "../../Styles/Navbar.css";
-
+import useAuthStore from "../../Context/useAuthStore";
 import {
   Disclosure,
   DisclosureButton,
   DisclosurePanel,
 } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+
 
 const navigationItems = [
   { name: "Inicio", href: "/" },
@@ -17,14 +18,19 @@ const navigationItems = [
   { name: "Departamentos", href: "/departamentos" },
   { name: "Institucional", href: "/institucional" },
   { name: "Contacto", href: "/contacto" },
-  { name: "Acceso", href: "/area-empleados/Login" },
+  { name: "Acceso", href: "/area-empleados/Login" },  
 ];
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
+const isActive = (location, href) => {
+  return location.pathname === href;
+};
+
 const Header = () => {
+ const token = useAuthStore((state) => state.token);
   const location = useLocation();
 
   return (
@@ -51,31 +57,15 @@ const Header = () => {
                 <div className="flex flex-1 items-center justify-center mx-8">
                   <div className="hidden md:flex md:space-x-4 ms-auto">
                     {navigationItems.map((item) => {
-                      const isActive = location.pathname === item.href;
-
-                      // Si es un ancla interno (como #contacto), usamos <a> en lugar de <Link>
-                      if (item.href.startsWith("#")) {
-                        return (
-                          <a
-                            key={item.name}
-                            href={item.href}
-                            className={classNames(
-                              "text-gray-300 hover:text-white hover:underline",
-                              " text-sm font-medium"
-                            )}
-                          >
-                            {item.name}
-                          </a>
-                        );
-                      }
+                      let active = isActive(location, item.href);                    
 
                       return (
                         <Link
                           key={item.name}
                           to={item.href}
-                          aria-current={isActive ? "page" : undefined}
+                          aria-current={active? "page" : undefined}
                           className={classNames(
-                            isActive
+                            active
                               ? "text-white underline"
                               : "text-gray-300 hover:text-white hover:underline",
                             " text-sm font-medium"
@@ -84,7 +74,17 @@ const Header = () => {
                           {item.name}
                         </Link>
                       );
-                    })}
+                    })}                    
+                    { 
+                    token ? <Link to="/Admin" className={classNames(
+                      isActive(location, "/Admin")
+                        ? "text-white underline"
+                        : "text-gray-300 hover:text-white hover:underline",
+                      " text-sm font-medium"
+                    )}>Admin</Link> : null
+                      }
+                     
+                    
                   </div>
                 </div>
               </div>
@@ -108,8 +108,9 @@ const Header = () => {
                         {item.name}
                       </a>
                     );
+                    
                   }
-
+                  
                   return (
                     <Disclosure.Button
                       key={item.name}
