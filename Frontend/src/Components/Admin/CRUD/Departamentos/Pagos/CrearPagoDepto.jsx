@@ -79,8 +79,8 @@ const CrearPagoDepto = ({ onPagoAlquilerRegistrado }) => {
   useEffect(() => {
     if (isRegistroModalOpen) {
       handleRegistrarDepto();
-      getClientes(); 
     }
+    getClientes(); // Obtener los clientes al abrir el modal
   }, [isRegistroModalOpen]);
 
   return null; // No renderiza nada directamente

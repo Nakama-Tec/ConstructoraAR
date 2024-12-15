@@ -23,7 +23,7 @@ const singleCliente = (req, res) => {
 const createCliente = (req, res) => {
     const {nombreCliente, apellidoCliente, condicionCliente, razonSocial, cuil_cuit_Cliente, telefonoCliente, mailCliente, direccionCliente, datosGarantes} = req.body
 
-    const query = `insert into Clientes (nombreCliente, apellidoCliente, condicionCliente, razonSocial, cuil_cuit_Cliente, telefonoCliente, mailCliente, direccionCliente, datosGarantes, activoCliente) values("${nombreCliente}","${apellidoCliente}","${condicionCliente}", "${razonSocial}", "${cuil_cuit_Cliente}", "${telefonoCliente}","${mailCliente}", "${direccionCliente}", "${datosGarantes}")`
+    const query = `insert into Clientes (nombreCliente, apellidoCliente, condicionCliente, razonSocial, cuil_cuit_Cliente, telefonoCliente, mailCliente, direccionCliente, datosGarantes) values("${nombreCliente}","${apellidoCliente}","${condicionCliente}", "${razonSocial}", "${cuil_cuit_Cliente}", "${telefonoCliente}","${mailCliente}", "${direccionCliente}", "${datosGarantes}")`
     conection.query(query, (err,results) => {
         if(err) throw err 
         res.send(results)
