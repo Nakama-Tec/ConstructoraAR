@@ -32,7 +32,6 @@ import Pendientes from './Pages/Pendientes/Pendientes'
 import Remuneraciones from './Pages/Remuneraciones/Remuneraciones'
 import CrearCertificado from './Pages/Certificados/CrearCertificado'
 import RecuperarPass from './Pages/RecuperarContraseña/RecuperarPass'
-
 import MainTerrenos from './Pages/Terrenos/MainTerrenos'
 import MainConstrucciones from './Pages/Construcciones/MainConstrucciones'
 import MainDepartamento from './Pages/Departamentos/MainDepartamento'
@@ -41,6 +40,7 @@ import Header from './Components/Layout/Header'
 import Footer from './Components/Layout/Footer'
 import Contacto from './Pages/Home/Contacto';
 import { useEffect } from 'react'
+import { useLocation } from 'react-router-dom'
 
 const ScrollToTop = () => {
   
