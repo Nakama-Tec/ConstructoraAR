@@ -159,7 +159,12 @@ h1 {
 
     height: 50vh;    
     color: rgb(230, 229, 229);    
+    h2{
+      margin: 0 !important;
+      line-height: 1;
+    }
   }
+
 
 .parallax-content {
     width: 50%;
@@ -199,12 +204,7 @@ h1 {
     height: 45vh;
   }
 
-  #article-2, #article-4 {    
-    h2{
-      margin: 0 !important;
-      line-height: 1;
-    }
-  }
+
 
   .parallax-content {
     padding: 0 5%;

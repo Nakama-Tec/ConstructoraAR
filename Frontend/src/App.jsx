@@ -39,17 +39,21 @@ import Institucional from './Pages/Institucional/Institucional'
 import Header from './Components/Layout/Header'
 import Footer from './Components/Layout/Footer'
 import Contacto from './Pages/Home/Contacto';
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import { useLocation } from 'react-router-dom'
 
 const ScrollToTop = () => {
-  
   const location = useLocation();
-  useEffect(() => {
-    window.scrollTo(0, 0); // Restaura el scroll al inicio de la página
-  }, [location]); // Solo se ejecuta una vez al cargar la página
+  const prevPathname = useRef(location.pathname);
 
-  return null; // No renderiza nada, solo realiza la acción del scroll
+  useEffect(() => {
+    if (location.pathname !== prevPathname.current) {
+      window.scrollTo(0, 0);
+    }
+    prevPathname.current = location.pathname;
+  }, [location]);
+
+  return null;
 };
 
 const MainContent = () => {

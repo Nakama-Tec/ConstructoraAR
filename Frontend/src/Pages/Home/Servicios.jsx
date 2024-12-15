@@ -159,10 +159,13 @@ const Servicios = () => {
                             <h4 className="text-xl mb-2 md:text-lg sm:text-base">{article.subtitle}</h4>
                         )}
                         {article.content && <>{article.content}</>}
-                        {article.button && (
+                        {article.button && article.button!= '#contacto' &&(                            
                             <Link to={article.button}>
                                 <button className="boton-contactanos mt-4 d-block">Ver más</button>
                             </Link>
+                        )}
+                          {article.button =='#contacto' &&(                           
+                                <button onClick={()=>window.location.href =`#contacto`}  className="boton-contactanos mt-4 d-block">Ver más</button>                                     
                         )}
                     </div>
                 </div>
