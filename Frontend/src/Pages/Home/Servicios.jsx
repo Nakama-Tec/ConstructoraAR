@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import './servicios.css';
+import { Link } from 'react-router-dom';
 
 const Servicios = () => {
     const parallaxRefs = useRef([]);
@@ -159,7 +160,9 @@ const Servicios = () => {
                         )}
                         {article.content && <>{article.content}</>}
                         {article.button && (
-                            <button onClick={()=>window.location.href =`${article.button}`}  className="boton-contactanos mt-4 d-block">Ver más</button>
+                            <Link to={article.button}>
+                                <button className="boton-contactanos mt-4 d-block">Ver más</button>
+                            </Link>
                         )}
                     </div>
                 </div>
