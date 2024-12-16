@@ -61,7 +61,7 @@ const MainContent = () => {
   const location = useLocation();
   const isAdminPath = location.pathname.toLowerCase().startsWith("/admin"); //verifica si la ruta actual es una ruta protegida
 return (
-  <main className={`${!isAdminPath ? 'contenedor-main' : ''}`}>   //si la ruta actual es una ruta protegida se le añade la clase contenedor-main
+  <main className={`${!isAdminPath ? 'contenedor-main' : ''}`}> 
 
  
       <Routes>
