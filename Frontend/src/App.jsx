@@ -1,7 +1,7 @@
 // Importaciones de librerias
 
 import { BrowserRouter, Routes, Route } from 'react-router-dom' // estas librerias permiten el manejo de rutas en la aplicacion
-import {HOME, HOME_SISTEMA_GESTION, CERTIFICADOS,CREAR_CERTIFICADOS,LOGIN,EMPLEADOS, VEHICULOS, FLUJO_CAJA, DETALLEVIAJES, LIBRO_DIARIO,TERRENOS ,STOCK, CLIENTES, DEPARTAMENTOS, OBRAS, OPERACIONES, VIAJES, USUARIO, UNAUTHORIZED, VTA_TERRENOS, PAGOS_DPTO, PENDIENTES, COMPRA_MATERIALES, ALQUILER, REMUNERACIONES, RECUPERAR} from "./Routes/routes"
+import {HOME, HOME_SISTEMA_GESTION, CERTIFICADOS,CREAR_CERTIFICADOS,LOGIN,EMPLEADOS, VEHICULOS, FLUJO_CAJA, DETALLEVIAJES, LIBRO_DIARIO,TERRENOS ,STOCK, CLIENTES, DEPARTAMENTOS, OBRAS, OPERACIONES, VIAJES, USUARIO, UNAUTHORIZED, VTA_TERRENOS, PAGOS_DPTO, PENDIENTES, COMPRA_MATERIALES, ALQUILER, REMUNERACIONES, RECUPERAR, CONTACTO, TERRENOS_ADMIN, DEPARTAMENTOS_ADMIN, CONSTRUCCIONES, INSTITUCIONAL, ERROR} from "./Routes/routes"
 
 
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -77,13 +77,13 @@ return (
         <Route path={HOME_SISTEMA_GESTION} element={<ProtectedRoute rolesRequired={['admin', 'empleado']}> <HomeSistemaGestion/></ProtectedRoute>} />
         <Route path={FLUJO_CAJA} element={<ProtectedRoute rolesRequired={['admin', 'empleado']}> <FlujoCaja/></ProtectedRoute>} />
         <Route path={LIBRO_DIARIO} element={<ProtectedRoute rolesRequired={['admin', 'empleado']}> <LibroDiario/></ProtectedRoute>} />
-        <Route path={TERRENOS} element={<ProtectedRoute rolesRequired={['admin', 'empleado']}> <Terrenos/></ProtectedRoute>} />
+        <Route path={TERRENOS_ADMIN} element={<ProtectedRoute rolesRequired={['admin', 'empleado']}> <Terrenos/></ProtectedRoute>} />
         <Route path={VTA_TERRENOS} element={<ProtectedRoute rolesRequired={['admin', 'empleado']}> <VtaTerrenos/></ProtectedRoute>} />
         <Route path={EMPLEADOS} element={<ProtectedRoute rolesRequired={['admin']}> <Empleados/></ProtectedRoute>} />
         <Route path={COMPRA_MATERIALES} element={<ProtectedRoute rolesRequired={['admin', 'empleado']}> <CompraMateriales/></ProtectedRoute>} />
         <Route path={STOCK} element={<ProtectedRoute rolesRequired={['admin', 'empleado']}> <Stock/></ProtectedRoute>} />
         <Route path={CLIENTES} element={<ProtectedRoute rolesRequired={['admin', 'empleado']}> <Clientes/></ProtectedRoute>} />
-        <Route path={DEPARTAMENTOS} element={<ProtectedRoute rolesRequired={['admin', 'empleado']}> <Departamentos/></ProtectedRoute>} />
+        <Route path={DEPARTAMENTOS_ADMIN} element={<ProtectedRoute rolesRequired={['admin', 'empleado']}> <Departamentos/></ProtectedRoute>} />
         <Route path={PAGOS_DPTO} element={<ProtectedRoute rolesRequired={['admin', 'empleado']}> <PagosDepartamentos/></ProtectedRoute>} />
         <Route path={OBRAS} element={<ProtectedRoute rolesRequired={['admin', 'empleado']}> <Obras/></ProtectedRoute>} />
         <Route path={OPERACIONES} element={<ProtectedRoute rolesRequired={['admin', 'empleado']}> <Operaciones/></ProtectedRoute>} />
@@ -100,12 +100,12 @@ return (
         
         { /* Ruta no encontradas */}
 
-        <Route path='*' element={<Error />} />
-        <Route path='/contacto' element={<Contacto />} />
-        <Route path='/terrenos' element={<MainTerrenos />} />
-        <Route path='/departamentos' element={<MainDepartamento/>} />
-        <Route path='/construcciones' element={<MainConstrucciones/>} />
-        <Route path='/institucional' element={<Institucional/>} />
+        <Route path={ERROR} element={<Error />} />
+        <Route path={CONTACTO} element={<Contacto />} />
+        <Route path={TERRENOS} element={<MainTerrenos />} />
+        <Route path={DEPARTAMENTOS} element={<MainDepartamento/>} />
+        <Route path={CONSTRUCCIONES} element={<MainConstrucciones/>} />
+        <Route path={INSTITUCIONAL} element={<Institucional/>} />
         </Routes>
         </main>
         )
