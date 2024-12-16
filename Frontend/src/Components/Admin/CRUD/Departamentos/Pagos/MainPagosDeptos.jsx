@@ -36,7 +36,7 @@ const MainPagosDeptos = () => {
   const handleEliminarPagoAlquiler = async (pagoAlquiler) => {
     const confirmacion = await Swal.fire({
       title: '¿Estás seguro?',
-      text: `¿Deseas eliminar el "${pagoAlquiler.nombreDepartamento}"?`,
+      text: `¿Deseas eliminar el pago "${pagoAlquiler.id_pagoAlquiler}"?`,
       icon: 'warning',
       showCancelButton: true,
       confirmButtonText: 'Sí, eliminar',
@@ -46,7 +46,7 @@ const MainPagosDeptos = () => {
     if (confirmacion.isConfirmed) {
       try {
         await axios.put(
-          `${URL_PAGOS_ALQUILERES_ELIMINAR}${pagoAlquiler.id_departamento}`,
+          `${URL_PAGOS_ALQUILERES_ELIMINAR}${pagoAlquiler.id_pagoAlquiler}`,
           { ...pagoAlquiler },
           { headers: { Authorization: `Bearer ${token}` } }
         );
@@ -110,7 +110,7 @@ const MainPagosDeptos = () => {
   
     return (
 <div>
-  <p className="text-black font-semibold text-4xl flex justify-center mt-5">Registros de Ventas de departamentos</p>
+  <p className="text-black font-semibold text-4xl flex justify-center mt-5">Registros de Pago de Alquileres</p>
   
   {/* Buscador */}
   <div className="flex justify-center m-10">
@@ -131,7 +131,7 @@ const MainPagosDeptos = () => {
       onClick={openRegistroModal}
       className="bg-green-600 text-white px-6 py-2 rounded-full font-medium shadow-md hover:bg-green-800 transition duration-300 focus:outline-none focus:ring-2 focus:ring-green-600 focus:ring-offset-2"
     >
-      Registrar Venta de departamento
+      Registrar Pago de Alquiler
     </button>
   </div>
 

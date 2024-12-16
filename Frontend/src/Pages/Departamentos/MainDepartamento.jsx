@@ -9,17 +9,14 @@ import img3 from "../../assets/img departamento/imgdepa3.jpg";
 import img4 from "../../assets/img departamento/imagdepartamento10.jpg";
 
 const MainDepartamento = () => {
-  // 1. Crear una referencia para el primer card
   const firstCardRef = useRef(null);
 
-  // 2. Función para scrollear hasta la primera card
   const handleScrollToImages = () => {
     if (firstCardRef.current) {
       firstCardRef.current.scrollIntoView({ behavior: "smooth" });
     }
   };
 
-  // Función para scrollear hasta el formulario de contacto
   const handleScrollToContact = () => {
     const contactSection = document.getElementById("contacto");
     if (contactSection) {
@@ -27,7 +24,6 @@ const MainDepartamento = () => {
     }
   };
 
-  // Función para scrollear hacia arriba
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
@@ -35,8 +31,8 @@ const MainDepartamento = () => {
   return (
     <>
       <BannerDepartamentos />
-      <div className="container pt-10 mt-3 mb-28 flex flex-grow">
-        <div className="ml-12 w-[50%] text-left">
+      <div className="container pt-12 mb-12 flex flex-col md:flex-row flex-grow">
+        <div className="px-4 md:px-12 w-full md:w-[50%] text-left">
           <p className="pt-10 mb-4">
             <span className="textoDestacado">
               ¿Has soñado con un hogar donde puedas desarrollar tus proyectos y disfrutar de cada amanecer en un entorno acogedor?{" "}
@@ -52,53 +48,43 @@ const MainDepartamento = () => {
           <div className="pt-4 mb-20">
             <button
               onClick={handleScrollToImages}
-              className="bg-slate-500 text-stone-50 font-medium py-2 px-4 rounded text-lg"
+              className="bg-slate-500 text-stone-50 font-medium py-2 px-4 text-lg"
             >
               Ver departamentos disponibles
             </button>
           </div>
         </div>
-        <div className="pt-10 ml-48 w-[50%] mb-24">
-          <img src={img4} alt="Imagen ilustrativa" />
+        <div className="p-10 w-full md:w-[50%] mb-24">
+          <img src={img4} alt="Imagen ilustrativa" className="w-full h-auto" />
         </div>
       </div>
-        <div className="" ref={firstCardRef}>
+      <div className="" ref={firstCardRef}></div>
+      <br />
+      <br />
+      <br />
 
-        </div>
-        <br />
-        <br />
-        <br />
-
-      {/* 3. Asignar la referencia al primer card */}
-      {/* Primer conjunto de imágenes */}
-      <div className="mx-10 mb-10" >
-        <div className="bg-white rounded-lg shadow flex overflow-hidden">
-          {/* Sección de imagen (izquierda) */}
-          <div className="w-2/5">
+      <div className="mx-4 md:mx-10 mb-10">
+        <div className="bg-white rounded-lg shadow flex flex-col md:flex-row overflow-hidden">
+          <div className="w-full md:w-2/5">
             <img
               src={img1}
               alt="Imagen principal"
               className="w-full h-full object-cover"
             />
           </div>
-
-          {/* Sección de texto (derecha) */}
-          <div className="w-3/5 p-4 flex flex-col justify-between">
+          <div className="w-full md:w-3/5 p-4 flex flex-col justify-between">
             <div>
-              <h2 className="text-5xl mt-11 font-semibold text-gray-800">
+              <h2 className="text-3xl md:text-5xl mt-11 font-semibold text-gray-800">
                 $ 370.000
               </h2>
               <p className="text-gray-500 mb-16 text-lg">$50.000 Expensas</p>
-
               <h3 className="mt-2 text-2xl font-medium text-gray-700">
                 San Miguel de Tucumán, Tucuman
               </h3>
               <p className="text-gray-600">Av. Mate de Luna al 2100</p>
-
               <p className="text-gray-600 mt-1 text-sm">
                 Departamento · 55m² · 2 ambientes
               </p>
-
               <p className="text-gray-600 mt-4 text-sm">
                 P.B: Living comedor con cocina integrada y desborde a balcón
                 hacia la avenida. Espacio cómodo para lavarropas. P.A por
@@ -108,11 +94,10 @@ const MainDepartamento = () => {
                 y cámaras de seguridad
               </p>
             </div>
-
             <div className="flex justify-end mt-4">
               <button
                 onClick={handleScrollToContact}
-                className="bg-orange-500 hover:bg-orange-600 text-white font-medium py-2 px-4 rounded"
+                className="bg-orange-500 hover:bg-orange-600 text-white font-medium py-2 px-4"
               >
                 Contactar
               </button>
@@ -120,36 +105,29 @@ const MainDepartamento = () => {
           </div>
         </div>
       </div>
-      
-      {/* Segundo conjunto de imágenes */}
-      <div className="mx-10 mb-10">
-        <div className="bg-white rounded-lg shadow flex overflow-hidden">
-          {/* Sección de imagen (izquierda) */}
-          <div className="w-2/5">
+
+      <div className="mx-4 md:mx-10 mb-10">
+        <div className="bg-white rounded-lg shadow flex flex-col md:flex-row overflow-hidden">
+          <div className="w-full md:w-2/5">
             <img
               src={img2}
               alt="Imagen principal"
               className="w-full h-full object-cover"
             />
           </div>
-
-          {/* Sección de texto (derecha) */}
-          <div className="w-3/5 p-4 flex flex-col justify-between">
+          <div className="w-full md:w-3/5 p-4 flex flex-col justify-between">
             <div>
-              <h2 className="text-5xl mt-11 font-semibold text-gray-800">
+              <h2 className="text-3xl md:text-5xl mt-11 font-semibold text-gray-800">
                 $ 350.000
               </h2>
               <p className="text-gray-500 mb-16 text-lg">$50.000 Expensas</p>
-
               <h3 className="mt-2 text-2xl font-medium text-gray-700">
                 San Miguel de Tucumán, Tucuman
               </h3>
               <p className="text-gray-600">Ayacucho 564</p>
-
               <p className="text-gray-600 mt-1 text-sm">
                 Departamento · 35m² · 2 ambientes
               </p>
-
               <p className="text-gray-600 mt-4 text-sm">
                 A estrenar en edificio Isaura. Hermoso departamento en B° Sur 1
                 Dormitorio con placard y salida a balcón con excelente vista
@@ -157,11 +135,10 @@ const MainDepartamento = () => {
                 buenos amenities.
               </p>
             </div>
-
             <div className="flex justify-end mt-4">
               <button
                 onClick={handleScrollToContact}
-                className="bg-orange-500 hover:bg-orange-600 text-white font-medium py-2 px-4 rounded"
+                className="bg-orange-500 hover:bg-orange-600 text-white font-medium py-2 px-4"
               >
                 Contactar
               </button>
@@ -170,46 +147,38 @@ const MainDepartamento = () => {
         </div>
       </div>
 
-      {/* Tercer conjunto de imágenes */}
-      <div className="mx-10 mb-10">
-        <div className="bg-white rounded-lg shadow flex overflow-hidden">
-          {/* Sección de imagen (izquierda) */}
-          <div className="w-2/5">
+      <div className="mx-4 md:mx-10 mb-10">
+        <div className="bg-white rounded-lg shadow flex flex-col md:flex-row overflow-hidden">
+          <div className="w-full md:w-2/5">
             <img
               src={img3}
               alt="Imagen principal"
               className="w-full h-full object-cover"
             />
           </div>
-
-          {/* Sección de texto (derecha) */}
-          <div className="w-3/5 p-4 flex flex-col justify-between">
+          <div className="w-full md:w-3/5 p-4 flex flex-col justify-between">
             <div>
-              <h2 className="text-5xl mt-11 font-semibold text-gray-800">
+              <h2 className="text-3xl md:text-5xl mt-11 font-semibold text-gray-800">
                 $ 450.000
               </h2>
               <p className="text-gray-500 mb-16 text-lg">$80.000 Expensas</p>
-
               <h3 className="mt-2 text-2xl font-medium text-gray-700">
                 San Miguel de Tucumán, Tucuman
               </h3>
               <p className="text-gray-600">Balcarce al 300</p>
-
               <p className="text-gray-600 mt-1 text-sm">
                 Departamento · 80m² · 3 ambientes
               </p>
-
               <p className="text-gray-600 mt-4 text-sm">
                 Se trata de un dpto. con gran living comedor, con cocina
                 integrada y lavadero. Con balcón terraza amplio. Cuenta con
                 dos dormitorios, uno con baño en suite.
               </p>
             </div>
-
             <div className="flex justify-end mt-4">
               <button
                 onClick={handleScrollToContact}
-                className="bg-orange-500 hover:bg-orange-600 text-white font-medium py-2 px-4 rounded"
+                className="bg-orange-500 hover:bg-orange-600 text-white font-medium py-2 px-4"
               >
                 Contactar
               </button>
@@ -218,12 +187,10 @@ const MainDepartamento = () => {
         </div>
       </div>
 
-      {/* Sección de contacto con id="contacto" */}
       <div id="contacto" className="flex flex-col mb-30">
         <Contacto />
       </div>
 
-      {/* Flecha que scrollea hacia arriba */}
       <div className="flecha flex justify-center mb-10">
         <button
           onClick={scrollToTop}

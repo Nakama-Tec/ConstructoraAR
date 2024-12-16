@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import "./contacto.css";
 import 'bootstrap-icons/font/bootstrap-icons.css';
+import WhatsAppButton from "../../Components/Layout/Whatsapp/WhatsAppButton";
 
 const Contacto = () => {
   const {
@@ -143,7 +144,8 @@ const Contacto = () => {
           </Col>
         </Row>
       </div>
-    </div>
+    </div> 
+    <WhatsAppButton />  
     </div>
   );
 };

@@ -13,7 +13,7 @@ const Home = () => {
       <Servicios />
       <CarruselServicios />
       <PreguntasFrecuentes/>      
-      <Contacto/>
+      <Contacto/>      
     </>
   )
 }

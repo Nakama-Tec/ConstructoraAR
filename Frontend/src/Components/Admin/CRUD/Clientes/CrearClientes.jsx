@@ -63,6 +63,7 @@ const CrearClientes = ({ onClienteRegistrado }) => {
         const mailRegex = /[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,5}/;
         const direccionRegex = /^[a-zA-Z0-9À-ÿ\s,.-]+$/;
         const datosGarantesRegex = /^[^@]+$/;
+        const razonRegex = /^[a-zA-Z\sÀ-ÿ]+$/;
 
         if (!nombreCliente || !nombreRegex.test(nombreCliente)) {
           Swal.showValidationMessage("El nombre no debe contener números.");  
@@ -90,6 +91,11 @@ const CrearClientes = ({ onClienteRegistrado }) => {
         }
         if (!datosGarantes || !datosGarantesRegex.test(datosGarantes)) {
           Swal.showValidationMessage("Los datos de los garantes no deben contener caracteres especiales.");
+          return false;
+        }
+
+        if (!razonSocial || !razonRegex.test(razonSocial)) {
+          Swal.showValidationMessage("La razon social no es correcta.");
           return false;
         }
 

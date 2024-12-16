@@ -41,7 +41,7 @@ conection.connect((error) => {
         console.error("Error conectando a MySQL:", error);
         return;
     }
-    console.log("Conectado a MySQL");
+    console.log("Conectado a MySQL");   
 });
 
 app.get("/", (req, res) => {

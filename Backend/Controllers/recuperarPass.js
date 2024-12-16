@@ -1,6 +1,8 @@
 const jwt = require("jsonwebtoken");
 const { conection } = require("../DB/Config")
+const dotenv = require("dotenv");
 const { transporter } = require("../DB/Envio-Mail");
+dotenv.config()
 
 // Función para la recuperación de contraseña
 const recuperarPass = (req, res) => {
@@ -30,7 +32,7 @@ const recuperarPass = (req, res) => {
         );
 
         // Enviamos el correo con el link de recuperación
-        const resetPasswordUrl = `https://miapp.com/reset-password?token=${token}`; //cambiar miapp por la pagina de recuperacion
+        const resetPasswordUrl = `http://localhost:${port}//reset-password?token=${token}`; //cambiar miapp por la pagina de recuperacion
 
         let mailOptions = {
             from: process.env.FROM,

@@ -58,10 +58,10 @@ const RecuperarContraseña = () => {
     }
   };
   return (
-    <div className="display flex justify-center relative top-24">
+    <div className="display flex justify-center relative w-full">
     <Form
       onSubmit={handleSubmit}
-      className="bg-white dark:bg-zinc-900 shadow-2xl rounded-2xl overflow-hidden border-4 border-blue-400 dark:border-blue-800 m-10 w-[40%]"
+      className="dark:bg-zinc-900 shadow-2xl rounded-2xl overflow-hidden border-4 border-blue-400 dark:border-blue-800 m-10 w-[40%]"
     >
       <div className="px-8 py-10 md:px-10">
       <h2 className="text-4xl font-extrabold text-center text-zinc-800 dark:text-white">
@@ -72,7 +72,7 @@ const RecuperarContraseña = () => {
       </p>
       <div className="mt-10">
         <div className="relative">
-        <label className="block mb-3 text-sm font-medium text-zinc-600 dark:text-zinc-200">
+        <label className="block mb-3 text-base font-medium text-zinc-600 dark:text-zinc-200">
           Correo electrónico
         </label>
         <input

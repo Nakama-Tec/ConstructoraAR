@@ -69,8 +69,8 @@ const MainConstrucciones = () => {
     <>
       <BannerConstrucciones />
 
-      <div className="container pt-12 mb-12 flex flex-grow">
-        <div className="ml-12 w-[50%] text-left">
+      <div className="container pt-12 mb-12 flex flex-col md:flex-row flex-grow">
+        <div className="px-4 md:px-12 w-full md:w-[50%] text-left">
           <p className="pt-10 mb-4">
             <span className="textoDestacado">
               ¿Te gustaría diseñar tu propia casa, pero no sabes por dónde empezar?{" "}
@@ -95,20 +95,20 @@ const MainConstrucciones = () => {
             </button>
           </div>
         </div>
-        <div className="pt-10 ml-9 w-[35%]">
+        <div className="p-10 px-4 md:px-9 w-full md:w-[50%]">
           <img src={imgConstruccion} alt="Imagen ilustrativa" />
         </div>
       </div>
 
+      <div className="container">
       <div>
-        <p className="text-5xl">
-          <span className="textoDestacado">
+        <p className="text-2xl md:text-5xl">
+          <h2 className="textoDestacado">
             Pasos para realizar el diseño de tu casa
-          </span>
+          </h2>
         </p>
       </div>
-      
-      <div className="recomendaciones text-left ml-48 mr-14 pt-10">
+      <div className=" text-left px-4 md:px-48 pt-10">
         <p>
           <span className="textoDestacado">
             ✅ Define tus necesidades y preferencias:
@@ -120,8 +120,7 @@ const MainConstrucciones = () => {
           resuelto sus espacios y qué soluciones te pueden servir.{" "}
         </p>
       </div>
-
-      <div className="text-left ml-48 mr-14 pt-10">
+      <div className="text-left px-4 md:px-48 pt-10">
         <p>
           <span className="textoDestacado">
             ✅ Haz un plano de planta:
@@ -137,8 +136,7 @@ const MainConstrucciones = () => {
           imágenes en alta definición y recibir la opinión de otros usuarios o profesionales.
         </p>
       </div>
-
-      <div className="text-left ml-48 mr-14 pt-10">
+      <div className="text-left px-4 md:px-48 pt-10">
         <p>
           <span className="textoDestacado">
             ✅ Elige los materiales y los colores:
@@ -149,8 +147,7 @@ const MainConstrucciones = () => {
           en cuenta el estilo que quieres conseguir, el clima de la zona donde vives y el presupuesto que tienes.{" "}
         </p>
       </div>
-
-      <div className="text-left ml-48 mr-14 pt-10">
+      <div className="text-left px-4 md:px-48 pt-10">
         <p>
           <span className="textoDestacado">
             ✅ Aprovecha la luz natural:
@@ -161,8 +158,7 @@ const MainConstrucciones = () => {
           y la ubicación de las ventanas y el tipo de cortinas o persianas que vas a usar.{" "}
         </p>
       </div>
-
-      <div className="text-left ml-48 mr-14 pt-10 mb-10">
+      <div className="text-left px-4 md:px-48 pt-10 mb-10">
         <p>
           <span className="textoDestacado">
             ✅ Decora con personalidad:
@@ -172,6 +168,12 @@ const MainConstrucciones = () => {
           detalles que te hagan sentir cómodo, feliz y orgulloso de tu hogar.{" "}
         </p>
       </div>
+
+      </div>
+
+
+
+
 
       <div className="cards-container mt-24 mb-12">
           {opcionesConstruccion.map((opcion) => (

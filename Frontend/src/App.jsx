@@ -1,8 +1,10 @@
 // Importaciones de librerias
+
 import { BrowserRouter, Routes, Route } from 'react-router-dom' // estas librerias permiten el manejo de rutas en la aplicacion
-import {HOME, HOME_SISTEMA_GESTION, CERTIFICADOS,LOGIN,EMPLEADOS, VEHICULOS, FLUJO_CAJA, LIBRO_DIARIO,TERRENOS ,STOCK, CLIENTES, DEPARTAMENTOS, OBRAS, OPERACIONES, VIAJES, USUARIO, UNAUTHORIZED, VTA_TERRENOS, PAGOS_DPTO, PENDIENTES, COMPRA_MATERIALES, ALQUILER, REMUNERACIONES, RECUPERAR} from "./Routes/routes"
+import {HOME, HOME_SISTEMA_GESTION, CERTIFICADOS,CREAR_CERTIFICADOS,LOGIN,EMPLEADOS, VEHICULOS, FLUJO_CAJA, DETALLEVIAJES, LIBRO_DIARIO,TERRENOS ,STOCK, CLIENTES, DEPARTAMENTOS, OBRAS, OPERACIONES, VIAJES, USUARIO, UNAUTHORIZED, VTA_TERRENOS, PAGOS_DPTO, PENDIENTES, COMPRA_MATERIALES, ALQUILER, REMUNERACIONES, RECUPERAR} from "./Routes/routes"
 
 
+import "bootstrap/dist/css/bootstrap.min.css";
 // Paginas
 import Login from './Pages/Login/Login'
 import Home from './Pages/Home/Home'
@@ -28,18 +30,40 @@ import VtaTerrenos from './Pages/VtaTerrenos/VtaTerrenos'
 import PagosDepartamentos from './Pages/Departamentos/PagosDepartamentos'
 import Pendientes from './Pages/Pendientes/Pendientes'
 import Remuneraciones from './Pages/Remuneraciones/Remuneraciones'
+import CrearCertificado from './Pages/Certificados/CrearCertificado'
 import RecuperarPass from './Pages/RecuperarContraseña/RecuperarPass'
+import MainTerrenos from './Pages/Terrenos/MainTerrenos'
+import MainConstrucciones from './Pages/Construcciones/MainConstrucciones'
+import MainDepartamento from './Pages/Departamentos/MainDepartamento'
+import Institucional from './Pages/Institucional/Institucional'
 import Header from './Components/Layout/Header'
 import Footer from './Components/Layout/Footer'
+import Contacto from './Pages/Home/Contacto';
+import { useEffect, useRef } from 'react'
+import { useLocation } from 'react-router-dom'
 
+const ScrollToTop = () => {
+  const location = useLocation();
+  const prevPathname = useRef(location.pathname);
 
-function App() {
-const roleRequired = "admin" //rol requerido para acceder a las rutas protegidas
-  return (
-// v7_startTransition: true, v7_relativeSplatPath: true permite que la aplicacion use el nuevo manejo de estado y rutas relativas que se implementarán en React Router v7.
-    <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}> 
-      <Header/>
-      <main>
+  useEffect(() => {
+    if (location.pathname !== prevPathname.current) {
+      window.scrollTo(0, 0);
+    }
+    prevPathname.current = location.pathname;
+  }, [location]);
+
+  return null;
+};
+
+const MainContent = () => {
+  const roleRequired = "admin" //rol requerido para acceder a las rutas protegidas
+  const location = useLocation();
+  const isAdminPath = location.pathname.toLowerCase().startsWith("/admin");
+return (
+  <main className={`${!isAdminPath ? 'contenedor-main' : ''}`}>   
+
+ 
       <Routes>
         {/* Rutas públicas en estas rutas pueden ingresar usuario comun sin problema es lo que pueden ver y hacer*/}
         <Route path={HOME} element={<Home/>} />
@@ -69,6 +93,7 @@ const roleRequired = "admin" //rol requerido para acceder a las rutas protegidas
         <Route path={VIAJES} element={<ProtectedRoute roleRequired={roleRequired}> <Viajes/></ProtectedRoute>} />
         <Route path={ALQUILER} element={<ProtectedRoute roleRequired={roleRequired}> <Alquiler/></ProtectedRoute>} />
         <Route path={CERTIFICADOS} element={<ProtectedRoute roleRequired={roleRequired}> <Certificados/></ProtectedRoute>} />
+        <Route path={CREAR_CERTIFICADOS} element={<ProtectedRoute roleRequired={roleRequired}> <CrearCertificado/></ProtectedRoute>} />
         <Route path={REMUNERACIONES} element={<ProtectedRoute roleRequired={roleRequired}> <Remuneraciones/></ProtectedRoute>} />
         {/* Ruta no autorizada */}
         <Route path={UNAUTHORIZED} element={<div><h3>No autorizado</h3></div>} />
@@ -76,10 +101,26 @@ const roleRequired = "admin" //rol requerido para acceder a las rutas protegidas
         { /* Ruta no encontradas */}
 
         <Route path='*' element={<Error />} />
-        
+        <Route path='/contacto' element={<Contacto />} />
+        <Route path='/terrenos' element={<MainTerrenos />} />
+        <Route path='/departamentos' element={<MainDepartamento/>} />
+        <Route path='/construcciones' element={<MainConstrucciones/>} />
+        <Route path='/institucional' element={<Institucional/>} />
         </Routes>
-      </main>
-        <Footer />
+        </main>
+        )
+}
+
+function App() {
+
+
+  return (
+// v7_startTransition: true, v7_relativeSplatPath: true permite que la aplicacion use el nuevo manejo de estado y rutas relativas que se implementarán en React Router v7.
+    <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}> 
+      <Header />
+        <ScrollToTop />
+        <MainContent />     
+      <Footer/>
     </BrowserRouter>
   )
 }
