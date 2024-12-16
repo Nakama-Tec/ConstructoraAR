@@ -34,7 +34,7 @@ const HeaderAdmin = () => {
   )}
 
   <div className="boton mt-4 md:mt-0">
-    {token !== null && userRole === "admin" ? (
+    {token !== null && (userRole === "admin" || userRole === "empleado") ? (
       <Button
         onClick={handleLogout}
         className="inline-flex items-center px-4 py-2 bg-red-600 transition ease-in-out hover:bg-red-700 font-semibold text-sm md:text-base rounded-md hover:scale-105"

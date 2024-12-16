@@ -22,11 +22,14 @@ import {
   FaHandHoldingUsd,
 } from 'react-icons/fa';
 import { ALQUILER, CERTIFICADOS, CLIENTES, COMPRA_MATERIALES, DEPARTAMENTOS, EMPLEADOS, FLUJO_CAJA, LIBRO_DIARIO, OBRAS, OPERACIONES, PAGOS_DPTO, PENDIENTES, REMUNERACIONES, STOCK, TERRENOS, USUARIO, VEHICULOS, VIAJES, VTA_TERRENOS } from '../../Routes/routes';
+import useAuthStore from '../../Context/useAuthStore';
 
-const Aside = () => {
+
+const Aside = ({ rolesRequired }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false); // Controla la visibilidad del menú en móviles
   const [openSubmenus, setOpenSubmenus] = useState({}); // Controla la apertura de submenús
   const location = useLocation();
+  const userRol = useAuthStore((state) => state.userRole);
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
@@ -69,6 +72,7 @@ const Aside = () => {
               </li>
   
               {/* EMPLEADOS */}
+              {userRol !== 'empleado' && (
               <li>
                 <Link
                   to={EMPLEADOS}
@@ -81,7 +85,7 @@ const Aside = () => {
                   EMPLEADOS
                 </Link>
               </li>
-  
+                    )}
               {/* FLUJO CAJA */}
               <li>
                 <Link
@@ -356,6 +360,7 @@ const Aside = () => {
               </li>
   
               {/* USUARIO */}
+              {userRol !== 'empleado' && (
               <li>
                 <Link
                   to={USUARIO}
@@ -368,7 +373,7 @@ const Aside = () => {
                   USUARIOS
                 </Link>
               </li>
-
+              )}
             </ul>
           </nav>
         </div>

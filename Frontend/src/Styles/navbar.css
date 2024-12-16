@@ -53,7 +53,17 @@ header nav{
     }
 }
 
+@media (max-width: 400px){
+    .lista-desplegable {          top: 8vh
+        
+        
+    }
+}
+
 @media (max-width: 480px) {
+
+
+
     header .logo {
         margin-top: 1.5rem;
     }

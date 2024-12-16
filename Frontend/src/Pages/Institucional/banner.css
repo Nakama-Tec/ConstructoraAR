@@ -1,0 +1,60 @@
+
+#banner-institucional::after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: rgb(0, 0, 0, 0.3);
+    z-index:0;
+}
+
+#banner-institucional{
+    
+    
+        position: relative;
+        height: 80vh;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        text-align: center;     
+    
+    
+    .imagenBannerPrincipal {
+        height: 100%;
+        width: 100%;
+        inset: 0;
+        object-fit: cover;
+        background: rgba(0, 0, 0, 0.5);
+        animation: zoom 20s ease infinite;
+        animation-fill-mode: forwards;
+    }
+
+    .textoBannerPrincipal
+    {
+        width: 12rem;
+        text-align: left;
+        font-weight: 100;
+        font-size: 3rem;
+        position: absolute;
+        z-index: 1;
+        top: 15%;    
+        left: 15%;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        line-height: 3rem;
+      }
+      .textoBannerPrincipal::after{
+        content: '';
+        display: block;
+        width: 0.5rem;
+        height: 8rem;
+        position: absolute;
+        top: -1rem;
+        left: -2rem;
+        background: var(--azul-logo);
+      }
+}

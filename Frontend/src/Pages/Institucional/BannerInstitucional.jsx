@@ -1,8 +1,8 @@
 import React from "react";
 // Importa las imágenes locales
 import banner1 from "../../assets/img institucional/bannerinst.jpg";
-
 import { useEffect, useState } from "react";
+import "./banner.css"
 
 const images = [banner1];
 
@@ -16,8 +16,8 @@ const BannerConstrucciones = () => {
     return () => clearInterval(interval);
   }, []);
 
-  return (
-    <div className="BannerPrincipal overflow-hidden">
+  return (    
+    <div id="banner-institucional" className="BannerPrincipal overflow-hidden">
       {images.map((image, index) => (
         <div
           key={index}
@@ -32,18 +32,15 @@ const BannerConstrucciones = () => {
           />
           <div className=" textoBannerPrincipal flex space-x-24 mt-52 ">
             <p>
-              <span className="textoDestacado"> Mision </span>
+              <span className="textoDestacado"> ASÍ LO HACEMOS </span>
             </p>
-            <p>
-              <span className="textoDestacado"> Vision </span>
-            </p>
-            <p>
-              <span className="textoDestacado"> Valores </span>
-            </p>
+            
+
           </div>
         </div>
       ))}
     </div>
+    
   );
 };
 

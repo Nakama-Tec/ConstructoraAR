@@ -1,74 +1,145 @@
-/* Contenedor principal */
-.container {
-  padding: 2rem; /* Espaciado interno */
-  text-align: center;
-  margin-bottom: 4rem; /* Espacio antes del footer */
-}
 
-/* Título principal */
-.title {
-  color: rgb(32, 41, 56, 1); /* Color original */
-  font-size: 2.5rem;
-  font-weight: bold;
-  margin-bottom: 1rem; /* Espacio entre el título y el subtítulo */
-}
-
-/* Subtítulo */
-.description {
-  color: #555; /* Color gris */
-  margin-bottom: 3rem; /* Espacio entre el subtítulo y las tarjetas */
-}
-
-/* Contenedor de tarjetas */
-.card-container {
-  display: flex;
+.valores{
+  display: flex;    
   flex-wrap: wrap;
-  justify-content: center;
-  gap: 1.5rem; /* Espaciado entre tarjetas */
-  margin-bottom: 4rem; /* Espacio adicional antes del footer */
+  font-weight: bolder;
+  color: var(--negro);
+  margin: 0;
+  
 }
 
-/* Tarjetas */
-.card {
-  flex: 1 1 300px; /* Base de 300px, pero adaptable */
-  max-width: 350px; /* Máximo ancho */
-  min-width: 250px; /* Evita que se achiquen demasiado */
-  background-color: rgb(220, 234, 253, 1); /* Color original */
-  padding: 2rem; /* Espaciado interno */
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  text-align: center;
-  color: rgb(100, 116, 139);
-  transition: transform 0.3s ease;
+.itemValores{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;  
+  height: 70vh;
+  width: 50%;    
+  padding: 5rem 17rem;
+  text-align: left;  
 }
 
-/* Efecto hover */
-.hover-card:hover {
-  transform: scale(1.05);
+.itemValores h2{
+  position: relative;
+  font-size: 3rem;  
+  margin-bottom: 3rem;
 }
 
-/* Título de las tarjetas */
-.card-title {
-  font-size: 1.5rem;
-  font-weight: bold;
-  margin-bottom: 0.5rem;
-  color: rgb(32, 41, 56, 1); /* Manteniendo el color original */
+.itemValores ul li{
+  list-style-type: disc;
+  padding-left: 1.5rem;
 }
 
-/* Texto de las tarjetas */
-.card-text {
-  font-size: 1.1rem;
-  color: rgb(32, 41, 56, 1);
+
+.itemValores h2::after{
+  content: '';
+  display: block;
+  width: 0.5rem;
+  height: 5rem;
+  position: absolute;
+  top: -1rem;
+  left: -2rem;
+  background: var(--azul-logo);
+  z-index: 6;
+}
+#valores1{
+  position: relative;
+}
+.quoteBefore, .quoteAfter{
+  position: relative;
 }
 
-/* Responsive para pantallas pequeñas */
+
+.quoteBefore::before{
+  content: ' “ ';
+  font-size: 4rem;
+  display: block;
+  color: var(--azul-logo);
+  position: absolute;  
+  right: 1rem;
+  top: -2rem;
+}
+
+.quoteAfter::after{
+  content: ' ” ';
+  font-size: 4rem;
+  display: block;
+  color: var(--azul-logo);
+  position: absolute;
+  left: 1rem;
+  bottom: -2rem;
+}
+
+.itemValores h3{
+  font-size: 1.8rem;
+}
+
+.imgValores{
+  position: relative;
+  width: 50%;
+  margin: 0;
+  object-fit: cover;
+  box-sizing: border-box;
+  z-index: 2;
+  img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+  }
+}
+
+.imgValores::before{
+  position: absolute;
+  content: '';
+  display: block;
+  height: 100%;
+  width: 100%;
+  background: rgb(0, 0, 0,0.5);
+  z-index: 2;
+}
+#compromisoInstitucional{
+  height: 100%;
+}
+@media (max-width: 1280px){
+  .itemValores{
+    padding: 5rem 5rem;
+    
+  }
+
+
+}
+
+/* Responsive para dispositivos medianos */
 @media (max-width: 768px) {
-  .card {
-    flex: 1 1 100%; /* Las tarjetas ocupan todo el ancho */
-    max-width: 100%;
+
+  .itemValores {
+    width: 100vw;
+    padding: 3rem 5rem;
   }
 
-  .card-container {
-    gap: 1rem; /* Menor espacio entre tarjetas */
+
+}
+
+/* Responsive para dispositivos pequeños */
+@media (max-width: 480px) {
+  .itemValores {    
+    align-self: center;
   }
+
+  .itemValores h2 {
+    font-size: 2rem;
+  }
+
+  .itemValores h3 {
+    font-size: 1.5rem;
+  }
+  .quoteBefore::before{
+    font-size: 3rem;    
+  }
+  .quoteAfter::after{
+    font-size: 3rem;
+    bottom: -3rem;
+  }
+  
+
 }
