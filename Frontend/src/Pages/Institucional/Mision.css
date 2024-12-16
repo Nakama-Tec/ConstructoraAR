@@ -33,16 +33,4 @@
   position: relative; /* Para posicionar el cursor */
 }
 
-/* Cursor parpadeante */
-.text::after {
-  content: '|'; /* Cursor */
-  display: inline-block;
-  margin-left: 5px;
-  animation: blink 0.7s step-end infinite; /* Animación de parpadeo */
-}
 
-@keyframes blink {
-  50% {
-    opacity: 0;
-  }
-}
