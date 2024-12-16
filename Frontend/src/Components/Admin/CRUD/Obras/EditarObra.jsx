@@ -64,7 +64,7 @@ const EditarObra = ({ onObraEditado }) => {
             <br>
             <label><b>Progreso Obra</b></label> 
             <br>
-             <input id="progresoObra" class="swal2-input" type="number" min="0" value="${registroSeleccionado.progresoObra}" />
+             <input id="progresoObra" class="swal2-input" type="number" min="0" max="100" value="${registroSeleccionado.progresoObra}" />
             <br>
             <br>
             <label><b>Cliente</b></label> 

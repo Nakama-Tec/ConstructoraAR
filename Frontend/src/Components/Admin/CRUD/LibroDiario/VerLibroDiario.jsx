@@ -1,12 +1,11 @@
 import { useEffect, useState } from 'react';
-import { URL_LIBRO_DIARIO } from '../../../../Constants/endpoints-API';
+import { URL_LIBRO_DIARIO, URL_REMUNERACIONES } from '../../../../Constants/endpoints-API';
 import useAuthStore from '../../../../Context/useAuthStore';
 import useRegistroStore from '../../../../Context/useRegistroStore'; // Estado global para el modal
 import axios from 'axios';
-import toast, { Toaster } from 'react-hot-toast';
+import { Toaster } from 'react-hot-toast';
 import Aside from '../../../Layout/Aside';
 import CrearCompraMateriales from '../CompraMateriales/CrearCompraMateriales';
-import CrearPagoAlquiler from '../Departamentos/Pagos/CrearPagoDepto';
 import CrearVtaTerrenos from '../Terrenos/Ventas/CrearVtaTerrenos';
 import CrearOperaciones from '../Operaciones/CrearOperaciones';
 import CrearRemuneracion from '../Remuneracion/CrearRemuneracion';
@@ -18,6 +17,7 @@ const VerLibroDiario = () => {
   const [fechaRegistro, setFechaRegistro] = useState('');
   const [fechaSeleccionada, setFechaSeleccionada] = useState('');
   const [prueba, setPrueba] = useState([]);
+  const [datos, setDatos] = useState([]);
 
   useEffect(() => {
     const date = new Date();
@@ -27,6 +27,7 @@ const VerLibroDiario = () => {
     const fechaActual = `${año}-${mes}-${dia}`;
     setFechaRegistro(fechaActual);
     setFechaSeleccionada(fechaActual);
+    getRemuneracion();
   }, []);
 
   const enviarFechaPorPost = async () => {
@@ -39,6 +40,15 @@ const VerLibroDiario = () => {
       if (response.status === 200) obtenerDatosPorGet();
     } catch (error) {
       console.error('Error al enviar la fecha por POST:', error);
+    }
+  };
+
+  const getRemuneracion = async () => {
+    try {
+      const response = await axios.get(URL_REMUNERACIONES, { headers: { Authorization: `Bearer ${token}` } });
+      setDatos(response.data);
+    } catch (error) {
+      console.error("Error al obtener la remuneracion:", error);
     }
   };
 
@@ -71,7 +81,8 @@ const VerLibroDiario = () => {
       case 'certificado':
         return <CrearCertificados onClose={closeRegistroModal} />;
       case 'remuneracion':
-        return <CrearRemuneracion onClose={closeRegistroModal} />;
+        return <CrearRemuneracion onRemuneracionRegistrada={getRemuneracion}
+          onClose={closeRegistroModal} />;
       case 'compraMaterial':
         return <CrearCompraMateriales onClose={closeRegistroModal} />;
       case 'ventaTerreno':
@@ -86,10 +97,10 @@ const VerLibroDiario = () => {
   return (
     <div>
       <Toaster />
-      <h2 className="text-center text-black font-semibold text-4xl">LIBRO DIARIO</h2>
-      <h2 className="text-center text-black font-semibold text-4xl">Fecha Actual {fechaRegistro}</h2>
+      <p className="text-black font-semibold text-4xl flex justify-center mt-5 uppercase">Libro Diario</p>
 
-      <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-6">
+      {/* Selector de fecha */}
+      <div className="flex flex-col sm:flex-row items-center justify-center gap-4 my-6">
         <div className="relative">
           <input
             type="date"
@@ -98,65 +109,89 @@ const VerLibroDiario = () => {
             onChange={(e) => setFechaSeleccionada(e.target.value)}
           />
         </div>
-        <button onClick={handleBuscarFecha} className="px-4 py-2 bg-blue-600 text-white rounded-lg">
+        <button
+          onClick={handleBuscarFecha}
+          className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
+        >
           Buscar Fecha
         </button>
       </div>
 
-      <div className="contenedor flex-row flex justify-center">
-        <button onClick={() => handleAbrirModal('certificado')} className="bg-green-600 text-white px-6 py-2 rounded-full">
+      {/* Botones encima de la tabla */}
+      <div className="flex flex-wrap justify-center gap-4 mb-6">
+        <button
+          onClick={() => handleAbrirModal('certificado')}
+          className="bg-green-600 text-white px-6 py-2 rounded-full hover:bg-green-700 transition"
+        >
           Registrar Certificado
         </button>
-        <button onClick={() => handleAbrirModal('remuneracion')} className="bg-green-600 text-white px-6 py-2 rounded-full">
+        <button
+          onClick={() => handleAbrirModal('remuneracion')}
+          className="bg-green-600 text-white px-6 py-2 rounded-full hover:bg-green-700 transition"
+        >
           Registrar Remuneración
         </button>
-        <button onClick={() => handleAbrirModal('compraMaterial')} className="bg-green-600 text-white px-6 py-2 rounded-full">
+        <button
+          onClick={() => handleAbrirModal('compraMaterial')}
+          className="bg-green-600 text-white px-6 py-2 rounded-full hover:bg-green-700 transition"
+        >
           Registrar Compra de Material
         </button>
-        <button onClick={() => handleAbrirModal('ventaTerreno')} className="bg-green-600 text-white px-6 py-2 rounded-full">
+        <button
+          onClick={() => handleAbrirModal('ventaTerreno')}
+          className="bg-green-600 text-white px-6 py-2 rounded-full hover:bg-green-700 transition"
+        >
           Registrar Venta de Terreno
         </button>
-        <button onClick={() => handleAbrirModal('operacion')} className="bg-green-600 text-white px-6 py-2 rounded-full">
+        <button
+          onClick={() => handleAbrirModal('operacion')}
+          className="bg-green-600 text-white px-6 py-2 rounded-full hover:bg-green-700 transition"
+        >
           Registrar Operación
         </button>
       </div>
 
-      {/* Renderizar el modal si está abierto */}
+      {/* Modal */}
       {isRegistroModalOpen && renderModal()}
 
-      <div className="flex">
-        <div className="relative top-8">
+      {/* Tabla */}
+      <div className="flex flex-col lg:flex-row">
+        <div className="relative lg:top-8 mb-4 lg:mb-0">
           <Aside />
         </div>
 
-      <table className="table table-striped">
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Tipo</th>
-            <th>Descripción</th>
-            <th>Monto</th>
-            <th>Fecha</th>
-          </tr>
-        </thead>
-        <tbody>
-          {prueba.length > 0 ? (
-            prueba.map((item, index) => (
-              <tr key={index}>
-                <td>{index + 1}</td>
-                <td>{item.TIPO}</td>
-                <td>{item.Descripcion}</td>
-                <td>{item.Monto}</td>
-                <td>{item.Fecha}</td>
+        <div className="overflow-x-auto w-full">
+          <table className="table-auto w-full border-collapse border border-gray-300">
+            <thead>
+              <tr className="bg-gray-200">
+                <th className="border border-gray-300 px-4 py-2">#</th>
+                <th className="border border-gray-300 px-4 py-2">Tipo</th>
+                <th className="border border-gray-300 px-4 py-2">Descripción</th>
+                <th className="border border-gray-300 px-4 py-2">Monto</th>
+                <th className="border border-gray-300 px-4 py-2">Fecha</th>
               </tr>
-            ))
-          ) : (
-            <tr>
-              <td colSpan="5" className="text-center">No hay datos disponibles.</td>
-            </tr>
-          )}
-        </tbody>
-      </table>
+            </thead>
+            <tbody>
+              {prueba.length > 0 ? (
+                prueba.map((item, index) => (
+                  <tr key={index} className="even:bg-gray-100">
+                    <td className="border border-gray-300 px-4 py-2">{index + 1}</td>
+                    <td className="border border-gray-300 px-4 py-2">{item.TIPO}</td>
+                    <td className="border border-gray-300 px-4 py-2">{item.Descripcion}</td>
+                    <td className="border border-gray-300 px-4 py-2">{item.Monto}</td>
+                    <td className="border border-gray-300 px-4 py-2">{item.Fecha}</td>
+                  </tr>
+                ))
+              ) : (
+                <tr>
+                  <td colSpan="5" className="text-center border border-gray-300 px-4 py-2">
+                    No hay datos disponibles.
+                  </td>
+                </tr>
+              )}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   );

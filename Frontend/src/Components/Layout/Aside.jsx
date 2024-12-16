@@ -21,7 +21,7 @@ import {
   FaMapMarkerAlt,
   FaHandHoldingUsd,
 } from 'react-icons/fa';
-import { ALQUILER, CERTIFICADOS, CLIENTES, COMPRA_MATERIALES, DEPARTAMENTOS, EMPLEADOS, FLUJO_CAJA, LIBRO_DIARIO, OBRAS, OPERACIONES, PAGOS_DPTO, PENDIENTES, REMUNERACIONES, STOCK, TERRENOS, USUARIO, VEHICULOS, VIAJES, VTA_TERRENOS } from '../../Routes/routes';
+import { ALQUILER, CERTIFICADOS, CLIENTES, COMPRA_MATERIALES, DEPARTAMENTOS, DEPARTAMENTOS_ADMIN, EMPLEADOS, FLUJO_CAJA, LIBRO_DIARIO, OBRAS, OPERACIONES, PAGOS_DPTO, PENDIENTES, REMUNERACIONES, STOCK, TERRENOS, TERRENOS_ADMIN, USUARIO, VEHICULOS, VIAJES, VTA_TERRENOS } from '../../Routes/routes';
 import useAuthStore from '../../Context/useAuthStore';
 
 
@@ -132,9 +132,9 @@ const Aside = ({ rolesRequired }) => {
                   <ul className="ml-8">
                     <li>
                       <Link
-                        to={TERRENOS}
+                        to={TERRENOS_ADMIN}
                         className={`flex items-center px-4 py-2 text-gray-600 hover:bg-gray-100 ${
-                          isActive(TERRENOS) ? 'bg-gray-100 font-medium' : ''
+                          isActive(TERRENOS_ADMIN) ? 'bg-gray-100 font-medium' : ''
                         }`}
                         onClick={() => setIsMenuOpen(false)}
                       >
@@ -220,9 +220,9 @@ const Aside = ({ rolesRequired }) => {
                   <ul className="ml-8">
                     <li>
                       <Link
-                        to={DEPARTAMENTOS}
+                        to={DEPARTAMENTOS_ADMIN}
                         className={`flex items-center px-4 py-2 text-gray-600 hover:bg-gray-100 ${
-                          isActive(DEPARTAMENTOS) ? 'bg-gray-100 font-medium' : ''
+                          isActive(DEPARTAMENTOS_ADMIN) ? 'bg-gray-100 font-medium' : ''
                         }`}
                         onClick={() => setIsMenuOpen(false)}
                       >

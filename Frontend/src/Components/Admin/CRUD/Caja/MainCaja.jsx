@@ -424,15 +424,20 @@ LIBRO DIARIO</Link>
   <div className="flex justify-center mt-6">
         <button
           onClick={enviarFechaPorPost}
-          className="px-6 py-2 bg-blue-600 text-white font-medium text-sm rounded-md shadow-md hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-1 focus:outline-none "
+          className="px-4 py-2 bg-blue-600 text-white font-medium text-base rounded-md shadow-md hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-1 focus:outline-none "
         >
           Enviar Historial de Caja
         </button>
       </div>
-      <div className="btn librodirario flex justify-end back">
-< Link to={LIBRO_DIARIO} className="px-6 py-2 bg-green-600 text-white font-medium text-4xl rounded-md shadow-md hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-1 focus:outline-none mr-16">
-LIBRO DIARIO</Link>
+      <div className="flex justify-start items-center bg-gray-100 p-4">
+  <Link
+    to={LIBRO_DIARIO}
+    className="px-6 py-3 bg-green-600 text-white font-semibold text-lg md:text-xl rounded-lg shadow-lg transition transform hover:bg-blue-700 hover:-translate-y-1 hover:shadow-xl focus:ring-4 focus:ring-blue-500 focus:ring-opacity-50 focus:outline-none"
+  >
+    Volver a Libro Diario
+  </Link>
 </div>
+
   <br/>
 
   <table {...getTableProps()} className="cash-flow-table">

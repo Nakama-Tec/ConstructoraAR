@@ -55,7 +55,7 @@ const CrearObra = ({ onObraRegistrado }) => {
               <br>
               <label><b>Progreso Obra</b></label> 
               <br>
-              <input id="progresoObra" placeholder="Progreso de la Obra" type="number" min="0" class="swal2-input" />
+              <input id="progresoObra" placeholder="Progreso de la Obra" type="number" min="0" max="100" class="swal2-input" />
               <br>
               <br>
               <label><b>Cliente</b></label> 
