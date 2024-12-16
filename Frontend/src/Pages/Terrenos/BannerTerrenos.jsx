@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 
 // Importa las imágenes locales
-import img5 from '../../assets/img terrenos/img5.jpg';
-import img6 from '../../assets/img terrenos/img6.jpg';
-import img7 from '../../assets/img terrenos/img7.jpg';
+import img5 from '../../assets/imgTerrenos/img5.jpg';
+import img6 from '../../assets/imgTerrenos/img6.jpg';
+import img7 from '../../assets/imgTerrenos/img7.jpg';
 
 const images = [img5, img6, img7];
 

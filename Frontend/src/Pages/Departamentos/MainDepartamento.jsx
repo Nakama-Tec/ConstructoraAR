@@ -3,10 +3,10 @@ import BannerDepartamentos from "./BannerDepartamentos";
 import Contacto from "../../Pages/Home/Contacto";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import img1 from "../../assets/img departamento/imgdepa1.jpg";
-import img2 from "../../assets/img departamento/imgdepa2.jpg";
-import img3 from "../../assets/img departamento/imgdepa3.jpg";
-import img4 from "../../assets/img departamento/imagdepartamento10.jpg";
+import img1 from "../../assets/imgDepartamentos/imgdepa1.jpg";
+import img2 from "../../assets/imgDepartamentos/imgdepa2.jpg";
+import img3 from "../../assets/imgDepartamentos/imgdepa3.jpg";
+import img4 from "../../assets/imgDepartamentos/imagdepartamento10.jpg";
 
 const MainDepartamento = () => {
   const firstCardRef = useRef(null);

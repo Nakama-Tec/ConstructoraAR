@@ -1,14 +1,14 @@
 import React, { useRef } from "react";
 import BannerTerrenos from "../Terrenos/BannerTerrenos";
 import Contacto from "../Home/Contacto";
-import img01 from "../../assets/img terrenos/img01.jpg";
-import img001 from "../../assets/img terrenos/img001.jpg";
-import img002 from "../../assets/img terrenos/img002.jpg";
-import img003 from "../../assets/img terrenos/img003.jpg";
-import img004 from "../../assets/img terrenos/img004.jpg";
-import img0002 from "../../assets/img terrenos/img0002.jpg";
-import img0003 from "../../assets/img terrenos/img0003.jpg";
-import img0004 from "../../assets/img terrenos/img0004.jpg";
+import img01 from "../../assets/imgTerrenos/img01.jpg";
+import img001 from "../../assets/imgTerrenos/img001.jpg";
+import img002 from "../../assets/imgTerrenos/img002.jpg";
+import img003 from "../../assets/imgTerrenos/img003.jpg";
+import img004 from "../../assets/imgTerrenos/img004.jpg";
+import img0002 from "../../assets/imgTerrenos/img0002.jpg";
+import img0003 from "../../assets/imgTerrenos/img0003.jpg";
+import img0004 from "../../assets/imgTerrenos/img0004.jpg";
 
 const MainTerrenos = () => {
   const firstImagesRef = useRef(null);

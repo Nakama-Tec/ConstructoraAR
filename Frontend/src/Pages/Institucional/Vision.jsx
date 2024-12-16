@@ -1,6 +1,6 @@
 import React from "react";
 import "./Vision.css"; // Importa el archivo de estilos
-import visionVideo from "../../assets/videos/videoVision.mp4"; // Importa el video de fondo
+import vision from "../../assets/imgInstitucional/vision.jpg"; // Importa el video de fondo
 import ParallaxArticle from "../../Components/Layout/ParallaxArticle";
 function Vision() {
   const articles = [
@@ -15,7 +15,7 @@ function Vision() {
         </>
       ),
       image:
-        "https://mesasol.es/wp-content/uploads/working-2021-08-28-20-17-43-utc-scaled.jpg",
+        vision,
     },
   ];
   return (
