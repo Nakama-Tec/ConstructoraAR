@@ -10,6 +10,7 @@ import CrearVtaTerrenos from '../Terrenos/Ventas/CrearVtaTerrenos';
 import CrearOperaciones from '../Operaciones/CrearOperaciones';
 import CrearRemuneracion from '../Remuneracion/CrearRemuneracion';
 import CrearCertificados from '../Certificados/CrearCertificados';
+import { Link } from 'react-router-dom';
 
 const VerLibroDiario = () => {
   const token = useAuthStore((state) => state.token);
@@ -17,7 +18,6 @@ const VerLibroDiario = () => {
   const [fechaRegistro, setFechaRegistro] = useState('');
   const [fechaSeleccionada, setFechaSeleccionada] = useState('');
   const [prueba, setPrueba] = useState([]);
-  const [datos, setDatos] = useState([]);
 
   useEffect(() => {
     const date = new Date();
@@ -27,7 +27,6 @@ const VerLibroDiario = () => {
     const fechaActual = `${año}-${mes}-${dia}`;
     setFechaRegistro(fechaActual);
     setFechaSeleccionada(fechaActual);
-    getRemuneracion();
   }, []);
 
   const enviarFechaPorPost = async () => {
@@ -40,15 +39,6 @@ const VerLibroDiario = () => {
       if (response.status === 200) obtenerDatosPorGet();
     } catch (error) {
       console.error('Error al enviar la fecha por POST:', error);
-    }
-  };
-
-  const getRemuneracion = async () => {
-    try {
-      const response = await axios.get(URL_REMUNERACIONES, { headers: { Authorization: `Bearer ${token}` } });
-      setDatos(response.data);
-    } catch (error) {
-      console.error("Error al obtener la remuneracion:", error);
     }
   };
 
@@ -76,23 +66,23 @@ const VerLibroDiario = () => {
   };
 
   // Renderizar el modal correcto basado en registroSeleccionado
-  const renderModal = () => {
-    switch (registroSeleccionado) {
-      case 'certificado':
-        return <CrearCertificados onClose={closeRegistroModal} />;
-      case 'remuneracion':
-        return <CrearRemuneracion onRemuneracionRegistrada={getRemuneracion}
-          onClose={closeRegistroModal} />;
-      case 'compraMaterial':
-        return <CrearCompraMateriales onClose={closeRegistroModal} />;
-      case 'ventaTerreno':
-        return <CrearVtaTerrenos onClose={closeRegistroModal} />;
-      case 'operacion':
-        return <CrearOperaciones onClose={closeRegistroModal} />;
-      default:
-        return null;
-    }
-  };
+  // const renderModal = () => {
+  //   switch (registroSeleccionado) {
+  //     case 'certificado':
+  //       return <CrearCertificados onClose={closeRegistroModal} />;
+  //     case 'remuneracion':
+  //       return <CrearRemuneracion onRemuneracionRegistrada={getRemuneracion}
+  //         onClose={closeRegistroModal} />;
+  //     case 'compraMaterial':
+  //       return <CrearCompraMateriales onClose={closeRegistroModal} />;
+  //     case 'ventaTerreno':
+  //       return <CrearVtaTerrenos onClose={closeRegistroModal} />;
+  //     case 'operacion':
+  //       return <CrearOperaciones onClose={closeRegistroModal} />;
+  //     default:
+  //       return null;
+  //   }
+  // };
 
   return (
     <div>
@@ -119,40 +109,37 @@ const VerLibroDiario = () => {
 
       {/* Botones encima de la tabla */}
       <div className="flex flex-wrap justify-center gap-4 mb-6">
-        <button
-          onClick={() => handleAbrirModal('certificado')}
+        <Link
+          to={'/Admin/Certificados'}
           className="bg-green-600 text-white px-6 py-2 rounded-full hover:bg-green-700 transition"
         >
           Registrar Certificado
-        </button>
-        <button
-          onClick={() => handleAbrirModal('remuneracion')}
+        </Link>
+        <Link
+          to={'/Admin/Remuneraciones'}
           className="bg-green-600 text-white px-6 py-2 rounded-full hover:bg-green-700 transition"
         >
           Registrar Remuneración
-        </button>
-        <button
-          onClick={() => handleAbrirModal('compraMaterial')}
+        </Link>
+        <Link
+          to={'/Admin/CompraMateriales'}
           className="bg-green-600 text-white px-6 py-2 rounded-full hover:bg-green-700 transition"
         >
           Registrar Compra de Material
-        </button>
-        <button
-          onClick={() => handleAbrirModal('ventaTerreno')}
+        </Link>
+        <Link
+          to={'/Admin/VentaTerrenos'}
           className="bg-green-600 text-white px-6 py-2 rounded-full hover:bg-green-700 transition"
         >
           Registrar Venta de Terreno
-        </button>
-        <button
-          onClick={() => handleAbrirModal('operacion')}
+        </Link>
+        <Link
+          to={'/Admin/Operaciones'}
           className="bg-green-600 text-white px-6 py-2 rounded-full hover:bg-green-700 transition"
         >
           Registrar Operación
-        </button>
+        </Link>
       </div>
-
-      {/* Modal */}
-      {isRegistroModalOpen && renderModal()}
 
       {/* Tabla */}
       <div className="flex flex-col lg:flex-row">
