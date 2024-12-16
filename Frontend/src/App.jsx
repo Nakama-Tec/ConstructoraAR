@@ -1,7 +1,7 @@
 // Importaciones de librerias
 
 import { BrowserRouter, Routes, Route } from 'react-router-dom' // estas librerias permiten el manejo de rutas en la aplicacion
-import {HOME, HOME_SISTEMA_GESTION, CERTIFICADOS,CREAR_CERTIFICADOS,LOGIN,EMPLEADOS, VEHICULOS, FLUJO_CAJA, DETALLEVIAJES, LIBRO_DIARIO,TERRENOS ,STOCK, CLIENTES, DEPARTAMENTOS, OBRAS, OPERACIONES, VIAJES, USUARIO, UNAUTHORIZED, VTA_TERRENOS, PAGOS_DPTO, PENDIENTES, COMPRA_MATERIALES, ALQUILER, REMUNERACIONES, RECUPERAR} from "./Routes/routes"
+import {HOME, HOME_SISTEMA_GESTION, CERTIFICADOS,CREAR_CERTIFICADOS,LOGIN,EMPLEADOS, VEHICULOS, FLUJO_CAJA, DETALLEVIAJES, LIBRO_DIARIO,TERRENOS ,STOCK, CLIENTES, DEPARTAMENTOS, OBRAS, OPERACIONES, VIAJES, USUARIO, UNAUTHORIZED, VTA_TERRENOS, PAGOS_DPTO, PENDIENTES, COMPRA_MATERIALES, ALQUILER, REMUNERACIONES, RECUPERAR, CONTACTO, TERRENOS_ADMIN, DEPARTAMENTOS_ADMIN, CONSTRUCCIONES, INSTITUCIONAL, ERROR} from "./Routes/routes"
 
 
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -57,11 +57,11 @@ const ScrollToTop = () => {
 };
 
 const MainContent = () => {
-  const roleRequired = "admin" //rol requerido para acceder a las rutas protegidas
+  const rolesRequired = ['admin', 'empleado'] //rol requerido para acceder a las rutas protegidas
   const location = useLocation();
-  const isAdminPath = location.pathname.toLowerCase().startsWith("/admin");
+  const isAdminPath = location.pathname.toLowerCase().startsWith("/admin"); //verifica si la ruta actual es una ruta protegida
 return (
-  <main className={`${!isAdminPath ? 'contenedor-main' : ''}`}>   
+  <main className={`${!isAdminPath ? 'contenedor-main' : ''}`}>   //si la ruta actual es una ruta protegida se le añade la clase contenedor-main
 
  
       <Routes>
@@ -74,38 +74,38 @@ return (
 
         {/* Rutas protegidas */}
        
-        <Route path={HOME_SISTEMA_GESTION} element={<ProtectedRoute roleRequired={roleRequired}> <HomeSistemaGestion/></ProtectedRoute>} />
-        <Route path={FLUJO_CAJA} element={<ProtectedRoute roleRequired={roleRequired}> <FlujoCaja/></ProtectedRoute>} />
-        <Route path={LIBRO_DIARIO} element={<ProtectedRoute roleRequired={roleRequired}> <LibroDiario/></ProtectedRoute>} />
-        <Route path={TERRENOS} element={<ProtectedRoute roleRequired={roleRequired}> <Terrenos/></ProtectedRoute>} />
-        <Route path={VTA_TERRENOS} element={<ProtectedRoute roleRequired={roleRequired}> <VtaTerrenos/></ProtectedRoute>} />
-        <Route path={EMPLEADOS} element={<ProtectedRoute roleRequired={roleRequired}> <Empleados/></ProtectedRoute>} />
-        <Route path={COMPRA_MATERIALES} element={<ProtectedRoute roleRequired={roleRequired}> <CompraMateriales/></ProtectedRoute>} />
-        <Route path={STOCK} element={<ProtectedRoute roleRequired={roleRequired}> <Stock/></ProtectedRoute>} />
-        <Route path={CLIENTES} element={<ProtectedRoute roleRequired={roleRequired}> <Clientes/></ProtectedRoute>} />
-        <Route path={DEPARTAMENTOS} element={<ProtectedRoute roleRequired={roleRequired}> <Departamentos/></ProtectedRoute>} />
-        <Route path={PAGOS_DPTO} element={<ProtectedRoute roleRequired={roleRequired}> <PagosDepartamentos/></ProtectedRoute>} />
-        <Route path={OBRAS} element={<ProtectedRoute roleRequired={roleRequired}> <Obras/></ProtectedRoute>} />
-        <Route path={OPERACIONES} element={<ProtectedRoute roleRequired={roleRequired}> <Operaciones/></ProtectedRoute>} />
-        <Route path={VEHICULOS} element={<ProtectedRoute roleRequired={roleRequired}> <Vehiculos/></ProtectedRoute>} />
-        <Route path={USUARIO} element={<ProtectedRoute roleRequired={roleRequired}> <Usuario/></ProtectedRoute>} />
-        <Route path={PENDIENTES} element={<ProtectedRoute roleRequired={roleRequired}> <Pendientes/></ProtectedRoute>} />
-        <Route path={VIAJES} element={<ProtectedRoute roleRequired={roleRequired}> <Viajes/></ProtectedRoute>} />
-        <Route path={ALQUILER} element={<ProtectedRoute roleRequired={roleRequired}> <Alquiler/></ProtectedRoute>} />
-        <Route path={CERTIFICADOS} element={<ProtectedRoute roleRequired={roleRequired}> <Certificados/></ProtectedRoute>} />
-        <Route path={CREAR_CERTIFICADOS} element={<ProtectedRoute roleRequired={roleRequired}> <CrearCertificado/></ProtectedRoute>} />
-        <Route path={REMUNERACIONES} element={<ProtectedRoute roleRequired={roleRequired}> <Remuneraciones/></ProtectedRoute>} />
+        <Route path={HOME_SISTEMA_GESTION} element={<ProtectedRoute rolesRequired={['admin', 'empleado']}> <HomeSistemaGestion/></ProtectedRoute>} />
+        <Route path={FLUJO_CAJA} element={<ProtectedRoute rolesRequired={['admin', 'empleado']}> <FlujoCaja/></ProtectedRoute>} />
+        <Route path={LIBRO_DIARIO} element={<ProtectedRoute rolesRequired={['admin', 'empleado']}> <LibroDiario/></ProtectedRoute>} />
+        <Route path={TERRENOS_ADMIN} element={<ProtectedRoute rolesRequired={['admin', 'empleado']}> <Terrenos/></ProtectedRoute>} />
+        <Route path={VTA_TERRENOS} element={<ProtectedRoute rolesRequired={['admin', 'empleado']}> <VtaTerrenos/></ProtectedRoute>} />
+        <Route path={EMPLEADOS} element={<ProtectedRoute rolesRequired={['admin']}> <Empleados/></ProtectedRoute>} />
+        <Route path={COMPRA_MATERIALES} element={<ProtectedRoute rolesRequired={['admin', 'empleado']}> <CompraMateriales/></ProtectedRoute>} />
+        <Route path={STOCK} element={<ProtectedRoute rolesRequired={['admin', 'empleado']}> <Stock/></ProtectedRoute>} />
+        <Route path={CLIENTES} element={<ProtectedRoute rolesRequired={['admin', 'empleado']}> <Clientes/></ProtectedRoute>} />
+        <Route path={DEPARTAMENTOS_ADMIN} element={<ProtectedRoute rolesRequired={['admin', 'empleado']}> <Departamentos/></ProtectedRoute>} />
+        <Route path={PAGOS_DPTO} element={<ProtectedRoute rolesRequired={['admin', 'empleado']}> <PagosDepartamentos/></ProtectedRoute>} />
+        <Route path={OBRAS} element={<ProtectedRoute rolesRequired={['admin', 'empleado']}> <Obras/></ProtectedRoute>} />
+        <Route path={OPERACIONES} element={<ProtectedRoute rolesRequired={['admin', 'empleado']}> <Operaciones/></ProtectedRoute>} />
+        <Route path={VEHICULOS} element={<ProtectedRoute rolesRequired={['admin', 'empleado']}> <Vehiculos/></ProtectedRoute>} />
+        <Route path={USUARIO} element={<ProtectedRoute rolesRequired={['admin']}> <Usuario/></ProtectedRoute>} />
+        <Route path={PENDIENTES} element={<ProtectedRoute rolesRequired={['admin', 'empleado']}> <Pendientes/></ProtectedRoute>} />
+        <Route path={VIAJES} element={<ProtectedRoute rolesRequired={['admin', 'empleado']}> <Viajes/></ProtectedRoute>} />
+        <Route path={ALQUILER} element={<ProtectedRoute rolesRequired={['admin', 'empleado']}> <Alquiler/></ProtectedRoute>} />
+        <Route path={CERTIFICADOS} element={<ProtectedRoute rolesRequired={['admin', 'empleado']}> <Certificados/></ProtectedRoute>} />
+        <Route path={CREAR_CERTIFICADOS} element={<ProtectedRoute rolesRequired={['admin', 'empleado']}> <CrearCertificado/></ProtectedRoute>} />
+        <Route path={REMUNERACIONES} element={<ProtectedRoute rolesRequired={['admin', 'empleado']}> <Remuneraciones/></ProtectedRoute>} />
         {/* Ruta no autorizada */}
         <Route path={UNAUTHORIZED} element={<div><h3>No autorizado</h3></div>} />
         
         { /* Ruta no encontradas */}
 
-        <Route path='*' element={<Error />} />
-        <Route path='/contacto' element={<Contacto />} />
-        <Route path='/terrenos' element={<MainTerrenos />} />
-        <Route path='/departamentos' element={<MainDepartamento/>} />
-        <Route path='/construcciones' element={<MainConstrucciones/>} />
-        <Route path='/institucional' element={<Institucional/>} />
+        <Route path={ERROR} element={<Error />} />
+        <Route path={CONTACTO} element={<Contacto />} />
+        <Route path={TERRENOS} element={<MainTerrenos />} />
+        <Route path={DEPARTAMENTOS} element={<MainDepartamento/>} />
+        <Route path={CONSTRUCCIONES} element={<MainConstrucciones/>} />
+        <Route path={INSTITUCIONAL} element={<Institucional/>} />
         </Routes>
         </main>
         )
