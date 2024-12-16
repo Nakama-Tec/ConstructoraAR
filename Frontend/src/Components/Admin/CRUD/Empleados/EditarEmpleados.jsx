@@ -77,7 +77,7 @@ const EditarEmpleados = ({ onEmpleadoEditado }) => {
               Swal.showValidationMessage("El teléfono debe contener solo 10 dígitos.");
               return false;
             }
-  
+
           return {
             nombreEmpleado,
             apellidoEmpleado,
@@ -93,7 +93,7 @@ const EditarEmpleados = ({ onEmpleadoEditado }) => {
               headers: { Authorization: `Bearer ${token}` }
             });
             Swal.fire('¡Éxito!', 'El empleado fue actualizado correctamente.', 'success');
-            handleEditarEmpleado(); 
+            onEmpleadoEditado(); 
             clearRegistroSeleccionado(); 
           } catch (error) {
             Swal.fire('Error', 'Hubo un problema al actualizar al empleado.', 'error');
