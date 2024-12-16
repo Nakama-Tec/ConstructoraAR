@@ -1,4 +1,3 @@
-import React from 'react';
 import '../../Styles/Footer.css'
 
 const Footer = () => {
@@ -6,7 +5,7 @@ const Footer = () => {
     <footer className="bg-gray-800 text-white py-8">
         <div className="container mx-auto flex">
             <div className="columnas-footer">
-                <p><span className='AR'>AR</span>Construcciones</p>                
+                <p className='uppercase'>Constructora <span className='AR'>AR</span></p>                
             </div>
             
             <div className="columnas-footer flex justify-center space-x-4 ">
@@ -42,7 +41,7 @@ const Footer = () => {
             </div>
         </div>
         <div className="container mx-auto text-center mt-4">
-            <p>&copy; ARConstrucciones 2024</p>
+            <p>&copy; CONSTRUCTORA AR 2024</p>
         </div>
 
     
