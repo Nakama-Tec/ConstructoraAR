@@ -3,7 +3,7 @@ import Swal from 'sweetalert2';
 import axios from 'axios';
 import useAuthStore from '../../../../Context/useAuthStore';
 import useRegistroStore from '../../../../Context/useRegistroStore';
-import { URL_EMPLEADOS_CREAR } from '../../../../Constants/endpoints-API';
+import { URL_EMPLEADOS_CREAR, URL_EMPLEADOS } from '../../../../Constants/endpoints-API';
 
 const CrearEmpleados = ({ onEmpleadoRegistrado }) => {
 
@@ -28,7 +28,7 @@ const CrearEmpleados = ({ onEmpleadoRegistrado }) => {
       `,
       confirmButtonText: 'Registrar',
       showCancelButton: true,
-      preConfirm: () => {
+      preConfirm: async () => {
           const nombreEmpleado = document.getElementById('nombreEmpleado').value;
           const apellidoEmpleado = document.getElementById('apellidoEmpleado').value;
           const dniEmpleado = document.getElementById('dniEmpleado').value;
@@ -41,6 +41,7 @@ const CrearEmpleados = ({ onEmpleadoRegistrado }) => {
           const dniRegex = /^\d{7,8}$/;
           const telefonoRegex = /^\d{10}$/;
           const direccionRegex = /^[a-zA-Z0-9À-ÿ\s,.-]+$/;
+        
 
           if (!nombreEmpleado || !nombreRegex.test(nombreEmpleado)) {
             Swal.showValidationMessage("El nombre no debe contener números.");
@@ -65,6 +66,21 @@ const CrearEmpleados = ({ onEmpleadoRegistrado }) => {
             return false;
           }
           
+          try {
+            const response = await axios.get(`${URL_EMPLEADOS}`, {
+              headers: { Authorization: `Bearer ${token}` }
+            });
+            const empleados = response.data;
+            //Verificar si el DNI ya se encuentra registrado
+            const dniExistente = empleados.some((empleado) => empleado.dniEmpleado === dniEmpleado);
+            if (dniExistente) {
+              Swal.showValidationMessage("El DNI ya se encuentra registrado.");
+              return false;
+            }
+          } catch (error) {
+            Swal.showValidationMessage("Hubo un problema al verificar el DNI.");
+            return false;
+          }
 
         return {
           nombreEmpleado,
@@ -81,7 +97,7 @@ const CrearEmpleados = ({ onEmpleadoRegistrado }) => {
             headers: { Authorization: `Bearer ${token}` }
           });
           Swal.fire('¡Éxito!', 'El empleado fue registrado correctamente.', 'success');
-          onEmpleadoRegistrado();
+          onEmpleadoRegistrado(); 
           closeRegistroModal(); 
         } catch (error) {
           Swal.fire('Error', 'Hubo un problema al registrar al empleado.', 'error');

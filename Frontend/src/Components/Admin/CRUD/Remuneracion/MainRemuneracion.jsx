@@ -21,9 +21,6 @@ const MainRemuneracion = () => {
     const { setRegistroSeleccionado, openRegistroModal } = useRegistroStore();
     const {setVerRegistroSeleccionado} = useVerRegistroStore();
 
-
-  
-  
     const getRemuneracion = async () => {
       try {
         const response = await axios.get(URL_REMUNERACIONES, { headers: { Authorization: `Bearer ${token}` } });
@@ -33,7 +30,6 @@ const MainRemuneracion = () => {
       }
     };
   
-
     const handleEliminarRemuneracion = async (remuneracion) => {
       const confirmacion = await Swal.fire({
         title: '¿Estás seguro?',
@@ -59,7 +55,6 @@ const MainRemuneracion = () => {
         }
       }
     };
-
 
     const columns = [
       { header: 'Nº Remuneracion', accessorKey: 'id_remuneracion' },

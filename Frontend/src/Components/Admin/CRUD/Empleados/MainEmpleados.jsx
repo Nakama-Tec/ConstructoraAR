@@ -43,7 +43,7 @@ const MainEmpleados = () => {
     if (confirmacion.isConfirmed) {
       try {
         await axios.put(
-          `${URL_EMPLEADOS_ELIMINAR}${empleado.id_empleado}`,
+          `${URL_EMPLEADOS_ELIMINAR}${empleado.id_Empleado}`,
           { ...empleado }, // Se envía el stock con el campo "eliminado" en true
           { headers: { Authorization: `Bearer ${token}` } }
         );
