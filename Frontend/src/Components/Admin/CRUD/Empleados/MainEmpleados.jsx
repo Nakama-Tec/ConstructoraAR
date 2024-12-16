@@ -15,7 +15,7 @@ import Swal from 'sweetalert2';
 const MainEmpleados = () => {
   const token = useAuthStore((state) => state.token);
   const { setRegistroSeleccionado, openRegistroModal } = useRegistroStore();
-  const {  setVerRegistroSeleccionado } = useVerRegistroStore();
+  const { setVerRegistroSeleccionado } = useVerRegistroStore();
 
   const [filtrado, setFiltrado] = useState('');
   const [datos, setDatos] = useState([]);
