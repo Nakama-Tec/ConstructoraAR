@@ -3,15 +3,29 @@ import Swal from 'sweetalert2';
 import axios from 'axios';
 import useAuthStore from '../../../../Context/useAuthStore';
 import useRegistroStore from '../../../../Context/useRegistroStore';
-import { URL_VIAJES_EDITAR, URL_VEHICULOS, URL_OBRAS } from '../../../../Constants/endpoints-API';
+import { URL_VIAJES_EDITAR, URL_VEHICULOS, URL_OBRAS, URL_STOCK } from '../../../../Constants/endpoints-API';
 
 
 const EditarViaje = ({ onViajeEditado }) => {
+
+          // <br>
+        // <label><b>Selecciona el stock</b></label>
+        // <br>
+        // <select id="select_stock" class="swal2-select">
+        //   ${stocks
+        //   .map(
+        //     (stock) =>
+        //       `<option value="${stock.id_stock}" ${stock.nombreMaterial === registroSeleccionado.Material ? 'selected' : ''
+        //       }>${stock.nombreMaterial}</option>`
+        //   )
+        //   .join('')}
+        // </select>
 
   const { registroSeleccionado, clearRegistroSeleccionado } = useRegistroStore();
   const token = useAuthStore((state) => state.token);
   const [vehiculos, setVehiculos] = useState([]);
   const [obras, setObras] = useState([]);
+  const [stocks, setStocks] = useState([]);
 
   const getVehiculos = async () => {
     try {
@@ -30,6 +44,14 @@ const EditarViaje = ({ onViajeEditado }) => {
       console.error('Error al obtener la obra:', error);
     }
   };
+
+  const getStock = async () =>{
+    try {
+      const response = await axios.get(URL_STOCK, { headers: { Authorization: `Bearer ${token}` } });
+      setStocks(response.data);
+    } catch (error) {
+      console.error('Error al obtener el stock:', error);
+  }};
 
 
 
@@ -66,7 +88,8 @@ const EditarViaje = ({ onViajeEditado }) => {
           )
           .join('')}
         </select>
-          
+        <br>
+        
         `,
       confirmButtonText: 'Enviar',
       showCancelButton: true,
@@ -111,6 +134,7 @@ const EditarViaje = ({ onViajeEditado }) => {
     }
     getVehiculos();
     getObra();
+    getStock();
   }, [registroSeleccionado]);
 
   return null; // Este componente no renderiza nada en pantalla

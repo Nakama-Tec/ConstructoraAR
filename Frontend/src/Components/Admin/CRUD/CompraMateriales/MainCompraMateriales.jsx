@@ -58,7 +58,7 @@ const MainCompraMateriales = () => {
     };
   
     const columns = [
-      { header: 'Nº', accessorKey: 'ID' },
+      { header: 'Nº', accessorKey: 'id_compraMaterial' },
       { header: 'Nombre del Material', accessorKey: 'Nombre' },
       { header: 'Cantidad', accessorKey: 'Cantidad' },
       // { header: 'Precio ($)', accessorKey: 'Precio' },

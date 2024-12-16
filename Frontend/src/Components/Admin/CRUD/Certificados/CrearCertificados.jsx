@@ -3,7 +3,7 @@ import Swal from "sweetalert2";
 import axios from "axios";
 import useAuthStore from "../../../../Context/useAuthStore";
 import useRegistroStore from "../../../../Context/useRegistroStore";
-import { URL_CERTIFICADOS_CREAR, URL_OBRAS } from "../../../../Constants/endpoints-API";
+import { URL_CERTIFICADOS, URL_CERTIFICADOS_CREAR, URL_OBRAS } from "../../../../Constants/endpoints-API";
 
 const CrearCertificados = ({ onCertificadoRegistrado }) => {
   const { isRegistroModalOpen, closeRegistroModal } = useRegistroStore();
@@ -77,7 +77,7 @@ const CrearCertificados = ({ onCertificadoRegistrado }) => {
         `,
       confirmButtonText: "Registrar",
       showCancelButton: true,
-      preConfirm: () => {
+      preConfirm: async () => {
         const montoCert = document.getElementById("montoCert").value;
         const nroCertificado = document.getElementById("nroCertificado").value;
         const fechaEmisionCert = document.getElementById("fechaEmisionCert").value;
@@ -119,6 +119,23 @@ const CrearCertificados = ({ onCertificadoRegistrado }) => {
 
         if(!valorredeterminacion || !valorredeterminacionRegex.test(valorredeterminacion)){
           Swal.showValidationMessage("El valor de la redeterminacion no puede estar vacio y debe ser un numero.");
+          return false;
+        }
+
+        try {
+          const response = await axios.get(`${URL_CERTIFICADOS}`, {
+            headers: { Authorization: `Bearer ${token}` }
+          });
+          const certificados = response.data;
+          //Verificar si el Numero del certificado ya se encuentra registrado
+          const numeroExistente = certificados.some((certificado) => certificado.nroCertificado === parseInt(nroCertificado));
+          if (numeroExistente) {
+            Swal.showValidationMessage("El Certificado ya se encuentra registrado.");
+            return false;
+          }
+        } catch (error) {
+          console.error('Error al verificar el Certificado:', error);
+          Swal.showValidationMessage("Hubo un problema al verificar el Certificado.");
           return false;
         }
 

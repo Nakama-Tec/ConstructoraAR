@@ -24,6 +24,7 @@ const EditarAlquiler = ({ onAlquilerEditado }) => {
         try {
             const response = await axios.get(URL_CLIENTES, { headers: { Authorization: `Bearer ${token}` } });
             setClientes(response.data);
+            console.log(response.data)
         } catch (error) {
             console.error('Error al obtener el Cliente:', error);
         }
@@ -49,7 +50,7 @@ const EditarAlquiler = ({ onAlquilerEditado }) => {
                     .map(
                         (departamento) =>
                             `<option value="${departamento.id_departamento}" ${
-                                departamento.id_departamento === registroSeleccionado.id_departamento ? 'selected' : ''
+                                departamento.id_departamento === registroSeleccionado.id_alquilerDepto ? 'selected' : ''
                             }>${departamento.nombreDepartamento} </option>`
                     )
                     .join('')}
@@ -62,12 +63,11 @@ const EditarAlquiler = ({ onAlquilerEditado }) => {
                     .map(
                         (clientes) =>
                             `<option value="${clientes.id_cliente}" ${
-                                clientes.id_cliente === registroSeleccionado.id_cliente ? 'selected' : ''
+                                clientes.id_cliente === registroSeleccionado.id_alquilerDepto ? 'selected' : ''
                             }>${clientes.nombreCliente} ${clientes.apellidoCliente}</option>`
                     )
                     .join('')}
             </select>
-                
             `,
             confirmButtonText: 'Enviar',
             showCancelButton: true,

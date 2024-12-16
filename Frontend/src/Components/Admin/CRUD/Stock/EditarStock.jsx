@@ -1,21 +1,33 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
 import axios from 'axios';
 import useAuthStore from '../../../../Context/useAuthStore';
 import useRegistroStore from '../../../../Context/useRegistroStore';
-import { URL_STOCK, URL_STOCK_EDITAR } from '../../../../Constants/endpoints-API';
+import { URL_STOCK, URL_STOCK_EDITAR, URL_COMPRA_MATERIALES } from '../../../../Constants/endpoints-API';
 
 const EditarStock = ({ onStockEditar }) => {
   const { registroSeleccionado, clearRegistroSeleccionado } = useRegistroStore();
   const token = useAuthStore((state) => state.token);
+  const [materiales, setMateriales] = useState([]);
+  const [stock, setStock] = useState([])
 
   // Obtener lista de stock (aunque no es usado en el `select_stock2`)
   const getStock = async () => {
     try {
       const response = await axios.get(URL_STOCK, { headers: { Authorization: `Bearer ${token}` } });
-      console.log('Stock cargado:', response.data);
+      setStock(response.data)
     } catch (error) {
       console.error('Error al obtener el Stock:', error);
+    }
+  };
+
+  const getCompraMaterial = async () => {
+    try {
+      const response = await axios.get(URL_COMPRA_MATERIALES, { headers: { Authorization: `Bearer ${token}` } });
+      console.log(response.data)
+      setMateriales(response.data);
+    } catch (error) {
+      console.error('Error al obtener la compra de materiales:', error);
     }
   };
 
@@ -26,12 +38,32 @@ const EditarStock = ({ onStockEditar }) => {
       html: `
         <label><b>Nombre Material</b></label> 
         <br>
-        <input id="nombreMaterial" class="swal2-input" value="${registroSeleccionado?.nombreMaterial || ''}" />
+        <select id="select_material" class="swal2-select">
+        ${materiales
+        .map(
+          (material) =>
+            `<option value="${material.Nombre}" ${
+            material.Nombre === registroSeleccionado.nombreMaterial ? 'selected' : ''
+            }>${material.Nombre}</option>`
+        )
+        
+        .join('')}
+      </select>
         <br>
         <br>
         <label><b>Ubicacion</b></label> 
         <br>
-        <input id="ubicacionStock" class="swal2-input" value="${registroSeleccionado?.ubicacionStock || ''}" />
+        <select id="select_ubicacion" class="swal2-select">
+        ${stock
+        .map(
+          (inventario) =>
+            `<option value="${inventario.ubicacionStock}" ${
+            inventario.id_stock === registroSeleccionado?.id_stock ? 'selected' : ''
+            }>${inventario.ubicacionStock}</option>`
+        )
+        
+        .join('')}
+      </select>
          <br>
         <br>
         <label><b>Cantidad</b></label> 
@@ -42,15 +74,15 @@ const EditarStock = ({ onStockEditar }) => {
         <label><b>Disponibilidad</b></label> 
         <br>
         <select id="select_stock" class="swal2-select">
-          <option value="SI" ${registroSeleccionado?.activoStock === 'SI' ? 'selected' : ''}>SI</option>
-          <option value="NO" ${registroSeleccionado?.activoStock === 'NO' ? 'selected' : ''}>NO</option>
+          <option value="Si" ${registroSeleccionado?.activoStock === 'Si' ? 'selected' : ''}>Si</option>
+          <option value="No" ${registroSeleccionado?.activoStock === 'No' ? 'selected' : ''}>No</option>
         </select>
       `,
       confirmButtonText: 'Enviar',
       showCancelButton: true,
       preConfirm: () => {
-        const nombreMaterial = document.getElementById('nombreMaterial').value;
-        const ubicacionStock = document.getElementById('ubicacionStock').value;
+        const nombreMaterial = document.getElementById('select_material').value;
+        const ubicacionStock = document.getElementById('select_ubicacion').value;
         const cantidadStock = parseInt(document.getElementById('cantidadStock').value, 10);
         const activoStock = document.getElementById('select_stock').value === 'SI' ? 1 : 0;
 
@@ -102,6 +134,7 @@ const EditarStock = ({ onStockEditar }) => {
     if (registroSeleccionado) {
       handleEditarStock();
     }
+    getCompraMaterial();
   }, [registroSeleccionado]);
 
   return null; // Este componente no renderiza nada en pantalla

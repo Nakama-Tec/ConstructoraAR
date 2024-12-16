@@ -27,7 +27,7 @@ const singleOperaciones = (req, res) => {
 
 // Crear una nueva operación
 const createOperaciones = (req, res) => {
-  const { nombreOperacion, tipoOperacion, montoOperacion, detalleOperacion, fechaOperacion } = req.body;
+  const { nombreOperacion, tipoOperacion, detalleTipoOperacion, montoOperacion, detalleOperacion, fechaOperacion } = req.body;
 
   const query = `INSERT INTO Operaciones (nombreOperacion, tipoOperacion, detalleTipoOperacion, montoOperacion, detalleOperacion, fechaOperacion) VALUES (?, ?, ?, ?, ?, ?)`;
   const values = [nombreOperacion, tipoOperacion, detalleTipoOperacion, montoOperacion, detalleOperacion, fechaOperacion];

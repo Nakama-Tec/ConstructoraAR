@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { URL_LIBRO_DIARIO } from '../../../../Constants/endpoints-API';
+import { URL_LIBRO_DIARIO, URL_REMUNERACIONES } from '../../../../Constants/endpoints-API';
 import useAuthStore from '../../../../Context/useAuthStore';
 import useRegistroStore from '../../../../Context/useRegistroStore'; // Estado global para el modal
 import axios from 'axios';
@@ -17,6 +17,7 @@ const VerLibroDiario = () => {
   const [fechaRegistro, setFechaRegistro] = useState('');
   const [fechaSeleccionada, setFechaSeleccionada] = useState('');
   const [prueba, setPrueba] = useState([]);
+  const [datos, setDatos] = useState([]);
 
   useEffect(() => {
     const date = new Date();
@@ -26,6 +27,7 @@ const VerLibroDiario = () => {
     const fechaActual = `${año}-${mes}-${dia}`;
     setFechaRegistro(fechaActual);
     setFechaSeleccionada(fechaActual);
+    getRemuneracion();
   }, []);
 
   const enviarFechaPorPost = async () => {
@@ -38,6 +40,15 @@ const VerLibroDiario = () => {
       if (response.status === 200) obtenerDatosPorGet();
     } catch (error) {
       console.error('Error al enviar la fecha por POST:', error);
+    }
+  };
+
+  const getRemuneracion = async () => {
+    try {
+      const response = await axios.get(URL_REMUNERACIONES, { headers: { Authorization: `Bearer ${token}` } });
+      setDatos(response.data);
+    } catch (error) {
+      console.error("Error al obtener la remuneracion:", error);
     }
   };
 
@@ -70,7 +81,8 @@ const VerLibroDiario = () => {
       case 'certificado':
         return <CrearCertificados onClose={closeRegistroModal} />;
       case 'remuneracion':
-        return <CrearRemuneracion onClose={closeRegistroModal} />;
+        return <CrearRemuneracion onRemuneracionRegistrada={getRemuneracion}
+          onClose={closeRegistroModal} />;
       case 'compraMaterial':
         return <CrearCompraMateriales onClose={closeRegistroModal} />;
       case 'ventaTerreno':
@@ -83,105 +95,105 @@ const VerLibroDiario = () => {
   };
 
   return (
-<div>
-  <Toaster />
-  <p className="text-black font-semibold text-4xl flex justify-center mt-5 uppercase">Libro Diario</p>
+    <div>
+      <Toaster />
+      <p className="text-black font-semibold text-4xl flex justify-center mt-5 uppercase">Libro Diario</p>
 
-  {/* Selector de fecha */}
-  <div className="flex flex-col sm:flex-row items-center justify-center gap-4 my-6">
-    <div className="relative">
-      <input
-        type="date"
-        className="px-4 py-2 rounded-lg border-2"
-        value={fechaSeleccionada}
-        onChange={(e) => setFechaSeleccionada(e.target.value)}
-      />
-    </div>
-    <button
-      onClick={handleBuscarFecha}
-      className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
-    >
-      Buscar Fecha
-    </button>
-  </div>
+      {/* Selector de fecha */}
+      <div className="flex flex-col sm:flex-row items-center justify-center gap-4 my-6">
+        <div className="relative">
+          <input
+            type="date"
+            className="px-4 py-2 rounded-lg border-2"
+            value={fechaSeleccionada}
+            onChange={(e) => setFechaSeleccionada(e.target.value)}
+          />
+        </div>
+        <button
+          onClick={handleBuscarFecha}
+          className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
+        >
+          Buscar Fecha
+        </button>
+      </div>
 
-  {/* Botones encima de la tabla */}
-  <div className="flex flex-wrap justify-center gap-4 mb-6">
-    <button
-      onClick={() => handleAbrirModal('certificado')}
-      className="bg-green-600 text-white px-6 py-2 rounded-full hover:bg-green-700 transition"
-    >
-      Registrar Certificado
-    </button>
-    <button
-      onClick={() => handleAbrirModal('remuneracion')}
-      className="bg-green-600 text-white px-6 py-2 rounded-full hover:bg-green-700 transition"
-    >
-      Registrar Remuneración
-    </button>
-    <button
-      onClick={() => handleAbrirModal('compraMaterial')}
-      className="bg-green-600 text-white px-6 py-2 rounded-full hover:bg-green-700 transition"
-    >
-      Registrar Compra de Material
-    </button>
-    <button
-      onClick={() => handleAbrirModal('ventaTerreno')}
-      className="bg-green-600 text-white px-6 py-2 rounded-full hover:bg-green-700 transition"
-    >
-      Registrar Venta de Terreno
-    </button>
-    <button
-      onClick={() => handleAbrirModal('operacion')}
-      className="bg-green-600 text-white px-6 py-2 rounded-full hover:bg-green-700 transition"
-    >
-      Registrar Operación
-    </button>
-  </div>
+      {/* Botones encima de la tabla */}
+      <div className="flex flex-wrap justify-center gap-4 mb-6">
+        <button
+          onClick={() => handleAbrirModal('certificado')}
+          className="bg-green-600 text-white px-6 py-2 rounded-full hover:bg-green-700 transition"
+        >
+          Registrar Certificado
+        </button>
+        <button
+          onClick={() => handleAbrirModal('remuneracion')}
+          className="bg-green-600 text-white px-6 py-2 rounded-full hover:bg-green-700 transition"
+        >
+          Registrar Remuneración
+        </button>
+        <button
+          onClick={() => handleAbrirModal('compraMaterial')}
+          className="bg-green-600 text-white px-6 py-2 rounded-full hover:bg-green-700 transition"
+        >
+          Registrar Compra de Material
+        </button>
+        <button
+          onClick={() => handleAbrirModal('ventaTerreno')}
+          className="bg-green-600 text-white px-6 py-2 rounded-full hover:bg-green-700 transition"
+        >
+          Registrar Venta de Terreno
+        </button>
+        <button
+          onClick={() => handleAbrirModal('operacion')}
+          className="bg-green-600 text-white px-6 py-2 rounded-full hover:bg-green-700 transition"
+        >
+          Registrar Operación
+        </button>
+      </div>
 
-  {/* Modal */}
-  {isRegistroModalOpen && renderModal()}
+      {/* Modal */}
+      {isRegistroModalOpen && renderModal()}
 
-  {/* Tabla */}
-  <div className="flex flex-col lg:flex-row">
-    <div className="relative lg:top-8 mb-4 lg:mb-0">
-      <Aside />
-    </div>
+      {/* Tabla */}
+      <div className="flex flex-col lg:flex-row">
+        <div className="relative lg:top-8 mb-4 lg:mb-0">
+          <Aside />
+        </div>
 
-    <div className="overflow-x-auto w-full">
-      <table className="table-auto w-full border-collapse border border-gray-300">
-        <thead>
-          <tr className="bg-gray-200">
-            <th className="border border-gray-300 px-4 py-2">#</th>
-            <th className="border border-gray-300 px-4 py-2">Tipo</th>
-            <th className="border border-gray-300 px-4 py-2">Descripción</th>
-            <th className="border border-gray-300 px-4 py-2">Monto</th>
-            <th className="border border-gray-300 px-4 py-2">Fecha</th>
-          </tr>
-        </thead>
-        <tbody>
-          {prueba.length > 0 ? (
-            prueba.map((item, index) => (
-              <tr key={index} className="even:bg-gray-100">
-                <td className="border border-gray-300 px-4 py-2">{index + 1}</td>
-                <td className="border border-gray-300 px-4 py-2">{item.TIPO}</td>
-                <td className="border border-gray-300 px-4 py-2">{item.Descripcion}</td>
-                <td className="border border-gray-300 px-4 py-2">{item.Monto}</td>
-                <td className="border border-gray-300 px-4 py-2">{item.Fecha}</td>
+        <div className="overflow-x-auto w-full">
+          <table className="table-auto w-full border-collapse border border-gray-300">
+            <thead>
+              <tr className="bg-gray-200">
+                <th className="border border-gray-300 px-4 py-2">#</th>
+                <th className="border border-gray-300 px-4 py-2">Tipo</th>
+                <th className="border border-gray-300 px-4 py-2">Descripción</th>
+                <th className="border border-gray-300 px-4 py-2">Monto</th>
+                <th className="border border-gray-300 px-4 py-2">Fecha</th>
               </tr>
-            ))
-          ) : (
-            <tr>
-              <td colSpan="5" className="text-center border border-gray-300 px-4 py-2">
-                No hay datos disponibles.
-              </td>
-            </tr>
-          )}
-        </tbody>
-      </table>
+            </thead>
+            <tbody>
+              {prueba.length > 0 ? (
+                prueba.map((item, index) => (
+                  <tr key={index} className="even:bg-gray-100">
+                    <td className="border border-gray-300 px-4 py-2">{index + 1}</td>
+                    <td className="border border-gray-300 px-4 py-2">{item.TIPO}</td>
+                    <td className="border border-gray-300 px-4 py-2">{item.Descripcion}</td>
+                    <td className="border border-gray-300 px-4 py-2">{item.Monto}</td>
+                    <td className="border border-gray-300 px-4 py-2">{item.Fecha}</td>
+                  </tr>
+                ))
+              ) : (
+                <tr>
+                  <td colSpan="5" className="text-center border border-gray-300 px-4 py-2">
+                    No hay datos disponibles.
+                  </td>
+                </tr>
+              )}
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
-  </div>
-</div>
   );
 };
 
