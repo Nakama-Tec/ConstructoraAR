@@ -18,7 +18,7 @@ const singleEmpleado = (req, res) => {
 
 const createEmpleado = (req, res) => {
     const { nombreEmpleado, apellidoEmpleado, dniEmpleado, direccionEmpleado, telefonoEmpleado } = req.body;
-    const query = `insert into Empleados (nombreEmpleado, apellidoEmpleado, dniEmpleado, direccionEmpleado, telefonoEmpleado, activoEmpleado) values ('${nombreEmpleado}', '${apellidoEmpleado}', '${dniEmpleado}', '${direccionEmpleado}', '${telefonoEmpleado}';`;
+    const query = `insert into Empleados (nombreEmpleado, apellidoEmpleado, dniEmpleado, direccionEmpleado, telefonoEmpleado, activoEmpleado) values ('${nombreEmpleado}', '${apellidoEmpleado}', '${dniEmpleado}', '${direccionEmpleado}', '${telefonoEmpleado}', 1)`;
     conection.query(query, (err, results) => {
         if (err) throw err;
         res.send(results);
@@ -28,7 +28,7 @@ const createEmpleado = (req, res) => {
 const editEmpleado = (req, res) => {
     const { nombreEmpleado, apellidoEmpleado, dniEmpleado, direccionEmpleado, telefonoEmpleado } = req.body;
     const { id } = req.params;
-    const query = `update Empleados set nombreEmpleado='${nombreEmpleado}', apellidoEmpleado='${apellidoEmpleado}', dniEmpleado='${dniEmpleado}', direccionEmpleado='${direccionEmpleado}', telefonoEmpleado='${telefonoEmpleado}' where id_empleado=${id};`;
+    const query = `update Empleados set nombreEmpleado='${nombreEmpleado}', apellidoEmpleado='${apellidoEmpleado}', dniEmpleado='${dniEmpleado}', direccionEmpleado='${direccionEmpleado}', telefonoEmpleado='${telefonoEmpleado}' where id_empleado=${id}`;
     conection.query(query, (err, results) => {
         if (err) throw err;
         res.send(results);

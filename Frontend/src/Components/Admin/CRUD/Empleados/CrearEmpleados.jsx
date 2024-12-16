@@ -81,7 +81,7 @@ const CrearEmpleados = ({ onEmpleadoRegistrado }) => {
             headers: { Authorization: `Bearer ${token}` }
           });
           Swal.fire('¡Éxito!', 'El empleado fue registrado correctamente.', 'success');
-          handleRegistrarEmpleado(); 
+          onEmpleadoRegistrado();
           closeRegistroModal(); 
         } catch (error) {
           Swal.fire('Error', 'Hubo un problema al registrar al empleado.', 'error');
