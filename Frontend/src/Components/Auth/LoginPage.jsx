@@ -3,13 +3,14 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import useAuthStore from "../../Context/useAuthStore";
 import { URL_LOGIN } from "../../Constants/endpoints-API";
-import { HOME_SISTEMA_GESTION } from "../../Routes/routes";
 import Swal from "sweetalert2";
 import './login.css';
+import Error from "../Layout/Error";
 
 const LoginPage = () => {
   const [nombreUsuario, setNombreUsuario] = useState("");
   const [passwordUsuario, setPasswordUsuario] = useState("");
+  const token = useAuthStore((state) => state.token);
 
   const setToken = useAuthStore((state) => state.setToken);
   const setUserRole = useAuthStore((state) => state.setUserRole);
@@ -53,6 +54,7 @@ const LoginPage = () => {
   return (
     <>
       {/* aca empieza el otro */}
+      {!token ?
       <div className="loginContainer">
         <aside className="loginLeft">
           <div className="loginLeftText">
@@ -104,6 +106,7 @@ const LoginPage = () => {
           </div>
         </aside>
       </div>
+      : <Error/>}
     </>
   );
 };

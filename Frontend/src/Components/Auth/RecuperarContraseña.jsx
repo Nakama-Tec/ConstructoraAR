@@ -4,11 +4,13 @@ import Form from "react-bootstrap/Form";
 import emailjs from "@emailjs/browser";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
-
+import useAuthStore from "../../Context/useAuthStore";
+import Error from "../Layout/Error"
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import WhatsAppButton from "../../Components/Layout/Whatsapp/WhatsAppButton";
 
 const RecuperarContraseña = () => {
+  const token = useAuthStore((state) => state.token);
 
   const {
     register,
@@ -59,6 +61,8 @@ const RecuperarContraseña = () => {
   };
 
   return (
+    <>
+    {!token ?
     <div id="contacto" className="main-section">
       <div className="form-area">
         <div className="container p-md-3 p-md-5 rounded my-5">
@@ -116,7 +120,8 @@ const RecuperarContraseña = () => {
         </div>
       </div> 
       <WhatsAppButton />  
-    </div>
+    </div> : <Error/>}
+    </>
   );
 };
 

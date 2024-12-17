@@ -2,10 +2,9 @@ import { Link, useLocation } from "react-router-dom";
 import logo from "../../assets/logoconfondo-removebg-preview.png";
 import "../../Styles/Navbar.css";
 import useAuthStore from "../../Context/useAuthStore";
-import {
-  Disclosure,
-} from "@headlessui/react";
+import { Disclosure,} from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+// import useAuthStore from "../../Context/useAuthStore";
 
 
 const navigationItems = [
@@ -15,7 +14,7 @@ const navigationItems = [
   { name: "Departamentos", href: "/departamentos" },
   { name: "Institucional", href: "/institucional" },
   { name: "Contacto", href: "/contacto" },
-  { name: "Acceso", href: "/area-empleados/Login" },  
+  // { name: "Acceso", href: "/area-empleados/Login" },  
 ];
 
 function classNames(...classes) {
@@ -71,7 +70,15 @@ const Header = () => {
                           {item.name}
                         </Link>
                       );
-                    })}                    
+                    })}  
+                         { 
+                    !token ? <Link to="/area-empleados/Login" className={classNames(
+                      isActive(location, "/area-empleados/Login")
+                        ? "text-white underline"
+                        : "text-gray-300 hover:text-white hover:underline",
+                      " text-sm font-medium"
+                    )}>Acceso</Link> : null
+                      }                  
                     { 
                     token ? <Link to="/Admin" className={classNames(
                       isActive(location, "/Admin")
@@ -80,7 +87,7 @@ const Header = () => {
                       " text-sm font-medium"
                     )}>Admin</Link> : null
                       }
-                     
+                 
                     
                   </div>
                 </div>
