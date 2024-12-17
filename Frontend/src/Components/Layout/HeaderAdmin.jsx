@@ -19,16 +19,16 @@ const HeaderAdmin = () => {
   return (
 <div className="bg-gray-900 text-white flex flex-col md:flex-row justify-between items-center h-auto md:h-24 p-5">
 
-  <Link to={HOME_SISTEMA_GESTION}>
+  <Link to={HOME_SISTEMA_GESTION} className="flex items-center">
     <img
-      className="logo h-28 md:h-24 lg:h-40 w-auto"
-      src={logo}
-      alt="Logo"
+      className="logo mt-5 rounded-full h-28 md:h-24 lg:h-[75px] w-auto"
+      src="https://files.oaiusercontent.com/file-PogFxnssE9iPqPVzxfkiUo?se=2024-12-17T22%3A41%3A21Z&sp=r&sv=2024-08-04&sr=b&rscc=max-age%3D604800%2C%20immutable%2C%20private&rscd=attachment%3B%20filename%3Dfe0df175-1959-40b0-8eea-b4f35a0c0a04.webp&sig=PIezvtYOiF4gEigd6dwkc4ac7cZiSHqgbRbRn8/qTw0%3D"
+      alt="Avatar"
     />
   </Link>
 
   {userName && (
-    <p className="text-3xl md:text-4xl lg:text-4xl font-semibold mt-4 md:mt-0 uppercase">
+    <p className="text-3xl relative left-10 md:text-4xl lg:text-4xl font-semibold mt-4 md:mt-0 uppercase">
       Bienvenido, {userName}!
     </p>
   )}

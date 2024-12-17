@@ -127,6 +127,12 @@ body{
     align-self: end;
     margin-top: 1.5rem;
   }
+
+  .loginSubmitBtn:disabled {
+    background: var(--azul);
+    cursor: not-allowed;
+    opacity: 0.4;
+  }
   
   .btnCreateAccount {
     position: absolute;
