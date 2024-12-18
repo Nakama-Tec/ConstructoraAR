@@ -36,7 +36,7 @@ const CrearPagoDepto = ({ onPagoAlquilerRegistrado }) => {
         <label><strong>Selecciona el departamento alquilado:</strong></label>
         <br/>
         <select id="id_alquilerDepto" class="swal2-select">
-          ${alquileres.map(alquiler => `<option id="id_alquilerDepto">${alquiler.NombreDepartamento}</option>`).join('')}
+          ${alquileres.map(alquiler => `<option value="${alquiler.id_alquilerDepto}">${alquiler.NombreDepartamento}</option>`).join('')}
         </select>
       `,
       confirmButtonText: 'Registrar',

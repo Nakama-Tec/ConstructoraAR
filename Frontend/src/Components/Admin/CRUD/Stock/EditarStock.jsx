@@ -67,13 +67,6 @@ const EditarStock = ({ onStockEditar }) => {
         <br>
         <input id="cantidadStock" type="number" min="0" class="swal2-input" value="${registroSeleccionado?.cantidadStock || ''}" />
         <br>
-        <br>
-        <label><b>Disponibilidad</b></label> 
-        <br>
-        <select id="select_stock" class="swal2-select">
-          <option value="Si" ${registroSeleccionado?.activoStock === 'Si' ? 'selected' : ''}>Si</option>
-          <option value="No" ${registroSeleccionado?.activoStock === 'No' ? 'selected' : ''}>No</option>
-        </select>
       `,
       confirmButtonText: 'Enviar',
       showCancelButton: true,
@@ -81,25 +74,11 @@ const EditarStock = ({ onStockEditar }) => {
         const nombreMaterial = document.getElementById('select_material').value;
         const ubicacionStock = document.getElementById('select_ubicacion').value;
         const cantidadStock = parseInt(document.getElementById('cantidadStock').value, 10);
-        const activoStock = document.getElementById('select_stock').value === 'SI' ? 1 : 0;
-
-        const nombreRegex = /^[a-zA-Z\sÀ-ÿ]+$/;
-        const ubicacionRegex = /^[a-zA-Z0-9À-ÿ\s,.-]+$/;
-
-
-
-        if (!nombreRegex || nombreRegex.test(nombreMaterial) ) {
-          Swal.showValidationMessage('El nombre del material no es válido.');
-        }
-        if (!ubicacionRegex || ubicacionRegex.test(ubicacionStock)) {
-          Swal.showValidationMessage('La ubicación del stock no es válida.');
-        }
 
         return {
           nombreMaterial,
           ubicacionStock,
           cantidadStock,
-          activoStock,
         };
       },
     }).then(async (result) => {

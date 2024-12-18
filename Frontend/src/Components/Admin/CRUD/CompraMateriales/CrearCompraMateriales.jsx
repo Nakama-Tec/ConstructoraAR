@@ -42,9 +42,9 @@ const CrearCompraMateriales = ({ onCompraMaterialRegistrado }) => {
       html: `
         <label><b>Tipo de Material</b></label>
         <div>
-          <button type="button" id="toggleMaterialType" data-is-custom="false" class="swal2-button">
-            Usar material existente
-          </button>
+          <input type="checkbox" id="toggleMaterialType" data-is-custom="false">
+            Añadir nuevo material
+          </input>
         </div>
         <div id="materialInputContainer">
           <select id="select_stock" class="swal2-select">
@@ -70,9 +70,9 @@ const CrearCompraMateriales = ({ onCompraMaterialRegistrado }) => {
         <br><br>
         <label for="select_destino"><b>Ubicación del Material</b></label>
         <div>
-          <button type="button" id="toggleMaterialType2" data-is-custom="false" class="swal2-button">
-            Usar Deposito/Obra existente
-          </button>
+          <input type="checkbox" id="toggleMaterialType2" data-is-custom="false" class="swal2-button">
+            Añadir nueva ubicación
+          </input>
         </div>
         <div id="materialInputContainer2">
           <select id="select_destino" class="swal2-select">
@@ -109,26 +109,45 @@ const CrearCompraMateriales = ({ onCompraMaterialRegistrado }) => {
         });
       },
       preConfirm: () => {
-        const isCustomMaterial = document.getElementById('toggleMaterialType').getAttribute('data-is-custom') === 'true';
+        const toggleMaterialType = document.getElementById('toggleMaterialType');
+        const toggleMaterialType2 = document.getElementById('toggleMaterialType2');
+        const isCustomMaterial = toggleMaterialType?.getAttribute('data-is-custom') === 'true';
+        const isCustomUbicacion = toggleMaterialType2?.getAttribute('data-is-custom') === 'true';
+      
         const nombreMaterial = isCustomMaterial
-          ? document.getElementById('nombreMaterial').value
-          : document.getElementById('select_stock').value;
-        const cantidadMaterial = document.getElementById('cantidadMaterial').value;
-        const precioMaterial = document.getElementById('precioMaterial').value;
-        const fechaCompraMateriales = document.getElementById('fechaCompraMateriales').value;
-        const estadoRetiro = document.getElementById('estadoRetiro').value;
-        const lugardeCompra = document.getElementById('lugardeCompra').value;
-        const destinoMaterial = document.getElementById('select_destino').value;
-
-        //validacion
+          ? document.getElementById('nombreMaterial')?.value || ''
+          : document.getElementById('select_stock')?.value || '';
+        const cantidadMaterial = document.getElementById('cantidadMaterial')?.value || '';
+        const precioMaterial = document.getElementById('precioMaterial')?.value || '';
+        const fechaCompraMateriales = document.getElementById('fechaCompraMateriales')?.value || '';
+        const estadoRetiro = document.getElementById('estadoRetiro')?.value || '';
+        const lugardeCompra = document.getElementById('lugardeCompra')?.value || '';
+        const destinoMaterial = isCustomUbicacion
+          ? document.getElementById('destinoMaterial')?.value || ''
+          : document.getElementById('select_destino')?.value || '';
+      
         const nombreRegex = /^[a-zA-Z\sÀ-ÿ]+$/;
-
-
+      
         if (!nombreMaterial || !nombreRegex.test(nombreMaterial)) {
           Swal.showValidationMessage('El nombre del material no debe contener números.');
           return false;
         }
-
+      
+        if (!cantidadMaterial || isNaN(cantidadMaterial) || Number(cantidadMaterial) <= 0) {
+          Swal.showValidationMessage('La cantidad debe ser un número mayor a 0.');
+          return false;
+        }
+      
+        if (!precioMaterial || isNaN(precioMaterial) || Number(precioMaterial) <= 0) {
+          Swal.showValidationMessage('El precio debe ser un número mayor a 0.');
+          return false;
+        }
+      
+        if (!fechaCompraMateriales) {
+          Swal.showValidationMessage('Debe ingresar una fecha de compra válida.');
+          return false;
+        }
+      
         return {
           nombreMaterial,
           cantidadMaterial,

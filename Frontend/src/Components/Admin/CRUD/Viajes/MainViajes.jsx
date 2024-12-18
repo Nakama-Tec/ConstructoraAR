@@ -23,6 +23,7 @@ const MainViajes = () => {
       try {
         const response = await axios.get(URL_DETALLES_VIAJES, { headers: { Authorization: `Bearer ${token}` } });
         setDatos(response.data);
+        console.log(response.data)
       } catch (error) {
         console.error("Error al obtener viajes:", error);
       }

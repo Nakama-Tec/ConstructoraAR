@@ -54,7 +54,7 @@ const editCompraMateriales = (req, res) => {
         WHERE id_compraMaterial = ? AND activoCompra = 1;
     `;
 
-    const params = [nombreMaterial, ubicacionStock, cantidadMaterial, precioMaterial, fechaCompraMateriales, estadoRetiro, lugardeCompra, destinoMaterial, id];
+    const params = [nombreMaterial, ubicacionStock, cantidadMaterial, precioMaterial, estadoRetiro, fechaCompraMateriales, lugardeCompra, destinoMaterial, id];
 
     conection.query(query, params, (err, results) => {
         if (err) {

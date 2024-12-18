@@ -41,7 +41,7 @@ const EditarVtaTerrenos = ({ onVtaTerrenoEditado }) => {
           ${clientes
           .map(
             (cliente) =>
-              `<option value="${cliente.id_cliente}" ${cliente.id === registroSeleccionado.id_cliente ? 'selected' : ''
+              `<option value="${cliente.id_cliente}" ${cliente.id_cliente === registroSeleccionado.id_ventaTerreno ? 'selected' : ''
               }>${cliente.nombreCliente} ${cliente.apellidoCliente}</option>`
           )
           .join('')}
@@ -54,7 +54,7 @@ const EditarVtaTerrenos = ({ onVtaTerrenoEditado }) => {
           ${terrenos
           .map(
             (terreno) =>
-              `<option value="${terreno.id_terreno}" ${terreno.id === registroSeleccionado.id_terreno ? 'selected' : ''
+              `<option value="${terreno.id_terreno}" ${terreno.id_terreno === registroSeleccionado.id_terreno ? 'selected' : ''
               }>Nº Terreno: ${terreno.id_terreno}</option>`
           )
           .join('')}

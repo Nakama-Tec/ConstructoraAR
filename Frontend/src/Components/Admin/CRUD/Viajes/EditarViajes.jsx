@@ -57,7 +57,7 @@ const EditarViaje = ({ onViajeEditado }) => {
           ${vehiculos
           .map(
             (vehiculo) =>
-              `<option value="${vehiculo.id_vehiculo}" ${vehiculo.id_vehiculo === registroSeleccionado.id_vehiculo ? 'selected' : ''
+              `<option value="${vehiculo.id_vehiculo}" ${vehiculo.id_vehiculo === registroSeleccionado.id_viaje ? 'selected' : ''
               }>${vehiculo.patenteVehiculo}</option>`
           )
           .join('')}
@@ -70,7 +70,7 @@ const EditarViaje = ({ onViajeEditado }) => {
           ${obras
           .map(
             (obra) =>
-              `<option value="${obra.id_obra}" ${obra.id_obra === registroSeleccionado.id_obra ? 'selected' : ''
+              `<option value="${obra.id_obra}" ${obra.id_obra === registroSeleccionado.id_viaje ? 'selected' : ''
               }>${obra.nombreObra}</option>`
           )
           .join('')}

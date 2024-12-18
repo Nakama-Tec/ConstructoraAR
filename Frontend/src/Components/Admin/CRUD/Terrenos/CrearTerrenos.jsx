@@ -14,7 +14,7 @@ const CrearTerrenos = ({ onTerrenoRegistrado }) => {
       Swal.fire({
         title: 'Registrar Terreno',
         html: `
-          <input id="metrosTerrenos" placeholder="Metros Cuadrados" class="swal2-input" />
+          <input id="metrosTerrenos" placeholder="Metros Cuadrados" type="number" min="0" class="swal2-input" />
           
           <input id="direccionTerreno" placeholder="Dirección" class="swal2-input" />
           

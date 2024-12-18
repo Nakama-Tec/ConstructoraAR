@@ -14,7 +14,7 @@ const VerTerrenos = ({onTerrenoVer}) => {
           <tbody>
             <tr>
               <th style="padding: 8px; border-bottom: 1px solid #ddd; text-align: right; width: 35%;">Metros:</th>
-              <td style="padding: 8px; border-bottom: 1px solid #ddd;">${verRegistroSeleccionado.metrosTerrenos}</td>
+              <td style="padding: 8px; border-bottom: 1px solid #ddd;">${verRegistroSeleccionado.metrosTerrenos}m²</td>
             </tr>
             <tr>
               <th style="padding: 8px; border-bottom: 1px solid #ddd; text-align: right;">Dirección:</th>

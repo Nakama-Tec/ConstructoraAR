@@ -41,7 +41,7 @@ const EditVehiculo = ({ onVehiculoEditado }) => {
       confirmButtonText: 'Enviar',
       showCancelButton: true,
       preConfirm: () => {
-        const patenteVehiculo = document.getElementById('patenteVehiculo').value;
+        const patenteVehiculo = document.getElementById('patenteVehiculo').value.trim().replace(/\s+/g, '').toUpperCase();
         const marcaVehiculo = document.getElementById('marcaVehiculo').value;
         const tipoVehiculo = document.getElementById('tipoVehiculo').value;
         const seguroVehiculo = document.getElementById('seguroVehiculo').value;
