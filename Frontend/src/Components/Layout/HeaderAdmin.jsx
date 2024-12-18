@@ -24,7 +24,7 @@ const HeaderAdmin = () => {
     <img
       className="logo mt-5 rounded-full h-28 md:h-24 lg:h-[75px] w-auto"
       src="https://i.imgur.com/IF7jIXu.jpeg"
-      alt="Avatar"
+      alt="Avatar de perfil"
     />
   </Link>
 
