@@ -190,7 +190,7 @@ const SaldoAcumulado = (mesIndex) => {
         sep: `$${TotalIngresos(8)}`,
         oct: `$${TotalIngresos(9)}`,
         nov: `$${TotalIngresos(10)}`,
-        dec: `$${TotalIngresos(11)}`, style: "green-bold" },
+        dec: `$${TotalIngresos(11)}`, style: "TotalIngreso" },
       { details: "", style: "white-bold" },
       { details: "", style: "white-bold" },
       { details: "2. Detalle de Egresos", style: "yellow-bold" },
@@ -375,7 +375,7 @@ const SaldoAcumulado = (mesIndex) => {
   <br/>
 
   <table {...getTableProps()} className="cash-flow-table">
-    <thead>
+    <thead className="cash-flow-table-header">
       {headerGroups.map((headerGroup, index) => (
         <tr {...headerGroup.getHeaderGroupProps()} key={index}>
           {headerGroup.headers.map((column, index) => (

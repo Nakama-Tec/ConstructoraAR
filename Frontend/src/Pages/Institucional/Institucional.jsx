@@ -6,6 +6,7 @@ import Vision from './Vision.jsx'; // Importa el nuevo componente Vision
 import './Institucional.css'; // Importa el archivo de estilos
 import Historia from './Historia.jsx';
 import Politicas from './Politicas.jsx';
+import TopButton from '../../Components/Layout/TopButton.jsx';
 
 const Institucional = () => {
   return (
@@ -16,6 +17,7 @@ const Institucional = () => {
       <Mision /> 
        <Vision />  
        <Politicas />
+       <TopButton />
     </div>
   );
 };

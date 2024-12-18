@@ -18,6 +18,10 @@
   font-weight: bold;
 }
 
+.TotalIngreso{
+  background-color: green!important; /* Verde claro */
+}
+
 
 .green {
   background-color: #d4edda; /* Verde claro */
@@ -42,7 +46,19 @@
   font-weight: bold;
 }
 
+.cash-flow-table-header{
+  position: relative;  
+}
 
+.cash-flow-table-header tr{
+  position: sticky;
+  width: 100%;
+  top: 3.9rem;  
+  background-color: #252525;
+  color: white;
+  z-index: 1;
+  opacity: 0.8;
+}
 
 /* .cash-flow-table {
     width: 100%;

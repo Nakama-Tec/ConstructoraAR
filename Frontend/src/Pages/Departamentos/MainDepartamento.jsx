@@ -7,6 +7,7 @@ import img1 from "../../assets/imgDepartamentos/imgdepa1.jpg";
 import img2 from "../../assets/imgDepartamentos/imgdepa2.jpg";
 import img3 from "../../assets/imgDepartamentos/imgdepa3.jpg";
 import img4 from "../../assets/imgDepartamentos/imagdepartamento10.jpg";
+import TopButton from "../../Components/Layout/TopButton";
 
 const MainDepartamento = () => {
   const firstCardRef = useRef(null);
@@ -24,9 +25,7 @@ const MainDepartamento = () => {
     }
   };
 
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
+  
 
   return (
     <>
@@ -191,28 +190,7 @@ const MainDepartamento = () => {
         <Contacto />
       </div>
 
-      <div className="flecha flex justify-center mb-10">
-        <button
-          onClick={scrollToTop}
-          className="bg-gray-700 text-white rounded-full p-4 animate-bounce hover:bg-gray-900 transition-shadow duration-200 shadow-md"
-          aria-label="Volver arriba"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth="2"
-            stroke="currentColor"
-            className="w-6 h-6"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M5 15l7-7 7 7"
-            />
-          </svg>
-        </button>
-      </div>
+      <TopButton />
     </>
   );
 };
