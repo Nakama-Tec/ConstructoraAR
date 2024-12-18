@@ -33,16 +33,16 @@ const EditarRemuneracion = ({onRemuneracionEditada}) => {
             <label><b>Tipo Empleado</b></label> 
             <br>
             <select id="tipoEmpleado" class="swal2-select">
-              <option value="0" ${registroSeleccionado.rol === 'Admin' ? 'selected' : ''}>Admin</option>
-              <option value="1" ${registroSeleccionado.rol === 'Obrero' ? 'selected' : ''}>Obrero</option>
+              <option value="0" ${registroSeleccionado.tipoEmpleado === 0 ? 'selected' : ''}>Admin</option>
+              <option value="1" ${registroSeleccionado.tipoEmpleado === 1 ? 'selected' : ''}>Obrero</option>
             </select>
             <br>
             <br>
             <label><b>Sector</b></label> 
             <br>
             <select id="sectorRemuneracion" class="swal2-select">
-              <option value="0" ${registroSeleccionado.rol === 'Publico' ? 'selected' : ''}>Publico</option>
-              <option value="1" ${registroSeleccionado.rol === 'Privado' ? 'selected' : ''}>Privado</option>
+              <option value="0" ${registroSeleccionado.sectorRemuneracion === 0 ? 'selected' : ''}>Publico</option>
+              <option value="1" ${registroSeleccionado.sectorRemuneracion === 1 ? 'selected' : ''}>Privado</option>
             </select>
             <br>
             <br>

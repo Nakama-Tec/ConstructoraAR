@@ -42,9 +42,9 @@ const CrearCompraMateriales = ({ onCompraMaterialRegistrado }) => {
       html: `
         <label><b>Tipo de Material</b></label>
         <div>
-          <button type="button" id="toggleMaterialType" data-is-custom="false" class="swal2-button">
-            Usar material existente
-          </button>
+          <input type="checkbox" id="toggleMaterialType" data-is-custom="false">
+            Añadir nuevo material
+          </input>
         </div>
         <div id="materialInputContainer">
           <select id="select_stock" class="swal2-select">

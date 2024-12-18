@@ -3,7 +3,7 @@ import Swal from 'sweetalert2';
 import axios from 'axios';
 import useAuthStore from '../../../../Context/useAuthStore';
 import useRegistroStore from '../../../../Context/useRegistroStore';
-import { URL_VEHICULOS_CREAR } from '../../../../Constants/endpoints-API';
+import { URL_VEHICULOS, URL_VEHICULOS_CREAR } from '../../../../Constants/endpoints-API';
 
 const CrearVehiculo = ({ onVehiculoRegistrado }) => {
 
@@ -32,8 +32,8 @@ const CrearVehiculo = ({ onVehiculoRegistrado }) => {
         `,
         confirmButtonText: 'Registrar',
         showCancelButton: true,
-        preConfirm: () => {
-          const patenteVehiculo = document.getElementById('patenteVehiculo').value;
+        preConfirm: async () => {
+            const patenteVehiculo = document.getElementById('patenteVehiculo').value.trim().replace(/\s+/g, '').toUpperCase();
           const marcaVehiculo = document.getElementById('marcaVehiculo').value;
           const tipoVehiculo = document.getElementById('tipoVehiculo').value;
           const seguroVehiculo = document.getElementById('seguroVehiculo').value;
@@ -55,6 +55,22 @@ const CrearVehiculo = ({ onVehiculoRegistrado }) => {
 
           if(!seguroVehiculo || !seguroRegex.test(seguroVehiculo)){
             Swal.showValidationMessage('El seguro no debe contener números ni caracteres especiales.');
+            return false;
+          }
+
+          try {
+            const response = await axios.get(`${URL_VEHICULOS}`, {
+              headers: { Authorization: `Bearer ${token}` }
+            });
+            const vehiculos = response.data;
+            //Verificar si la patente ya se encuentra registrada
+            const patenteExistente = vehiculos.some((vehiculo) => vehiculo.patenteVehiculo === patenteVehiculo);
+            if (patenteExistente) {
+              Swal.showValidationMessage("La patente ya se encuentra registrada.");
+              return false;
+            }
+          } catch (error) {
+            Swal.showValidationMessage("Hubo un problema al verificar la patente.");
             return false;
           }
   

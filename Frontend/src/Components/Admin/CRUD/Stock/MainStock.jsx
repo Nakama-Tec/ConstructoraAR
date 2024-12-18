@@ -60,11 +60,6 @@ const MainStock = () => {
     { header: 'Nombre del material', accessorKey: 'nombreMaterial' },
     { header: 'Ubicación', accessorKey: 'ubicacionStock' },
     { header: 'Cantidad', accessorKey: 'cantidadStock' },
-    { 
-      header: 'Disponible', 
-      accessorKey: 'activoStock',
-      cell: ({ row }) => (row.original.activoStock === 1 ? 'Sí' : 'No')
-    },
     
     {
       header: 'Acciones',

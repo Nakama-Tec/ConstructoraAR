@@ -16,7 +16,7 @@ const EditarTerrenos = ({ onTerrenoEditado }) => {
         html: `
           <label><b>Metros Terreno</b></label> 
           <br>
-          <input id="metrosTerrenos" class="swal2-input" value="${registroSeleccionado.metrosTerrenos}" />
+          <input id="metrosTerrenos" class="swal2-input" type="number" min="0" value="${registroSeleccionado.metrosTerrenos}" />
           <br>
           <br>
           <label><b>Direccion </b></label> 

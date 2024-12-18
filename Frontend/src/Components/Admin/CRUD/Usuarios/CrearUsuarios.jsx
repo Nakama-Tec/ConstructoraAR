@@ -133,6 +133,8 @@ const CrearUsuarios = ({ onUsuarioRegistrado }) => {
     });
   };
 
+  
+
   useEffect(() => {
     if (isRegistroModalOpen) {
       handleRegistrarUsuarios();
