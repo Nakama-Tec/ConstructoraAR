@@ -97,7 +97,7 @@ const EditarCompraMateriales = ({ onCompraMaterialEditado }) => {
         <br/>
         <br/>
         <input type="checkbox" id="toggleDestinoType" data-is-custom="false" class="swal2-confirm">
-          Usar ubicación existente
+          Añadir la nueva ubicación
         </input>
         <div id="materialInputContainer2">
           <select id="select_destino" class="swal2-select">${generateStockOptions2()}</select>
