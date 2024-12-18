@@ -88,7 +88,7 @@ const LoginPage = () => {
                   required
                 ></input>
               </div>
-              <button type="submit" className="loginSubmitBtn">
+              <button type="submit" className="loginSubmitBtn" disabled={!nombreUsuario || !passwordUsuario}>
                 Ingresar
               </button>
               <div className="px-4 py-4 mt-5 recuperar-pass">
