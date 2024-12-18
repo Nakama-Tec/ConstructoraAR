@@ -1,5 +1,7 @@
 import React from "react";
 import "./Valores.css";
+import valores from "../../assets/imgInstitucional/valores.jpeg";
+import valores2 from "../../assets/imgInstitucional/valores2.jpg";
 
 function Valores() {
   return (
@@ -23,8 +25,8 @@ function Valores() {
           
         </p>
       </div>
-      <div className="imgValores"> <img src="https://www.hubspot.com/hubfs/media/valoresdeunaempresa.jpeg" alt="" /></div>
-      <div className="imgValores"> <img src="https://desdeelmurete.com/wp-content/uploads/2015/10/1.-Estructura-de-obra..jpg" alt="" /></div>
+      <div className="imgValores"> <img src={valores} alt="" /></div>
+      <div className="imgValores"> <img src={valores2} alt="" /></div>
       <div id="compromisoInstitucional" className="itemValores">
         <h3 className="mb-4">Nuestro compromiso es siempre con el cliente.</h3>
         <p className="mb-24">

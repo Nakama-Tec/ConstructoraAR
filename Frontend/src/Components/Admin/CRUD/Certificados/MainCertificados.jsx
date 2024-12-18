@@ -25,7 +25,6 @@ const MainCertificados = () => {
         const response = await axios.get(URL_CERTIFICADOS, {
           headers: { Authorization: `Bearer ${token}` },
         });
-        console.log(response.data)
         setDatos(response.data);
       } catch (error) {
         console.error("Error al obtener certificados:", error);
@@ -64,10 +63,6 @@ const MainCertificados = () => {
   
     const columns = [
       { header: "Nº", accessorKey: "id_certificado" },
-      // {
-      //   header: "Nombre y Apellido",
-      //   accessorFn: (row) => `${row.nombreCliente} ${row.apellidoCliente}`,
-      // },
       { header: "Monto", accessorFn: (row) => `$${row.montoCert}.00` },
       { header: "Fecha de Emisión", accessorKey: "fechaEmisionCert" },
       { header: "Fecha de Pago", accessorKey: "fechaPagoCert" },

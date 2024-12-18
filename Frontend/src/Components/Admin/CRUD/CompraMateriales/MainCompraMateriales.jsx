@@ -17,12 +17,11 @@ const MainCompraMateriales = () => {
     const { setRegistroSeleccionado, openRegistroModal } = useRegistroStore();//objeto que se importa de useStockStore
     const [filtrado, setFiltrado] = useState('');
     const [datos, setDatos] = useState([]);
-    const {setVerRegistroSeleccionado, openVerRegistroModal} = useVerRegistroStore();
+    const {setVerRegistroSeleccionado} = useVerRegistroStore();
   
     const getCompraMaterial = async () => {
       try {
         const response = await axios.get(URL_COMPRA_MATERIALES, { headers: { Authorization: `Bearer ${token}` } });
-        console.log(response.data)
         setDatos(response.data);
       } catch (error) {
         console.error('Error al obtener la compra de materiales:', error);
@@ -45,7 +44,7 @@ const MainCompraMateriales = () => {
         try {
           await axios.put(
             `${URL_COMPRA_MATERIALES_ELIMINAR}${material.ID}`,
-            { ...material }, // Se envía el stock con el campo "eliminado" en true
+            { ...material }, 
             { headers: { Authorization: `Bearer ${token}` } }
           );
           Swal.fire('Eliminado!', 'La compra del material ha sido eliminado correctamente.', 'success');
@@ -61,11 +60,8 @@ const MainCompraMateriales = () => {
       { header: 'Nº', accessorKey: 'id_compraMaterial' },
       { header: 'Nombre del Material', accessorKey: 'Nombre' },
       { header: 'Cantidad', accessorKey: 'Cantidad' },
-      // { header: 'Precio ($)', accessorKey: 'Precio' },
-      // { header: 'Estado', accessorKey: 'Estado' },
       { header: 'Fecha de Compra', accessorKey: 'Fecha_Compra' },
       { header: 'Proveedor', accessorKey: 'Proveedor' },
-      // { header: 'Destino', accessorKey: 'Destino' },
       {
         header: 'Acciones',
         cell: ({ row }) => (

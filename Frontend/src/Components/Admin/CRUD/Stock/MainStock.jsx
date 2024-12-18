@@ -13,7 +13,7 @@ import EditarStock from './EditarStock';
 
 const MainStock = () => {
   const token = useAuthStore((state) => state.token);
-  const { setRegistroSeleccionado, openRegistroModal } = useRegistroStore();//objeto que se importa de useStockStore
+  const { setRegistroSeleccionado } = useRegistroStore();
   const { setVerRegistroSeleccionado } = useVerRegistroStore();
 
   const [filtrado, setFiltrado] = useState('');

@@ -11,6 +11,7 @@ const HeaderAdmin = () => {
   const userName = useAuthStore((state) => state.userName);
 
   const navigate = useNavigate();
+  
   // funcion para que si no es admin y no se genero token no muestre
   const handleLogout = () => {
     clearAuth();

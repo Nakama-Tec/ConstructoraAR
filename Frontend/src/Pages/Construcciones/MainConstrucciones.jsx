@@ -1,16 +1,15 @@
-import React from "react";
 import BannerConstrucciones from "./BannerConstrucciones";
-import imgConstruccion from "../../assets/img construcciones/imgconstrucciones.jpg";
+import imgConstruccion from "../../assets/imgConstrucciones/imgconstrucciones.jpg";
 import Contacto from "../Home/Contacto";
 import './construccion.css'
 import CardConstruccion from "./CardConstruccion";
 // Imágenes para las 6 tarjetas (asegúrate de tenerlas en las rutas correctas)
-import imgladrillo from "../../assets/img construcciones/cardladrillo.jpg";
-import imgmoderno from "../../assets/img construcciones/cardmoderna.jpg";
-import imgpileta from "../../assets/img construcciones/casapileta.jpg";
-import imgrefaccion from "../../assets/img construcciones/cardrefacciones.jpg";
-import imgduplex from "../../assets/img construcciones/cardduplex.jpg";
-import imgdepa from "../../assets/img construcciones/imgdepartamento.jpg";
+import imgladrillo from "../../assets/imgConstrucciones/cardladrillo.jpg";
+import imgmoderno from "../../assets/imgConstrucciones/cardmoderna.jpg";
+import imgpileta from "../../assets/imgConstrucciones/casapileta.jpg";
+import imgrefaccion from "../../assets/imgConstrucciones/cardrefacciones.jpg";
+import imgduplex from "../../assets/imgConstrucciones/cardduplex.jpg";
+import imgdepa from "../../assets/imgConstrucciones/imgdepartamento.jpg";
 
 const opcionesConstruccion = [
   {

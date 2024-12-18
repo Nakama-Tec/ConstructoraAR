@@ -1,4 +1,4 @@
-const express = require('express'); // es una libreria que permite crear un servidor
+const express = require('express'); 
 const {conection} = require('./DB/Config')
 const alquilerDepartamentos = require("./Routes/alquilerDepartamentos")
 const cashFlow = require("./Routes/cashFlow")
@@ -23,15 +23,13 @@ const pendientes = require("./Routes/pendientes")
 const login = require("./Routes/login")
 const recuperarPass = require("./Routes/recuperarPass")
 const contactos = require("./Routes/contactos")
-const bodyParser = require('body-parser'); // elemento para que me lleguen los correos
-
+const bodyParser = require('body-parser'); 
 const cors = require('cors');
-// const { verifyToken } = require('./middleware/middleware');
 
 const app = express()
 const port = 8000;
 app.use(cors({origin: '*', allowedHeaders: ["Authorization", "Content-Type"],credentials: true}))
-app.use(bodyParser.json()); // elemento para que me lleguen los correos
+app.use(bodyParser.json()); 
 app.use(express.json())
 app.use("/", alquilerDepartamentos,cashFlow,certificados,clientes,compraMateriales,departamentos,detallesViajes,libroDiario,obras,operaciones,pagosAlquileres,remuneraciones,stockMateriales,terrenos,usuarios,vehiculos,ventaTerrenos,viajes,login,contactos,pendientes,empleados,recuperarPass);
 

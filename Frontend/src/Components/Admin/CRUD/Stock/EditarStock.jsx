@@ -11,7 +11,6 @@ const EditarStock = ({ onStockEditar }) => {
   const [materiales, setMateriales] = useState([]);
   const [stock, setStock] = useState([])
 
-  // Obtener lista de stock (aunque no es usado en el `select_stock2`)
   const getStock = async () => {
     try {
       const response = await axios.get(URL_STOCK, { headers: { Authorization: `Bearer ${token}` } });
@@ -24,14 +23,12 @@ const EditarStock = ({ onStockEditar }) => {
   const getCompraMaterial = async () => {
     try {
       const response = await axios.get(URL_COMPRA_MATERIALES, { headers: { Authorization: `Bearer ${token}` } });
-      console.log(response.data)
       setMateriales(response.data);
     } catch (error) {
       console.error('Error al obtener la compra de materiales:', error);
     }
   };
 
-  // Mostrar el modal para editar stock
   const handleEditarStock = () => {
     Swal.fire({
       title: 'Editar el Stock',
@@ -125,7 +122,6 @@ const EditarStock = ({ onStockEditar }) => {
     });
   };
 
-  // Efectos para inicializar datos y manejar el modal
   useEffect(() => {
     getStock();
   }, []);

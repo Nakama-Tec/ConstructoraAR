@@ -77,7 +77,7 @@ const EditarPendiente = ({ onPendienteEditado }) => {
             Swal.fire('¡Éxito!', 'El pendiente fue actualizado correctamente.', 'success');
             onPendienteEditado(); 
             clearRegistroSeleccionado(); 
-          } catch (error) {
+          } catch (error) {44
             console.error('Error al actualizar pendiente:', error);
             Swal.fire('Error', 'Hubo un problema al actualizar el pendiente.', 'error');
           }

@@ -10,7 +10,6 @@ const EditarRemuneracion = ({onRemuneracionEditada}) => {
     const { registroSeleccionado, clearRegistroSeleccionado } = useRegistroStore();
     const token = useAuthStore((state) => state.token);
   
-  
     const handleEditarRemuneracion = () => {
       Swal.fire({
         title: 'Editar Remuneración',
@@ -49,9 +48,6 @@ const EditarRemuneracion = ({onRemuneracionEditada}) => {
             <label><b>Fecha Remuneracion</b></label> 
             <br>
             <input id="fechaRemuneracion" placeholder="Fecha" class="swal2-input" type="date" value='${registroSeleccionado.fechaRemuneracion}' />
-
-  
-  
           
         `,
         confirmButtonText: 'Enviar',

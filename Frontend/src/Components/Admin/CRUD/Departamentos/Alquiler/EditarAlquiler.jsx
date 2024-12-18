@@ -24,7 +24,6 @@ const EditarAlquiler = ({ onAlquilerEditado }) => {
         try {
             const response = await axios.get(URL_CLIENTES, { headers: { Authorization: `Bearer ${token}` } });
             setClientes(response.data);
-            console.log(response.data)
         } catch (error) {
             console.error('Error al obtener el Cliente:', error);
         }

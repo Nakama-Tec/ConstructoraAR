@@ -10,7 +10,6 @@ const allDepartamentos = (req, res) => {
 }
 
 const singleDepartamentos = (req, res) => {
-    console.log(req.params.id)
     const id = req.params.id
     const query = `select * from Departamentos where id_departamento=${id}`
     conection.query(query, (err,results) => {
@@ -31,7 +30,6 @@ const createDepartamentos = (req, res) => {
 
 const editDepartamentos = (req, res) => {
     const id = req.params.id
-    console.log(req.body);
     const {nombreDepartamento, direccionDepartamento, descripcionDepartamento, precioDepartamento, precioExpensa, serviciosIncluidos, contratoDescripcion, disponibilidadDepartamento} = req.body
     const query = `update Departamentos set nombreDepartamento="${nombreDepartamento}",direccionDepartamento="${direccionDepartamento}", descripcionDepartamento="${descripcionDepartamento}", precioDepartamento="${precioDepartamento}", precioExpensa="${precioExpensa}", serviciosIncluidos="${serviciosIncluidos}", contratoDescripcion="${contratoDescripcion}", disponibilidadDepartamento="${disponibilidadDepartamento}", activoDepto=1 where id_departamento=${id}`
     conection.query(query, (err,results) => {

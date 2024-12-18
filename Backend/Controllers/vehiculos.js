@@ -10,7 +10,6 @@ const allVehiculos = (req, res) => {
 }
 
 const singleVehiculo = (req, res) => {
-    console.log(req.params.id)
     const id = req.params.id
     const query = `select * from Vehiculos where id_vehiculo=${id}`
     conection.query(query, (err,results) => {
@@ -31,7 +30,6 @@ const createVehiculo = (req, res) => {
 
 const editVehiculo = (req, res) => {
     const id = req.params.id
-    console.log(req.body);
     const {marcaVehiculo,patenteVehiculo, tipoVehiculo, seguroVehiculo} = req.body
     const query = `update Vehiculos set marcaVehiculo="${marcaVehiculo}",patenteVehiculo="${patenteVehiculo}", tipoVehiculo="${tipoVehiculo}",seguroVehiculo="${seguroVehiculo}" where id_vehiculo=${id}`
     conection.query(query, (err,results) => {

@@ -1,6 +1,6 @@
 import React from "react";
 // Importa las imágenes locales
-import banner1 from "../../assets/img institucional/bannerinst.jpg";
+import banner1 from "../../assets/imgInstitucional/bannerinst.jpg";
 import { useEffect, useState } from "react";
 import "./banner.css"
 

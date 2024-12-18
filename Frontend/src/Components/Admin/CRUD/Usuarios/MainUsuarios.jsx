@@ -26,7 +26,6 @@ const MainUsuarios = () => {
     const getUsuarios = async () => {
       try {
         const response = await axios.get(URL_USUARIOS, { headers: { Authorization: `Bearer ${token}` } });
-        console.log(response.data)
         setDatos(response.data);
       } catch (error) {
         console.error("Error al obtener usuarios:", error);

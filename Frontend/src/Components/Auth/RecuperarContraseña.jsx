@@ -50,7 +50,6 @@ const RecuperarContraseña = () => {
     })
     .then(
       () => {
-        console.log("Notificación al admin enviada correctamente");
       },
       (error) => {
         console.error("Error al enviar la notificación al admin", error);

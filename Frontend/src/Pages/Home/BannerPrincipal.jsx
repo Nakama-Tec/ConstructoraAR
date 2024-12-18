@@ -1,10 +1,14 @@
 import { useEffect, useState } from 'react';
+import home1 from '../../assets/imgHome/home1.jpeg';
+import home2 from '../../assets/imgHome/home2.jpg';
+import home3 from '../../assets/imgHome/home3.jpg';
+import home4 from '../../assets/imgHome/home4.jpg';
 
     const images = [
-        'https://www.comunicaciontucuman.gob.ar/fotos/notas/2023/09/26/230926094234_56125.jpeg',
-        'https://monterizos.com.ar/wp-content/uploads/2022/01/hospital-general-lamadrid-monteros.jpg',
-        'https://www.tribunaldecuentas.gob.ar/wp-content/uploads/2023/03/CDI-Burruyacu-SEOP-01.jpg',
-        'https://basicapartment.com/storage/blog/inner_page_desktop/Irlswh5WN6jMiMJroJlokMGqtxcJBWo5FLrbyzOU.jpg?v=1693814124'
+        home1,
+        home2,
+        home3,
+        home4
     ];
 
     const BannerPrincipal = () => {

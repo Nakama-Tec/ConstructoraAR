@@ -1,5 +1,5 @@
 import React from "react";
-import { useTable } from "react-table"; // npm install react-table
+import { useTable } from "react-table"; 
 import "../../../../Styles/CashFlowTable.css"; // Asegúrate de usar esta hoja de estilos
 import { useEffect, useState } from 'react';
 import { URL_FLUJO_CAJA } from '../../../../Constants/endpoints-API';
@@ -7,7 +7,6 @@ import useAuthStore from '../../../../Context/useAuthStore';
 import axios from 'axios';
 import { LIBRO_DIARIO } from '../../../../Routes/routes';
 import { Link } from 'react-router-dom';
-import Button from 'react-bootstrap/Button';
 
 
 
@@ -40,13 +39,6 @@ const obtenerFechaFin = () => {
   return `${año}-01-31`;
 };
 
-
-// Estado para las fechas inicializado con la fecha actual
-// const [fechaInicio, setFechaInicio] = useState(obtenerFechaInicio);
-// const [fechaFin, setFechaFin] = useState(obtenerFechaFin);
-
-// console.log("fechaInicio = ", fechaInicio);
-// console.log("fechaFin = ", fechaFin);
   // Enviar la fecha por POST
   const enviarFechaPorPost = async () => {
     try {
@@ -81,13 +73,10 @@ const obtenerFechaFin = () => {
   };
   
 
-  console.log("datosMensuales = ", datosMensuales);
-
 // Ejecutar enviarFechaPorPost al cargar el componente
 useEffect(() => {
   enviarFechaPorPost();
-}, [//fechaInicio, //fechaFin
-]); // Se ejecuta cuando cambian estas dependencias
+}, []); 
 
   const columns = React.useMemo(
     () => [
@@ -342,70 +331,15 @@ const SaldoAcumulado = (mesIndex) => {
 
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } = useTable({ columns, data });
 
-  // rows.forEach((row, index) => {
-  //   console.log(`Fila ${index + 1}:`, row.original);
-    
-  // });
-
-
-
- // Obtener la fecha actual en formato YYYY-MM-DD
-//  useEffect(() => {
-//   enviarFechaPorPost()
-//   const fechaInicio = obtenerFechaInicio();
-//   const fechaFin = obtenerFechaFin();
-//     setFechaInicio(fechaInicio);
-//     setFechaFin(fechaFin); // Puedes ajustar esto según tus necesidades
-  
-  
-// }, []); 
-
   return (
 <div>
 
   <div className="main-caja-container">
     <div className="content">
       <h1 className="text-black font-semibold text-4xl mt-5 mb-6 text-center">FLUJO DE CAJA - AÑO : {año}</h1>
-      {/* <p className="text-xl text-gray-700 font-bold mb-3 text-center">Selecciona la fecha</p> */}
 
-      {/* <div className="date-selector flex flex-col md:flex-row items-center gap-4 justify-center">
-        <div className="flex flex-col">
-          <label htmlFor="fechaInicio" className="text-sm font-medium mb-1">Fecha Inicio:</label>
-          <input
-            type="date"
-            id="fechaInicio"
-           value={fechaInicio}
-            onChange={(e) => setFechaInicio(e.target.value)}
-            className="p-2 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none"
-          />
-        </div> */}
-
-        {/* <div className="flex flex-col">
-          <label htmlFor="fechaFin" className="text-sm font-medium mb-1">Fecha Fin:</label>
-          <input
-            type="date"
-            id="fechaFin"
-           value={fechaFin}
-            onChange={(e) => setFechaFin(e.target.value)}
-            className="p-2 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none"
-          />
-        </div>
-      </div> */}
-
-      {/* <div className="flex justify-center mt-6">
-        <button
-          onClick={enviarFechaPorPost}
-          className="px-6 py-2 bg-blue-600 text-white font-medium text-sm rounded-md shadow-md hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-1 focus:outline-none "
-        >
-          Enviar Fechas
-        </button>
-      </div> */}
     </div>
   </div>
-  {/* <div className="btn librodirario flex justify-end back">
-< Link to={LIBRO_DIARIO} className="px-6 py-2 bg-green-600 text-white font-medium text-4xl rounded-md shadow-md hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-1 focus:outline-none mr-16">
-LIBRO DIARIO</Link>
-</div> */}
   <br />
   {/* TABLA FLUJO DE CAJA */}
   <p className="text-xl text-gray-700 font-bold mb-3 text-center">Selecciona Historial de Caja</p>

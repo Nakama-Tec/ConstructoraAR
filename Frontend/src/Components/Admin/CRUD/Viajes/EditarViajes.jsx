@@ -8,19 +8,6 @@ import { URL_VIAJES_EDITAR, URL_VEHICULOS, URL_OBRAS, URL_STOCK } from '../../..
 
 const EditarViaje = ({ onViajeEditado }) => {
 
-          // <br>
-        // <label><b>Selecciona el stock</b></label>
-        // <br>
-        // <select id="select_stock" class="swal2-select">
-        //   ${stocks
-        //   .map(
-        //     (stock) =>
-        //       `<option value="${stock.id_stock}" ${stock.nombreMaterial === registroSeleccionado.Material ? 'selected' : ''
-        //       }>${stock.nombreMaterial}</option>`
-        //   )
-        //   .join('')}
-        // </select>
-
   const { registroSeleccionado, clearRegistroSeleccionado } = useRegistroStore();
   const token = useAuthStore((state) => state.token);
   const [vehiculos, setVehiculos] = useState([]);

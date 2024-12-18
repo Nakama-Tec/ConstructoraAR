@@ -1,4 +1,4 @@
-// EndPoind
+// EndPoinds
 
 // Login
 export const URL_LOGIN = "http://localhost:8000/login";

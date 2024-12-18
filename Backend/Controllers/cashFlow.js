@@ -3,8 +3,6 @@ const { conection } = require("../DB/Config")
 const allCashFlow =(req,res)=>{
 // todas las fechas vienen desde el front por medio de un formulario y es traida por req.body
     const {fechaInicio, fechaFin} = req.body
-    console.log(fechaInicio, fechaFin)
-//Las fechas de inicio y fin las traigo del front son las que cumplen el roll para que sea un mes
 
 
  

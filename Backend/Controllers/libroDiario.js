@@ -4,7 +4,6 @@ const { conection } = require("../DB/Config");
 const alldaily_books = (req, res) => {
   // Obtenemos la fecha enviada desde el front
   const { fechaRegistro } = req.body;
-  console.log("Fecha recibida por POST = ", fechaRegistro);
 
   // Si no hay fecha en el body, enviamos un error
   if (!fechaRegistro) {
@@ -60,7 +59,6 @@ const alldaily_books = (req, res) => {
     query,
     [fechaRegistro, fechaRegistro, fechaRegistro, fechaRegistro, fechaRegistro, fechaRegistro],
     (err, results) => {
-      console.log("Datos obtenidos = ", results);
       if (err) {
         // Error en la base de datos
         return res.status(500).json({ error: "Error en la base de datos", details: err.message });
@@ -85,7 +83,6 @@ const alldaily_books = (req, res) => {
 const getdaily_books = (req, res) => {
   // Obtenemos la fecha desde los parámetros de la URL
   const { fechaRegistro } = req.query;
-  console.log("Fecha recibida por GET = ", fechaRegistro);
 
   // Si no se envía una fecha, devolvemos un error
   if (!fechaRegistro) {
@@ -141,7 +138,6 @@ const getdaily_books = (req, res) => {
     query,
     [fechaRegistro, fechaRegistro, fechaRegistro, fechaRegistro, fechaRegistro, fechaRegistro],
     (err, results) => {
-      console.log("Datos obtenidos por GET = ", results);
       if (err) {
         return res.status(500).json({ error: "Error en la base de datos", details: err.message });
       }

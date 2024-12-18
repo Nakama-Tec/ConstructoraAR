@@ -6,8 +6,6 @@ import useVerRegistroStore from '../../../../Context/useVerRegistroStore';
 const VerViajes = ({ onViajeVer }) => {
     const { verRegistroSeleccionado, clearVerRegistroSeleccionado } = useVerRegistroStore();
 
-
-
     const handleVerViaje = () => {
         Swal.fire({
           title: 'Detalle del Viaje',
