@@ -10,7 +10,6 @@ const EditarRemuneracion = ({onRemuneracionEditada}) => {
     const { registroSeleccionado, clearRegistroSeleccionado } = useRegistroStore();
     const token = useAuthStore((state) => state.token);
   
-  
     const handleEditarRemuneracion = () => {
       Swal.fire({
         title: 'Editar Remuneración',
@@ -33,16 +32,16 @@ const EditarRemuneracion = ({onRemuneracionEditada}) => {
             <label><b>Tipo Empleado</b></label> 
             <br>
             <select id="tipoEmpleado" class="swal2-select">
-              <option value="0" ${registroSeleccionado.rol === 'Admin' ? 'selected' : ''}>Admin</option>
-              <option value="1" ${registroSeleccionado.rol === 'Obrero' ? 'selected' : ''}>Obrero</option>
+              <option value="0" ${registroSeleccionado.tipoEmpleado === 0 ? 'selected' : ''}>Admin</option>
+              <option value="1" ${registroSeleccionado.tipoEmpleado === 1 ? 'selected' : ''}>Obrero</option>
             </select>
             <br>
             <br>
             <label><b>Sector</b></label> 
             <br>
             <select id="sectorRemuneracion" class="swal2-select">
-              <option value="0" ${registroSeleccionado.rol === 'Publico' ? 'selected' : ''}>Publico</option>
-              <option value="1" ${registroSeleccionado.rol === 'Privado' ? 'selected' : ''}>Privado</option>
+              <option value="0" ${registroSeleccionado.sectorRemuneracion === 0 ? 'selected' : ''}>Publico</option>
+              <option value="1" ${registroSeleccionado.sectorRemuneracion === 1 ? 'selected' : ''}>Privado</option>
             </select>
             <br>
             <br>
@@ -63,38 +62,38 @@ const EditarRemuneracion = ({onRemuneracionEditada}) => {
           const tipoEmpleado = Swal.getPopup().querySelector('#tipoEmpleado').value;
           const fechaRemuneracion = Swal.getPopup().querySelector('#fechaRemuneracion').value;
           const sectorRemuneracion = Swal.getPopup().querySelector('#sectorRemuneracion').value;
-  
+      
           // Validaciones
         
          const detallesRegex = /^[^@]+$/;
- 
+     
          if (!detalle || !detallesRegex.test(detalle)) {
            Swal.showValidationMessage("El detalle no debe contener caracteres especiales.");
            return false;
           }
 
           return {
-            detalle,
-            montoRemuneracion,
-            cantEmpleado,
-            tipoEmpleado,
-            fechaRemuneracion,
-            sectorRemuneracion
+        detalle,
+        montoRemuneracion,
+        cantEmpleado,
+        tipoEmpleado,
+        fechaRemuneracion,
+        sectorRemuneracion
 
           };
         }
       }).then(async (result) => {
         if (result.isConfirmed) {
           try {
-            await axios.put(`${URL_REMUNERACIONES_EDITAR}${registroSeleccionado.id_remuneracion}`, result.value, {
-              headers: { Authorization: `Bearer ${token}` }
-            });
-            Swal.fire('¡Éxito!', 'La remuneracion fue actualizado correctamente.', 'success');
-            onRemuneracionEditada(); 
-            clearRegistroSeleccionado(); 
+        await axios.put(`${URL_REMUNERACIONES_EDITAR}${registroSeleccionado.id_remuneracion}`, result.value, {
+          headers: { Authorization: `Bearer ${token}` }
+        });
+        Swal.fire('¡Éxito!', 'La remuneracion fue actualizado correctamente.', 'success');
+        onRemuneracionEditada(); 
+        clearRegistroSeleccionado(); 
           } catch (error) {
-            console.error('Error al actualizar la rumuneracion:', error);
-            Swal.fire('Error', 'Hubo un problema al actualizar la remuneracion.', 'error');
+        console.error('Error al actualizar la rumuneracion:', error);
+        Swal.fire('Error', 'Hubo un problema al actualizar la remuneracion.', 'error');
           }
         } else {
           clearRegistroSeleccionado(); 

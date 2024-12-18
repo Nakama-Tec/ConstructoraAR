@@ -62,7 +62,7 @@ const EditarCertificados = ({ onCertificadoEditado }) => {
         <br>
         <label><b>Valor Redeterminacion</b></label> 
         <br>
-      <input id="valorredeterminacion" class="swal2-input" value="${registroSeleccionado.valorredeterminacion}" />
+      <input id="valorredeterminacion" type="number" min="0" class="swal2-input" value="${registroSeleccionado.valorredeterminacion}" />
          <br>
         <br>
         <label><b>Fecha Redeterminacion</b></label> 
@@ -88,7 +88,6 @@ const EditarCertificados = ({ onCertificadoEditado }) => {
         const nroCertificadoRegex = /^[0-9]+$/;
         const fechaRegex = /^\d{4}-\d{2}-\d{2}$/;
         const linkRegex = /^(http|https):\/\/[^ "]+$/;
-        const valorredeterminacionRegex = /^[0-9]+$/;
         const fechaRedeterminacionRegex = /^\d{4}-\d{2}-\d{2}$/;
         const redeterminacionRegex = /^[0-1]$/;
      
@@ -115,10 +114,6 @@ const EditarCertificados = ({ onCertificadoEditado }) => {
         }
         if (!linkFacturaPagadaCert || !linkRegex.test(linkFacturaPagadaCert)) {
           Swal.showValidationMessage('El link de la factura pagada debe ser una URL.');
-          return false;
-        }
-        if (!valorredeterminacion || !valorredeterminacionRegex.test(valorredeterminacion)) {
-          Swal.showValidationMessage('El valor de redeterminación debe ser un número.');
           return false;
         }
         if (!fechaRedeterminacion || !fechaRedeterminacionRegex.test(fechaRedeterminacion)) {

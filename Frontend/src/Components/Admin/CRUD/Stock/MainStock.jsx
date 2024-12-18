@@ -13,7 +13,7 @@ import EditarStock from './EditarStock';
 
 const MainStock = () => {
   const token = useAuthStore((state) => state.token);
-  const { setRegistroSeleccionado, openRegistroModal } = useRegistroStore();//objeto que se importa de useStockStore
+  const { setRegistroSeleccionado } = useRegistroStore();
   const { setVerRegistroSeleccionado } = useVerRegistroStore();
 
   const [filtrado, setFiltrado] = useState('');
@@ -60,11 +60,6 @@ const MainStock = () => {
     { header: 'Nombre del material', accessorKey: 'nombreMaterial' },
     { header: 'Ubicación', accessorKey: 'ubicacionStock' },
     { header: 'Cantidad', accessorKey: 'cantidadStock' },
-    { 
-      header: 'Disponible', 
-      accessorKey: 'activoStock',
-      cell: ({ row }) => (row.original.activoStock === 1 ? 'Sí' : 'No')
-    },
     
     {
       header: 'Acciones',

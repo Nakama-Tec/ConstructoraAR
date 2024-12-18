@@ -6,8 +6,6 @@ import useVerRegistroStore from '../../../../Context/useVerRegistroStore';
 const VerViajes = ({ onViajeVer }) => {
     const { verRegistroSeleccionado, clearVerRegistroSeleccionado } = useVerRegistroStore();
 
-
-
     const handleVerViaje = () => {
         Swal.fire({
           title: 'Detalle del Viaje',
@@ -33,7 +31,7 @@ const VerViajes = ({ onViajeVer }) => {
                 </tr>
                 <tr>
                   <th style="padding: 8px; border-bottom: 1px solid #ddd; text-align: right;">Direccion:</th>
-                  <td style="padding: 8px; border-bottom: 1px solid #ddd;">${verRegistroSeleccionado.Direccion_Obra}</td>
+                  <td style="padding: 8px; border-bottom: 1px solid #ddd;">${verRegistroSeleccionado.direccionObra}</td>
                 </tr>
                 <tr>
                   <th style="padding: 8px; border-bottom: 1px solid #ddd; text-align: right;">Tipo Vehiculo:</th>

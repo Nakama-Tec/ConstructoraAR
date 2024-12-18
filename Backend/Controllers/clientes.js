@@ -32,7 +32,6 @@ const createCliente = (req, res) => {
 
 const editCliente = (req, res) => {
     const id = req.params.id
-    console.log(req.body);
     const {nombreCliente, apellidoCliente, condicionCliente, razonSocial, cuil_cuit_Cliente, telefonoCliente, mailCliente, direccionCliente, datosGarantes} = req.body
     const query = `update Clientes set nombreCliente="${nombreCliente}", apellidoCliente="${apellidoCliente}", condicionCliente="${condicionCliente}", razonSocial="${razonSocial}", cuil_cuit_Cliente="${cuil_cuit_Cliente}",telefonoCliente="${telefonoCliente}",mailCliente="${mailCliente}", direccionCliente="${direccionCliente}", datosGarantes="${datosGarantes}", activoCliente=1 where id_cliente=${id}`
     conection.query(query, (err,results) => {

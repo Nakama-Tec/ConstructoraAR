@@ -6,8 +6,6 @@ import useVerRegistroStore from '../../../../Context/useVerRegistroStore';
 const VerUsuarios = ({ onUsuarioVer }) => {
   const { verRegistroSeleccionado, clearVerRegistroSeleccionado } = useVerRegistroStore();
 
-
-
   const handleVerUsuario = () => {
       Swal.fire({
         title: 'Detalle del Usuario',

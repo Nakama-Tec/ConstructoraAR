@@ -47,7 +47,7 @@ const MainOperaciones = () => {
       try {
         await axios.put(
           `${URL_OPERACIONES_ELIMINAR}${operacion.id_operacion}`,
-          { ...operacion }, // Se envía el stock con el campo "eliminado" en true
+          { ...operacion }, 
           { headers: { Authorization: `Bearer ${token}` } }
         );
         Swal.fire('Eliminado!', 'La operacion ha sido eliminado correctamente.', 'success');

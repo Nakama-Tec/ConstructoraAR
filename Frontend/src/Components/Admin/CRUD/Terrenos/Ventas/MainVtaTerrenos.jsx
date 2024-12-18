@@ -27,6 +27,7 @@ const MainVtaTerrenos = () => {
     const getVtaTerrenos = async () => {
       try {
         const response = await axios.get(URL_VTA_TERRENOS, { headers: { Authorization: `Bearer ${token}` } });
+        console.log(response.data)
         setDatos(response.data);
       } catch (error) {
         console.error("Error al obtener las ventas de terrenos:", error);
@@ -62,7 +63,7 @@ const MainVtaTerrenos = () => {
   
     const columns = [
       { header: 'Nº', accessorKey: 'id_ventaTerreno' },
-      { header: 'Direccion', accessorKey: 'DireccionTerreno' },
+      { header: 'Direccion del Terreno', accessorKey: 'DireccionTerreno' },
       { header: 'Precio', accessorKey: 'PrecioTerreno' },
       { header: 'Cliente', accessorFn: row => `${row.NombreCliente} ${row.ApellidoCliente}` },
       { header: 'Fecha de Venta', accessorKey: 'FechaVentaTerreno' },

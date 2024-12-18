@@ -1,6 +1,5 @@
 import LibroDiario from '../../LibroDiario/LibroDiario'
 
-
 const HomeSistemaGestion = () => {
   return (
     <>

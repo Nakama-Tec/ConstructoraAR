@@ -11,7 +11,6 @@ const EditarStock = ({ onStockEditar }) => {
   const [materiales, setMateriales] = useState([]);
   const [stock, setStock] = useState([])
 
-  // Obtener lista de stock (aunque no es usado en el `select_stock2`)
   const getStock = async () => {
     try {
       const response = await axios.get(URL_STOCK, { headers: { Authorization: `Bearer ${token}` } });
@@ -24,14 +23,12 @@ const EditarStock = ({ onStockEditar }) => {
   const getCompraMaterial = async () => {
     try {
       const response = await axios.get(URL_COMPRA_MATERIALES, { headers: { Authorization: `Bearer ${token}` } });
-      console.log(response.data)
       setMateriales(response.data);
     } catch (error) {
       console.error('Error al obtener la compra de materiales:', error);
     }
   };
 
-  // Mostrar el modal para editar stock
   const handleEditarStock = () => {
     Swal.fire({
       title: 'Editar el Stock',
@@ -70,13 +67,6 @@ const EditarStock = ({ onStockEditar }) => {
         <br>
         <input id="cantidadStock" type="number" min="0" class="swal2-input" value="${registroSeleccionado?.cantidadStock || ''}" />
         <br>
-        <br>
-        <label><b>Disponibilidad</b></label> 
-        <br>
-        <select id="select_stock" class="swal2-select">
-          <option value="Si" ${registroSeleccionado?.activoStock === 'Si' ? 'selected' : ''}>Si</option>
-          <option value="No" ${registroSeleccionado?.activoStock === 'No' ? 'selected' : ''}>No</option>
-        </select>
       `,
       confirmButtonText: 'Enviar',
       showCancelButton: true,
@@ -84,25 +74,11 @@ const EditarStock = ({ onStockEditar }) => {
         const nombreMaterial = document.getElementById('select_material').value;
         const ubicacionStock = document.getElementById('select_ubicacion').value;
         const cantidadStock = parseInt(document.getElementById('cantidadStock').value, 10);
-        const activoStock = document.getElementById('select_stock').value === 'SI' ? 1 : 0;
-
-        const nombreRegex = /^[a-zA-Z\sÀ-ÿ]+$/;
-        const ubicacionRegex = /^[a-zA-Z0-9À-ÿ\s,.-]+$/;
-
-
-
-        if (!nombreRegex || nombreRegex.test(nombreMaterial) ) {
-          Swal.showValidationMessage('El nombre del material no es válido.');
-        }
-        if (!ubicacionRegex || ubicacionRegex.test(ubicacionStock)) {
-          Swal.showValidationMessage('La ubicación del stock no es válida.');
-        }
 
         return {
           nombreMaterial,
           ubicacionStock,
           cantidadStock,
-          activoStock,
         };
       },
     }).then(async (result) => {
@@ -125,7 +101,6 @@ const EditarStock = ({ onStockEditar }) => {
     });
   };
 
-  // Efectos para inicializar datos y manejar el modal
   useEffect(() => {
     getStock();
   }, []);

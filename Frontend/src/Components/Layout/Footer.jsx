@@ -5,7 +5,7 @@ const Footer = () => {
     <footer className="bg-gray-800 text-white py-8">
         <div className="container mx-auto flex">
             <div className="columnas-footer">
-                <p className='uppercase'>CONSTRUCTORA <span className='AR'>AR </span>SRL</p>                
+                <p className='uppercase'>CONSTRUCTORA <span className='AR'>AR </span>SRL</p>       
             </div>
             
             <div className="columnas-footer flex justify-center space-x-4 ">

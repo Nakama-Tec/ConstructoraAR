@@ -11,24 +11,25 @@ const HeaderAdmin = () => {
   const userName = useAuthStore((state) => state.userName);
 
   const navigate = useNavigate();
+  
   // funcion para que si no es admin y no se genero token no muestre
   const handleLogout = () => {
     clearAuth();
     navigate({ LOGIN });
   };
   return (
-<div className="dark:bg-gray-900 text-white flex flex-col md:flex-row justify-between items-center h-auto md:h-24 p-5">
+<div className="bg-gray-900 text-white flex flex-col md:flex-row justify-between items-center h-auto md:h-24 p-5">
 
-  <Link to={HOME_SISTEMA_GESTION}>
+  <Link to={HOME_SISTEMA_GESTION} className="flex items-center">
     <img
-      className="logo h-28 md:h-24 lg:h-40 w-auto"
-      src={logo}
-      alt="Logo"
+      className="logo mt-5 rounded-full h-28 md:h-24 lg:h-[75px] w-auto"
+      src="https://i.imgur.com/IF7jIXu.jpeg"
+      alt="Avatar"
     />
   </Link>
 
   {userName && (
-    <p className="text-3xl md:text-4xl lg:text-4xl font-semibold mt-4 md:mt-0 uppercase">
+    <p className="text-3xl relative left-10 md:text-4xl lg:text-4xl font-semibold mt-4 md:mt-0 uppercase">
       Bienvenido, {userName}!
     </p>
   )}

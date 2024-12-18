@@ -6,8 +6,6 @@ import useVerRegistroStore from '../../../../Context/useVerRegistroStore';
 const VerRemuneracion = ({onRemuneracionVer}) => {
     const { verRegistroSeleccionado, clearVerRegistroSeleccionado } = useVerRegistroStore();
 
-
-
     const handleRemuneracion = () => {
         Swal.fire({
           title: 'Detalle de la Remuneración',

@@ -61,7 +61,7 @@ const MainTerrenos = () => {
 
     const columns = [
       { header: 'Nº', accessorKey: 'id_terreno' },
-      { header: 'Metros Cuadrados', accessorKey: 'metrosTerrenos' },
+      { header: 'Metros Cuadrados', accessorFn: row => `${row.metrosTerrenos}m²` },
       { header: 'Dirección', accessorKey: 'direccionTerreno' },
       { header: 'Precio', accessorFn: row => `$${row.precioTerreno}` },
       { 

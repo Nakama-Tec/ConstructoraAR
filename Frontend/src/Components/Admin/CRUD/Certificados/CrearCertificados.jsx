@@ -59,8 +59,11 @@ const CrearCertificados = ({ onCertificadoRegistrado }) => {
             <option value="0">No revalorizado</option>
             <option value="1">Revalorizado</option>
             </select>
-
-            <input id="valorredeterminacion" placeholder="valor de la redeterminacion" class="swal2-input" />
+            <br/>
+            <br/>
+            <label><strong>Valor redeterminacion:</strong></label>
+            <br/>
+            <input id="valorredeterminacion" type="number" min="0" placeholder="valor de la redeterminacion" class=" swal2-input" />
             <br>
             <br>
             <label><b>Fecha Redeterminacion</b></label> 
@@ -95,7 +98,6 @@ const CrearCertificados = ({ onCertificadoRegistrado }) => {
         const nroCertificadoRegex = /^[0-9]+$/;
         const linkFacturaCertRegex = /^(?:(?:http|https|ftp):\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-._~:/?#[\]@!$&'()*+,;=%]+$/
         const linkFacturaPagadaCertRegex = /^(?:(?:http|https|ftp):\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-._~:/?#[\]@!$&'()*+,;=%]+$/
-        const valorredeterminacionRegex = /^[0-9]+$/;
 
        if(!montoCert || !montoRegex.test(montoCert)){
           Swal.showValidationMessage("El monto del certificado no puede estar vacio y debe ser un numero.");
@@ -114,11 +116,6 @@ const CrearCertificados = ({ onCertificadoRegistrado }) => {
 
         if(!linkFacturaPagadaCert || !linkFacturaPagadaCertRegex.test(linkFacturaPagadaCert)){
           Swal.showValidationMessage("El link de la factura pagada no puede estar vacio y debe ser un link.");
-          return false;
-        }
-
-        if(!valorredeterminacion || !valorredeterminacionRegex.test(valorredeterminacion)){
-          Swal.showValidationMessage("El valor de la redeterminacion no puede estar vacio y debe ser un numero.");
           return false;
         }
 

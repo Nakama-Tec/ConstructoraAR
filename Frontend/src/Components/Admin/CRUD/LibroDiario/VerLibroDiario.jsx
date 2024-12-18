@@ -1,23 +1,16 @@
 import { useEffect, useState } from 'react';
-import { URL_LIBRO_DIARIO, URL_REMUNERACIONES } from '../../../../Constants/endpoints-API';
+import { URL_LIBRO_DIARIO } from '../../../../Constants/endpoints-API';
 import useAuthStore from '../../../../Context/useAuthStore';
-import useRegistroStore from '../../../../Context/useRegistroStore'; // Estado global para el modal
 import axios from 'axios';
 import { Toaster } from 'react-hot-toast';
 import Aside from '../../../Layout/Aside';
-import CrearCompraMateriales from '../CompraMateriales/CrearCompraMateriales';
-import CrearVtaTerrenos from '../Terrenos/Ventas/CrearVtaTerrenos';
-import CrearOperaciones from '../Operaciones/CrearOperaciones';
-import CrearRemuneracion from '../Remuneracion/CrearRemuneracion';
-import CrearCertificados from '../Certificados/CrearCertificados';
 import { Link } from 'react-router-dom';
 
 const VerLibroDiario = () => {
   const token = useAuthStore((state) => state.token);
-  const { setRegistroSeleccionado, openRegistroModal, registroSeleccionado, isRegistroModalOpen, closeRegistroModal } = useRegistroStore(); // Acciones y estado global del modal
   const [fechaRegistro, setFechaRegistro] = useState('');
   const [fechaSeleccionada, setFechaSeleccionada] = useState('');
-  const [prueba, setPrueba] = useState([]);
+  const [datos, setDatos] = useState([]);
 
   useEffect(() => {
     const date = new Date();
@@ -48,7 +41,7 @@ const VerLibroDiario = () => {
         params: { fechaRegistro },
         headers: { authorization: `Bearer ${token}` },
       });
-      if (response.status === 200) setPrueba(response.data.data);
+      if (response.status === 200) setDatos(response.data.data);
     } catch (error) {
       console.error('Error al obtener los datos por GET:', error);
     }
@@ -59,30 +52,6 @@ const VerLibroDiario = () => {
     await obtenerDatosPorGet();
     setFechaRegistro(fechaSeleccionada);
   };
-
-  const handleAbrirModal = (opcion) => {
-    setRegistroSeleccionado(opcion); // Guardar la opción seleccionada en el estado global
-    openRegistroModal(); // Abrir el modal
-  };
-
-  // Renderizar el modal correcto basado en registroSeleccionado
-  // const renderModal = () => {
-  //   switch (registroSeleccionado) {
-  //     case 'certificado':
-  //       return <CrearCertificados onClose={closeRegistroModal} />;
-  //     case 'remuneracion':
-  //       return <CrearRemuneracion onRemuneracionRegistrada={getRemuneracion}
-  //         onClose={closeRegistroModal} />;
-  //     case 'compraMaterial':
-  //       return <CrearCompraMateriales onClose={closeRegistroModal} />;
-  //     case 'ventaTerreno':
-  //       return <CrearVtaTerrenos onClose={closeRegistroModal} />;
-  //     case 'operacion':
-  //       return <CrearOperaciones onClose={closeRegistroModal} />;
-  //     default:
-  //       return null;
-  //   }
-  // };
 
   return (
     <div>
@@ -159,8 +128,8 @@ const VerLibroDiario = () => {
               </tr>
             </thead>
             <tbody>
-              {prueba.length > 0 ? (
-                prueba.map((item, index) => (
+              {datos.length > 0 ? (
+                datos.map((item, index) => (
                   <tr key={index} className="even:bg-gray-100">
                     <td className="border border-gray-300 px-4 py-2">{index + 1}</td>
                     <td className="border border-gray-300 px-4 py-2">{item.TIPO}</td>

@@ -1,6 +1,4 @@
 
-import React from "react";
-
 const CardConstruccion = ({ titulo, descripcion, imagen }) => {
   return (
     <div className="card-construccion">

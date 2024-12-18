@@ -38,5 +38,4 @@ export const DETALLEVIAJES = "/Admin/DetalleViajes"
 export const ALQUILER = "/Admin/Alquiler"
 export const REMUNERACIONES = "/Admin/Remuneraciones"
 
-// export const NOT_FOUND = "/notfound"
 

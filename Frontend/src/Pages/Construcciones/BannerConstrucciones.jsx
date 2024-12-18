@@ -1,8 +1,7 @@
-import React from 'react';
 // Importa las imágenes locales
+import { useEffect, useState } from 'react';
 import banner from '../../assets/imgConstrucciones/banner.jpg';
 import living from "../../assets/imgConstrucciones/living2.jpg";
-    import { useEffect, useState } from 'react';
 
     const images = [banner, living];
 

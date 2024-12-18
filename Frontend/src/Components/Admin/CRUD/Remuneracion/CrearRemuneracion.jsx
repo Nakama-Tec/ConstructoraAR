@@ -10,8 +10,6 @@ const CrearRemuneracion = ({onRemuneracionRegistrada}) => {
     const { isRegistroModalOpen, closeRegistroModal } = useRegistroStore();
     const token = useAuthStore((state) => state.token);
 
-
-  
     const handleRegistrarRemuneracion = () => {
       Swal.fire({
         title: 'Registrar Remuneracion',
@@ -55,15 +53,12 @@ const CrearRemuneracion = ({onRemuneracionRegistrada}) => {
             const sectorRemuneracion = Swal.getPopup().querySelector('#sectorRemuneracion').value;
 
          // Validaciones
-         
          const detallesRegex = /^[^@]+$/;
  
          if (!detalle || !detallesRegex.test(detalle)) {
            Swal.showValidationMessage("El detalle no debe contener caracteres especiales.");
            return false;
           }
-  
- 
   
           return {
             detalle,

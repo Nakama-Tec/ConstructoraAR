@@ -101,7 +101,6 @@ const CrearAlquiler = ({ onAlquilerRegistrado }) => {
         await axios.post(URL_ALQUILERES_CREAR, result.value, {
           headers: { Authorization: `Bearer ${token}` }
         });
-        console.log('Alquiler registrado:', result.value);
         Swal.fire('¡Éxito!', 'El alquiler fue registrado correctamente.', 'success');
         onAlquilerRegistrado(); 
         closeRegistroModal(); 

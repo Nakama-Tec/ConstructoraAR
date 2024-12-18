@@ -1,7 +1,5 @@
 import React from 'react';
 import bannerdepa1 from '../../assets/imgDepartamentos/bannerdepa.jpg';
-// import bannerdepa2 from '../../assets/imgDepartamentos/bannerdepa2.jpg';
-// import bannerdepa3 from '../../assets/imgDepartamentos/bannerdepa3.jpg';
     import { useEffect, useState } from 'react';
 
     const images = [bannerdepa1];

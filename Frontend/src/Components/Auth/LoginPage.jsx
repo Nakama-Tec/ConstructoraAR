@@ -8,6 +8,7 @@ import './login.css';
 import { HOME_SISTEMA_GESTION } from "../../Routes/routes";
 import Error from "../Layout/Error";
 
+
 const LoginPage = () => {
   const [nombreUsuario, setNombreUsuario] = useState("");
   const [passwordUsuario, setPasswordUsuario] = useState("");
@@ -88,7 +89,7 @@ const LoginPage = () => {
                   required
                 ></input>
               </div>
-              <button type="submit" className="loginSubmitBtn">
+              <button type="submit" className="loginSubmitBtn" disabled={!nombreUsuario || !passwordUsuario}>
                 Ingresar
               </button>
               <div className="px-4 py-4 mt-5 recuperar-pass">

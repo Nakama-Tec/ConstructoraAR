@@ -21,7 +21,6 @@ const allObras = (req, res) => {
 }
 
 const singleObra = (req, res) => {
-    console.log(req.params.id)
     const id = req.params.id
     const query = `select * from Obras where id_obra=${id}`
     conection.query(query, (err,results) => {
@@ -42,7 +41,6 @@ const createObra = (req, res) => {
 
 const editObra = (req, res) => {
     const id = req.params.id
-    console.log(req.body);
     const {nombreObra,direccionObra, descripcionObra, fechainicioObra, fechafinObra, precioObra, sectorObra, progresoObra, id_cliente} = req.body
     const query = `update Obras set nombreObra="${nombreObra}",  direccionObra="${direccionObra}",descripcionObra="${descripcionObra}", fechainicioObra="${fechainicioObra}",fechafinObra="${fechafinObra}", precioObra="${precioObra}", sectorObra="${sectorObra}", progresoObra="${progresoObra}",id_cliente="${id_cliente}", activoObras=1 where id_obra=${id}`
     conection.query(query, (err,results) => {

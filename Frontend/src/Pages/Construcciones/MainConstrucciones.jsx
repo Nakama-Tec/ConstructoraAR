@@ -1,4 +1,3 @@
-import React from "react";
 import BannerConstrucciones from "./BannerConstrucciones";
 import imgConstruccion from "../../assets/imgConstrucciones/imgconstrucciones.jpg";
 import Contacto from "../Home/Contacto";
