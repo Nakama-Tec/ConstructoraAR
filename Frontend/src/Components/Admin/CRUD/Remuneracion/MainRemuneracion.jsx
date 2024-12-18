@@ -24,6 +24,7 @@ const MainRemuneracion = () => {
     const getRemuneracion = async () => {
       try {
         const response = await axios.get(URL_REMUNERACIONES, { headers: { Authorization: `Bearer ${token}` } });
+        console.log(response.data)
         setDatos(response.data);
       } catch (error) {
         console.error("Error al obtener la remuneracion:", error);

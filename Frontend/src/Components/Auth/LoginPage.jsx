@@ -3,13 +3,15 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import useAuthStore from "../../Context/useAuthStore";
 import { URL_LOGIN } from "../../Constants/endpoints-API";
-import { HOME_SISTEMA_GESTION } from "../../Routes/routes";
 import Swal from "sweetalert2";
 import './login.css';
+import Error from "../Layout/Error";
+import {HOME_SISTEMA_GESTION} from "../../Routes/routes";
 
 const LoginPage = () => {
   const [nombreUsuario, setNombreUsuario] = useState("");
   const [passwordUsuario, setPasswordUsuario] = useState("");
+  const token = useAuthStore((state) => state.token);
 
   const setToken = useAuthStore((state) => state.setToken);
   const setUserRole = useAuthStore((state) => state.setUserRole);
@@ -53,6 +55,7 @@ const LoginPage = () => {
   return (
     <>
       {/* aca empieza el otro */}
+      {!token ?
       <div className="loginContainer">
         <aside className="loginLeft">
           <div className="loginLeftText">
@@ -85,7 +88,7 @@ const LoginPage = () => {
                   required
                 ></input>
               </div>
-              <button type="submit" className="loginSubmitBtn">
+              <button type="submit" className="loginSubmitBtn" disabled={!nombreUsuario || !passwordUsuario}>
                 Ingresar
               </button>
               <div className="px-4 py-4 mt-5 recuperar-pass">
@@ -104,6 +107,7 @@ const LoginPage = () => {
           </div>
         </aside>
       </div>
+      : <Error/>}
     </>
   );
 };

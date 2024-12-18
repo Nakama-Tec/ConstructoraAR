@@ -1,3 +1,4 @@
+
 // Rutas de Page
 export const HOME = "/"
 export const ERROR = "*"
