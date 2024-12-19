@@ -18,13 +18,14 @@
   font-weight: bold;
 }
 .DetalleIngreso{
-  background-color: rgb(3, 163, 3)!important; /* Verde claro */
+  background-color: rgb(9, 194, 9)!important; /* Verde claro */
   color: white;
   font-weight: bold; /* Negrita */
   font-size: 16px; /* Cambiar el tamaño */
 }
+
 .TotalIngreso{
-  background-color: rgb(3, 163, 3)!important; /* Verde claro */
+  background-color: rgb(9, 194, 9)!important; /* Verde claro */
   color: white;
   font-weight: bold; /* Negrita */
   font-size: 16px; /* Cambiar el tamaño */
@@ -54,17 +55,27 @@
   font-size: 16px; /* Cambiar el tamaño */
 }
 .SaldoNeto{
-  background-color: rgb(3, 142, 163)!important; /* Verde claro */
+  background-color: rgb(8, 192, 221)!important; /* Verde claro */
   color: white;
   font-weight: bold; /* Negrita */
   font-size: 16px; /* Cambiar el tamaño */
 }
 .SaldoAcumulado{
-  background-color: rgb(3, 142, 163)!important; /* Verde claro */
+  background-color: rgb(8, 192, 221)!important; /* Verde claro */
   color: white;
   font-weight: bold; /* Negrita */
   font-size: 16px; /* Cambiar el tamaño */
 }
+
+.positive-value {
+  color: rgb(35, 33, 33); /* O el color que prefieras para valores positivos */
+}
+
+.negative-value {
+  color: red; /* Cambia a rojo los valores negativos */
+}
+
+
 
 .green {
   background-color: #d4edda; /* Verde claro */
