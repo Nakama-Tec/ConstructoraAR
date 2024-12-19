@@ -43,7 +43,7 @@ const MainViajes = () => {
       if (confirmacion.isConfirmed) {
         try {
           await axios.put(
-            `${URL_VIAJES_ELIMINAR}${viaje.id_viaje}`,
+            `${URL_VIAJES_ELIMINAR}${viaje.id_DetallesViaje}`,
             { ...viaje },
             { headers: { Authorization: `Bearer ${token}` } }
           );
@@ -58,10 +58,10 @@ const MainViajes = () => {
 
 
     const columns = [
-      { header: 'Nº Viaje', accessorKey: 'id_viaje' },
+      { header: 'Nº Viaje', accessorKey: 'id_DetallesViaje' },
       { header: 'Nº Vehiculo', accessorKey: 'patenteVehiculo' },
       { header: 'Nº Obra', accessorKey: 'nombreObra' },
-      { header: 'Fecha Viaje', accessorKey: 'fechaViaje' },
+      { header: 'Fecha de Viaje', accessorKey: 'fechaViaje' },
       {
         header: 'Acciones',
         cell: ({ row }) => (

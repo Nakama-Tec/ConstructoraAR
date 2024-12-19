@@ -3,23 +3,29 @@ const { conection } = require("../DB/Config")
 // Funcion para mostrar todos los detalles de los viajes
 
 const allDetallesViajes = (req, res) => {
-    const query = `SELECT dv.id_DetallesViaje as ID, o.nombreObra, o.direccionObra, veh.patenteVehiculo,
-    veh.tipoVehiculo AS TIPOVehiculo, v.id_viaje, v.fechaViaje, sm.nombreMaterial AS Material, sm.ubicacionStock AS Deposito,
-    sm.cantidadStock AS Cantidad_Material FROM Viajes v
-JOIN 
-    Obras o ON v.id_obra = o.id_obra
-JOIN 
-    Vehiculos veh ON veh.id_vehiculo = v.id_vehiculo
-JOIN 
-    DetallesViajes dv ON dv.id_viaje = v.id_viaje
-JOIN 
-    StockMateriales sm ON sm.id_stock = dv.id_stock
+    const query = `SELECT 
+    DV.id_DetallesViaje,
+    DV.cantidadStock,
+    DV.fechaViaje,
+    O.id_obra,
+    O.nombreObra,
+    O.direccionObra,
+    V.id_vehiculo,
+    V.patenteVehiculo,
+    V.tipoVehiculo,
+    SM.id_stock,
+    SM.nombreMaterial,
+    SM.ubicacionStock
+FROM 
+    DetallesViajes DV
+INNER JOIN 
+    Obras O ON DV.id_obra = O.id_obra
+INNER JOIN 
+    Vehiculos V ON DV.id_vehiculo = V.id_vehiculo
+INNER JOIN 
+    StockMateriales SM ON DV.id_stock = SM.id_stock
 WHERE 
-    o.activoObras = 1
-    AND veh.activoVehiculo = 1
-    AND v.activoViaje = 1
-    AND dv.activoDetalleViaje = 1
-    AND sm.activoStock = 1;
+    DV.activoDetalleViaje = 1;
 `
     conection.query(query, (err, results) => {
         if (err) throw err;
@@ -41,9 +47,9 @@ const singleDetallesViajes = (req, res) => {
 //Funcion para editar un detalle de viaje
 
 const editDetallesViajes = (req, res) => {
-    const {cantidadMaterial ,id_viaje, id_stock} = req.body;
+    const {fechaViaje, cantidadStock , id_obra, id_vehiculo, id_stock} = req.body;
     const id = req.params.id;
-    const query = `update DetallesViajes set id_viaje= ${id_viaje},  cantidadMaterial= ${cantidadMaterial}, id_stock= ${id_stock} where id_detalleViaje = ${id};`
+    const query = `update DetallesViajes set cantidadStock=${cantidadStock}, fechaViaje='${fechaViaje}', id_obra=${id_obra}, id_vehiculo=${id_vehiculo}, id_viaje=1, id_stock= ${id_stock} where id_DetallesViaje = ${id};`
     conection.query(query, (err, results) => {
         if (err) throw err;
         res.send(results)
@@ -53,8 +59,8 @@ const editDetallesViajes = (req, res) => {
 //Funcion para crear un detalle de viaje
 
 const createDetallesViajes = (req, res) => {
-    const {cantidadMaterial ,id_viaje, id_stock} = req.body;
-    const query = `insert into DetallesViajes (id_viaje, cantidadMaterial, id_stock) values (${id_viaje}, ${cantidadMaterial}, ${id_stock});`
+    const {cantidadStock, fechaViaje, id_obra, id_vehiculo, id_stock} = req.body;
+    const query = `insert into DetallesViajes (cantidadStock, fechaViaje, id_obra, id_vehiculo, id_viaje, id_stock) values (${cantidadStock}, '${fechaViaje}', 1, ${id_obra}, ${id_vehiculo}, ${id_stock});` 
     conection.query(query, (err, results) => {
         if (err) throw err;
         res.send(results)

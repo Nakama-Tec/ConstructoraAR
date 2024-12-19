@@ -129,9 +129,9 @@ export const URL_VIAJES_ELIMINAR = "http://localhost:8000/viajes/delete/";
 
 // Detalles Viajes
 export const URL_DETALLES_VIAJES = "http://localhost:8000/detalleViajes/";
-export const URL_DETALLES_VIAJES_CREAR = "http://localhost:8000/detallesViajes/create/";
-export const URL_DETALLES_VIAJES_EDITAR = "http://localhost:8000/detallesViajes/edit/";
-export const URL_DETALLES_VIAJES_ELIMINAR = "http://localhost:8000/detallesViajes/delete/";
+export const URL_DETALLES_VIAJES_CREAR = "http://localhost:8000/detalleViajes/create";
+export const URL_DETALLES_VIAJES_EDITAR = "http://localhost:8000/detalleViajes/edit/";
+export const URL_DETALLES_VIAJES_ELIMINAR = "http://localhost:8000/detalleViajes/delete/";
 
 //Remuneracion
 export const URL_REMUNERACIONES = "http://localhost:8000/remuneraciones/";
