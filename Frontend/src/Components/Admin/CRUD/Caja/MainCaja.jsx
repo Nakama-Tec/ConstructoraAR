@@ -153,7 +153,7 @@ const SaldoAcumulado = (mesIndex) => {
     () => {
       if (!datosMensuales.length) return [];
     return [
-      { details: "1. Detalle de Ingresos", style: "green-bold" },
+      { details: "1. Detalle de Ingresos", style: "DetalleIngreso" },
       { details: ' . 1.1 Ingresos por Ventas de Terrenos',...datosMensuales.reduce((acc, mes, index) => {
           const mesAbrev = ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"][index];
           acc[mesAbrev] = "$" + (mes[0]?.Monto ?? 0);  
@@ -193,7 +193,7 @@ const SaldoAcumulado = (mesIndex) => {
         dec: `$${TotalIngresos(11)}`, style: "TotalIngreso" },
       { details: "", style: "white-bold" },
       { details: "", style: "white-bold" },
-      { details: "2. Detalle de Egresos", style: "yellow-bold" },
+      { details: "2. Detalle de Egresos", style: "DetalleEgresos" },
       { details: " .  2.1 Luz",...datosMensuales.reduce((acc, mes, index) => {
         const mesAbrev = ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"][index];
         acc[mesAbrev] = "$" + (mes[6]?.Monto ?? 0);  
@@ -218,7 +218,7 @@ const SaldoAcumulado = (mesIndex) => {
         sep: `$${TotalEgresosConsumo(8)}`,
         oct: `$${TotalEgresosConsumo(9)}`,
         nov: `$${TotalEgresosConsumo(10)}`,
-        dec: `$${TotalEgresosConsumo(11)}`, style: "yellow-bold" },
+        dec: `$${TotalEgresosConsumo(11)}`, style: "EgresoConsumo" },
       { details: "", style: "yellow" },
       { details: "", style: "yellow" },
       { details: ' .  2.4  Compra de Elementos de Oficina',...datosMensuales.reduce((acc, mes, index) => {
@@ -281,7 +281,7 @@ const SaldoAcumulado = (mesIndex) => {
         sep: `$${TotalEgresosOperativos(8)}`,
         oct: `$${TotalEgresosOperativos(9)}`,
         nov: `$${TotalEgresosOperativos(10)}`,
-        dec: `$${TotalEgresosOperativos(11)}`, style: "yellow-bold " },
+        dec: `$${TotalEgresosOperativos(11)}`, style: "TotalEgresosOperativos" },
       { details: "", style: "yellow" },
       { details: "", style: "yellow"},
       { details: " .  2.0 Total de Egresos",
@@ -296,7 +296,7 @@ const SaldoAcumulado = (mesIndex) => {
         sep: `$${TotalEgresos(8)}`,
         oct: `$${TotalEgresos(9)}`,
         nov: `$${TotalEgresos(10)}`,
-        dec: `$${TotalEgresos(11)}`, style: "yellow-bold" },
+        dec: `$${TotalEgresos(11)}`, style: "TotalEgreso" },
       { details: "", style: "white-bold" },
       { details: "", style: "white-bold" },
       { details: "3.0 SALDO NETO",
@@ -311,7 +311,7 @@ const SaldoAcumulado = (mesIndex) => {
         sep: `$${SaldoNeto(8)}`,
         oct: `$${SaldoNeto(9)}`,
         nov: `$${SaldoNeto(10)}`,
-        dec: `$${SaldoNeto(11)}`, style: "aqua-bold" },
+        dec: `$${SaldoNeto(11)}`, style: "SaldoNeto" },
       { details: "4.0 SALDO ACUMULADO",
         jan: `$${SaldoAcumulado(0)}`,
         feb: `$${SaldoAcumulado(1)}`,
@@ -324,7 +324,7 @@ const SaldoAcumulado = (mesIndex) => {
         sep: `$${SaldoAcumulado(8)}`,
         oct: `$${SaldoAcumulado(9)}`,
         nov: `$${SaldoAcumulado(10)}`,
-        dec: `$${SaldoAcumulado(11)}`,  style: " aqua-bold" },
+        dec: `$${SaldoAcumulado(11)}`,  style: " SaldoAcumulado" },
     ];
   }, [datosMensuales]);
   

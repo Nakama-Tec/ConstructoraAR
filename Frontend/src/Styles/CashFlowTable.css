@@ -17,12 +17,54 @@
   color: white; /* Color del texto */
   font-weight: bold;
 }
-
-.TotalIngreso{
-  background-color: green!important; /* Verde claro */
+.DetalleIngreso{
+  background-color: rgb(3, 163, 3)!important; /* Verde claro */
   color: white;
+  font-weight: bold; /* Negrita */
+  font-size: 16px; /* Cambiar el tamaño */
 }
-
+.TotalIngreso{
+  background-color: rgb(3, 163, 3)!important; /* Verde claro */
+  color: white;
+  font-weight: bold; /* Negrita */
+  font-size: 16px; /* Cambiar el tamaño */
+}
+.DetalleEgresos{
+  background-color: rgba(246, 182, 6, 0.881)!important; /* Rojo */
+  color: black;
+  font-weight: bold; /* Negrita */
+  font-size: 16px; /* Cambiar el tamaño */
+}
+.EgresoConsumo{
+  background-color: rgba(246, 182, 6, 0.881)!important; /* Rojo */
+  color: black;
+  font-weight: bold; /* Negrita */
+  font-size: 16px; /* Cambiar el tamaño */
+}
+.TotalEgresosOperativos{
+  background-color: rgba(246, 182, 6, 0.881)!important; /* Rojo */
+  color: black;
+  font-weight: bold; /* Negrita */
+  font-size: 16px; /* Cambiar el tamaño */
+}
+.TotalEgreso{
+  background-color: rgba(246, 182, 6, 0.881)!important; /* Rojo */
+  color: black;
+  font-weight: bold; /* Negrita */
+  font-size: 16px; /* Cambiar el tamaño */
+}
+.SaldoNeto{
+  background-color: rgb(3, 142, 163)!important; /* Verde claro */
+  color: white;
+  font-weight: bold; /* Negrita */
+  font-size: 16px; /* Cambiar el tamaño */
+}
+.SaldoAcumulado{
+  background-color: rgb(3, 142, 163)!important; /* Verde claro */
+  color: white;
+  font-weight: bold; /* Negrita */
+  font-size: 16px; /* Cambiar el tamaño */
+}
 
 .green {
   background-color: #d4edda; /* Verde claro */
@@ -61,30 +103,3 @@
   opacity: 0.8;
 }
 
-/* .cash-flow-table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-  
-  .cash-flow-table th,
-  .cash-flow-table td {
-    border: 1px solid #202020;
-    padding: 8px;
-    text-align: center;
-  }
-  
-  .cash-flow-table th {
-    background-color: #6e6e6e;
-    font-weight: bold;
-  } */
-  
-  /* Fijar la primera columna */
-  /* .cash-flow-table th:first-child,
-  .cash-flow-table td:first-child {
-    position: sticky;
-    left: 0;
-    background-color: #ffffff;
-    z-index: 1;
-    color: #202020;
-  } */
-  
