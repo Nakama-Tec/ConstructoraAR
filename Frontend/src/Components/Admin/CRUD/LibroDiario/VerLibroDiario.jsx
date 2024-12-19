@@ -12,6 +12,15 @@ const VerLibroDiario = () => {
   const [fechaSeleccionada, setFechaSeleccionada] = useState('');
   const [datos, setDatos] = useState([]);
 
+
+  // Formatear números con separador de miles
+  const formatCurrency = (value) => {
+    return value.toLocaleString("es-AR", {
+      style: "currency",
+      currency: "ARS",
+    });
+  };
+
   useEffect(() => {
     const date = new Date();
     const año = date.getFullYear();
@@ -29,29 +38,43 @@ const VerLibroDiario = () => {
         { fechaRegistro },
         { headers: { authorization: `Bearer ${token}` } }
       );
-      if (response.status === 200) obtenerDatosPorGet();
+      if (response.status === 200) {setDatos(response.data.data);}
+      // if (response.status === 200) 
+        // obtenerDatosPorGet();
     } catch (error) {
       console.error('Error al enviar la fecha por POST:', error);
     }
   };
 
-  const obtenerDatosPorGet = async () => {
-    try {
-      const response = await axios.get(`${URL_LIBRO_DIARIO}/get`, {
-        params: { fechaRegistro },
-        headers: { authorization: `Bearer ${token}` },
-      });
-      if (response.status === 200) setDatos(response.data.data);
-    } catch (error) {
-      console.error('Error al obtener los datos por GET:', error);
-    }
-  };
+
 
   const handleBuscarFecha = async () => {
     await enviarFechaPorPost();
-    await obtenerDatosPorGet();
+    // await obtenerDatosPorGet();
     setFechaRegistro(fechaSeleccionada);
   };
+
+
+    // Dividir los datos en Debe y Haber
+    const calcularTotales = () => {
+      const debe = datos.filter((item) => item.TIPO === "Egreso");
+      const haber = datos.filter((item) => 
+        item.TIPO === "Ingreso" ? "Ingreso" :
+        item.TIPO === "CERTIFICADO" ? "CERTIFICADO" :
+        item.TIPO === "VENTA TERRENO" ? "VENTA TERRENO" :
+        item.TIPO === "ALQUILER" ? "ALQUILER" :
+        "Otros ingresos"
+      );  
+      const totalDebe = debe.reduce((sum, item) => sum + parseFloat(item.Monto), 0);
+      const totalHaber = haber.reduce((sum, item) => sum + parseFloat(item.Monto), 0);
+      const neto = totalHaber - totalDebe;
+
+  
+      return { debe, haber, totalDebe, totalHaber, neto };
+    };
+  
+    const { debe, haber, totalDebe, totalHaber, neto } = calcularTotales();
+
 
   return (
     <div>
@@ -128,23 +151,54 @@ const VerLibroDiario = () => {
               </tr>
             </thead>
             <tbody>
-              {datos.length > 0 ? (
-                datos.map((item, index) => (
+              {/* {datos.length > 0 ? ( */}
+                {debe.map((item, index) => (
                   <tr key={index} className="even:bg-gray-100">
                     <td className="border border-gray-300 px-4 py-2">{index + 1}</td>
                     <td className="border border-gray-300 px-4 py-2">{item.TIPO}</td>
-                    <td className="border border-gray-300 px-4 py-2">{item.Descripcion}</td>
+                    <td className="border border-gray-300 px-4 py-2">{formatCurrency(item.Monto)}</td>
                     <td className="border border-gray-300 px-4 py-2">{item.Monto}</td>
                     <td className="border border-gray-300 px-4 py-2">{item.Fecha}</td>
                   </tr>
-                ))
-              ) : (
+                     ))}
+                                {/* Total Debe */}
+                  <tr className="bg-gray-300 font-bold">
+                      <td colSpan="3" className="text-right px-4 py-2">Total Debe:</td>
+                      <td className="px-4 py-2">{formatCurrency(totalDebe)}</td>
+                      <td></td>
+                   </tr>
+                  
+                                {/* Sección Haber */}
+                   {haber.map((item, index) => (
+                      <tr key={`haber-${index}`} className="even:bg-gray-100">
+                    <td className="border border-gray-300 px-4 py-2">{index + 1}</td>
+                    <td className="border border-gray-300 px-4 py-2">{item.TIPO}</td>
+                    <td className="border border-gray-300 px-4 py-2">{formatCurrency(item.Monto)}</td>
+                    <td className="border border-gray-300 px-4 py-2">{item.Monto}</td>
+                    <td className="border border-gray-300 px-4 py-2">{item.Fecha}</td>
+                    </tr>
+                                ))}
+                                {/* Total Haber */}
+                    <tr className="bg-gray-300 font-bold">
+                      <td colSpan="3" className="text-right px-4 py-2">Total Haber:</td>
+                      <td className="px-4 py-2">{formatCurrency(totalHaber)}</td>
+                      <td></td>
+                     </tr>
+                  
+                                {/* Neto */}
+                                <tr className={`font-bold ${neto === 0 ? "bg-green-300" : "bg-red-300"}`}>
+                                  <td colSpan="3" className="text-right px-4 py-2">Total Neto:</td>
+                                  <td className="px-4 py-2">{formatCurrency(neto)}</td>
+                                  <td>{neto !== 0 ? "Correcto" : "Incorrecto"}</td>
+                                </tr>
+                
+              {/* ) : (
                 <tr>
                   <td colSpan="5" className="text-center border border-gray-300 px-4 py-2">
                     No hay datos disponibles.
                   </td>
                 </tr>
-              )}
+              )} */}
             </tbody>
           </table>
         </div>

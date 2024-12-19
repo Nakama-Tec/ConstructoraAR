@@ -3,8 +3,6 @@ const { conection } = require("../DB/Config")
 const allCashFlow =(req,res)=>{
 // todas las fechas vienen desde el front por medio de un formulario y es traida por req.body
     const {fechaInicio, fechaFin} = req.body
-
-
  
     const query = `
 select "1.1  Ingresos por Ventas de Terrenos" as TIPO, sum(t.precioTerreno) as Monto from Terrenos t 

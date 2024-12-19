@@ -13,31 +13,31 @@ import { Link } from 'react-router-dom';
 const MainCaja = () => {
 
   const token = useAuthStore((state) => state.token);
-  const [fechaSeleccionada, setFechaSeleccionada] = useState('');
-  const [prueba, setPrueba] = useState([]);
-  const [datos, setDatos] = useState([]);
+  // const [fechaSeleccionada, setFechaSeleccionada] = useState('');
+  // const [prueba, setPrueba] = useState([]);
+  // const [datos, setDatos] = useState([]);
   const [datosMensuales, setDatosMensuales] = useState([]);
   const [año, setAño] = useState(new Date().getFullYear());
 
-  const [mes, setMes] = useState([]);
-  const [todosLosDatos, setTodosLosDatos] = useState([]); // Nuevo estado para almacenar todas las respuestas
+  // const [mes, setMes] = useState([]);
+  // const [todosLosDatos, setTodosLosDatos] = useState([]); // Nuevo estado para almacenar todas las respuestas
 
  // Función para obtener la fecha actual en formato "YYYY-MM-DD"
- const obtenerFechaInicio = () => {
-  const hoy = new Date();
-  const año = hoy.getFullYear();
-  const mes = (hoy.getMonth() + 1).toString().padStart(2, "0");
-  const dia = hoy.getDate().toString().padStart(2, "0");
-  return `${año}-01-01`;
-};
+//  const obtenerFechaInicio = () => {
+//   const hoy = new Date();
+//   const año = hoy.getFullYear();
+//   const mes = (hoy.getMonth() + 1).toString().padStart(2, "0");
+//   const dia = hoy.getDate().toString().padStart(2, "0");
+//   return `${año}-01-01`;
+// };
 
-const obtenerFechaFin = () => {
-  const hoy = new Date();
-  const año = hoy.getFullYear();
-  const mes = (hoy.getMonth() + 1).toString().padStart(2, "0");
-  const dia = hoy.getDate().toString().padStart(2, "0");
-  return `${año}-01-31`;
-};
+// const obtenerFechaFin = () => {
+//   const hoy = new Date();
+//   const año = hoy.getFullYear();
+//   const mes = (hoy.getMonth() + 1).toString().padStart(2, "0");
+//   const dia = hoy.getDate().toString().padStart(2, "0");
+//   return `${año}-01-31`;
+// };
 
   // Enviar la fecha por POST
   const enviarFechaPorPost = async () => {

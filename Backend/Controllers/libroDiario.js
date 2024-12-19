@@ -26,7 +26,7 @@ const alldaily_books = (req, res) => {
 
     UNION ALL
 
-    SELECT 'OPERACION' as TIPO, concat(op.nombreOperacion, " ", op.tipoOperacion) as Descripcion, op.montoOperacion as Monto, op.fechaOperacion as Fecha
+    SELECT op.tipoOperacion as TIPO, concat(op.nombreOperacion) as Descripcion, op.montoOperacion as Monto, op.fechaOperacion as Fecha
     FROM Operaciones op
     WHERE op.fechaOperacion = ?
 
