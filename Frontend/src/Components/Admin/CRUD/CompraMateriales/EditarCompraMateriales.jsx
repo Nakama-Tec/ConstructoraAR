@@ -103,7 +103,7 @@ const EditarCompraMateriales = ({ onCompraMaterialEditado }) => {
           <select id="select_destino" class="swal2-select">${generateStockOptions2()}</select>
         </div>
       `,
-      confirmButtonText: 'Registrar',
+      confirmButtonText: 'Enviar',
       showCancelButton: true,
       didRender: () => {
         const toggleCustomInput = (toggleButtonId, inputContainerId, optionsGenerator) => {

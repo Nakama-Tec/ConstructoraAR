@@ -3,7 +3,7 @@ import Swal from 'sweetalert2';
 import axios from 'axios';
 import useAuthStore from '../../../../Context/useAuthStore';
 import useRegistroStore from '../../../../Context/useRegistroStore';
-import { URL_VIAJES_CREAR, URL_VEHICULOS, URL_OBRAS, URL_STOCK } from '../../../../Constants/endpoints-API';
+import { URL_VIAJES_CREAR, URL_VEHICULOS, URL_OBRAS, URL_STOCK, URL_DETALLES_VIAJES_CREAR } from '../../../../Constants/endpoints-API';
 
 
 
@@ -93,7 +93,7 @@ const CrearViajes = ({onViajeRegistrado}) => {
           <br>
           <label><b>Cantidad</b></label> 
           <br>
-          <input id="cantidadStock" class="swal2-input" placeholder="Cantidad" type="number"/>
+          <input id="cantidadStock" class="swal2-input" placeholder="Cantidad" type="number" />
           <br>
           <br>
           <label><b>Ubicacion</b></label> 
@@ -136,7 +136,7 @@ const CrearViajes = ({onViajeRegistrado}) => {
       }).then(async (result) => {
         if (result.isConfirmed) {
           try {
-            await axios.post(URL_VIAJES_CREAR, result.value, {
+            await axios.post(URL_DETALLES_VIAJES_CREAR, result.value, {
               headers: { Authorization: `Bearer ${token}` }
             });
             Swal.fire('¡Éxito!', 'El viaje fue registrado correctamente.', 'success');

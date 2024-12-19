@@ -3,7 +3,7 @@ import Swal from 'sweetalert2';
 import axios from 'axios';
 import useAuthStore from '../../../../Context/useAuthStore';
 import useRegistroStore from '../../../../Context/useRegistroStore';
-import { URL_VIAJES_EDITAR, URL_VEHICULOS, URL_OBRAS, URL_STOCK } from '../../../../Constants/endpoints-API';
+import { URL_VIAJES_EDITAR, URL_VEHICULOS, URL_OBRAS, URL_STOCK, URL_DETALLES_VIAJES_CREAR, URL_DETALLES_VIAJES_EDITAR } from '../../../../Constants/endpoints-API';
 
 
 const EditarViaje = ({ onViajeEditado }) => {
@@ -46,75 +46,100 @@ const EditarViaje = ({ onViajeEditado }) => {
     Swal.fire({
       title: 'Editar Viaje',
       html: `
-          <label><b>Fecha Viaje</b></label> 
-          <br>
-          <input id="fechaViaje" class="swal2-input" type="date" value="${registroSeleccionado.fechaViaje}" />
-          <br>
-          <br>
-          <label><b>Patente Vehiculo</b></label> 
-          <br>
-          <select id="select_vehiculo" class="swal2-select">
-          ${vehiculos
-          .map(
-            (vehiculo) =>
-              `<option value="${vehiculo.id_vehiculo}" ${vehiculo.id_vehiculo === registroSeleccionado.id_viaje ? 'selected' : ''
-              }>${vehiculo.patenteVehiculo}</option>`
-          )
-          .join('')}
-        </select>
-          <br>
-          <br>
-          <label><b>Selecciona la obra</b></label> 
-          <br>
-        <select id="select_obra" class="swal2-select">
-          ${obras
-          .map(
-            (obra) =>
-              `<option value="${obra.id_obra}" ${obra.id_obra === registroSeleccionado.id_viaje ? 'selected' : ''
-              }>${obra.nombreObra}</option>`
-          )
-          .join('')}
-        </select>
-        <br>
-        
-        `,
+      <label><b>Fecha Viaje</b></label> 
+      <br>
+      <input id="fechaViaje" class="swal2-input" type="date" value="${registroSeleccionado.fechaViaje}" />
+      <br>
+      <br>
+      <label><b>Patente Vehiculo</b></label> 
+      <br>
+      <select id="select_vehiculo" class="swal2-select">
+      ${vehiculos
+      .map(
+      (vehiculo) =>
+      `<option value="${vehiculo.id_vehiculo}" ${vehiculo.id_vehiculo === registroSeleccionado.id_vehiculo ? 'selected' : ''
+      }>${vehiculo.patenteVehiculo}</option>`
+      )
+      .join('')}
+      </select>
+      <br>
+      <br>
+      <label><b>Selecciona la obra</b></label> 
+      <br>
+      <select id="select_obra" class="swal2-select">
+      ${obras
+      .map(
+      (obra) =>
+      `<option value="${obra.id_obra}" ${obra.id_obra === registroSeleccionado.id_obra ? 'selected' : ''
+      }>${obra.nombreObra}</option>`
+      )
+      .join('')}
+      </select>
+      <br>
+      <br>
+      <label><b>Selecciona el Material</b></label> 
+      <br>
+      <select id="select_stock" class="swal2-select">
+      ${stocks
+      .map(
+      (stock) =>
+      `<option value="${stock.id_stock}" ${stock.id_stock === registroSeleccionado.id_stock ? 'selected' : ''
+      }>${stock.nombreMaterial}</option>`
+      )
+      .join('')}
+      </select>
+      <br>
+      <br>
+      <label><b>Cantidad</b></label> 
+      <br>
+      <input id="cantidadStock" class="swal2-input" placeholder="Cantidad" type="number" value="${registroSeleccionado.cantidadStock}" />
+      <br>
+      <br>
+      <label><b>Nombre de la Obra Seleccionada</b></label> 
+      <br>
+      <input id="nombreObraSeleccionada" class="swal2-input" type="text" value="${obras.find(obra => obra.id_obra === registroSeleccionado.id_obra)?.nombreObra}" readonly />
+      <br>
+      `,
       confirmButtonText: 'Enviar',
       showCancelButton: true,
       preConfirm: () => {
-        const fechaViaje = document.getElementById('fechaViaje').value;
-        const id_vehiculo = document.getElementById('select_vehiculo').value;
-        const id_obra = document.getElementById('select_obra').value;
-
-
-        if (!fechaViaje || !id_vehiculo || !id_obra) {
-          Swal.showValidationMessage('Todos los campos son obligatorios');
-        }
-
-        return {
-          fechaViaje,
-          id_vehiculo,
-          id_obra,
-        };
+      const fechaViaje = document.getElementById('fechaViaje')?.value;
+      const id_vehiculo = document.getElementById('select_vehiculo')?.value;
+      const id_obra = document.getElementById('select_obra')?.value;
+      const id_stock = document.getElementById('select_stock')?.value;
+      const cantidadStock = document.getElementById('cantidadStock')?.value;
+    
+      if (!fechaViaje || !id_vehiculo || !id_obra || !id_stock) {
+      Swal.showValidationMessage('Todos los campos son obligatorios');
+      return null;
+      }
+    
+      return {
+      fechaViaje,
+      id_vehiculo,
+      id_obra,
+      id_stock,
+      cantidadStock
+      };
       }
     }).then(async (result) => {
-      if (result.isConfirmed) {
-        try {
-          await axios.put(`${URL_VIAJES_EDITAR}${registroSeleccionado.id_viaje}`, result.value, {
-            headers: { Authorization: `Bearer ${token}` }
-          });
-          Swal.fire('¡Éxito!', 'El viaje fue actualizado correctamente.', 'success');
-          onViajeEditado();
-          clearRegistroSeleccionado();
-        } catch (error) {
-          console.error('Error al actualizar viaje:', error);
-          Swal.fire('Error', 'Hubo un problema al actualizar el viaje.', 'error');
-        }
+      if (result.isConfirmed && result.value) {
+      try {
+      await axios.put(`${URL_DETALLES_VIAJES_EDITAR}${registroSeleccionado.id_DetallesViaje}`, result.value, {
+      headers: { Authorization: `Bearer ${token}` }
+      });
+      Swal.fire('¡Éxito!', 'El viaje fue actualizado correctamente.', 'success');
+      onViajeEditado();
+      clearRegistroSeleccionado();
+      } catch (error) {
+      console.error('Error al actualizar viaje:', error);
+      Swal.fire('Error', 'Hubo un problema al actualizar el viaje.', 'error');
+      }
       } else {
-        clearRegistroSeleccionado();
+      clearRegistroSeleccionado();
       }
     });
   };
-
   useEffect(() => {
     if (registroSeleccionado) {
       handleEditarViaje();
