@@ -4,6 +4,7 @@ import PreguntasFrecuentes from './PreguntasFrecuentes'
 import BannerPrincipal from './BannerPrincipal'
 import Servicios from './Servicios'
 import Contacto from './Contacto'
+import TopButton from '../../Components/Layout/TopButton'
 
 
 const Home = () => {
@@ -13,7 +14,8 @@ const Home = () => {
       <Servicios />
       <CarruselServicios />
       <PreguntasFrecuentes/>      
-      <Contacto/>      
+      <Contacto/>    
+      <TopButton />  
     </>
   )
 }

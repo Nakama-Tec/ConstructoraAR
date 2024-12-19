@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useReactTable, getCoreRowModel, flexRender, getPaginationRowModel, getFilteredRowModel } from '@tanstack/react-table';
 import '../../../../Styles/table.css';
+import { LIBRO_DIARIO } from '../../../../Routes/routes';
+import { Link } from 'react-router-dom';
 import { URL_COMPRA_MATERIALES, URL_COMPRA_MATERIALES_ELIMINAR } from '../../../../Constants/endpoints-API';
 import useAuthStore from '../../../../Context/useAuthStore';
 import useRegistroStore from '../../../../Context/useRegistroStore';
@@ -131,7 +133,15 @@ const MainCompraMateriales = () => {
       Registrar Compra de material
     </button>
   </div>
-
+  <div className="flex justify-start items-center bg-gray-100 p-4">
+  <Link
+    to={LIBRO_DIARIO}
+    className="px-6 py-3 bg-green-600 text-white font-semibold text-lg md:text-xl rounded-lg shadow-lg transition transform hover:bg-blue-700 hover:-translate-y-1 hover:shadow-xl focus:ring-4 focus:ring-blue-500 focus:ring-opacity-50 focus:outline-none"
+  >
+    Volver a Libro Diario
+  </Link>
+</div>
+<br />
   <div className="flex">
     <div className="relative top-8">
       <Aside />

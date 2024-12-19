@@ -10,6 +10,7 @@ import imgpileta from "../../assets/imgConstrucciones/casapileta.jpg";
 import imgrefaccion from "../../assets/imgConstrucciones/cardrefacciones.jpg";
 import imgduplex from "../../assets/imgConstrucciones/cardduplex.jpg";
 import imgdepa from "../../assets/imgConstrucciones/imgdepartamento.jpg";
+import TopButton from "../../Components/Layout/TopButton";
 
 const opcionesConstruccion = [
   {
@@ -60,9 +61,7 @@ const MainConstrucciones = () => {
     }
   };
 
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
+
 
   return (
     <>
@@ -186,6 +185,7 @@ const MainConstrucciones = () => {
         </div>
 
         <Contacto />
+        <TopButton />
     </>
   );
 };

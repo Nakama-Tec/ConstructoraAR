@@ -2,11 +2,12 @@ import { useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import useAuthStore from "../../Context/useAuthStore";
-import { URL_LOGIN } from "../../Constants/endpoints-API";
+import { URL_LOGIN, } from "../../Constants/endpoints-API";
 import Swal from "sweetalert2";
 import './login.css';
+import { HOME_SISTEMA_GESTION } from "../../Routes/routes";
 import Error from "../Layout/Error";
-import {HOME_SISTEMA_GESTION} from "../../Routes/routes";
+
 
 const LoginPage = () => {
   const [nombreUsuario, setNombreUsuario] = useState("");

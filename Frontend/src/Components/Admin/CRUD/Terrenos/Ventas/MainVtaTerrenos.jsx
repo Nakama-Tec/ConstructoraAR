@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import { useReactTable, getCoreRowModel, flexRender, getPaginationRowModel, getFilteredRowModel } from '@tanstack/react-table';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import { Link } from 'react-router-dom';
+import { LIBRO_DIARIO } from '../../../../../Routes/routes';
 import { URL_VTA_TERRENOS, URL_VTA_TERRENOS_ELIMINAR } from '../../../../../Constants/endpoints-API';
 import EditarVtaTerrenos from './EditarVtaTerrenos';
 import CrearVtaTerrenos from './CrearVtaTerrenos';
@@ -134,7 +136,15 @@ const MainVtaTerrenos = () => {
       Registrar Venta de terreno
     </button>
   </div>
-
+  <div className="flex justify-start items-center bg-gray-100 p-4">
+  <Link
+    to={LIBRO_DIARIO}
+    className="px-6 py-3 bg-green-600 text-white font-semibold text-lg md:text-xl rounded-lg shadow-lg transition transform hover:bg-blue-700 hover:-translate-y-1 hover:shadow-xl focus:ring-4 focus:ring-blue-500 focus:ring-opacity-50 focus:outline-none"
+  >
+    Volver a Libro Diario
+  </Link>
+</div>
+<br />
   <div className="flex">
     <div className="relative top-8">
       <Aside />
