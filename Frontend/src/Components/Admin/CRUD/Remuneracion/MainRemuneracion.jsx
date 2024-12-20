@@ -61,6 +61,7 @@ const MainRemuneracion = () => {
 
     const columns = [
       { header: 'Nº Remuneracion', accessorKey: 'id_remuneracion' },
+      { header: 'Nombre Remuneracion', accessorKey: 'detalle' },
       { header: 'Monto Remuneracion', accessorFn: (row) => `$ ${row.montoRemuneracion}` },
       { header: 'Cantidad de empleados', accessorKey: 'cantEmpleado' },
       { header: 'Fecha', accessorKey: 'fechaRemuneracion' },

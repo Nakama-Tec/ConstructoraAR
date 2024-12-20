@@ -94,11 +94,7 @@ const EditarViaje = ({ onViajeEditado }) => {
       <br>
       <input id="cantidadStock" class="swal2-input" placeholder="Cantidad" type="number" value="${registroSeleccionado.cantidadStock}" />
       <br>
-      <br>
-      <label><b>Nombre de la Obra Seleccionada</b></label> 
-      <br>
-      <input id="nombreObraSeleccionada" class="swal2-input" type="text" value="${obras.find(obra => obra.id_obra === registroSeleccionado.id_obra)?.nombreObra}" readonly />
-      <br>
+
       `,
       confirmButtonText: 'Enviar',
       showCancelButton: true,
