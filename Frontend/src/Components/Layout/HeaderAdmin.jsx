@@ -8,7 +8,7 @@ const HeaderAdmin = () => {
   const token = useAuthStore((state) => state.token);
   const userRole = useAuthStore((state) => state.userRole);
   const clearAuth = useAuthStore((state) => state.clearAuth);
-  const userName = useAuthStore((state) => state.userName);
+  // const userName = useAuthStore((state) => state.userName);
 
   const navigate = useNavigate();
   
@@ -28,9 +28,9 @@ const HeaderAdmin = () => {
     />
   </Link>
 
-  {userName && (
+  {userRole && (
     <p className="text-3xl relative left-10 md:text-4xl lg:text-4xl font-semibold mt-4 md:mt-0 uppercase">
-      Bienvenido, {userName}!
+      Bienvenido, {userRole}!
     </p>
   )}
 

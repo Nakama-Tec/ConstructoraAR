@@ -12,6 +12,7 @@ import Error from "../Layout/Error";
 const LoginPage = () => {
   const [nombreUsuario, setNombreUsuario] = useState("");
   const [passwordUsuario, setPasswordUsuario] = useState("");
+  const [rolUsuario, setrolUsuario] = useState("");
   const token = useAuthStore((state) => state.token);
 
   const setToken = useAuthStore((state) => state.setToken);
@@ -25,6 +26,7 @@ const LoginPage = () => {
     try {
       const response = await axios.post(URL_LOGIN, {
         nombreUsuario,
+        rolUsuario,
         passwordUsuario,
       });
       setToken(response.data.token);
@@ -35,7 +37,7 @@ const LoginPage = () => {
 
       const decodedToken = JSON.parse(atob(response.data.token.split(".")[1]));
       setUserRole(decodedToken.role);
-
+      setrolUsuario(decodedToken.role);
       setUserName(nombreUsuario); // Guardar el nombre de usuario en el estado global
 
       navigate(HOME_SISTEMA_GESTION);
