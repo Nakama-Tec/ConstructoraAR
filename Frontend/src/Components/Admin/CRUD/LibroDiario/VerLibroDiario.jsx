@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
-import { URL_LIBRO_DIARIO } from '../../../../Constants/endpoints-API';
+import { URL_LIBRO_DIARIO, URL_PENDIENTES } from '../../../../Constants/endpoints-API';
 import useAuthStore from '../../../../Context/useAuthStore';
 import axios from 'axios';
-import { Toaster } from 'react-hot-toast';
+import { Toaster, toast } from 'react-hot-toast';
 import Aside from '../../../Layout/Aside';
 import { Link } from 'react-router-dom';
 
@@ -75,6 +75,38 @@ const VerLibroDiario = () => {
   
     const { debe, haber, totalDebe, totalHaber, neto } = calcularTotales();
 
+
+    useEffect(() => {
+      const obtenerPendientes = async () => {
+        try {
+          const response = await axios.get(`${URL_PENDIENTES}`, {
+            headers: { Authorization: `Bearer ${token}` },
+          });
+          const pendientes = response.data;
+      
+          // Filtrar solo las tareas en estado "Pendiente"
+          const tareasPendientes = pendientes.filter((tarea) => tarea.estado === 'Pendiente');
+      
+          if (tareasPendientes.length > 0) {
+            toast(`Tienes ${tareasPendientes.length} tareas pendientes.`, {
+              icon: '🔔', // Icono de la notificación
+              position: 'top-right', // Posición de la notificación
+            });
+          } else {
+            toast.info('No tienes tareas pendientes.', {
+              position: 'top-right',
+            });
+          }
+        } catch (error) {
+          console.error('Error al obtener las tareas pendientes:', error);
+          toast.error('Error al cargar las tareas pendientes.', {
+            position: 'top-right',
+          });
+        }
+      };
+  
+      obtenerPendientes();
+    }, [token]);
 
   return (
     <div>
