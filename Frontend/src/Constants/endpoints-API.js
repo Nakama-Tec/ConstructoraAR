@@ -1,12 +1,12 @@
 // EndPoinds
 
 // Login
-export const URL_LOGIN = "http://localhost:8000/login";
+export const URL_LOGIN = "https://constructoraar.onrender.com/login";
 
 // Recuperacion de Contraseña
 
-export const URL_RECUPERAR_CONTRASENA = "http://localhost:8000/recuperarPass";
-export const URL_CAMBIAR_CONTRASENA = "http://localhost:8000/reset-password";
+export const URL_RECUPERAR_CONTRASENA = "https://constructoraar.onrender.com/recuperarPass";
+export const URL_CAMBIAR_CONTRASENA = "https://constructoraar.onrender.com/reset-password";
 
 // Clientes
 
@@ -39,15 +39,15 @@ export const URL_USUARIOS_ELIMINAR = "http://localhost:8000/usuarios/delete/";
 
 //empleados
 
-export const URL_EMPLEADOS = "http://localhost:8000/empleados/";
-export const URL_EMPLEADOS_CREAR = "http://localhost:8000/empleados/create/";
-export const URL_EMPLEADOS_EDITAR = "http://localhost:8000/empleados/edit/";
-export const URL_EMPLEADOS_ELIMINAR = "http://localhost:8000/empleados/delete/";
+export const URL_EMPLEADOS = "https://constructoraar.onrender.com/empleados/";
+export const URL_EMPLEADOS_CREAR = "https://constructoraar.onrender.com/empleados/create/";
+export const URL_EMPLEADOS_EDITAR = "https://constructoraar.onrender.com/empleados/edit/";
+export const URL_EMPLEADOS_ELIMINAR = "https://constructoraar.onrender.com/empleados/delete/";
 
 // Operaciones
 
-export const URL_OPERACIONES = "http://localhost:8000/Operaciones";
-export const URL_OPERACIONES_CREAR = "http://localhost:8000/Operaciones/create";
+export const URL_OPERACIONES = "https://constructoraar.onrender.com/Operaciones";
+export const URL_OPERACIONES_CREAR = "https://constructoraar.onrender.com/Operaciones/create";
 export const URL_OPERACIONES_EDITAR = "http://localhost:8000/Operaciones/edit/";
 export const URL_OPERACIONES_ELIMINAR = "http://localhost:8000/Operaciones/delete/";
 
