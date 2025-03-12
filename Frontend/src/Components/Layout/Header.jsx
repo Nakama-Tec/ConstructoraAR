@@ -1,6 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 import logo from "../../assets/logoconfondo-removebg-preview.png";
-import "../../Styles/Navbar.css";
+import "../../Styles/navbar.css";
 import useAuthStore from "../../Context/useAuthStore";
 import { Disclosure } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
